@@ -379,6 +379,7 @@ body { background:#0d1725; }
 .kingdom .project-lead { color:rgba(23,32,43,.72); }
 .project-art { position:relative;min-height:64vh;align-self:center; }
 .project-art svg { position:absolute;inset:0;width:100%;height:100%; }
+.spectral-character { display:none; }
 .matrix-label {
   position:absolute;padding:8px 10px;border:1px solid currentColor;
   font:10px/1.25 ui-monospace,SFMono-Regular,Menlo,monospace;
@@ -805,6 +806,13 @@ h1 span { padding-top:.055em; }
   .detail-hero h1 { line-height:.92; }
   .section-art { margin:-2vh -6vw 0; }
   .art-caption { bottom:0; }
+  .spectral-character {
+    display:block;position:absolute;z-index:3;left:77%;bottom:87.4%;
+    width:clamp(126px,13vw,210px);height:auto;
+    pointer-events:none;user-select:none;
+    transform:translate(-55%,30%);
+    filter:brightness(.7) saturate(.7) drop-shadow(0 10px 14px rgba(4,9,16,.28));
+  }
 }
 </style>
 </head>
@@ -921,6 +929,7 @@ h1 span { padding-top:.055em; }
           <text x="407" y="652" fill="rgba(236,232,222,.55)" font-family="monospace" font-size="14">[O III]</text>
           <text x="674" y="652" fill="rgba(236,232,222,.55)" font-family="monospace" font-size="14">Hα</text>
         </svg>
+        <img class="spectral-character" src="assets/ais-mascot-seated-transparent.png" alt="">
         <div class="matrix-label a">GİRDİ / OSC RGB<br>FİLTRE / SV240</div>
         <div class="matrix-label b">MODEL / 3×3<br>KOŞUL / 6.81</div>
         <div class="matrix-label c">ÇIKTI / Hα · Hβ · [O III]</div>
