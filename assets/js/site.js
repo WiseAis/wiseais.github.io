@@ -6,6 +6,11 @@
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const detail = document.querySelector('#project-hahbolllayristirma');
   const openButtons = [...document.querySelectorAll('[data-open-project="hahbolllayristirma"]')];
+  const detailScrollButtons = [...document.querySelectorAll('[data-detail-scroll]')];
+  detailScrollButtons.forEach(button => button.addEventListener('click', () => {
+    const target = document.getElementById(button.dataset.detailScroll);
+    target?.scrollIntoView({ behavior:reduceMotion ? 'auto' : 'smooth', block:'start' });
+  }));
   const closeButton = document.querySelector('[data-close-project]');
   const storySections = [...document.querySelectorAll('.story-section')];
   const sectionArts = [...document.querySelectorAll('.section-art')];

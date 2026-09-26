@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#182943">
+  <title>AIS.001 03 — Teknik kayıt</title>
+  <meta name="description" content="Tek RGB görüntüden emisyon bileşeni kestirimi: model, sentetik doğrulama, NGC 7000 ve açık bilimsel sınırlar.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%23182943'/%3E%3Cpath d='M6 23 16 6l10 17M10 18h12' fill='none' stroke='%23ece8de' stroke-width='2.5'/%3E%3Ccircle cx='16' cy='23' r='2' fill='%2359a6b5'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/assets/css/base.css">
+  <link rel="stylesheet" href="/assets/css/technical-record.css">
+</head>
+<body class="technical-page">
+  <header class="top technical-top">
+    <a class="mark" href="/" aria-label="AIS ana sayfa">AIS<small>ARŞİV / 00.4</small></a>
+    <nav class="nav" aria-label="AIS.001 proje derinlikleri">
+      <a href="/#signal-separation">01 / kısa sunum</a>
+      <a href="/#proje/hahbolllayristirma">02 / görsel anlatı</a>
+      <a href="/ais001/03/" aria-current="page">03 / teknik kayıt</a>
+    </nav>
+    <div class="coord">AIS.001<br>kayıt açık</div>
+  </header>
+
+  <main>
+    <header class="record-hero" id="record-top">
+      <div class="record-kicker">AIS.001 / 03 — TEKNİK KAYIT</div>
+      <nav class="record-path" aria-label="Proje sunum katmanları">
+        <a href="/#signal-separation"><span>01</span> Kısa sunum</a>
+        <a href="/#proje/hahbolllayristirma"><span>02</span> Görsel anlatı</a>
+        <span aria-current="step"><span>03</span> Tam teknik kayıt</span>
+      </nav>
+      <h1>TEK RGB GÖRÜNTÜDEN<br>EMİSYON BİLEŞENİ KESTİRİMİ.</h1>
+      <p class="record-summary">Modelin neyi ölçtüğü, hangi kontrollü deneylerden geçtiği ve gerçek veride nerede geri çekilmesi gerektiği.</p>
+      <div class="record-meta" aria-label="Kayıt durumu">
+        <span><small>Kaynak durumu</small>23.09.2026</span>
+        <span><small>Başlangıç sürümü</small>1.0.0</span>
+        <span><small>Sonraki sürüm</small>1.1.0 dondurulmadı</span>
+      </div>
+      <p class="record-boundary"><strong>Bu sayfa bir sonuç vitrini değil, sınırlarıyla birlikte teknik kayıttır.</strong> Buradaki sayılar yalnız yazılı kaynak durumunu ve belirtilen koşulları anlatır; yeni bir gerçek veri çalıştırması olarak okunmamalıdır.</p>
+    </header>
+
+    <div class="record-layout">
+      <aside class="record-toc">
+        <h2>Bu kayıtta</h2>
+        <nav aria-label="Teknik kayıt bölümleri">
+          <a href="#question-and-scope" aria-current="location">Soru ve iddianın sınırı</a>
+          <a href="#data-and-calibration">Veri ve kalibrasyon</a>
+          <a href="#identifiability">İleri model ve tanımlanabilirlik</a>
+          <a href="#inverse-solve">Ters çözüm ve uzaysal kısıt</a>
+          <a href="#synthetic-validation">Sentetik doğrulama</a>
+          <a href="#ngc-7000">İlk gerçek veri</a>
+          <a href="#red-blend">Kırmızı karışım ve geri çekilme</a>
+          <a href="#provenance">Sürümler ve challenge</a>
+          <a href="#open-gates">Açık kapılar</a>
+        </nav>
+      </aside>
+
+      <article class="technical-article">
+        <section id="question-and-scope">
+          <p class="section-index">01 / TAHMİNİN SINIRI</p>
+          <h2>Soru ve iddianın sınırı</h2>
+          <p>Bu çalışmanın sorusu, tek bir renkli astronomi görüntüsündeki Hα, Hβ ve [O III] katkılarının kamera ile filtrenin bilinen spektral yanıtından hareketle ne kadar ayrıştırılabildiğidir. Girdi üç RGB kanalıdır; hedef, bu kanalları üreten fiziksel çizgi katkılarına ilişkin koşullu kestirimler ve bunların güven sınırlarıdır.</p>
+          <p><strong>Çıktı dar bant spektroskopinin yerine geçmez.</strong> Üç ölçüm; bilinmeyen continuum, elektronik taban, [N II] ve [S II] katkılarını da bağımsız değişkenler olarak çözmeye yetmez. Kırmızı çıktı bu nedenle <code>Ha_equivalent_red_blend</code> olarak adlandırılır: modelin kırmızı karışımı Hα eşdeğeri olarak açıkladığı miktar, koşulsuz temiz Hα akısı değildir. [O III] çıktısı 500.7 ve 495.9 nm çizgilerinin toplamını, üçüncü çıktı Hβ çevresini hedefler.</p>
+          <div class="record-callout"><strong>Üç sonuç statüsü ayrılır:</strong> varsayımlar içinde ölçülebilir, belirli bir öncüle bağlı koşullu ve verinin tek başına cevap vermediği model sınırlı durum. Son durumda sonuç vermemek (<code>ABSTAIN</code>) doğru davranış olabilir.</div>
+        </section>
+
+        <section id="data-and-calibration">
+          <p class="section-index">02 / GİRDİ SÖZLEŞMESİ</p>
+          <h2>Veri ve kalibrasyon</h2>
+          <p>İlk gerçek girdi, Nikon Z fc ve SVBONY SV240 ile alınmış, yıldızları ayrılmış lineer RGB FITS verisidir. Siril'de <strong>subtractive BackEx</strong> uygulanmış olması girdi sözleşmesinin parçasıdır. Çözücü kendi düzlem arka plan çıkarımını varsayılan işlem olarak kullanmaz; bu mod yalnız tanısal karşılaştırma içindir.</p>
+          <p>Karışım matrisi, kameranın kanallara göre spektral duyarlılığı ile filtrenin geçirgenliğinin hedef dalga boylarında örneklenmesiyle kurulur. Bu kalibrasyon mutlak fotometrik akı kalibrasyonu değildir. Çıktı birimi <code>relative/model units</code> olarak tutulur; FITS başlığındaki <code>BUNIT</code> fiziksel tümleşik akı iddiası gibi devralınmaz.</p>
+          <p>Kullanılan kalibrasyon dosyasının hash'i ve hava/vakum dalga boyu geleneği her çalıştırmada açık olmalıdır. Son dalga boyu geleneğinin kaynak dosyada kesin doğrulaması hâlâ açıktır. İlk gerçek çalıştırmadan sonra Hα ve Hβ FITS dosyaları Siril'de histogram, asinh ve eğri işlemleriyle yeniden yazıldı; mevcut iki dosya ilk lineer solver çıktısıyla doğrudan nicel karşılaştırma kaynağı değildir.</p>
+        </section>
+
+        <section id="identifiability">
+          <p class="section-index">03 / İLERİ MODEL</p>
+          <h2>Üç ölçüm, yalnız üç bağımsız hedefi belirleyebilir</h2>
+          <p>Bir piksel için çalışma modeli RGB ölçümlerini hedef bileşenlerle ilişkilendirir. Kamera duyarlılığı ve SV240 geçirgenliği birlikte 3×3 karışım matrisini oluşturur.</p>
+          <pre class="equation"><code>y_RGB ≈ M · x + ε
+x = [Ha_equivalent_red_blend, OIII_total, Hb]ᵀ
+M = kamera duyarlılığı × SV240 geçirgenliği
+
+OIII_total = I5007 + I4959
+I5007 / I4959 = 2.98</code></pre>
+          <p>Bu, üç bilinmeyenli kare sistemdir. Dördüncü bağımsız katkı eklenince çözüm artık yalnız verinin belirlediği tek bir çözüm değildir. Özellikle [N II] yanıtı Hα yanıtına çok yakınsa, [N II] katkısı RGB artığında az iz bırakıp kırmızı çıktıya yazılabilir.</p>
+          <div class="record-callout record-callout--warning"><strong>Küçük residual, temiz Hα kanıtı değildir.</strong> [O III] çiftinin 2.98 çizgi oranı, kırmızı taraftaki [N II] 6583/6548 oranı için kullanılan 2.98 varsayımından ayrı bir sabittir ve ayrı kaynak gerektirir.</div>
+        </section>
+
+        <section id="inverse-solve">
+          <p class="section-index">04 / TERS ÇÖZÜM</p>
+          <h2>Piksel çözümünden uzaysal düzene</h2>
+          <p>İlk çözüm her pikselde ağırlıklı, negatif olmayan en küçük kareler (NNLS) yöntemini kullanır. Komşu pikselleri hesaba katmadığından gürültü altında kararsızlaşabilir. Deneysel uzaysal çözüm bu başlangıçtan hareketle global FISTA optimizasyonu çalıştırır. Veri uyumuna kenar ağırlıklı pseudo-Huber düzgünleştirme eklenir; pozitiflik ve <code>Ha ≥ 2.75 × Hb</code> sınırı optimizasyon sırasında uygulanır.</p>
+          <p><code>2.75</code> sabit bir Hα/Hβ üretim oranı değildir; Hβ'nin Hα karşısında aşırı büyümesini sınırlamayı amaçlayan alt sınırdır. Balmer kısıtının mevcut izdüşümü her durumda tam koni izdüşümü değildir. Bu kısıtın etkin olduğu sonuçlar kusur giderilmeden bilimsel kabul sonucu sayılmamalıdır.</p>
+          <p>Sentetik karşılaştırmadaki <code>λ = 0.30</code> ve <code>PSF FWHM = 4 px</code> gerçek gökyüzü görüntüsünden ölçülmemiştir. Uzaysal düzenleme gerçek filamentleri de düzleştirebilir; bunun sınırı özel filament deneyiyle ölçülmeden ayrıntı koruma iddiası kurulamaz.</p>
+        </section>
+
+        <section id="synthetic-validation">
+          <p class="section-index">05 / KONTROLLÜ LABORATUVAR</p>
+          <h2>Sentetik doğrulama ne gösterdi?</h2>
+          <p>Laboratuvar, gerçeği bilinen Hα, Hβ ve [O III] sahnelerini RGB'ye karıştırıp ayrıştırıcı çıktısını bilinen katmanlarla karşılaştırır. Temiz sahne, gürültülü sahne ve ek spektral katkı taşıyan sahne ayrıdır. Yerel hata nebula içeren 100×100 piksel karolarda da ölçülür. Üretici ile değerlendiricinin ilk kayıtlarında 15 + 5 = 20/20 test, ayrıştırıcının ek regresyonlarında 24/24 test geçti.</p>
+          <p>Gürültüsü <code>5 × 10⁻⁶</code> olan kontrollü vakadaki yerel medyan yüzde hatalar:</p>
+          <div class="table-scroll">
+            <table>
+              <thead><tr><th>Hedef</th><th>Piksel çözümü</th><th>Uzaysal çözüm</th></tr></thead>
+              <tbody>
+                <tr><th>Hα eşdeğeri</th><td>%39,08</td><td>%8,06</td></tr>
+                <tr><th>Hβ</th><td>%54,62</td><td>%15,29</td></tr>
+                <tr><th>[O III] toplamı</th><td>%52,67</td><td>%17,94</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Bu tablo aynı sentetik truth sahnesine aittir. Kamera, filtre, nebula ve gürültü modeliyle gerçek gözlemin tüm farklarını kapsamaz. Eşleşen ileri ve ters modelin gürültüsüz başarısı yalnız iç tutarlılık gösterir; <em>inverse crime</em> riskini çözmez. Bu yüzden bağımsız model farkı içeren challenge vakaları ayrıdır.</p>
+        </section>
+
+        <section id="ngc-7000">
+          <p class="section-index">06 / İLK GERÇEK ÇALIŞTIRMA</p>
+          <h2>NGC 7000: sayısal yakınsama, fiziksel doğruluk değil</h2>
+          <p>İlk lineer, yıldızsız görüntü 1958×1497×3 boyutundaydı. Çözücü 43 iterasyonda sayısal durma koşuluna ulaştı ve üç katman üretti. Bunlar çalıştırmanın ölçüleridir; fiziksel doğruluk kanıtı değildir.</p>
+          <div class="metric-grid">
+            <div><small>Girdi SNR</small><strong>81,87</strong></div>
+            <div><small>R / G / B SNR</small><strong>64,12 / 68,05 / 68,18</strong></div>
+            <div><small>Karışım matrisi koşul sayısı</small><strong>≈ 6,81</strong></div>
+            <div><small>Sayısal durma</small><strong>43 iterasyon</strong></div>
+          </div>
+          <p><code>BACKGROUND_MODE=none</code> ile ortak pozitif taban, nebula destek haritasını her konumda 1,0'a doyurdu. Tanısal düzlem çıkarımı yaklaşık 0,001253 pedestal gösterip haritayı lokalize etti. Fakat aynı düzlem çıkarımı gerçek geniş diffuse emisyonu da silebilir. Tek işlenmiş RGB görüntüsünden bu tabanın elektronik offset mi gerçek gökyüzü mü olduğu belirlenemedi; bu yüzden düzlem çıkarımı varsayılan yapılmadı.</p>
+        </section>
+
+        <section id="red-blend">
+          <p class="section-index">07 / KIRMIZI ÇIKTI</p>
+          <h2>Hα eşdeğeri ile temiz Hα aynı iddia değil</h2>
+          <p>SV240 filtresi [N II] 6548/6583 çizgilerini Hα'ya yakın bir yanıtla geçirir; [S II] 6716 ve 6731 katkıları da değerlendirilmelidir. Sızıntı yönü <code>q = M⁻¹v</code> hesabıyla izlenir. Geçerli bir [N II]/[S II] öncülü yoksa temiz Hα için alt/üst sınır verilmez; durum <code>ABSTAIN</code> olur. Öncül varsa sınırlar ve dayandığı öncül birlikte yazılır.</p>
+          <div class="record-callout"><strong>Uygulama durumu:</strong> Bu koruma eski 1.0.0 anlık görüntüsünde yoktur. Aktif kopyada regresyon ve geçici FITS metadata kontrolü geçti; yeni kırmızı karışım çıktısı gerçek NGC 7000 verisinde henüz çalıştırılmadı.</div>
+        </section>
+
+        <section id="provenance">
+          <p class="section-index">08 / SÜRÜM VE KAYNAK İZİ</p>
+          <h2>Yeniden üretilebilirlik de sonucun parçası</h2>
+          <p><code>emisyonayristirma1.0.0</code> başlangıç çizgisi olarak SHA-256 <code>e2cb48a6a3f53e20505bac931d6df98d40c791886afacda7c89a384683d53bd9</code> ile donduruldu. Geliştirme ayrı aktif kopyada sürüyor. Aynı vakalardaki ölçümler ve kabul kapıları tamamlanmadan yeni anlık görüntü üretilmeyecek; 1.1.0 henüz dondurulmadı.</p>
+          <p>Challenge hattı her çalıştırma için create-only <code>request</code>, <code>result</code>, <code>gates</code> ve <code>checksums</code> kayıtlarıyla girdi, kalibrasyon, kaynak kod, ayar, seed ve çıktı hash'lerini saklar. Eksik veya değiştirilmiş bir run <code>incomplete</code> ya da <code>REJECT</code> olur. FITS başlığı provenance sağlar; verinin lineer olduğunu tek başına kanıtlamaz. Challenge üreticisinin ters çözücünün ileri modelini paylaşmaması hedeflenir.</p>
+          <p>Tamamlanmış son küçük QA turu 48×48 sentetik verideydi. <code>PASS</code> yalnız tanımlı vaka kapısının geçildiğini söyler:</p>
+          <div class="table-scroll">
+            <table>
+              <thead><tr><th>Vaka</th><th>Aktif RMSE</th><th>Kapı</th><th>Yorum</th></tr></thead>
+              <tbody>
+                <tr><th>C01</th><td>0,00094627</td><td>PASS</td><td>Eşleşen, gürültüsüz iç tutarlılık. Aktif uzaysal çözümün NNLS temelinden kötü olması ve 0,001 eşiğine yaklaşması not edildi.</td></tr>
+                <tr><th>C02</th><td>0,006826</td><td>PASS</td><td>Üreteç matrisi ters matristen farklı.</td></tr>
+                <tr><th>C04</th><td>0,10736</td><td>ABSTAIN</td><td>Ortak offset / nuisance.</td></tr>
+                <tr><th>C05</th><td>Ölçüldü</td><td>NOT_APPLICABLE</td><td>Fiziksel [N II]/[S II] sızıntı sınaması bağlı değil.</td></tr>
+                <tr><th>C06</th><td>Ölçüldü</td><td>NOT_APPLICABLE</td><td>Filament genişliği metriği bağlı değil.</td></tr>
+                <tr><th>C08</th><td>0,16337</td><td>ABSTAIN</td><td>Birleşik zor vaka; fiziksel kırmızı sızıntı testi değil.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>C01'de NNLS temelinin RMSE'si yaklaşık 4,04×10⁻¹⁷ düzeyindeydi ve aktif FISTA çözümünden daha iyiydi. Bu beklenmedik sınır kayıtlı kalır; PASS başlığına çevrilmez.</p>
+        </section>
+
+        <section id="open-gates">
+          <p class="section-index">09 / SONRAKİ KABUL KAPILARI</p>
+          <h2>Açık kalan işler</h2>
+          <p>Aktif kopyaya C05 için bağımsız [N II]/[S II] yanıt yardımcısı, C06 için dar/geniş filament truth ve width-moment yardımcısı eklendi. Runner ve gate bağlantıları tamamlanmadı; bu kısmi eklemelerden sonra acceptance run yapılmadı. Balmer'ın tam koni izdüşümü ve gerçek PSF/gürültü davranışı da açıktır.</p>
+          <ol class="gate-list">
+            <li>C05/C06 runner ve gate'lerini tamamla.</li>
+            <li>Hedefli QA'yı tek turda çalıştır.</li>
+            <li>1.0.0 ile aynı vakaları karşılaştır.</li>
+            <li>Sonra yeni sürüm kararını ver.</li>
+            <li>Gerçek veri yeniden çalıştırılmadan önce girdi lineerliğini ve kalibrasyon geçmişini doğrula.</li>
+          </ol>
+          <div class="record-callout record-callout--warning"><strong>Yayın sınırı:</strong> Bu kaydın dayandığı kod, kalibrasyon ve FITS dosyaları herkese açık yeniden üretim paketi değildir. Buradaki sayılar yalnız kaynakların raporlanan koşullarıyla sınırlıdır.</div>
+        </section>
+      </article>
+    </div>
+  </main>
+
+  <footer class="record-footer">
+    <span>AIS.001 / SINIRLARIYLA BİRLİKTE OKU</span>
+    <nav aria-label="Proje katmanlarına dönüş">
+      <a href="/#signal-separation">01 / kısa sunuma dön</a>
+      <a href="/#proje/hahbolllayristirma">02 / görsel anlatıya dön</a>
+      <a href="#record-top">başa dön ↑</a>
+    </nav>
+  </footer>
+  <script>
+    const sections = [...document.querySelectorAll(".technical-article section")];
+    const links = [...document.querySelectorAll(".record-toc a")];
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(entries => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          for (const link of links) link.removeAttribute("aria-current");
+          document.querySelector('.record-toc a[href="#' + entry.target.id + '"]')?.setAttribute("aria-current", "location");
+        }
+      }, { rootMargin: "-18% 0px -68% 0px" });
+      sections.forEach(section => observer.observe(section));
+    }
+  </script>
+</body>
+</html>

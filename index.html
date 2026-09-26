@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="tr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -14,7 +14,7 @@
 <main class="scene">
   <header class="top">
     <div class="mark">AIS<small>ARŞİV / 00.4</small></div>
-    <nav class="nav">
+    <nav class="nav" aria-label="Ana menü">
       <a href="#projects">projeler</a>
       <a href="#archive">indeks</a>
       <a href="#top">hakkında</a>
@@ -135,7 +135,7 @@
           sonra da hangi durumda bu sonuca güvenilmemesi gerektiğini sınayan sistemi kurmak.
         </p>
 
-        <div class="proof-strip" aria-label="Quick evidence">
+        <div class="proof-strip" aria-label="Kısa kanıtlar">
           <div class="proof"><strong>3×3</strong><span>karışım modeli</span></div>
           <div class="proof"><strong>24 / 24</strong><span>sentetik test</span></div>
           <div class="proof"><strong>%8,06</strong><span>yerel Hα hatası / test vakası</span></div>
@@ -146,7 +146,7 @@
           <p>Zor olan üç görüntü üretmek değil; gerçek yapıyı gürültüden, continuum'dan ve ikna edici ama sahte ayrıntı üretebilen varsayımlardan ayırmaktı.</p>
         </div>
         <button class="detail-open-trigger" type="button" data-open-project="hahbolllayristirma">
-          <span class="detail-open-copy"><small>03 / proje yüzeyi</small><strong>Deneyleri, yöntemleri ve sınırları incele</strong></span>
+          <span class="detail-open-copy"><small>02 / görsel anlatı</small><strong>Deneyleri, yöntemleri ve sınırları incele</strong></span>
           <span class="detail-open-arrow" aria-hidden="true">→</span>
         </button>
       </div>
@@ -182,7 +182,7 @@
           değil, tek bir bağlı sistem gibi davrandığı tekrar oynanabilir bir devlet kurma oyunu.
         </p>
 
-        <div class="proof-strip" aria-label="Quick evidence">
+        <div class="proof-strip" aria-label="Kısa kanıtlar">
           <div class="proof"><strong>11</strong><span>tasarım alanı</span></div>
           <div class="proof"><strong>2–3 sa</strong><span>hedef tur</span></div>
           <div class="proof"><strong>1 sistem</strong><span>lider + topluluk</span></div>
@@ -218,14 +218,14 @@
   <div class="detail-flow-label" aria-hidden="true">AIS.001 / SİNYAL ALANI / KAYDIRDIKÇA DÖNÜŞÜR</div>
   <header class="detail-top">
     <button class="detail-back" type="button" data-close-project>← Portföye dön</button>
-    <div class="detail-mark">AIS.001<small>EMİSYON AYRIŞTIRMA</small></div>
-    <div class="detail-mode">YÖNTEMİ İNCELE</div>
+    <div class="detail-mark">AIS.001<small>02 / GÖRSEL ANLATI</small></div>
+    <a class="detail-mode technical-quick-link" href="/ais001/03/">03 / TAM TEKNİK KAYIT ↗</a>
   </header>
 
   <section class="detail-hero">
     <canvas class="signal-canvas" aria-hidden="true"></canvas>
     <div class="detail-hero-copy">
-      <div class="project-kicker">Hahbolllayristirma / ilk gerçek detay yüzeyi / çalışma sürümü</div>
+      <div class="project-kicker">Hahbolllayristirma / AIS.001 02 / görsel anlatı</div>
       <h1>TEK RGB GÖRÜNTÜNÜN İÇİNDE NE SAKLI?</h1>
       <p>Bir renkli astronomi görüntüsünden Hα, Hβ ve [O III] bileşenlerini ayırmaya çalışıyorum. Ama asıl proje üç yeni görüntü üretmek değil; hangi ayrıntının veriden geldiğini, hangisinin model tarafından uydurulabileceğini ayırt etmek.</p>
     </div>
@@ -244,14 +244,14 @@
   </section>
 
   <main class="detail-body">
-    <div class="reading-route" aria-label="Proje anlatısının bu prototipteki kapsamı">
-      <div class="route-step"><span>01</span><strong>Problem ve sezgi</strong></div>
-      <div class="route-step"><span>02</span><strong>Model ve çözüm</strong></div>
-      <div class="route-step"><span>03</span><strong>Deney ve gerçek veri</strong></div>
-      <div class="route-step"><span>04</span><strong>Sınırlar ve sonraki adım</strong></div>
-    </div>
+    <nav class="reading-route" aria-label="AIS.001 02 anlatı bölümleri">
+      <button class="route-step" type="button" data-detail-scroll="story-question"><span>01</span><strong>Problem ve kapsam</strong></button>
+      <button class="route-step" type="button" data-detail-scroll="story-solver"><span>02</span><strong>Model ve çözüm</strong></button>
+      <button class="route-step" type="button" data-detail-scroll="story-evidence"><span>03</span><strong>Deney ve kanıt</strong></button>
+      <button class="route-step" type="button" data-detail-scroll="story-limits"><span>04</span><strong>Sınırlar ve sonraki adım</strong></button>
+    </nav>
 
-<section class="story-section">
+<section class="story-section" id="story-question">
       <div class="story-aside">
         <div class="story-number">01 / Ne görüyoruz?</div>
         <div class="section-art prism-art" aria-hidden="true">
@@ -290,7 +290,7 @@ I5007 / I4959 = 2.98</pre>
       </div>
     </section>
 
-<section class="story-section">
+<section class="story-section" id="story-solver">
       <div class="story-aside">
         <div class="story-number">02 / Nasıl ayırıyoruz?</div>
         <div class="section-art lines-art" aria-hidden="true">
@@ -331,7 +331,7 @@ koşul   = üç çizgi miktarı ≥ 0</pre>
       </div>
     </section>
 
-<section class="story-section">
+<section class="story-section" id="story-evidence">
       <div class="story-aside">
         <div class="story-number">03 / Sonuca nasıl güveniyoruz?</div>
         <div class="section-art" aria-hidden="true">
@@ -361,7 +361,7 @@ sahneler = clean → noise → extra_spectrum
       </div>
     </section>
 
-<section class="story-section">
+<section class="story-section" id="story-spatial">
       <div class="story-aside">
         <div class="story-number">04 / Komşuluk ne kazandırdı?</div>
         <div class="section-art" aria-hidden="true">
@@ -389,7 +389,7 @@ PSF FWHM      = 4 px  # gerçek stack'ten ölçülmedi</pre>
       </div>
     </section>
 
-<section class="story-section">
+<section class="story-section" id="story-ngc">
       <div class="story-aside">
         <div class="story-number">05 / Gerçek veri ne söyledi?</div>
         <div class="section-art" aria-hidden="true">
@@ -419,7 +419,7 @@ yakınsama      = 43 iterasyon</pre>
       </div>
     </section>
 
-<section class="story-section">
+<section class="story-section" id="story-limits">
       <div class="story-aside">
         <div class="story-number">06 / Nerede geri çekilmeliyiz?</div>
         <div class="section-art" aria-hidden="true">
@@ -449,7 +449,7 @@ durum = model-sınırlı / gerektiğinde abstain</pre>
       </div>
     </section>
 
-<section class="story-section">
+<section class="story-section" id="story-redblend">
       <div class="story-aside">
         <div class="story-number">07 / Kırmızı kanal gerçekten Hα mı?</div>
         <div class="section-art" aria-hidden="true">
@@ -474,7 +474,7 @@ durum = model-sınırlı / gerektiğinde abstain</pre>
       </div>
     </section>
 
-<section class="story-section">
+<section class="story-section" id="story-next">
       <div class="story-aside">
         <div class="story-number">08 / Bundan sonra ne?</div>
         <div class="section-art" aria-hidden="true">
@@ -504,6 +504,10 @@ durum = GO-WITH-FIXES / kullanıcı onayı bekleyen adaylar</pre>
       </div>
     </section>
 
+    <a class="technical-record-door" href="/ais001/03/">
+      <span><small>03 / RAPOR DERİNLİĞİ</small><strong>Tam teknik kayda geç</strong><span class="technical-record-caption">Model, doğrulama, gerçek veri ve açık sınırlar</span></span>
+      <span class="technical-record-arrow" aria-hidden="true">↗</span>
+    </a>
     <div class="working-note">AIS.001 / CANLI PROJE KAYDI. BU SAYFA MEVCUT KAYNAKLARI BAŞLANGIÇTAN GÜNCEL SINIRLARA KADAR ANLATIR; YENİ DENEY VE KARARLAR AYNI KAYNAK ŞEMASINDAN GÜNCELLENECEKTİR. KABUL EDİLMEMİŞ AR-GE ADAYLARI TAMAMLANMIŞ SONUÇ GİBİ SUNULMAZ.</div>
   </main>
 </aside>
