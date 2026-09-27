@@ -1,7 +1,7 @@
 .section-rail {
   position:fixed;z-index:25;top:50%;right:max(4px,env(safe-area-inset-right));
   display:grid;gap:1px;padding:0;transform:translateY(-50%);
-  color:#fff;
+  color:#3c8494;
 }
 .section-rail--detail { z-index:110; }
 body:not(.detail-open) .section-rail--detail { display:none; }
@@ -11,8 +11,8 @@ body:not(.detail-open) .section-rail--detail { display:none; }
   text-decoration:none;cursor:pointer;-webkit-tap-highlight-color:transparent;
 }
 .section-rail__item::before {
-  content:"";display:block;width:12px;height:1px;background:currentColor;opacity:.62;
-  transition:width .18s ease,height .18s ease,opacity .18s ease;mix-blend-mode:difference;
+  content:"";display:block;width:12px;height:1px;background:currentColor;opacity:1;
+  transition:width .18s ease,height .18s ease,opacity .18s ease;
 }
 .section-rail__item[aria-current="location"]::before {
   width:25px;height:2px;opacity:1;
