@@ -281,7 +281,6 @@
     document.body.style.width = '100%';
     detail.classList.add('is-open');
     detail.setAttribute('aria-hidden', 'false');
-    window.dispatchEvent(new Event('ais:detail-opened'));
     detail.scrollTop = 0;
     startCanvasLoops();
     if (updateHistory) history.pushState({ project:'hahbolllayristirma' }, '', '#proje/hahbolllayristirma');
