@@ -280,3 +280,20 @@ h1 .ghost {
   .index {justify-self:stretch;}
   .corner,.corner-right {display:none;}
 }
+
+@keyframes aisDepthEnterForward {
+  from { opacity:.88;transform:translateX(14px); }
+  to { opacity:1;transform:translateX(0); }
+}
+@keyframes aisDepthEnterReverse {
+  from { opacity:.88;transform:translateX(-14px); }
+  to { opacity:1;transform:translateX(0); }
+}
+html.depth-enter-forward .technical-page main { animation:aisDepthEnterForward .36s cubic-bezier(.2,.8,.2,1) both; }
+html.depth-enter-reverse body:not(.detail-open) > main,
+html.depth-enter-reverse body:not(.detail-open) > .project-flow { animation:aisDepthEnterReverse .36s cubic-bezier(.2,.8,.2,1) both; }
+@media (prefers-reduced-motion:reduce) {
+  html.depth-enter-forward .technical-page main,
+  html.depth-enter-reverse body:not(.detail-open) > main,
+  html.depth-enter-reverse body:not(.detail-open) > .project-flow { animation:none !important; }
+}

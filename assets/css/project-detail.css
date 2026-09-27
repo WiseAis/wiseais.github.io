@@ -2,25 +2,35 @@
 body > main,
 body > .project-flow,
 body > .flow-rail {
-  transition:transform .72s cubic-bezier(.2,.8,.2,1),filter .72s ease;
+  transition:transform .36s cubic-bezier(.2,.8,.2,1),filter .36s ease;
 }
 body.detail-open { overflow:hidden; }
 body.detail-open > main,
 body.detail-open > .project-flow,
 body.detail-open > .flow-rail {
-  transform:translateX(-14vw);
-  filter:brightness(.58) saturate(.72);
+  transform:translateX(-14px);
+  filter:brightness(.72) saturate(.88);
   pointer-events:none;
 }
 .project-detail {
   position:fixed;z-index:100;inset:0;
-  transform:translateX(102%);
-  transition:transform .72s cubic-bezier(.2,.8,.2,1);
+  transform:translateX(14px);
+  opacity:0;
+  transition:transform .36s cubic-bezier(.2,.8,.2,1),opacity .28s ease,visibility 0s linear .36s;
   background:#e3e6e8;color:#111820;
   overflow-y:auto;overscroll-behavior:contain;
   visibility:hidden;
 }
-.project-detail.is-open { transform:translateX(0);visibility:visible; }
+.project-detail.is-open {
+  transform:translateX(0);opacity:1;visibility:visible;
+  transition:transform .36s cubic-bezier(.2,.8,.2,1),opacity .28s ease,visibility 0s;
+}
+html.depth-enter-reverse .project-detail:not(.is-open) { transform:translateX(-14px); }
+@keyframes aisDepthModalEnterReverse {
+  from { opacity:.1;transform:translateX(-14px); }
+  to { opacity:1;transform:translateX(0); }
+}
+html.depth-enter-reverse body.detail-open .project-detail.is-open { animation:aisDepthModalEnterReverse .36s cubic-bezier(.2,.8,.2,1) both; }
 .detail-top {
   position:sticky;z-index:12;top:0;
   display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
@@ -230,7 +240,7 @@ body.detail-open > .flow-rail {
   .proof + .proof { border-left:0;border-top:1px solid currentColor;padding-left:0; }
   .archive-grid { grid-template-columns:1fr;gap:44px; }
   .guide-note { display:none; }
-  body.detail-open > main,body.detail-open > .project-flow,body.detail-open > .flow-rail { transform:translateX(-8vw); }
+  body.detail-open > main,body.detail-open > .project-flow,body.detail-open > .flow-rail { transform:translateX(-12px); }
   .detail-top { grid-template-columns:1fr auto 1fr;padding:0 16px; }
   .technical-quick-link { max-width:86px;font-size:7px;line-height:1.45;text-align:right; }
   .technical-record-door { margin-top:48px; }
@@ -247,6 +257,10 @@ body.detail-open > .flow-rail {
 }
 
 @media (prefers-reduced-motion:reduce) {
+  body > main,body > .project-flow,body > .flow-rail,.project-detail { transition:none !important; }
+  html.depth-enter-reverse body:not(.detail-open) > main,
+  html.depth-enter-reverse body:not(.detail-open) > .project-flow { animation:none !important; }
+  html.depth-enter-reverse body.detail-open .project-detail.is-open { animation:none !important; }
   html { scroll-behavior:auto; }
   .scroll-invite::after { animation:none;transform:scaleY(1); }
   .mascot-zone { transition:none; }

@@ -21,7 +21,6 @@
   const welcomePanel = document.querySelector('.float-card');
   const welcomeClose = document.querySelector('.welcome-close');
   const welcomeStorageKey = 'ais.portfolio.welcome.dismissed';
-  const returnStorageKey = 'ais.portfolio.hahbolllayristirma.return';
   let savedScroll = 0;
   let returnHash = '#signal-separation';
   let signalWidth = 0;
@@ -269,20 +268,9 @@
 
   const openDetail = ({ updateHistory = true } = {}) => {
     if (document.body.classList.contains('detail-open')) return;
-    const storedReturn = sessionStorage.getItem(returnStorageKey);
     if (updateHistory) {
       savedScroll = scrollY;
       returnHash = '#signal-separation';
-      sessionStorage.setItem(returnStorageKey,JSON.stringify({ scroll:savedScroll,hash:returnHash }));
-    } else if (storedReturn) {
-      try {
-        const parsed = JSON.parse(storedReturn);
-        savedScroll = Number(parsed.scroll) || 0;
-        returnHash = parsed.hash || '#signal-separation';
-      } catch (_) {
-        savedScroll = 0;
-        returnHash = '#signal-separation';
-      }
     } else {
       savedScroll = document.querySelector('#signal-separation')?.offsetTop || 0;
       returnHash = '#signal-separation';
@@ -311,6 +299,7 @@
     document.body.style.position = '';
     document.body.style.top = '';
     document.body.style.width = '';
+    sessionStorage.removeItem('ais.portfolio.hahbolllayristirma.return');
     if (location.hash !== returnHash) history.replaceState({},'',returnHash);
     requestAnimationFrame(() => requestAnimationFrame(() => {
       const target = document.querySelector('#signal-separation');
@@ -327,6 +316,12 @@
       closeDetail();
     }
   };
+
+  addEventListener('ais:close-to-depth', event => {
+    const target = new URL(event.detail?.href || '#signal-separation', location.href);
+    returnHash = target.hash || '#signal-separation';
+    requestClose();
+  });
 
   openButtons.forEach(button => button.addEventListener('click', event => {
     event.preventDefault();
