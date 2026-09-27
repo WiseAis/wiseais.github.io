@@ -51,7 +51,7 @@ html.depth-enter-reverse body.detail-open .project-detail.is-open { animation:ai
 .detail-hero {
   min-height:78vh;position:relative;overflow:hidden;
   display:grid;grid-template-columns:minmax(0,1.15fr) minmax(320px,.85fr);
-  gap:5vw;align-items:end;padding:10vh max(68px,7vw) 7vh 7vw;
+  gap:5vw;align-items:end;padding:10vh max(68px,7vw) 7vh var(--ais001-hero-inset);
   background:
     radial-gradient(circle at 76% 34%,rgba(50,124,143,.22),transparent 22%),
     radial-gradient(circle at 25% 74%,rgba(143,50,59,.18),transparent 24%),

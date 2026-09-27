@@ -12,7 +12,7 @@
 .technical-page .nav a { color:inherit;text-decoration:none; }
 .record-hero {
   position:relative;overflow:hidden;
-  padding:clamp(72px,10vw,142px) max(76px,calc((100vw - 1260px)/2)) 56px max(6vw,calc((100vw - 1260px)/2));
+  padding:clamp(72px,10vw,142px) max(76px,calc((100vw - 1260px)/2)) 56px var(--ais001-hero-inset);
   background:linear-gradient(110deg,rgba(16,29,47,.98) 4%,rgba(24,41,67,.97) 67%,rgba(24,41,67,.9)),#182943;
   color:#ece8de;
 }
