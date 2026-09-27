@@ -328,7 +328,10 @@
     }
   };
 
-  openButtons.forEach(button => button.addEventListener('click', () => openDetail()));
+  openButtons.forEach(button => button.addEventListener('click', event => {
+    event.preventDefault();
+    openDetail();
+  }));
   closeButton.addEventListener('click', requestClose);
   addEventListener('keydown', event => {
     if (event.key === 'Escape' && document.body.classList.contains('detail-open')) requestClose();
