@@ -10,6 +10,7 @@
   };
   const routeKey = url => `${url.pathname}${url.search}${url.hash}`;
   const currentUrl = new URL(location.href);
+  const isProject02Target = routeDepth(currentUrl) === 2;
   const safelyGet = key => { try { return sessionStorage.getItem(key); } catch (_) { return null; } };
   const safelyRemove = key => { try { sessionStorage.removeItem(key); } catch (_) {} };
   const safelySet = (key, value) => { try { sessionStorage.setItem(key, value); } catch (_) {} };
@@ -45,13 +46,26 @@
   };
 
   const clickDirection = consumeClickIntent(currentUrl);
-  if (clickDirection) applyEntry(clickDirection);
+  let entryDirection = clickDirection;
   const navigationType = performance.getEntriesByType('navigation')[0]?.type;
   if (!clickDirection && navigationType === 'back_forward') {
-    const historyDirection = consumeHistoryDirection(currentUrl);
-    if (historyDirection) applyEntry(historyDirection);
+    entryDirection = consumeHistoryDirection(currentUrl);
   }
+  if (entryDirection) applyEntry(entryDirection);
   safelyRemove(historyKey);
+  if (isProject02Target) {
+    document.documentElement.classList.add('depth-modal-prepaint');
+    if (entryDirection === 'reverse') document.documentElement.classList.add('depth-modal-reverse');
+  }
+  if (isProject02Target) {
+    const prepareModalStart = () => {
+      if (document.readyState !== 'interactive') return;
+      const modal = document.querySelector('.project-detail');
+      if (modal) getComputedStyle(modal).transform;
+      document.removeEventListener('readystatechange', prepareModalStart);
+    };
+    document.addEventListener('readystatechange', prepareModalStart);
+  }
 
   document.addEventListener('click', event => {
     if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
@@ -97,6 +111,13 @@
     if (clickDirection || historyDirection) applyEntry(clickDirection || historyDirection);
     safelyRemove(intentKey);
     safelyRemove(historyKey);
+  });
+
+  window.addEventListener('ais:detail-opened', () => {
+    if (!document.documentElement.classList.contains('depth-modal-prepaint')) return;
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      document.documentElement.classList.remove('depth-modal-prepaint', 'depth-modal-reverse');
+    }));
   });
 
   window.addEventListener('pagehide', () => {
