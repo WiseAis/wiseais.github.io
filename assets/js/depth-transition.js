@@ -10,8 +10,6 @@
   };
   const routeKey = url => `${url.pathname}${url.search}${url.hash}`;
   const currentUrl = new URL(location.href);
-  const currentDepth = routeDepth(currentUrl);
-  const now = Date.now();
   const safelyGet = key => { try { return sessionStorage.getItem(key); } catch (_) { return null; } };
   const safelyRemove = key => { try { sessionStorage.removeItem(key); } catch (_) {} };
   const safelySet = (key, value) => { try { sessionStorage.setItem(key, value); } catch (_) {} };
@@ -22,29 +20,36 @@
       document.documentElement.classList.remove('depth-enter-forward', 'depth-enter-reverse');
     }, 520);
   };
-
-  let matchedIntent = false;
-  try {
-    const stored = safelyGet(intentKey);
-    if (stored) {
-      const intent = JSON.parse(stored);
-      matchedIntent = intent.to === routeKey(currentUrl)
-        && intent.expires >= now
-        && (intent.direction === 'forward' || intent.direction === 'reverse');
+  const consumeClickIntent = url => {
+    try {
+      const stored = safelyGet(intentKey);
       safelyRemove(intentKey);
-      if (matchedIntent) applyEntry(intent.direction);
+      if (!stored) return null;
+      const intent = JSON.parse(stored);
+      if (intent.to !== routeKey(url) || intent.expires < Date.now()) return null;
+      return intent.direction === 'forward' || intent.direction === 'reverse' ? intent.direction : null;
+    } catch (_) {
+      safelyRemove(intentKey);
+      return null;
     }
-  } catch (_) {
-    safelyRemove(intentKey);
-  }
-  const navigationType = performance.getEntriesByType('navigation')[0]?.type;
-  if (!matchedIntent && navigationType === 'back_forward') {
+  };
+  const consumeHistoryDirection = url => {
     try {
       const previous = JSON.parse(safelyGet(historyKey) || 'null');
-      if (previous && previous.at + 30000 >= now && previous.depth && currentDepth && previous.depth !== currentDepth) {
-        applyEntry(currentDepth > previous.depth ? 'forward' : 'reverse');
+      const destinationDepth = routeDepth(url);
+      if (previous && previous.at + 30000 >= Date.now() && previous.depth && destinationDepth && previous.depth !== destinationDepth) {
+        return destinationDepth > previous.depth ? 'forward' : 'reverse';
       }
     } catch (_) {}
+    return null;
+  };
+
+  const clickDirection = consumeClickIntent(currentUrl);
+  if (clickDirection) applyEntry(clickDirection);
+  const navigationType = performance.getEntriesByType('navigation')[0]?.type;
+  if (!clickDirection && navigationType === 'back_forward') {
+    const historyDirection = consumeHistoryDirection(currentUrl);
+    if (historyDirection) applyEntry(historyDirection);
   }
   safelyRemove(historyKey);
 
@@ -85,12 +90,17 @@
 
   window.addEventListener('pageshow', event => {
     if (!event.persisted) return;
+    document.documentElement.classList.remove('depth-enter-forward', 'depth-enter-reverse');
+    const restoredUrl = new URL(location.href);
+    const clickDirection = consumeClickIntent(restoredUrl);
+    const historyDirection = clickDirection ? null : consumeHistoryDirection(restoredUrl);
+    if (clickDirection || historyDirection) applyEntry(clickDirection || historyDirection);
     safelyRemove(intentKey);
     safelyRemove(historyKey);
-    document.documentElement.classList.remove('depth-enter-forward', 'depth-enter-reverse');
   });
 
   window.addEventListener('pagehide', () => {
-    if (currentDepth) safelySet(historyKey, JSON.stringify({ depth:currentDepth, at:Date.now() }));
+    const departedDepth = routeDepth(new URL(location.href));
+    if (departedDepth) safelySet(historyKey, JSON.stringify({ depth:departedDepth, at:Date.now() }));
   });
 })();
