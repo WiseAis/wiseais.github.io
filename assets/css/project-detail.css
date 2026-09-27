@@ -337,6 +337,7 @@ h1 span { padding-top:.055em; }
 .story-visual { border:0;background:transparent;overflow:visible; }
 .plain-analogy { background:rgba(255,255,255,.42); }
 .technical-layer { box-shadow:14px 16px 0 rgba(17,24,32,.08); }
+.detail-hero-copy > .project-kicker { margin-bottom:12px; }
 @media(max-width:820px){
   h1{font-size:clamp(50px,15vw,92px);line-height:.94;letter-spacing:-.055em}
   .float-card{left:50%;bottom:10vh;width:min(90vw,560px)}
