@@ -23,7 +23,7 @@ body:not(.detail-open) .section-rail--detail { display:none; }
 .section-rail__item:focus-visible { outline:1px solid currentColor;outline-offset:-5px; }
 .section-rail__tooltip {
   position:absolute;right:calc(100% + 7px);top:50%;z-index:2;
-  display:grid;gap:4px;max-width:min(260px,55vw);padding:8px 10px;transform:translate(5px,-50%);
+  display:grid;gap:4px;width:min(240px,55vw);max-width:min(260px,55vw);padding:8px 10px;transform:translate(5px,-50%);
   border:1px solid rgba(236,232,222,.18);background:#14243a;color:#ece8de;
   box-shadow:0 4px 14px rgba(9,17,28,.18);
   white-space:normal;opacity:0;visibility:hidden;pointer-events:none;
@@ -44,7 +44,7 @@ body:not(.detail-open) .section-rail--detail { display:none; }
 @media(max-width:820px) {
   .section-rail { right:max(0px,env(safe-area-inset-right)); }
   .section-rail__item { width:44px;height:28px; }
-  .section-rail__tooltip { max-width:52vw; }
+  .section-rail__tooltip { width:52vw;max-width:52vw; }
 }
 @media(max-height:420px) {
   .section-rail__item { height:26px; }
