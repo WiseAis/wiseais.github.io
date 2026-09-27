@@ -9,6 +9,8 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%23182943'/%3E%3Cpath d='M6 23 16 6l10 17M10 18h12' fill='none' stroke='%23ece8de' stroke-width='2.5'/%3E%3Ccircle cx='16' cy='23' r='2' fill='%2359a6b5'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="/assets/css/base.css">
   <link rel="stylesheet" href="/assets/css/technical-record.css">
+  <link rel="stylesheet" href="/assets/css/section-rail.css">
+  <script src="/assets/js/section-rail.js" defer></script>
 </head>
 <body class="technical-page">
   <header class="top technical-top">
@@ -24,11 +26,6 @@
   <main>
     <header class="record-hero" id="record-top">
       <div class="record-kicker">AIS.001 / 03 — TEKNİK KAYIT</div>
-      <nav class="record-path" aria-label="Proje sunum katmanları">
-        <a href="/#signal-separation"><span>01</span> Kısa sunum</a>
-        <a href="/#proje/hahbolllayristirma"><span>02</span> Görsel anlatı</a>
-        <span aria-current="step"><span>03</span> Tam teknik kayıt</span>
-      </nav>
       <h1>TEK RGB GÖRÜNTÜDEN<br>EMİSYON BİLEŞENİ KESTİRİMİ.</h1>
       <p class="record-summary">Modelin neyi ölçtüğü, hangi kontrollü deneylerden geçtiği ve gerçek veride nerede geri çekilmesi gerektiği.</p>
       <div class="record-meta" aria-label="Kayıt durumu">
@@ -39,22 +36,19 @@
       <p class="record-boundary"><strong>Bu sayfa bir sonuç vitrini değil, sınırlarıyla birlikte teknik kayıttır.</strong> Buradaki sayılar yalnız yazılı kaynak durumunu ve belirtilen koşulları anlatır; yeni bir gerçek veri çalıştırması olarak okunmamalıdır.</p>
     </header>
 
-    <div class="record-layout">
-      <aside class="record-toc">
-        <h2>Bu kayıtta</h2>
-        <nav aria-label="Teknik kayıt bölümleri">
-          <a href="#question-and-scope" aria-current="location">Soru ve iddianın sınırı</a>
-          <a href="#data-and-calibration">Veri ve kalibrasyon</a>
-          <a href="#identifiability">İleri model ve tanımlanabilirlik</a>
-          <a href="#inverse-solve">Ters çözüm ve uzaysal kısıt</a>
-          <a href="#synthetic-validation">Sentetik doğrulama</a>
-          <a href="#ngc-7000">İlk gerçek veri</a>
-          <a href="#red-blend">Kırmızı karışım ve geri çekilme</a>
-          <a href="#provenance">Sürümler ve challenge</a>
-          <a href="#open-gates">Açık kapılar</a>
-        </nav>
-      </aside>
+    <nav class="section-rail" data-section-rail aria-label="Teknik kayıt bölümleri">
+      <a class="section-rail__item" href="#question-and-scope" aria-label="Soru ve sınır"><span class="section-rail__tooltip" aria-hidden="true">Soru ve sınır</span></a>
+      <a class="section-rail__item" href="#data-and-calibration" aria-label="Veri ve kalibrasyon"><span class="section-rail__tooltip" aria-hidden="true">Veri ve kalibrasyon</span></a>
+      <a class="section-rail__item" href="#identifiability" aria-label="Tanımlanabilirlik"><span class="section-rail__tooltip" aria-hidden="true">Tanımlanabilirlik</span></a>
+      <a class="section-rail__item" href="#inverse-solve" aria-label="Ters çözüm"><span class="section-rail__tooltip" aria-hidden="true">Ters çözüm</span></a>
+      <a class="section-rail__item" href="#synthetic-validation" aria-label="Sentetik doğrulama"><span class="section-rail__tooltip" aria-hidden="true">Sentetik doğrulama</span></a>
+      <a class="section-rail__item" href="#ngc-7000" aria-label="NGC 7000"><span class="section-rail__tooltip" aria-hidden="true">NGC 7000</span></a>
+      <a class="section-rail__item" href="#red-blend" aria-label="Kırmızı karışım"><span class="section-rail__tooltip" aria-hidden="true">Kırmızı karışım</span></a>
+      <a class="section-rail__item" href="#provenance" aria-label="Sürümler"><span class="section-rail__tooltip" aria-hidden="true">Sürümler</span></a>
+      <a class="section-rail__item" href="#open-gates" aria-label="Açık kapılar"><span class="section-rail__tooltip" aria-hidden="true">Açık kapılar</span></a>
+    </nav>
 
+    <div class="record-layout">
       <article class="technical-article">
         <section id="question-and-scope">
           <p class="section-index">01 / TAHMİNİN SINIRI</p>
@@ -179,19 +173,5 @@ I5007 / I4959 = 2.98</code></pre>
       <a href="#record-top">başa dön ↑</a>
     </nav>
   </footer>
-  <script>
-    const sections = [...document.querySelectorAll(".technical-article section")];
-    const links = [...document.querySelectorAll(".record-toc a")];
-    if ("IntersectionObserver" in window) {
-      const observer = new IntersectionObserver(entries => {
-        for (const entry of entries) {
-          if (!entry.isIntersecting) continue;
-          for (const link of links) link.removeAttribute("aria-current");
-          document.querySelector('.record-toc a[href="#' + entry.target.id + '"]')?.setAttribute("aria-current", "location");
-        }
-      }, { rootMargin: "-18% 0px -68% 0px" });
-      sections.forEach(section => observer.observe(section));
-    }
-  </script>
 </body>
 </html>
