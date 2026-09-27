@@ -21,14 +21,6 @@
       document.documentElement.classList.remove('depth-enter-forward', 'depth-enter-reverse');
     }, 520);
   };
-  const prepareProjectModal = direction => {
-    const html = document.documentElement;
-    html.classList.add('depth-modal-prepaint');
-    if (direction === 'reverse') html.classList.add('depth-modal-reverse');
-    else html.classList.remove('depth-modal-reverse');
-    const modal = document.querySelector('.project-detail');
-    if (modal) getComputedStyle(modal).transform;
-  };
   const consumeClickIntent = url => {
     try {
       const stored = safelyGet(intentKey);
@@ -62,10 +54,14 @@
   if (entryDirection) applyEntry(entryDirection);
   safelyRemove(historyKey);
   if (isProject02Target) {
-    prepareProjectModal(entryDirection);
+    document.documentElement.classList.add('depth-modal-prepaint');
+    if (entryDirection === 'reverse') document.documentElement.classList.add('depth-modal-reverse');
+  }
+  if (isProject02Target) {
     const prepareModalStart = () => {
       if (document.readyState !== 'interactive') return;
-      prepareProjectModal(entryDirection);
+      const modal = document.querySelector('.project-detail');
+      if (modal) getComputedStyle(modal).transform;
       document.removeEventListener('readystatechange', prepareModalStart);
     };
     document.addEventListener('readystatechange', prepareModalStart);
@@ -112,19 +108,9 @@
     const restoredUrl = new URL(location.href);
     const clickDirection = consumeClickIntent(restoredUrl);
     const historyDirection = clickDirection ? null : consumeHistoryDirection(restoredUrl);
-    const direction = clickDirection || historyDirection;
-    const needsProject02Open = routeDepth(restoredUrl) === 2
-      && !document.body.classList.contains('detail-open');
-    if (needsProject02Open) prepareProjectModal(direction);
-    if (direction) applyEntry(direction);
-    if (needsProject02Open) window.dispatchEvent(new Event('ais:restore-detail'));
+    if (clickDirection || historyDirection) applyEntry(clickDirection || historyDirection);
     safelyRemove(intentKey);
     safelyRemove(historyKey);
-  });
-
-  window.addEventListener('hashchange', () => {
-    if (routeDepth(new URL(location.href)) !== 2 || document.body.classList.contains('detail-open')) return;
-    prepareProjectModal(null);
   });
 
   window.addEventListener('ais:detail-opened', () => {

@@ -323,9 +323,6 @@
     returnHash = target.hash || '#signal-separation';
     requestClose();
   });
-  addEventListener('ais:restore-detail', () => {
-    if (location.hash === '#proje/hahbolllayristirma') openDetail({ updateHistory:false });
-  });
 
   openButtons.forEach(button => button.addEventListener('click', event => {
     event.preventDefault();
@@ -336,10 +333,6 @@
     if (event.key === 'Escape' && document.body.classList.contains('detail-open')) requestClose();
   });
   addEventListener('popstate', () => {
-    if (location.hash === '#proje/hahbolllayristirma') openDetail({ updateHistory:false });
-    else closeDetail();
-  });
-  addEventListener('hashchange', () => {
     if (location.hash === '#proje/hahbolllayristirma') openDetail({ updateHistory:false });
     else closeDetail();
   });
