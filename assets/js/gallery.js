@@ -1,4 +1,30 @@
 (() => {
+  const artImages = [...document.querySelectorAll('[data-art-variant]')];
+  const artChoices = [...document.querySelectorAll('[data-art-choice]')];
+  const setArtwork = (mode, updateUrl = false) => {
+    const activeMode = mode === 'exposure' ? 'exposure' : 'bayer';
+    document.documentElement.dataset.galleryVisual = activeMode;
+    artImages.forEach(image => {
+      const active = image.dataset.artVariant === activeMode;
+      image.hidden = !active;
+      if (active && !image.getAttribute('src')) {
+        image.src = image.dataset.src;
+        image.decoding = 'async';
+        image.fetchPriority = 'high';
+      }
+    });
+    artChoices.forEach(choice => {
+      choice.setAttribute('aria-pressed', String(choice.dataset.artChoice === activeMode));
+    });
+    if (updateUrl) {
+      const url = new URL(location.href);
+      url.searchParams.set('visual', activeMode);
+      history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`);
+    }
+  };
+  artChoices.forEach(choice => choice.addEventListener('click', () => setArtwork(choice.dataset.artChoice, true)));
+  setArtwork(new URLSearchParams(location.search).get('visual'));
+
   const grid = document.querySelector('#gallery-grid');
   const viewer = document.querySelector('#gallery-viewer');
   const viewerImage = document.querySelector('#viewer-image');

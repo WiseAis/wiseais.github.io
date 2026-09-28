@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>AIS — Astrofotoğraf Galerisi</title>
-<meta name="description" content="AIS astrofotoğraf galerisi: gözlem gecelerinden görüntüler ve kayıtlar.">
+<title>AIS — Astrofotoğraflar</title>
+<meta name="description" content="AIS astrofotoğraf koleksiyonu.">
 <meta name="theme-color" content="#0d1725">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%23182943'/%3E%3Cpath d='M6 23 16 6l10 17M10 18h12' fill='none' stroke='%23ece8de' stroke-width='2.5'/%3E%3Ccircle cx='16' cy='23' r='2' fill='%2359a6b5'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="assets/css/base.css">
@@ -12,45 +12,41 @@
 </head>
 <body class="gallery-body">
 <header class="top gallery-top">
-  <a class="mark gallery-mark" href="./" aria-label="AIS proje arşivine dön">AIS<small>GÖRSEL ARŞİV</small></a>
+  <a class="mark gallery-mark" href="./" aria-label="AIS proje arşivine dön">AIS<small>ARŞİV / 00.4</small></a>
   <nav class="nav gallery-nav" aria-label="Ana menü">
     <a href="./#projects">projeler</a>
-    <a href="galeri.html" aria-current="page">astrofotoğraf</a>
+    <a href="galeri.html" aria-current="page">astrofotoğraflar</a>
     <a href="./#archive">indeks</a>
+    <a href="./#top">hakkında</a>
   </nav>
-  <div class="coord gallery-coord">AIS / 01<br>görsel kayıt</div>
 </header>
 
 <main class="gallery-page">
   <section class="gallery-hero" aria-labelledby="gallery-title">
     <div class="gallery-hero-copy">
-      <div class="gallery-eyebrow"><span>bağımsız gözlemler</span><span aria-hidden="true">/</span><span>gökyüzü kayıtları</span></div>
+      <div class="gallery-eyebrow">ASTROFOTOĞRAF</div>
       <h1 id="gallery-title">GÖĞÜN<br><span>İZLERİ.</span></h1>
-      <p>Geceden kalan ışık, gözlem koşullarıyla birlikte burada tutuluyor. Önce hızlı bir önizleme; tam çözünürlük, istediğinde.</p>
       <a class="gallery-enter" href="#observations"><span>kayıtlara bak</span><span aria-hidden="true">↓</span></a>
     </div>
-    <div class="gallery-orbit" aria-hidden="true">
-      <div class="orbit-ring orbit-ring--outer"></div>
-      <div class="orbit-ring orbit-ring--middle"></div>
-      <div class="orbit-ring orbit-ring--inner"></div>
-      <div class="orbit-star orbit-star--one"></div>
-      <div class="orbit-star orbit-star--two"></div>
-      <div class="orbit-star orbit-star--three"></div>
-      <div class="orbit-star orbit-star--four"></div>
-      <div class="orbit-core"></div>
-      <div class="orbit-index">FIELD / 01<br>LONG EXPOSURE</div>
-      <div class="orbit-caption">ışık<br>→ kayıt</div>
-    </div>
-    <div class="gallery-hero-index" aria-hidden="true"><span>01</span><span>ışık toplanır</span><i></i><span>02</span><span>görüntü incelenir</span></div>
+    <figure class="gallery-artwork">
+      <div class="gallery-artwork__frame" id="gallery-art-display">
+        <img class="gallery-artwork__image" data-art-variant="bayer" data-src="assets/gallery/hero-bayer.webp" alt="Fotonların Bayer renk filtresindeki kırmızı, yeşil ve mavi sensör hücrelerine düşmesini gösteren kavramsal görsel." hidden>
+        <img class="gallery-artwork__image" data-art-variant="exposure" data-src="assets/gallery/hero-exposure.webp" alt="Yıldızlar ve zayıf gökyüzü ışığının kumlu karanlık içinden belirginleşmesini gösteren kavramsal görsel." hidden>
+      </div>
+      <figcaption class="gallery-art-controls">
+        <div role="group" aria-label="Karşılama görseli seçimi">
+          <button type="button" data-art-choice="bayer" aria-controls="gallery-art-display" aria-pressed="true">Bayer CFA</button>
+          <button type="button" data-art-choice="exposure" aria-controls="gallery-art-display" aria-pressed="false">Sinyal</button>
+        </div>
+      </figcaption>
+    </figure>
   </section>
 
   <section class="gallery-collection" id="observations" aria-labelledby="collection-title">
     <div class="collection-heading">
       <div>
-        <div class="gallery-eyebrow">AIS / ASTROFOTOĞRAF</div>
-        <h2 id="collection-title">GÖZLEM KAYITLARI</h2>
+        <h2 id="collection-title">ASTROFOTOĞRAFLAR</h2>
       </div>
-      <p>Görsele dokununca tam JPEG açılır.<br>Önizlemeler daha az veri kullanır.</p>
     </div>
 
     <div class="gallery-grid" id="gallery-grid" aria-live="polite" aria-busy="true">
