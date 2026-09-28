@@ -54,7 +54,7 @@
     </div>
 
     <div class="gallery-grid" id="gallery-grid" aria-live="polite" aria-busy="true">
-      <p class="gallery-status">Gözlem kayıtları bu alana eklenecek.</p>
+      <p class="gallery-status">Görsel kayıtları yükleniyor…</p>
     </div>
     <noscript><p class="gallery-status">Galeriyi görüntülemek için JavaScript açık olmalı.</p></noscript>
   </section>
@@ -65,5 +65,22 @@
   </footer>
 </main>
 
+<dialog class="gallery-viewer" id="gallery-viewer" aria-labelledby="viewer-title" aria-describedby="viewer-description">
+  <div class="gallery-viewer__top">
+    <div>
+      <div class="gallery-viewer__eyebrow">AIS / TAM ÇÖZÜNÜRLÜK JPEG</div>
+      <h2 id="viewer-title">Görsel açılıyor</h2>
+      <p id="viewer-description"></p>
+    </div>
+    <button class="gallery-viewer__close" type="button" data-viewer-close aria-label="Görseli kapat" autofocus>×</button>
+  </div>
+  <div class="gallery-viewer__stage" aria-busy="true">
+    <p class="gallery-viewer__status" id="viewer-status" role="status" aria-live="polite">Tam çözünürlüklü görsel yükleniyor…</p>
+    <img class="gallery-viewer__image" id="viewer-image" alt="" hidden>
+  </div>
+  <dl class="gallery-viewer__metadata" id="viewer-metadata"></dl>
+</dialog>
+
+<script src="assets/js/gallery.js" defer></script>
 </body>
 </html>

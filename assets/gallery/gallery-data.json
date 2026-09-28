@@ -1,0 +1,18 @@
+{
+  "entries": [
+    {
+      "id": "synthetic-sky-demo",
+      "title": "Sentetik gökyüzü denemesi",
+      "object": "GEÇİCİ / GERÇEK GÖZLEM DEĞİL",
+      "capturedAt": "örnek kayıt",
+      "location": "—",
+      "instrument": "—",
+      "exposure": "—",
+      "alt": "Gerçek astrofotoğraf olmayan, renkli bulutsu ve yıldız alanı içeren geçici sentetik galeri görseli.",
+      "description": "Bu yapıyı denemek için üretilmiş örnek görüntüdür; gerçek bir gök cismi veya gözlem kaydı değildir.",
+      "previewUrl": "assets/gallery/synthetic-sky-preview.jpg",
+      "fullUrl": "assets/gallery/synthetic-sky-full.jpg",
+      "temporaryDemo": true
+    }
+  ]
+}
