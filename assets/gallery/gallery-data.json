@@ -1,76 +1,44 @@
 {
   "entries": [
     {
-      "id": "ifn-local-review",
+      "id": "ifn",
       "title": "IFN · Yıldızlararası Toz",
       "object": "IFN",
-      "capturedAt": "",
-      "location": "Karaburun, İzmir",
-      "bortle": 3,
-      "instrument": "80 mm apokromatik refraktör",
-      "camera": "APS-C renkli CMOS astrokamera",
-      "exposure": "36 × 120 sn",
-      "frameCounts": { "dark": 20, "flat": 30, "bias": 50 },
-      "metadataIsPlaceholder": true,
       "alt": "Geniş yıldız alanında koyu toz şeritleri ve mavi, turuncu, sarı tonlarda bulut yapıları.",
       "description": "Yıldızlararası toz bulutlarının geniş bir yıldız alanı içindeki görünümü.",
       "previewUrl": "assets/gallery/ifn-preview.jpg",
       "fullUrl": "assets/gallery/ifn-full.jpg",
-      "localReview": true
+      "sameOriginHosted": true
     },
     {
-      "id": "veil-local-review",
+      "id": "veil",
       "title": "Veil Bulutsusu",
       "object": "VEIL",
-      "capturedAt": "",
-      "location": "Kaş, Antalya",
-      "bortle": 3,
-      "instrument": "80 mm apokromatik refraktör",
-      "camera": "APS-C renkli CMOS astrokamera",
-      "exposure": "48 × 180 sn",
-      "frameCounts": { "dark": 32, "flat": 30, "bias": 50 },
-      "metadataIsPlaceholder": true,
       "alt": "Karanlık yıldız alanında ince kırmızı ve turkuaz iplikler hâlinde görünen Veil Bulutsusu.",
       "description": "Veil Bulutsusu'nun karanlık yıldız alanında seçilen ince gaz iplikleri.",
       "previewUrl": "assets/gallery/veil-preview.jpg",
       "fullUrl": "assets/gallery/veil-full.jpg",
-      "localReview": true
+      "sameOriginHosted": true
     },
     {
-      "id": "elep-local-review",
+      "id": "elep",
       "title": "Fil Hortumu Bulutsusu",
       "object": "FİL HORTUMU",
-      "capturedAt": "",
-      "location": "Datça, Muğla",
-      "bortle": 4,
-      "instrument": "80 mm apokromatik refraktör",
-      "camera": "APS-C renkli CMOS astrokamera",
-      "exposure": "40 × 180 sn",
-      "frameCounts": { "dark": 32, "flat": 25, "bias": 100 },
-      "metadataIsPlaceholder": true,
       "alt": "Yıldız alanında kırmızı emisyon bölgeleriyle belirgin Fil Hortumu Bulutsusu.",
       "description": "Fil Hortumu Bulutsusu çevresindeki yıldız alanı ve kırmızı emisyon bölgeleri.",
       "previewUrl": "assets/gallery/elep-preview.jpg",
       "fullUrl": "assets/gallery/elep-full.jpg",
-      "localReview": true
+      "sameOriginHosted": true
     },
     {
-      "id": "andromeda-local-review",
+      "id": "andromeda",
       "title": "Andromeda Galaksisi",
       "object": "ANDROMEDA",
-      "capturedAt": "",
-      "location": "Seferihisar, İzmir",
-      "bortle": 4,
-      "instrument": "80 mm apokromatik refraktör",
-      "camera": "APS-C renkli CMOS astrokamera",
-      "exposure": "45 × 120 sn",
-      "frameCounts": { "dark": 25, "flat": 30, "bias": 60 },
-      "metadataIsPlaceholder": true,
       "alt": "Karanlık yıldız alanında parlak, eğik disk görünümüyle seçilen Andromeda Galaksisi.",
       "description": "Andromeda Galaksisi'nin yıldız alanı içindeki eğik disk görünümü.",
       "previewUrl": "assets/gallery/andromeda-preview.jpg",
       "fullUrl": "assets/gallery/andromeda-full.jpg",
-      "localReview": true
+      "sameOriginHosted": true
     }
   ]
 }
