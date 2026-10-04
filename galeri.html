@@ -8,7 +8,7 @@
 <meta name="theme-color" content="#0d1725">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%23182943'/%3E%3Cpath d='M6 23 16 6l10 17M10 18h12' fill='none' stroke='%23ece8de' stroke-width='2.5'/%3E%3Ccircle cx='16' cy='23' r='2' fill='%2359a6b5'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="assets/css/base.css">
-<link rel="stylesheet" href="assets/css/gallery.css?v=mobile-title-1">
+<link rel="stylesheet" href="assets/css/gallery.css?v=photos-final-20261004">
 </head>
 <body class="gallery-body">
 <header class="top gallery-top">
@@ -24,28 +24,23 @@
 <main class="gallery-page">
   <section class="gallery-hero" aria-labelledby="gallery-title">
     <div class="gallery-hero-copy">
-      <div class="gallery-eyebrow">ASTROFOTOĞRAF</div>
+      <div class="gallery-eyebrow">ASTROFOTOĞRAF / DERİN GÖKYÜZÜ</div>
       <h1 id="gallery-title">GÖĞÜN<br><span>İZLERİ.</span></h1>
-      <a class="gallery-enter" href="#observations"><span>kayıtlara bak</span><span aria-hidden="true">↓</span></a>
+      <p class="gallery-hero__summary">Derin gökyüzünden seçili kareler.</p>
+      <a class="gallery-enter" href="#observations"><span>fotoğraflara göz at</span><span aria-hidden="true">↓</span></a>
     </div>
     <figure class="gallery-artwork">
-      <div class="gallery-artwork__frame" id="gallery-art-display">
-        <img class="gallery-artwork__image" data-art-variant="bayer" data-src="assets/gallery/hero-bayer.webp" alt="Fotonların Bayer renk filtresindeki kırmızı, yeşil ve mavi sensör hücrelerine düşmesini gösteren kavramsal görsel." hidden>
-        <img class="gallery-artwork__image" data-art-variant="exposure" data-src="assets/gallery/hero-exposure.webp" alt="Yıldızlar ve zayıf gökyüzü ışığının kumlu karanlık içinden belirginleşmesini gösteren kavramsal görsel." hidden>
+      <div class="gallery-artwork__frame">
+        <img class="gallery-artwork__image" src="assets/gallery/ifn-preview.jpg" alt="Geniş yıldız alanında koyu şeritler ve mavi, sıcak renkli ışık bölgeleri." fetchpriority="high" decoding="async">
       </div>
-      <figcaption class="gallery-art-controls">
-        <div role="group" aria-label="Karşılama görseli seçimi">
-          <button type="button" data-art-choice="bayer" aria-controls="gallery-art-display" aria-pressed="true">Bayer CFA</button>
-          <button type="button" data-art-choice="exposure" aria-controls="gallery-art-display" aria-pressed="false">Sinyal</button>
-        </div>
-      </figcaption>
+      <figcaption>IFN</figcaption>
     </figure>
   </section>
 
   <section class="gallery-collection" id="observations" aria-labelledby="collection-title">
     <div class="collection-heading">
       <div>
-        <h2 id="collection-title">ASTRO<wbr>FOTOĞRAFLAR</h2>
+        <h2 id="collection-title">FOTOĞRAFLAR</h2>
       </div>
     </div>
 
@@ -77,6 +72,6 @@
   <dl class="gallery-viewer__metadata" id="viewer-metadata"></dl>
 </dialog>
 
-<script src="assets/js/gallery.js" defer></script>
+<script src="assets/js/gallery.js?v=photos-final-20261004" defer></script>
 </body>
 </html>
