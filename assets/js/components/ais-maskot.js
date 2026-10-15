@@ -369,14 +369,18 @@ class AisMaskot extends HTMLElement {
     this.tabIndex = 0;
     this.title = "Tıkla, bir şey söylesin";
     let sira = 0;
-    // Bozuk bir söz listesi maskotu susturmasın: fazın kendi sözlerine düş
-    let liste = SOZLER[this.faz];
-    try {
-      if (this.dataset.sozler) liste = JSON.parse(this.dataset.sozler);
-    } catch (hata) {
-      console.warn("ais-maskot: data-sozler okunamadı", hata);
-    }
+    // Liste her konuşmada yeniden okunur: faz sonradan değişebilir (maskot-evrim).
+    // Bozuk bir söz listesi maskotu susturmasın: fazın kendi sözlerine düş.
+    const sozler = () => {
+      try {
+        if (this.dataset.sozler) return JSON.parse(this.dataset.sozler);
+      } catch (hata) {
+        console.warn("ais-maskot: data-sozler okunamadı", hata);
+      }
+      return SOZLER[this.faz];
+    };
     const konus = () => {
+      const liste = sozler();
       balon.textContent = liste[sira % liste.length];
       sira++;
       // Balon ekranın dışına taşmasın: maskotun konumuna göre yön seç
