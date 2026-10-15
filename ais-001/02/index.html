@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="tr" class="kilitli">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AIS.001 · Mantığı</title>
+  <meta name="description" content="Hahbolllayristirma'nın mantığı: tek RGB görüntüden Hα, [O&nbsp;III] ve Hβ katkılarını kestirme denemesi, sekiz adımda.">
+  <meta name="theme-color" content="#07080b">
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..700,0..100,0..1&family=Instrument+Sans:wght@400..600&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <link rel="stylesheet" href="/assets/css/sayfalar/mantik.css">
+  <script type="module" src="/assets/js/main.js"></script>
+</head>
+<body style="--vurgu: var(--ha)">
+  <a class="atla" href="#icerik">İçeriğe geç</a>
+
+  <header class="ust">
+    <a class="marka" href="/" aria-label="Aisenit ana sayfa"><ais-maskot faz="aisen" boyut="30"></ais-maskot><span>aisenit</span></a>
+    <nav class="derinlik" aria-label="AIS.001 derinlikleri">
+      <span class="yol veri">AIS.001 · Hahbolllayristirma</span>
+      <a href="/#ais-001">01</a>
+      <a href="/ais-001/02/" aria-current="page">02</a>
+      <a href="/ais-001/03/">03</a>
+    </nav>
+    <p class="entegrasyon veri" data-entegrasyon title="Bu sayfada geçirdiğin süre. Her 4 saniye bir kare sayılır.">
+      <span class="uzun">ENT</span> <b data-sure>00:00:00</b>
+    </p>
+  </header>
+
+  <ol class="ray veri" data-ray aria-label="Adımlar">
+    <li><a href="#soru"><span>01 · Soru</span></a></li>
+    <li><a href="#cozum"><span>02 · İlk çözüm</span></a></li>
+    <li><a href="#sentetik"><span>03 · Sentetik</span></a></li>
+    <li><a href="#komsuluk"><span>04 · Komşuluk</span></a></li>
+    <li><a href="#ngc"><span>05 · İlk NGC 7000</span></a></li>
+    <li><a href="#sinirlar"><span>06 · Sınırlar</span></a></li>
+    <li><a href="#deney"><span>07 · 48 sahne</span></a></li>
+    <li><a href="#gercek"><span>08 · Gerçek veri</span></a></li>
+  </ol>
+
+  <main id="icerik">
+    <!-- Kapak -->
+    <section class="ekran kapak" id="kapak">
+      <p class="kunye veri"><b>AIS.001</b> · 02 · mantığı</p>
+      <div class="kapak-metin">
+        <h1 data-belir>Işığı <em class="italik">geri yürümek.</em></h1>
+        <p class="kapak-ozet" data-belir style="--sira:1">Bir karışımın nasıl oluştuğunu biliyorsak, bileşenlerine geri dönebilir miyiz? Bu sayfa o sorunun sekiz adımlık hikâyesi; ilk pikselden 48 sahnelik deneye ve gerçek gökyüzüne.</p>
+        <ol class="kapak-dizin" data-belir style="--sira:2">
+          <li><a href="#soru"><span class="veri">01</span> Başlangıç sorusu</a></li>
+          <li><a href="#cozum"><span class="veri">02</span> Piksel piksel</a></li>
+          <li><a href="#sentetik"><span class="veri">03</span> 15–16 Eylül · sentetik</a></li>
+          <li><a href="#komsuluk"><span class="veri">04</span> 16 Eylül · komşuluk</a></li>
+          <li><a href="#ngc"><span class="veri">05</span> 16 Eylül · NGC 7000</a></li>
+          <li><a href="#sinirlar"><span class="veri">06</span> 19–23 Eylül · sınırlar</a></li>
+          <li><a href="#deney"><span class="veri">07</span> 27–29 Eylül · 48 sahne</a></li>
+          <li><a href="#gercek"><span class="veri">08</span> 4 Ekim · gerçek veri</a></li>
+        </ol>
+      </div>
+      <div class="kapak-rehber" data-belir style="--sira:3">
+        <ais-maskot faz="aisen" boyut="150" konus kendiliginden
+          data-sozler='["Ben Aisen. 02 benim katım: biraz netleştim, biraz da havalandım.","Her ekranda tek konu var. Aşağı kaydır, ben buradayım.","Teknik notlar kapalı duruyor. Merak edersen + işaretine bas."]'></ais-maskot>
+        <p>Rehberin Aisen. Tıklarsan konuşur.</p>
+      </div>
+    </section>
+
+    <!-- 01 -->
+    <section class="ekran adim" id="soru" data-no="02.1">
+      <div class="adim-metin">
+        <p class="adim-etiket veri" data-belir><b>01</b> Başlangıç sorusu</p>
+        <h2 data-belir style="--sira:1">Bir fotoğrafın içindeki ışığı ayırabilir miyiz?</h2>
+        <p data-belir style="--sira:2">Bir gökyüzü fotoğrafında farklı gazların ışığı üst üste gelir. Nikon Z fc ve SV240 filtresiyle alınmış <strong>tek bir RGB görüntüden</strong> Hα, Hβ ve [O&nbsp;III] katkılarını kestirmeyi deniyoruz.</p>
+        <p data-belir style="--sira:3">Fikir basit: kamera ile filtrenin ışığa nasıl tepki verdiğini biliyorsak, karışımın nasıl oluştuğunu da biliyoruz demektir. O zaman bileşenlerine geri yürüyebilir miyiz?</p>
+        <details class="teknik" data-belir style="--sira:4">
+          <summary class="veri">Teknik not · modelin başlangıcı</summary>
+          <div class="teknik-govde">
+            <pre>RGB ≈ M · [Hα eşdeğeri, OIII toplamı, Hβ] + gürültü</pre>
+            <p>M, kamera duyarlılığı ile filtre geçirgenliğinden kurulan karışım matrisidir. Çıktılar göreli/model birimlerindedir; kırmızı kestirim temiz Hα ölçümü değildir.</p>
+          </div>
+        </details>
+      </div>
+      <div class="adim-gorsel" data-belir style="--sira:2"><sahne-cizim proje="ais-001" tur="spektrum"></sahne-cizim></div>
+    </section>
+
+    <!-- 02 -->
+    <section class="ekran adim" id="cozum" data-no="02.2">
+      <div class="adim-metin">
+        <p class="adim-etiket veri" data-belir><b>02</b> İlk çözüm</p>
+        <h2 data-belir style="--sira:1">Önce her pikseli tek başına çözdük.</h2>
+        <p data-belir style="--sira:2">Her pikseldeki kırmızı, yeşil ve mavi değeri, üç hedef bileşenin birleşimiyle açıklamaya çalıştık. <strong>Negatif ışık miktarına izin vermeyen</strong> bir çözüm kullandık; çünkü gökyüzü eksi foton göndermiyor.</p>
+        <p data-belir style="--sira:3">Ama bu başlangıç, komşu piksellerin aynı yapıya ait olabileceğini bilmiyordu. Gürültülü bir ölçüm doğrudan bileşen tahminine sızabiliyordu.</p>
+        <details class="teknik" data-belir style="--sira:4">
+          <summary class="veri">Teknik not · piksel yaklaşımı</summary>
+          <div class="teknik-govde">
+            <pre>Başlangıç: gürültüyle ağırlıklandırılmış NNLS
+Koşul: bileşen miktarları ≥ 0</pre>
+            <p>NNLS, model ile ölçüm arasındaki farkı küçültürken negatif sonuçları dışlar. Bu aşama, sonra denenen komşuluk düzenlemesinden ve GraXpert ön işleminden ayrıdır.</p>
+          </div>
+        </details>
+      </div>
+      <div class="adim-gorsel" data-belir style="--sira:2"><sahne-cizim proje="ais-001" tur="piksel"></sahne-cizim></div>
+    </section>
+
+    <!-- 03 -->
+    <section class="ekran adim" id="sentetik" data-no="02.3">
+      <div class="adim-metin">
+        <p class="adim-etiket veri" data-belir><b>03</b> 15–16 Eylül · sentetik başlangıç</p>
+        <h2 data-belir style="--sira:1">Doğru cevabı bilince hata görünür oldu.</h2>
+        <p data-belir style="--sira:2">İlk testler için bileşenlerini baştan bildiğimiz yapay sahneler kurduk. Temiz sahnede geri çözüm neredeyse kusursuzdu; gürültü eklenince hatalar büyüdü.</p>
+        <p data-belir style="--sira:3">Aynı modelle üretilip aynı modelle çözülen bir sahnede başarı beklemek kolay. Bu test başlangıç hesabını sınadı; <strong>gerçek gökyüzünde aynı doğruluğu göstermedi.</strong></p>
+        <details class="teknik" data-belir style="--sira:4">
+          <summary class="veri">Teknik not · ilk öğrenim</summary>
+          <div class="teknik-govde">
+            <p>Gürültü ve sürekli tayf ayrı ayrı değiştirildi. Ölçümün nerede yapıldığı da önemliydi: bütün görüntünün hatası ile gazın bulunduğu bölgelerin yerel hatası aynı ölçü değil.</p>
+          </div>
+        </details>
+      </div>
+      <div class="adim-gorsel" data-belir style="--sira:2"><sahne-cizim proje="ais-001" tur="sentetik" dur="9"></sahne-cizim></div>
+    </section>
+
+    <!-- 04 -->
+    <section class="ekran adim" id="komsuluk" data-no="02.4">
+      <div class="adim-metin">
+        <p class="adim-etiket veri" data-belir><b>04</b> 16 Eylül · komşuluk deneyi</p>
+        <h2 data-belir style="--sira:1">Gürültüye karşı komşuluk bilgisini ekledik.</h2>
+        <p data-belir style="--sira:2">Tek pikseldeki sıçramaları azaltmak için bütün görüntüyü birlikte düzenleyen bir çözüm denedik: komşular benzer davransın, ama gerçek sınırlar korunsun.</p>
+        <p data-belir style="--sira:3">Kontrollü sahnede hata belirgin azaldı. Ama yeni bir soru doğdu: <strong>daha sakin görünen harita, ince gaz ipliklerini de yumuşatmış olabilir mi?</strong></p>
+        <details class="teknik" data-belir style="--sira:4">
+          <summary class="veri">Teknik not · kazanç ve bedel</summary>
+          <div class="teknik-govde">
+            <p>Bu, çözücünün kendi komşuluk düzenlemesiydi (FISTA, kenar duyarlı pseudo-Huber, λ = 0.30). Sonraki GraXpert deneyi başka bir yol izledi: önce RGB girdiyi denoise edip sonra piksel çözümünü ölçtü. İki yaklaşımın kazancı birbirine yazılmaz.</p>
+          </div>
+        </details>
+      </div>
+      <div class="adim-gorsel" data-belir style="--sira:2"><sahne-cizim proje="ais-001" tur="komsuluk" dur="5.7"></sahne-cizim></div>
+    </section>
+
+    <!-- 05 -->
+    <section class="ekran adim" id="ngc" data-no="02.5">
+      <div class="adim-metin">
+        <p class="adim-etiket veri" data-belir><b>05</b> 16 Eylül · ilk gerçek görüntü</p>
+        <h2 data-belir style="--sira:1">NGC 7000, modelin görmediği tabanı gösterdi.</h2>
+        <p data-belir style="--sira:2">Kuzey Amerika Bulutsusu üzerindeki ilk çalıştırma tamamlandı ve üç katman üretti. Ama görüntüye yayılmış <strong>ortak pozitif bir taban</strong> üç bileşene de sızmıştı. Bulutsu destek skoru her yerde tavana vurmuştu.</p>
+        <p data-belir style="--sira:3">Hesabın bitmesi yetmiyordu. Sonucun hangi kısmının gerçek yapı, hangi kısmının taban ya da model varsayımı olduğunu ayrıca anlamamız gerekiyordu.</p>
+        <details class="teknik" data-belir style="--sira:4">
+          <summary class="veri">Teknik not · gerçek verinin uyarısı</summary>
+          <div class="teknik-govde">
+            <p>Bir çözümün RGB rengini iyi açıklaması, ışığı doğru gazlara paylaştırdığını kanıtlamaz.</p>
+          </div>
+        </details>
+      </div>
+      <div class="adim-gorsel" data-belir style="--sira:2"><sahne-cizim proje="ais-001" tur="taban" dur="5"></sahne-cizim></div>
+    </section>
+
+    <!-- 06 -->
+    <section class="ekran adim" id="sinirlar" data-no="02.6">
+      <div class="adim-metin">
+        <p class="adim-etiket veri" data-belir><b>06</b> 19–23 Eylül · modelin sınırları</p>
+        <h2 data-belir style="--sira:1">Temizlemek ile fiziksel olarak ayırmak aynı şey değil.</h2>
+        <p data-belir style="--sira:2">Ortak tabanı çıkarmak yerel yapıları görünür kılabiliyordu; ama geniş alana yayılan gerçek gök ışığını da silebilirdi. Bu yüzden düzlem çıkarımını otomatik yapmadık.</p>
+        <p data-belir style="--sira:3">Aynı dönemde kırmızı çıktının Hα'yı yanındaki [N II] çizgilerinden ayıramadığı netleşti. Sonuca temiz Hα demek yerine, <strong>kırmızı karışımın modeldeki karşılığını</strong> ve dayandığı koşulları kaydetmeye yöneldik.</p>
+        <details class="teknik" data-belir style="--sira:4">
+          <summary class="veri">Teknik not · iddiayı sınırlamak</summary>
+          <div class="teknik-govde">
+            <pre>sızıntı yönü: q = M⁻¹ · v
+prior yoksa → ABSTAIN</pre>
+            <p>Ek çizgi sızıntısını izleyen kontrol ve kaynak/ayar kayıtları aktif koda eklendi. Güvenilir katkı aralıkları yoksa temiz Hα için sayı verilmez. Kontrolün fiziksel kabul testleri hâlâ açık.</p>
+          </div>
+        </details>
+      </div>
+      <div class="adim-gorsel" data-belir style="--sira:2">
+        <sahne-cizim proje="ais-001" tur="kirmizi" dur="2"></sahne-cizim>
+        <ais-maskot class="adim-maskot" faz="aisen" boyut="72" konus
+          data-sozler='["Emin değilsem susarım. ABSTAIN. Bunu Aisenit&#39;ten öğrendim.","[N II] ile Hα aynı kanala düşüyor. Ben bile ayıramıyorum, ki ben çok netim."]'></ais-maskot>
+      </div>
+    </section>
+
+    <!-- 07 -->
+    <section class="ekran adim" id="deney" data-no="02.7">
+      <div class="adim-metin">
+        <p class="adim-etiket veri" data-belir><b>07</b> 27–29 Eylül · GraXpert deneyleri</p>
+        <h2 data-belir style="--sira:1">48 sahnede: gürültü azaldı, karışım hatası kaldı.</h2>
+        <p data-belir style="--sira:2">27 Eylül'de küçük bir GraXpert pilotuyla başladık. 29 Eylül'de deneyi 12 koşul, iki morfoloji ve iki gürültü örneğiyle <strong>48 sahneye</strong> genişlettik.</p>
+        <p data-belir style="--sira:3">Yalnız gürültü olan koşullarda fiziksel Hα hatası <strong>yaklaşık %56</strong> azaldı. Yüksek [N II] katkısında azalma yalnız <strong>%4,6</strong> oldu. Denoise rastgele hatayı azaltabiliyordu; eksik spektral bilgiyi tamamlamıyordu.</p>
+        <details class="teknik" data-belir style="--sira:4">
+          <summary class="veri">Teknik not · ana karşılaştırma</summary>
+          <div class="teknik-govde">
+            <p>Aynı sahnenin GraXpert öncesi ve sonrası, aynı başlangıç gürültü gruplarıyla ölçüldü. Ana kolda komşuluk düzenlemesi ve Hα/Hβ oran kısıtı kapalıydı. Koşul matrisi, iki Hα hedefi ve kalan hata grafikleri 03'te.</p>
+          </div>
+        </details>
+      </div>
+      <div class="adim-gorsel" data-belir style="--sira:2"><sahne-cizim proje="ais-001" tur="kirk-sekiz" dur="6"></sahne-cizim></div>
+    </section>
+
+    <!-- 08 -->
+    <section class="ekran adim" id="gercek" data-no="02.8">
+      <div class="adim-metin">
+        <p class="adim-etiket veri" data-belir><b>08</b> 4 Ekim · gerçek veriye dönüş</p>
+        <h2 data-belir style="--sira:1">Kontrollü deneyden gerçek görüntüye döndük.</h2>
+        <p data-belir style="--sira:2">NGC 7000'in denoise öncesi ve sonrası eşlerini aynı modelle, aynı 100 bölgede karşılaştırdık. Küçük ölçekteki dalgalanma azaldı. Gerçek gaz haritaları bilinmediği için buna <strong>bir doğruluk yüzdesi vermedik.</strong></p>
+        <p data-belir style="--sira:3">Bugünkü sonuç yalnız daha temiz bir görüntü değil. Gürültü hatası ile modelin çözemediği karışım hatasını <strong>ayrı ayrı izleyebilmek.</strong> Yeni bir sürümden önce ek çizgi ve ince yapı kabul testleri tamamlanmalı.</p>
+        <details class="teknik" data-belir style="--sira:4">
+          <summary class="veri">Teknik not · güncel durum</summary>
+          <div class="teknik-govde">
+            <p>Bu karşılaştırmada komşuluk kapalıydı; oran kısıtı açıktı ama sonucu değiştirmedi. Karo içi komşu-farkı MAD medyanı öncesinin yaklaşık 0,40 katına indi. Proje deneysel; yeni sürüm henüz kabul edilmedi.</p>
+          </div>
+        </details>
+      </div>
+      <div class="adim-gorsel" data-belir style="--sira:2"><sahne-cizim proje="ais-001" tur="gercek" dur="4"></sahne-cizim></div>
+    </section>
+
+    <!-- Son: 03'e kapı -->
+    <section class="ekran son" id="son">
+      <p class="kunye veri"><b>AIS.001</b> · 02 → 03</p>
+      <h2 data-belir>Hikâye burada bitiyor. <em class="italik ha">Kayıt devam ediyor.</em></h2>
+      <p data-belir style="--sira:1">03, aynı yolculuğun rapor hâli: yöntem çerçevesi, 48 sahnelik deneyin üç grafiği, gerçek veri tanısı ve açık kalan kapılar.</p>
+      <nav class="kapilar" data-belir style="--sira:2" aria-label="Sonraki derinlik">
+        <a class="kapi" href="/ais-001/03/">
+          <span class="kapi-no">03</span><span class="kapi-ad">Teknik kayıt</span>
+          <span class="kapi-not">48 sahnelik deney, kaynak grafikler, gerçek veri ve açık kalan sınırlar</span><span class="kapi-ok" aria-hidden="true">→</span>
+        </a>
+        <a class="kapi" href="/#ais-002" style="--c: var(--toz)">
+          <span class="kapi-no">01</span><span class="kapi-ad">Sıradaki: AIS.002</span>
+          <span class="kapi-not">Harabe bir kale, sıfırdan bir krallık</span><span class="kapi-ok" aria-hidden="true">→</span>
+        </a>
+      </nav>
+    </section>
+  </main>
+
+  <footer class="alt">
+    <div class="alt-satir veri">
+      <span>aisenit · AIS.001 · 02</span>
+      <span><a href="/">Ana sayfa</a> · <a href="/ais-001/03/">03 · Teknik kayıt</a> · <a href="/gozlem/">Gözlem</a></span>
+    </div>
+  </footer>
+</body>
+</html>

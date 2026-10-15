@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AIS.002 · Tasarım kaydı</title>
+  <meta name="description" content="Krallık Oyunu tasarım kaydı: kabul edilen yön, kralın rolü, lider–topluluk birliği, görevlendirme, araştırma kapasitesi, simya ve açık sorular.">
+  <meta name="theme-color" content="#0c0e13">
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..700,0..100,0..1&family=Instrument+Sans:wght@400..600&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <link rel="stylesheet" href="/assets/css/sayfalar/rapor.css">
+  <script type="module" src="/assets/js/main.js"></script>
+</head>
+<body style="--vurgu: var(--toz)">
+  <a class="atla" href="#icerik">İçeriğe geç</a>
+
+  <header class="ust">
+    <a class="marka" href="/" aria-label="Aisenit ana sayfa"><ais-maskot faz="aisenit" boyut="30"></ais-maskot><span>aisenit</span></a>
+    <nav class="derinlik" aria-label="AIS.002 derinlikleri">
+      <span class="yol veri">AIS.002 · Krallık Oyunu</span>
+      <a href="/#ais-002">01</a>
+      <a href="/ais-002/02/">02</a>
+      <a href="/ais-002/03/" aria-current="page">03</a>
+    </nav>
+    <p class="entegrasyon veri" data-entegrasyon title="Bu sayfada geçirdiğin süre.">
+      <span class="uzun">ENT</span> <b data-sure>00:00:00</b>
+    </p>
+  </header>
+  <div class="ilerleme" data-ilerleme aria-hidden="true"></div>
+
+  <header class="rapor-bas">
+    <div>
+      <p class="veri"><b>AIS.002</b> · 03 · tasarım kaydı</p>
+      <h1>Eski bir kral, <em class="italik">yeni bir topluluk.</em></h1>
+      <p class="alt-baslik">Kabul edilmiş kararlar, gerekçeleri ve henüz cevabı olmayan sorular. Sayısal denge ve gün döngüsü hâlâ test bekliyor.</p>
+    </div>
+<pre class="fits" aria-label="Kayıt künyesi"><span class="a">OBJECT  </span>= <span class="d">'Krallık Oyunu'</span>       <span class="y">/ AIS.002</span>
+<span class="a">GENRE   </span>= <span class="d">'2D roguelite'</span>        <span class="y">/ krallık kurma</span>
+<span class="a">RUNTIME </span>= <span class="d">'2-3 sa / tur'</span>
+<span class="a">PVP     </span>= <span class="d">F</span>                     <span class="y">/ zorunlu değil</span>
+<span class="a">BUILD   </span>= <span class="d">'yok'</span>                 <span class="y">/ oynanabilir sürüm yok</span>
+<span class="a">STATUS  </span>= <span class="d">'TASARIM'</span>
+<span class="a">END</span></pre>
+  </header>
+
+  <div class="rapor">
+    <nav class="icindekiler" aria-label="Bölümler" data-ray>
+      <p class="veri">İçindekiler</p>
+      <ol>
+        <li><a href="#sorun"><span class="veri">01</span>Çözmeye çalıştığı sorun</a></li>
+        <li><a href="#kral"><span class="veri">02</span>Kralın rolü</a></li>
+        <li><a href="#lider"><span class="veri">03</span>Lider ve topluluk</a></li>
+        <li><a href="#harita"><span class="veri">04</span>Harita ve iş gücü</a></li>
+        <li><a href="#arastirma"><span class="veri">05</span>Araştırma kapasitesi</a></li>
+        <li><a href="#simya"><span class="veri">06</span>Simya ve rün</a></li>
+        <li><a href="#tur"><span class="veri">07</span>Tur ve sonuç yapısı</a></li>
+        <li><a href="#his"><span class="veri">08</span>Hisler ve görsel hedef</a></li>
+        <li><a href="#sorular"><span class="veri">09</span>Açık sorular</a></li>
+      </ol>
+    </nav>
+
+    <main class="metin" id="icerik">
+      <section id="sorun">
+        <p class="bolum-etiket veri">01 · Sorun</p>
+        <h2>Düğmeye basılan bir yerleşim oyunu olmasın</h2>
+        <p>Krallığını ve eski topraklarını kaybetmiş, çevresinde artık kral olarak görülmeyebilen bir hükümdar, harabe kalesine sığınan insanlarla yeni bir topluluk kurar.</p>
+        <p>Tasarımın asıl derdi, oyunun yalnızca kaynak biriktirip geliştirme düğmesine basılan bir yerleşim oyununa dönüşmesini engellemek. Sakin gelişim isteyen oyuncuyla risk isteyen oyuncuya <strong>aynı temel sistem içinde farklı yollar</strong> sunmak ve 2–3 saatlik turları tekrar oynanabilir kılmak.</p>
+      </section>
+
+      <section id="kral">
+        <p class="bolum-etiket veri">02 · Kabul</p>
+        <h2>Kralın rolü: işçiden hükümdara</h2>
+        <p>Kral ilk yerleşimde kaynak, iş gücü, kale düzeni ve keşif kararlarına doğrudan katılır. Topluluk büyüdükçe meslek ve toplum liderleri ortaya çıkar; kralın rolü <strong>iş yapan kişiden öncelik belirleyen ve insanlar arasında denge kuran hükümdara</strong> kayar.</p>
+        <p>Amaç, büyümeyle birlikte yorucu mikro yönetimin azalması. Oyuncu ilerledikçe daha az tıklar, daha çok karar verir.</p>
+      </section>
+
+      <section id="lider">
+        <p class="bolum-etiket veri">03 · Kabul · 18 Eylül</p>
+        <h2>Lider ve topluluk tek birim</h2>
+        <p>Lider ile temsil ettiği topluluk tek bir oyun birimidir. Lider, topluluğun kalıcı yüzü ve kolektif beynidir; kralın zorunlu etkileşim noktasıdır.</p>
+        <aside class="tanim"><b>Neden tek birim?</b>Kral yüzlerce kişiyle değil, birkaç liderle konuşur. Hem anlatı hem arayüz sadeleşir.</aside>
+        <p>Bu karar, ilk NPC etkileşim hipotezinin yerini aldı. Kral tek tek insanlarla değil, topluluğun sesi olan liderlerle muhatap olur.</p>
+      </section>
+
+      <section id="harita">
+        <p class="bolum-etiket veri">04 · Kabul · 18 Eylül</p>
+        <h2>Harita kontrolü ve iş gücü görevlendirme</h2>
+        <p>Oyuncu topluluktan kişi sayısı seçip haritada hedef göstererek görev verir. Küçük insanlar hedefe yürür ve görev sürerken <strong>kullanılabilir nüfustan düşer.</strong></p>
+        <p>Böylece nüfus bir kaynak gibi değil, haritada görünen ve yer değiştiren bir şey gibi davranır. Bir yere gönderilen insan, başka bir yerde eksiktir.</p>
+      </section>
+
+      <section id="arastirma">
+        <p class="bolum-etiket veri">05 · Kabul · 18 Eylül</p>
+        <h2>Araştırma: harcanan XP değil, kapasite</h2>
+        <p>Araştırma, dallar arasında yeniden dağıtılan sürekli bir kapasitedir. Bir dala verilen pay, o işi yapan topluluğun iş gücünden yer.</p>
+<pre>etkin iş gücü kaybı ≈ verilen pay / 2      (ilk denge hipotezi)</pre>
+        <p>Bu sayı henüz bir hipotez; oynanarak dengelenmedi. Ama fikir net: araştırmanın bedeli birikmiş puanla değil, <strong>o an işten alınan elle</strong> ödenir.</p>
+      </section>
+
+      <section id="simya">
+        <p class="bolum-etiket veri">06 · Kabul</p>
+        <h2>Simya iki kök dala ayrılır</h2>
+        <ul>
+          <li><strong>Kimya:</strong> yeni gelişimlerin yolunu açar. Yavaş, sağlam, öngörülebilir.</li>
+          <li><strong>Rünler:</strong> güçlü fayda karşılığında kayıp ve risk sunar.</li>
+        </ul>
+        <p>Rün yatırımı, kimyadan geri kalma bedeli taşır. Oyuncu kestirmeyi seçebilir; ama oyun bunun faturasını unutmaz.</p>
+      </section>
+
+      <section id="tur">
+        <p class="bolum-etiket veri">07 · Kabul</p>
+        <h2>Tur ve sonuç yapısı</h2>
+        <p>Hedef, ortalama 2–3 saatlik, kazanma veya kaybetmeyle biten bağımsız turlar. Oyuncu bir sonu menüden kilitlemez; kararlarıyla <strong>askerî restorasyon, refah, diplomasi, rün hâkimiyeti</strong> ya da <strong>halkın kralı</strong> gibi sonuçlara yaklaşır. Eski toprakları geri almak askerî yolun ana anlatı dayanaklarından biri.</p>
+        <p>Rekabet zorunlu PvP değil. Oyun sonları yeni ham güçten çok yeni liderler, rünler, başlangıçlar ve ilerleme akışları açar. Bu varsayım henüz bir prototiple doğrulanmadı.</p>
+      </section>
+
+      <section id="his">
+        <p class="bolum-etiket veri">08 · Yön</p>
+        <h2>Referans alınan hisler ve görsel hedef</h2>
+        <ul>
+          <li><strong>Don't Starve:</strong> tur baskısı, belirsizlik ve kaybetme ihtimali.</li>
+          <li><strong>Clash of Clans:</strong> yerleşimin görünür biçimde gelişmesi. Bekleme süreleri ya da birebir sistem kopyası değil.</li>
+          <li><strong>Stardew Valley:</strong> sıcak atmosfer, karakterlerle bağ ve oyuncunun temposunu seçebilmesi.</li>
+        </ul>
+        <p>Görsel hedef sıcak ve samimi bir 2D üslup. Kamera ve çizim tekniği henüz kararlaşmadı.</p>
+      </section>
+
+      <section id="sorular">
+        <p class="bolum-etiket veri">09 · Açık</p>
+        <h2>Henüz cevabı olmayan sorular</h2>
+        <ul>
+          <li>Lider etkileşiminde kapasite dağıtımı, kritik karar ve görev verme hangi arayüzlerle ayrılacak?</li>
+          <li>Bir oyun günü ya da turu hangi eylemlerden oluşacak; zaman nasıl akacak?</li>
+          <li>Sakin gelişim yolunda gerilim, savaş yerine hangi krizlerden gelecek?</li>
+          <li>Savaş ve keşif, temel harita görevlendirmesinden ne kadar ayrılacak?</li>
+          <li>Dört açılı görünüm oynanışa değer katıyor mu, yoksa yalnız üretim maliyeti mi?</li>
+        </ul>
+        <p>Proje tasarım ve araştırma aşamasında. Oynanabilir bir sürüm yok; bu sayfa bir oyunu değil, bir oyunun nasıl düşüneceğini kaydediyor.</p>
+
+        <div class="rapor-son">
+          <ais-maskot faz="aisenit" boyut="120" konus kendiliginden aksesuar="tac"
+            data-sozler='["Kale harabe ama plan kristal gibi. Ben bu cümleyle gurur duyuyorum.","Oynanabilir sürüm çıkınca ilk lider ben olmak istiyorum. Kristal liderler sağlam olur."]'></ais-maskot>
+          <div>
+            <p>Kayıt burada bitiyor. Kale hâlâ inşa ediliyor.</p>
+            <nav class="kapilar" aria-label="Diğer derinlikler">
+              <a class="kapi" href="/ais-002/02/"><span class="kapi-no">02</span><span class="kapi-ad">Mantığına dön</span><span class="kapi-not">Altı ekranlık anlatım</span><span class="kapi-ok" aria-hidden="true">←</span></a>
+              <a class="kapi" href="/" style="--c: var(--ha)"><span class="kapi-no">00</span><span class="kapi-ad">Ana sayfa</span><span class="kapi-not">AIS.001 ve gece arşivi</span><span class="kapi-ok" aria-hidden="true">→</span></a>
+            </nav>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="alt">
+    <div class="alt-satir veri">
+      <span>aisenit · AIS.002 · 03</span>
+      <span>Kaynak: Krallık Oyunu tasarım kararları, 17–18 Eylül 2026</span>
+    </div>
+  </footer>
+</body>
+</html>

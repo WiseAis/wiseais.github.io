@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="tr" class="kilitli">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AIS.002 · Mantığı</title>
+  <meta name="description" content="Krallık Oyunu'nun mantığı: kral, liderler, görevlendirme, araştırma kapasitesi, simya ve kararlarla şekillenen yollar.">
+  <meta name="theme-color" content="#07080b">
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..700,0..100,0..1&family=Instrument+Sans:wght@400..600&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <link rel="stylesheet" href="/assets/css/sayfalar/mantik.css">
+  <script type="module" src="/assets/js/main.js"></script>
+</head>
+<body style="--vurgu: var(--toz)">
+  <a class="atla" href="#icerik">İçeriğe geç</a>
+
+  <header class="ust">
+    <a class="marka" href="/" aria-label="Aisenit ana sayfa"><ais-maskot faz="aisen" boyut="30" aksesuar="tac"></ais-maskot><span>aisenit</span></a>
+    <nav class="derinlik" aria-label="AIS.002 derinlikleri">
+      <span class="yol veri">AIS.002 · Krallık Oyunu</span>
+      <a href="/#ais-002">01</a>
+      <a href="/ais-002/02/" aria-current="page">02</a>
+      <a href="/ais-002/03/">03</a>
+    </nav>
+    <p class="entegrasyon veri" data-entegrasyon title="Bu sayfada geçirdiğin süre.">
+      <span class="uzun">ENT</span> <b data-sure>00:00:00</b>
+    </p>
+  </header>
+
+  <ol class="ray veri" data-ray aria-label="Adımlar">
+    <li><a href="#devir"><span>01 · Kral ve liderler</span></a></li>
+    <li><a href="#gorev"><span>02 · Görevlendirme</span></a></li>
+    <li><a href="#kapasite"><span>03 · Kapasite</span></a></li>
+    <li><a href="#simya"><span>04 · Simya</span></a></li>
+    <li><a href="#yol"><span>05 · Yollar</span></a></li>
+    <li><a href="#his"><span>06 · Üç his</span></a></li>
+  </ol>
+
+  <main id="icerik">
+    <section class="ekran kapak" id="kapak">
+      <p class="kunye veri"><b>AIS.002</b> · 02 · mantığı</p>
+      <div class="kapak-metin">
+        <h1 data-belir>Taç yok. <em class="italik">Topluluk var.</em></h1>
+        <p class="kapak-ozet" data-belir style="--sira:1">Krallık Oyunu henüz tasarım aşamasında. Bu sayfa kabul edilmiş kararları altı ekranda anlatıyor. Oynanabilir bir sürüm yok; ama oyunun nasıl düşündüğü belli.</p>
+        <ol class="kapak-dizin" data-belir style="--sira:2">
+          <li><a href="#devir"><span class="veri">01</span> Kral ve liderler</a></li>
+          <li><a href="#gorev"><span class="veri">02</span> Kaç kişi, nereye?</a></li>
+          <li><a href="#kapasite"><span class="veri">03</span> Araştırma kapasitesi</a></li>
+          <li><a href="#simya"><span class="veri">04</span> Kimya ve rün</a></li>
+          <li><a href="#yol"><span class="veri">05</span> Kararla açılan yollar</a></li>
+          <li><a href="#his"><span class="veri">06</span> Üç his</a></li>
+        </ol>
+      </div>
+      <div class="kapak-rehber" data-belir style="--sira:3">
+        <ais-maskot faz="aisen" boyut="150" konus kendiliginden aksesuar="tac"
+          data-sozler='["Bu oyunda NPC olmak isterdim. Lider olmak fazla sorumluluk.","Oynanabilir sürüm yok. Ama ben buradayım, o da bir şey.","Kral değilim ama tacı denedim. Çivilerime takıldı, çıkmıyor."]'></ais-maskot>
+        <p>Rehberin yine Aisen. Bu sefer tacıyla.</p>
+      </div>
+    </section>
+
+    <section class="ekran adim" id="devir" data-no="02.1">
+      <div class="adim-metin">
+        <p class="adim-etiket veri" data-belir><b>01</b> Kral ve liderler</p>
+        <h2 data-belir style="--sira:1">Önce kral taşır, sonra liderler yönetir.</h2>
+        <p data-belir style="--sira:2">Krallığını kaybetmiş eski hükümdar, başta işin tam içindedir: kurar, karar verir, taşı kendi taşır. Yerleşim büyüdükçe <strong>yorucu mikro yönetim azalır</strong> ve iş meslek ve toplum gruplarının liderlerine geçer.</p>
+        <p data-belir style="--sira:3">Lider ile temsil ettiği topluluk tek bir oyun birimidir. Lider, topluluğun kalıcı yüzü ve kolektif beynidir; kral onlarla konuşmadan ilerleyemez.</p>
+        <details class="teknik" data-belir style="--sira:4">
+          <summary class="veri">Açık soru</summary>
+          <div class="teknik-govde"><p>Lider etkileşiminde kapasite dağıtımı, kritik karar ve görev verme hangi arayüzlerle ayrılacak?</p></div>
+        </details>
+      </div>
+      <div class="adim-gorsel" data-belir style="--sira:2"><sahne-cizim proje="ais-002" tur="devir" dur="7"></sahne-cizim></div>
+    </section>
+
+    <section class="ekran adim" id="gorev" data-no="02.2">
+      <div class="adim-metin">
+        <p class="adim-etiket veri" data-belir><b>02</b> Görevlendirme</p>
+        <h2 data-belir style="--sira:1">Kaç kişi, nereye?</h2>
+        <p data-belir style="--sira:2">Oyuncu topluluktan kaç kişi göndereceğini seçer ve haritada hedefi gösterir. Küçük insanlar hedefe yürür; görev sürdükçe <strong>kullanılabilir nüfustan düşerler.</strong></p>
+        <p data-belir style="--sira:3">Böylece her görevin bir bedeli olur: ormana giden dört kişi, o sırada tarlada değildir.</p>
+        <details class="teknik" data-belir style="--sira:4">
+          <summary class="veri">Açık soru</summary>
+          <div class="teknik-govde"><p>Savaş ve keşif, bu temel harita görevlendirmesinden ne kadar ayrılacak? Bir oyun günü hangi eylemlerden oluşacak, zaman nasıl akacak?</p></div>
+        </details>
+      </div>
+      <div class="adim-gorsel" data-belir style="--sira:2"><sahne-cizim proje="ais-002" tur="gorev" dur="3"></sahne-cizim></div>
+    </section>
+
+    <section class="ekran adim" id="kapasite" data-no="02.3">
+      <div class="adim-metin">
+        <p class="adim-etiket veri" data-belir><b>03</b> Araştırma kapasitesi</p>
+        <h2 data-belir style="--sira:1">Araştırma harcanmaz, yer değiştirir.</h2>
+        <p data-belir style="--sira:2">Araştırma, biriktirilip harcanan bir XP değildir. <strong>Dallar arasında yeniden dağıtılan sürekli bir kapasitedir.</strong></p>
+        <p data-belir style="--sira:3">Bir dala verilen pay, o işle uğraşan topluluğun iş gücünden yer. İlk denge hipotezi: verilen payın yarısı kadar etkin iş gücü kaybı.</p>
+        <details class="teknik" data-belir style="--sira:4">
+          <summary class="veri">Not</summary>
+          <div class="teknik-govde"><p>Bu bir hipotez; henüz oynanarak dengelenmedi. Çizimdeki dağılımlar örnektir.</p></div>
+        </details>
+      </div>
+      <div class="adim-gorsel" data-belir style="--sira:2"><sahne-cizim proje="ais-002" tur="kapasite" dur="1.5"></sahne-cizim></div>
+    </section>
+
+    <section class="ekran adim" id="simya" data-no="02.4">
+      <div class="adim-metin">
+        <p class="adim-etiket veri" data-belir><b>04</b> Simya</p>
+        <h2 data-belir style="--sira:1">Kimya yol açar, rün bedel ister.</h2>
+        <p data-belir style="--sira:2">Simya iki kök dala ayrılıyor. <strong>Kimya</strong> yeni gelişimlerin yolunu açar. <strong>Rünler</strong> güçlü fayda verir ama karşılığında kayıp ve risk getirir.</p>
+        <p data-belir style="--sira:3">Rüne yatırım yapan, kimyadan geri kalır. Kestirme bir yol var; faturası sonra gelir.</p>
+      </div>
+      <div class="adim-gorsel" data-belir style="--sira:2"><sahne-cizim proje="ais-002" tur="simya" dur="8"></sahne-cizim></div>
+    </section>
+
+    <section class="ekran adim" id="yol" data-no="02.5">
+      <div class="adim-metin">
+        <p class="adim-etiket veri" data-belir><b>05</b> Kararla açılan yollar</p>
+        <h2 data-belir style="--sira:1">Yol menüden seçilmez.</h2>
+        <p data-belir style="--sira:2">Askerî restorasyon, refah, diplomasi, rünler, halk desteği. Oyuncu bunlardan birini menüden kesin olarak seçmez; <strong>oyun boyunca verdiği kararlar sonucu belirler.</strong></p>
+        <p data-belir style="--sira:3">Rekabet zorunlu PvP değil. İster dış rakiplere ve eski topraklara yönelirsin, ister daha sakin bir gelişim ve hikâye akışı izlersin.</p>
+        <details class="teknik" data-belir style="--sira:4">
+          <summary class="veri">Tur yapısı</summary>
+          <div class="teknik-govde"><p>Her oyun yaklaşık 2–3 saatlik bağımsız bir tur. Oyun sonları yeni ham güçten çok yeni liderler, rünler ve başlangıçlar açarak yeniden oynanabilirliği genişletecek.</p></div>
+        </details>
+      </div>
+      <div class="adim-gorsel" data-belir style="--sira:2"><sahne-cizim proje="ais-002" tur="yol" dur="11"></sahne-cizim></div>
+    </section>
+
+    <section class="ekran adim" id="his" data-no="02.6">
+      <div class="adim-metin">
+        <p class="adim-etiket veri" data-belir><b>06</b> Referans alınan hisler</p>
+        <h2 data-belir style="--sira:1">Üç his, tek oyun.</h2>
+        <p data-belir style="--sira:2"><strong>Don't Starve</strong>'dan tur baskısı ve kaybetme ihtimali. <strong>Clash of Clans</strong>'tan yerleşimin gözle görülür büyümesi; bekleme süreleri olmadan. <strong>Stardew Valley</strong>'den sıcak atmosfer, karakterlerle bağ ve oyuncunun kendi temposu.</p>
+        <p data-belir style="--sira:3">Görsel hedef sıcak ve samimi bir 2D üslup. Kamera ve çizim tekniği henüz kararlaşmadı.</p>
+      </div>
+      <div class="adim-gorsel" data-belir style="--sira:2"><sahne-cizim proje="ais-002" tur="his" dur="4"></sahne-cizim></div>
+    </section>
+
+    <section class="ekran son" id="son">
+      <p class="kunye veri"><b>AIS.002</b> · 02 → 03</p>
+      <h2 data-belir>Kale hâlâ harabe. <em class="italik toz">Plan netleşiyor.</em></h2>
+      <p data-belir style="--sira:1">03, kabul edilmiş kararların ve açık soruların tasarım kaydı.</p>
+      <nav class="kapilar" data-belir style="--sira:2" aria-label="Sonraki derinlik">
+        <a class="kapi" href="/ais-002/03/">
+          <span class="kapi-no">03</span><span class="kapi-ad">Tasarım kaydı</span>
+          <span class="kapi-not">Kabul edilen yön, kararlar ve açık sorular</span><span class="kapi-ok" aria-hidden="true">→</span>
+        </a>
+        <a class="kapi" href="/gozlem/" style="--c: var(--oiii)">
+          <span class="kapi-no">G</span><span class="kapi-ad">Gözlem defteri</span>
+          <span class="kapi-not">Takipsiz tripodla toplanan gece kareleri</span><span class="kapi-ok" aria-hidden="true">→</span>
+        </a>
+      </nav>
+    </section>
+  </main>
+
+  <footer class="alt">
+    <div class="alt-satir veri">
+      <span>aisenit · AIS.002 · 02</span>
+      <span><a href="/">Ana sayfa</a> · <a href="/ais-002/03/">03 · Tasarım kaydı</a> · <a href="/gozlem/">Gözlem</a></span>
+    </div>
+  </footer>
+</body>
+</html>

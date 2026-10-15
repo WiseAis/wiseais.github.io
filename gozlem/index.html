@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="tr" class="kilitli">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gözlem defteri</title>
+  <meta name="description" content="Takipsiz, sabit bir tripodla şehir göğünden ve Eşkel'den toplanan dört astrofotoğraf: IFN, Andromeda, Fil Hortumu ve Peçe Bulutsusu.">
+  <meta name="theme-color" content="#07080b">
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..700,0..100,0..1&family=Instrument+Sans:wght@400..600&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <link rel="stylesheet" href="/assets/css/sayfalar/ana.css">
+  <link rel="stylesheet" href="/assets/css/sayfalar/gozlem.css">
+  <script type="module" src="/assets/js/main.js"></script>
+</head>
+<body style="--vurgu: var(--oiii)">
+  <a class="atla" href="#icerik">İçeriğe geç</a>
+
+  <header class="ust">
+    <a class="marka" href="/" aria-label="Aisenit ana sayfa"><ais-maskot faz="ais" boyut="30"></ais-maskot><span>aisenit</span></a>
+    <nav class="ust-nav" aria-label="Kareler" data-ray>
+      <a href="#ifn">G.01</a>
+      <a href="#andromeda">G.02</a>
+      <a href="#hortum">G.03</a>
+      <a href="#veil">G.04</a>
+    </nav>
+    <p class="entegrasyon veri" data-entegrasyon title="Bu sayfada geçirdiğin süre. Her 4 saniye bir kare sayılır.">
+      <span class="uzun">ENT</span> <b data-sure>00:00:00</b> <span class="uzun">· <span data-kare>0</span> kare</span>
+    </p>
+  </header>
+
+  <ol class="ray veri" data-ray aria-label="Kareler">
+    <li><a href="#kapak"><span>Defter</span></a></li>
+    <li><a href="#ifn"><span>G.01 · IFN</span></a></li>
+    <li><a href="#andromeda"><span>G.02 · M31</span></a></li>
+    <li><a href="#hortum"><span>G.03 · IC 1396</span></a></li>
+    <li><a href="#veil"><span>G.04 · Veil</span></a></li>
+  </ol>
+
+  <main id="icerik">
+    <section class="ekran gozlem-kapak" id="kapak">
+      <p class="kunye veri"><b>GÖZLEM</b> · defter</p>
+      <div class="gozlem-kapak-metin">
+        <h1 data-belir>Gece <em class="italik">arşivi.</em></h1>
+        <p data-belir style="--sira:1">Takipsiz, sabit bir tripod. Dünya dönerken yıldızlar iz bırakmasın diye 2–8 saniyelik kareler; sonra binlercesini üst üste koymak. Şehrin ışıklı göğünden ve Eşkel'in daha karanlık göğünden dört hedef.</p>
+        <dl class="toplam veri" data-belir style="--sira:2">
+          <div><dt>Kare</dt><dd>4.789</dd></div>
+          <div><dt>Entegrasyon</dt><dd>7 sa 46 dk</dd></div>
+          <div><dt>En uzun</dt><dd>2597 × 8 sn</dd></div>
+        </dl>
+      </div>
+      <div class="ipucu" data-belir style="--sira:3">
+        <p><b>Kaydırıcıyı sola çek.</b> Kameranın kaydettiği lineer veri neredeyse siyahtır; bulutsular sensörde ancak birkaç sayılık bir fark olarak durur. Gördüğün fotoğraf, o farkın güçlü bir eğriyle gerilmiş hâli.</p>
+        <p class="veri">Temsilî: işlenmiş JPEG'e ters eğri uygulanır.</p>
+        <ais-maskot faz="ais" boyut="64" konus kendiliginden
+          data-sozler='["Lineer hâlimi görme. Sabah ilk uyandığım hâlim gibi.","Ben de bu fotoğraflar gibiyim: önce siyah, sonra gerdirince bir şeyler çıkıyor."]'></ais-maskot>
+      </div>
+    </section>
+
+    <section class="ekran kayit" id="ifn" data-no="G.01">
+      <germe-foto data-belir src="/assets/img/gozlem/ifn-1000.jpg" buyuk="/assets/img/gozlem/ifn-2400.jpg" alt="Integrated Flux Nebula: LBN 552 ve LDN 1228 çevresinde kahverengi ve mavi toz bulutları, karanlık bulutsu uzantıları"></germe-foto>
+      <div class="kayit-kunye">
+        <p class="veri" data-belir><b class="oiii">G.01</b> · Cepheus</p>
+        <h2 data-belir style="--sira:1">Integrated Flux Nebula <small>LBN 552 · LDN 1228 “Çürük Balık” · Kara Köpekbalığı · İris çevresi</small></h2>
+        <p data-belir style="--sira:2">Galaksinin kendi ışığıyla aydınlanan, çok sönük toz. Arşivin en uzun pozlaması: dört geceye yayılmış 2.597 kare.</p>
+        <dl class="fits-liste" data-belir style="--sira:3">
+          <dt>TARİH</dt><dd>19–22 Ağustos 2026</dd>
+          <dt>YER</dt><dd>Eşkel</dd>
+          <dt>KAMERA</dt><dd>Nikon Z fc</dd>
+          <dt>OPTİK</dt><dd>Sirui 75 mm · f/1.8</dd>
+          <dt>MONTAJ</dt><dd>Sabit tripod, takipsiz</dd>
+          <dt>KARE</dt><dd>2597 × 8 sn</dd>
+          <dt>TOPLAM</dt><dd class="toplam-sure">5 sa 46 dk 16 sn</dd>
+        </dl>
+      </div>
+    </section>
+
+    <section class="ekran kayit" id="andromeda" data-no="G.02">
+      <germe-foto data-belir src="/assets/img/gozlem/andromeda-1000.jpg" buyuk="/assets/img/gozlem/andromeda-2400.jpg" alt="Andromeda galaksisi M31 ve uydusu M32, yoğun yıldız alanının ortasında eğik bir ışık diski"></germe-foto>
+      <div class="kayit-kunye">
+        <p class="veri" data-belir><b class="oiii">G.02</b> · Andromeda</p>
+        <h2 data-belir style="--sira:1">M31 <small>Andromeda Galaksisi · yanında M32</small></h2>
+        <p data-belir style="--sira:2">Yaklaşık 2,5 milyon yıl yol almış ışık; sensöre ulaşması ise 3 saniyelik binlerce kare sürdü.</p>
+        <dl class="fits-liste" data-belir style="--sira:3">
+          <dt>YER</dt><dd>Eşkel</dd>
+          <dt>KAMERA</dt><dd>Nikon Z fc</dd>
+          <dt>OPTİK</dt><dd>Sirui 75 mm · f/1.8</dd>
+          <dt>MONTAJ</dt><dd>Sabit tripod, takipsiz</dd>
+          <dt>KARE</dt><dd>1005 × 3 sn</dd>
+          <dt>TOPLAM</dt><dd class="toplam-sure">50 dk 15 sn</dd>
+        </dl>
+      </div>
+    </section>
+
+    <section class="ekran kayit" id="hortum" data-no="G.03">
+      <germe-foto data-belir src="/assets/img/gozlem/elep-1000.jpg" buyuk="/assets/img/gozlem/elep-2400.jpg" alt="Fil Hortumu bulutsusu IC 1396: kırmızı H-alfa bulutunun içinde koyu, kıvrık bir toz sütunu"></germe-foto>
+      <div class="kayit-kunye">
+        <p class="veri" data-belir><b class="oiii">G.03</b> · Cepheus</p>
+        <h2 data-belir style="--sira:1">IC 1396 <small>Fil Hortumu Bulutsusu</small></h2>
+        <p data-belir style="--sira:2">Şehrin ışık kirliliği altında, SV240 filtresiyle H-alfa kırmızısına tutunarak. Sol üstteki soluk yay da aynı gazın devamı.</p>
+        <dl class="fits-liste" data-belir style="--sira:3">
+          <dt>TARİH</dt><dd>5–6 Ağustos 2026</dd>
+          <dt>YER</dt><dd>Şehir göğü</dd>
+          <dt>KAMERA</dt><dd>Nikon Z fc</dd>
+          <dt>OPTİK</dt><dd>Sirui 75 mm</dd>
+          <dt>FİLTRE</dt><dd>SVBONY SV240</dd>
+          <dt>MONTAJ</dt><dd>Sabit tripod, takipsiz</dd>
+          <dt>KARE</dt><dd>652 × 4 sn</dd>
+          <dt>TOPLAM</dt><dd class="toplam-sure">43 dk 28 sn</dd>
+        </dl>
+      </div>
+    </section>
+
+    <section class="ekran kayit" id="veil" data-no="G.04">
+      <germe-foto data-belir src="/assets/img/gozlem/veil-1000.jpg" buyuk="/assets/img/gozlem/veil-2400.jpg" alt="Peçe bulutsusu: yıldız alanının içinde kırmızı ve turkuaz iki ince yay"></germe-foto>
+      <div class="kayit-kunye">
+        <p class="veri" data-belir><b class="oiii">G.04</b> · Kuğu</p>
+        <h2 data-belir style="--sira:1">Peçe Bulutsusu <small>Cygnus Loop · NGC 6960 / 6992</small></h2>
+        <p data-belir style="--sira:2">Bir süpernovanın genişleyen kabuğu. Kırmızı Hα, turkuaz [O&nbsp;III]: AIS.001'in ayırmaya çalıştığı ışığın ta kendisi. Projenin Veil karşılaştırmaları bu çekimden.</p>
+        <dl class="fits-liste" data-belir style="--sira:3">
+          <dt>TARİH</dt><dd>25 Temmuz 2026</dd>
+          <dt>YER</dt><dd>Şehir göğü</dd>
+          <dt>KAMERA</dt><dd>Nikon Z fc</dd>
+          <dt>OPTİK</dt><dd>75 mm · f/1.6</dd>
+          <dt>FİLTRE</dt><dd>SVBONY SV240</dd>
+          <dt>MONTAJ</dt><dd>Sabit tripod, takipsiz</dd>
+          <dt>KARE</dt><dd>535 × 3 sn</dd>
+          <dt>TOPLAM</dt><dd class="toplam-sure">26 dk 45 sn</dd>
+        </dl>
+        <a class="kapi" href="/ais-001/02/" data-belir style="--sira:4; --c: var(--ha)">
+          <span class="kapi-no">01</span><span class="kapi-ad">Bu ışığı ayırmak</span><span class="kapi-not">AIS.001 · Hahbolllayristirma</span><span class="kapi-ok" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="alt">
+    <div class="alt-ust">
+      <p class="alt-soz">Toplam 7 sa 46 dk. Sen de <b data-sure>00:00:00</b> pozlandın.</p>
+      <ais-maskot faz="aisenit" boyut="80" konus></ais-maskot>
+    </div>
+    <div class="alt-satir veri">
+      <span>aisenit · gözlem defteri</span>
+      <span><a href="/">Ana sayfa</a> · <a href="/ais-001/02/">AIS.001</a> · <a href="/ais-002/02/">AIS.002</a></span>
+    </div>
+  </footer>
+</body>
+</html>

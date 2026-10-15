@@ -1,0 +1,196 @@
+/* ==========================================================================
+   Gözlem defteri: her kare bir ekran, her ekranın künyesi gerçek
+   ========================================================================== */
+
+.gozlem-kapak {
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: var(--a-12);
+  align-items: end;
+  overflow: hidden;
+}
+
+/* Defter, en uzun pozlamasıyla açılır */
+.gozlem-kapak::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: url("/assets/img/gozlem/ifn-2400.jpg") center / cover no-repeat;
+  opacity: 0.55;
+  mask-image: linear-gradient(to bottom, #000 30%, transparent 100%);
+}
+
+.gozlem-kapak::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(to top, var(--gok-0) 10%, rgba(7, 8, 11, 0.35) 60%, rgba(7, 8, 11, 0.6) 100%);
+}
+
+.gozlem-kapak .ipucu {
+  background: rgba(7, 8, 11, 0.72);
+  backdrop-filter: blur(6px);
+}
+
+.gozlem-kapak h1 {
+  font-size: var(--t-dev);
+  line-height: 0.95;
+  letter-spacing: -0.035em;
+}
+
+.gozlem-kapak h1 em {
+  color: var(--oiii);
+}
+
+.gozlem-kapak-metin {
+  display: grid;
+  gap: var(--a-6);
+}
+
+.gozlem-kapak-metin > p {
+  color: var(--isik-2);
+  max-width: 44ch;
+  font-size: 1.125rem;
+}
+
+.gozlem-kapak .toplam dd {
+  font-size: clamp(1.5rem, 1rem + 2.4vw, 2.2rem);
+}
+
+.ipucu {
+  display: grid;
+  gap: var(--a-3);
+  padding: var(--a-6);
+  border: 1px solid var(--cizgi);
+  border-left: 2px solid var(--oiii);
+  color: var(--isik-2);
+  font-size: var(--t-kucuk);
+}
+
+.ipucu b {
+  color: var(--isik);
+}
+
+/* ---- Tek kare ekranı ---------------------------------------------------- */
+.kayit {
+  padding-right: calc(var(--kenar) + 2rem);
+  grid-template-columns: minmax(0, 8fr) minmax(16rem, 4fr);
+  gap: var(--a-8) clamp(var(--a-6), 3vw, var(--a-12));
+  align-items: center;
+}
+
+.kayit-kunye {
+  display: grid;
+  gap: var(--a-4);
+  align-content: center;
+}
+
+.kayit-kunye h2 {
+  font-size: clamp(1.9rem, 1.2rem + 2vw, 3rem);
+}
+
+.kayit-kunye h2 small {
+  display: block;
+  margin-top: var(--a-2);
+  font-family: var(--font-govde);
+  font-size: var(--t-kucuk);
+  letter-spacing: 0;
+  color: var(--isik-3);
+}
+
+.kayit-kunye > p {
+  color: var(--isik-2);
+  font-size: 0.9375rem;
+}
+
+.fits-liste {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--a-1) var(--a-4);
+  padding: var(--a-4);
+  background: var(--gok-1);
+  border: 1px solid var(--cizgi);
+  font-family: var(--font-veri);
+  font-size: 0.75rem;
+}
+
+.fits-liste dt {
+  color: var(--oiii);
+}
+
+.fits-liste dd {
+  margin: 0;
+  color: var(--isik);
+}
+
+.fits-liste dd.toplam-sure {
+  color: var(--toz);
+}
+
+/* ---- <germe-foto> ------------------------------------------------------- */
+germe-foto {
+  display: grid;
+  gap: var(--a-3);
+}
+
+.gf-kare {
+  position: relative;
+  overflow: hidden;
+  background: #000;
+  max-height: 76svh;
+  display: grid;
+}
+
+.gf-kare img,
+.gf-kare canvas {
+  grid-area: 1 / 1;
+  width: 100%;
+  height: 100%;
+  max-height: 76svh;
+  object-fit: contain;
+}
+
+.gf-kare canvas {
+  opacity: 0;
+}
+
+germe-foto.lineer canvas {
+  opacity: 1;
+}
+
+.gf-durum {
+  position: absolute;
+  left: var(--a-3);
+  top: var(--a-3);
+  padding: 0.2rem 0.45rem;
+  background: rgba(7, 8, 11, 0.7);
+  color: var(--oiii);
+  text-transform: none;
+}
+
+.gf-durum:empty {
+  display: none;
+}
+
+.gf-kontrol {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--a-3);
+}
+
+.gf-kontrol input {
+  width: 100%;
+  accent-color: var(--oiii);
+}
+
+@media (max-width: 900px) {
+  .gozlem-kapak,
+  .kayit {
+    padding-right: var(--kenar);
+    grid-template-columns: minmax(0, 1fr);
+    padding-top: calc(var(--ust-bar) + var(--a-12));
+    align-content: start;
+  }
+}

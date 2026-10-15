@@ -1,0 +1,168 @@
+/* ==========================================================================
+   02 · Mantık sayfaları: %60 estetik, %40 bilgi.
+   Bir ekran = bir konu. Metin solda nefes alır, çizim sağda yaşar.
+   ========================================================================== */
+
+/* ---- Kapak -------------------------------------------------------------- */
+.kapak {
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: var(--a-12);
+  align-items: center;
+}
+
+.kapak-metin {
+  display: grid;
+  gap: var(--a-6);
+  max-width: 40rem;
+}
+
+.kapak h1 {
+  font-size: var(--t-dev);
+  line-height: 0.95;
+  letter-spacing: -0.035em;
+}
+
+.kapak h1 em {
+  color: var(--vurgu);
+}
+
+.kapak-ozet {
+  color: var(--isik-2);
+  font-size: 1.125rem;
+  max-width: 38ch;
+}
+
+.kapak-dizin {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--a-1) var(--a-8);
+  padding: 0;
+  list-style: none;
+  counter-reset: d;
+}
+
+.kapak-dizin a {
+  display: flex;
+  gap: var(--a-3);
+  padding: var(--a-2) 0;
+  border-bottom: 1px solid var(--cizgi);
+  text-decoration: none;
+  color: var(--isik-2);
+  font-size: var(--t-kucuk);
+  transition: color var(--sure-kisa), border-color var(--sure-kisa);
+}
+
+.kapak-dizin a:hover {
+  color: var(--isik);
+  border-color: var(--vurgu);
+}
+
+.kapak-dizin .veri {
+  color: var(--vurgu);
+}
+
+.kapak-rehber {
+  display: grid;
+  justify-items: center;
+  gap: var(--a-4);
+}
+
+.kapak-rehber p {
+  max-width: 24ch;
+  text-align: center;
+  color: var(--isik-3);
+  font-size: var(--t-kucuk);
+}
+
+/* ---- Adım ekranı -------------------------------------------------------- */
+.adim {
+  grid-template-columns: minmax(16rem, 5fr) minmax(0, 8fr);
+  gap: var(--a-8) clamp(var(--a-6), 4vw, var(--a-16));
+  align-items: center;
+  padding-right: calc(var(--kenar) + 2.5rem);
+}
+
+.adim-metin {
+  display: grid;
+  gap: var(--a-4);
+  max-width: 31rem;
+}
+
+.adim-etiket {
+  display: flex;
+  align-items: center;
+  gap: var(--a-3);
+}
+
+.adim-etiket b {
+  color: var(--vurgu);
+}
+
+.adim h2 {
+  font-size: clamp(1.9rem, 1.2rem + 2.2vw, 3rem);
+  margin-bottom: var(--a-2);
+}
+
+.adim-metin > p:not(.adim-etiket) {
+  color: var(--isik-2);
+}
+
+.adim-metin > p strong {
+  color: var(--isik);
+  font-weight: 560;
+}
+
+.adim-gorsel {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: min(62svh, 34rem);
+}
+
+.adim-gorsel sahne-cizim {
+  width: 100%;
+  max-width: 40rem;
+}
+
+.adim-maskot {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+@media (max-width: 900px) {
+  .kapak,
+  .adim {
+    grid-template-columns: minmax(0, 1fr);
+    align-content: start;
+    padding-right: var(--kenar);
+    padding-top: calc(var(--ust-bar) + var(--a-12));
+  }
+  .adim-gorsel {
+    order: -1;
+    min-height: 0;
+  }
+  .kapak-rehber {
+    display: none;
+  }
+}
+
+/* ---- Son ekran: 03'e kapı ----------------------------------------------- */
+.son {
+  justify-items: start;
+  gap: var(--a-8);
+}
+
+.son h2 {
+  font-size: var(--t-buyuk);
+  max-width: 18ch;
+}
+
+.son p {
+  color: var(--isik-2);
+  max-width: 44ch;
+}
+
+.son .kapilar {
+  width: min(100%, 40rem);
+}

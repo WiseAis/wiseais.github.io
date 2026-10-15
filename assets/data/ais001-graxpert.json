@@ -1,0 +1,212 @@
+{
+ "kaynak": "Hahbolllayristirma · 29 Eylül 2026 eşleşmiş GraXpert matrisi (48 sahne, 768×768, GraXpert 3.0.2, güç 0.65). SNR değerlendirmesi 4 Ekim 2026.",
+ "kosullar": [
+  {
+   "id": "noise-low",
+   "ad": "Yalnız gürültü · düşük",
+   "Ha": 56.3,
+   "OIII": 49.2,
+   "Hb": 49.2
+  },
+  {
+   "id": "noise-mid",
+   "ad": "Yalnız gürültü · orta",
+   "Ha": 55.9,
+   "OIII": 47.2,
+   "Hb": 47.4
+  },
+  {
+   "id": "noise-high",
+   "ad": "Yalnız gürültü · yüksek",
+   "Ha": 56.0,
+   "OIII": 46.7,
+   "Hb": 46.8
+  },
+  {
+   "id": "continuum-low",
+   "ad": "Continuum · düşük",
+   "Ha": 53.5,
+   "OIII": 45.1,
+   "Hb": 46.3
+  },
+  {
+   "id": "continuum-high",
+   "ad": "Continuum · yüksek",
+   "Ha": 42.8,
+   "OIII": 36.1,
+   "Hb": 42.0
+  },
+  {
+   "id": "nii-low",
+   "ad": "[N II] · düşük",
+   "Ha": 26.5,
+   "OIII": 47.2,
+   "Hb": 47.3
+  },
+  {
+   "id": "nii-high",
+   "ad": "[N II] · yüksek",
+   "Ha": 4.6,
+   "OIII": 47.0,
+   "Hb": 47.2
+  },
+  {
+   "id": "sii-low",
+   "ad": "[S II] · düşük",
+   "Ha": 54.4,
+   "OIII": 47.2,
+   "Hb": 47.3
+  },
+  {
+   "id": "sii-high",
+   "ad": "[S II] · yüksek",
+   "Ha": 44.6,
+   "OIII": 47.1,
+   "Hb": 47.3
+  },
+  {
+   "id": "combined-low-noise",
+   "ad": "Birleşik · düşük gürültü",
+   "Ha": 2.6,
+   "OIII": 34.6,
+   "Hb": 43.6
+  },
+  {
+   "id": "combined-mid-noise",
+   "ad": "Birleşik · orta gürültü",
+   "Ha": 8.0,
+   "OIII": 40.6,
+   "Hb": 44.1
+  },
+  {
+   "id": "combined-high-noise",
+   "ad": "Birleşik · yüksek gürültü",
+   "Ha": 18.0,
+   "OIII": 42.9,
+   "Hb": 44.0
+  }
+ ],
+ "yuksekNII": {
+  "Ha": {
+   "ad": "Fiziksel Hα",
+   "once": 6.237,
+   "sonra": 5.952,
+   "azalma": 4.6
+  },
+  "ha_equiv_line": {
+   "ad": "HaEq_line · tanısal izdüşüm",
+   "once": 2.075,
+   "sonra": 0.911,
+   "azalma": 56.1
+  }
+ },
+ "snrGruplari": [
+  "0–1",
+  "1–3",
+  "3–5",
+  "5–10",
+  "≥10"
+ ],
+ "kalanHata": {
+  "noise": {
+   "Ha": {
+    "once": [
+     169.92,
+     54.01,
+     25.46,
+     13.76,
+     5.18
+    ],
+    "sonra": [
+     75.84,
+     23.4,
+     10.62,
+     5.85,
+     2.35
+    ]
+   },
+   "OIII_total": {
+    "once": [
+     103.53,
+     40.88,
+     20.66,
+     11.96,
+     5.03
+    ],
+    "sonra": [
+     61.7,
+     19.73,
+     9.19,
+     5.16,
+     2.34
+    ]
+   },
+   "Hb": {
+    "once": [
+     143.25,
+     44.29,
+     21.43,
+     12.1,
+     5.85
+    ],
+    "sonra": [
+     82.03,
+     20.02,
+     9.4,
+     5.86,
+     3.29
+    ]
+   }
+  },
+  "combined": {
+   "Ha": {
+    "once": [
+     207.22,
+     72.94,
+     46.29,
+     37.87,
+     32.79
+    ],
+    "sonra": [
+     112.49,
+     51.89,
+     40.32,
+     35.95,
+     32.5
+    ]
+   },
+   "OIII_total": {
+    "once": [
+     123.54,
+     42.39,
+     20.62,
+     12.01,
+     5.15
+    ],
+    "sonra": [
+     80.77,
+     22.71,
+     9.68,
+     5.42,
+     2.49
+    ]
+   },
+   "Hb": {
+    "once": [
+     165.99,
+     44.86,
+     21.28,
+     12.32,
+     6.7
+    ],
+    "sonra": [
+     100.07,
+     20.55,
+     9.73,
+     6.29,
+     3.93
+    ]
+   }
+  }
+ }
+}

@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AIS.001 · Teknik kayıt</title>
+  <meta name="description" content="Hahbolllayristirma teknik kaydı: yöntem çerçevesi, 48 sahnelik GraXpert deneyi, NGC 7000 gerçek veri tanısı ve açık kalan kapılar.">
+  <meta name="theme-color" content="#0c0e13">
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..700,0..100,0..1&family=Instrument+Sans:wght@400..600&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <link rel="stylesheet" href="/assets/css/sayfalar/rapor.css">
+  <script type="module" src="/assets/js/main.js"></script>
+</head>
+<body style="--vurgu: var(--ha)">
+  <a class="atla" href="#icerik">İçeriğe geç</a>
+
+  <header class="ust">
+    <a class="marka" href="/" aria-label="Aisenit ana sayfa"><ais-maskot faz="aisenit" boyut="30"></ais-maskot><span>aisenit</span></a>
+    <nav class="derinlik" aria-label="AIS.001 derinlikleri">
+      <span class="yol veri">AIS.001 · Hahbolllayristirma</span>
+      <a href="/#ais-001">01</a>
+      <a href="/ais-001/02/">02</a>
+      <a href="/ais-001/03/" aria-current="page">03</a>
+    </nav>
+    <p class="entegrasyon veri" data-entegrasyon title="Bu sayfada geçirdiğin süre.">
+      <span class="uzun">ENT</span> <b data-sure>00:00:00</b>
+    </p>
+  </header>
+  <div class="ilerleme" data-ilerleme aria-hidden="true"></div>
+
+  <header class="rapor-bas">
+    <div>
+      <p class="veri"><b>AIS.001</b> · 03 · teknik kayıt</p>
+      <h1>Tek RGB görüntüden <em class="italik">emisyon bileşenleri.</em></h1>
+      <p class="alt-baslik">İlk çözümden 48 sahnelik GraXpert deneyine. Yöntem çerçevesi, tarihli deney akışı, gerçek veri tanısı ve açık kalanlar.</p>
+    </div>
+<pre class="fits" aria-label="Rapor künyesi"><span class="a">OBJECT  </span>= <span class="d">'Hahbolllayristirma'</span>  <span class="y">/ AIS.001</span>
+<span class="a">INSTRUME</span>= <span class="d">'Nikon Z fc'</span>          <span class="y">/ + SV240</span>
+<span class="a">ESTIMAND</span>= <span class="d">'Ha_eq_red_blend'</span>     <span class="y">/ temiz Hα değil</span>
+<span class="a">         </span>  <span class="d">'OIII_total, Hb'</span>
+<span class="a">BUNIT   </span>= <span class="d">'relative/model'</span>
+<span class="a">DATE-RNG</span>= <span class="d">'2026-09-15..10-04'</span>
+<span class="a">STATUS  </span>= <span class="d">'DENEYSEL'</span>
+<span class="a">END</span></pre>
+  </header>
+
+  <div class="rapor">
+    <nav class="icindekiler" aria-label="Bölümler" data-ray>
+      <p class="veri">İçindekiler</p>
+      <ol>
+        <li><a href="#kapsam"><span class="veri">01</span>Başlangıç sorusu</a></li>
+        <li><a href="#girdi"><span class="veri">02</span>Girdi ve kamera–filtre yanıtı</a></li>
+        <li><a href="#model"><span class="veri">03</span>İlk model ve piksel çözümü</a></li>
+        <li><a href="#sentetik"><span class="veri">04</span>Sentetik başlangıç ve komşuluk</a></li>
+        <li><a href="#ngc-ilk"><span class="veri">05</span>İlk NGC 7000 ve iddianın daralması</a></li>
+        <li><a href="#deney"><span class="veri">06</span>48 sahneyle GraXpert</a></li>
+        <li><a href="#gercek"><span class="veri">07</span>Gerçek veriye dönüş</a></li>
+        <li><a href="#kayit"><span class="veri">08</span>Kayıt düzeni</a></li>
+        <li><a href="#acik"><span class="veri">09</span>Açık kalanlar</a></li>
+      </ol>
+    </nav>
+
+    <main class="metin" id="icerik">
+      <section id="kapsam">
+        <p class="bolum-etiket veri">01 · Başlangıç sorusu</p>
+        <h2>Tek RGB görüntüden emisyon katkıları</h2>
+        <p>Nikon Z fc ve SVBONY SV240 ile alınmış renkli bir astronomi görüntüsünde Hα, Hβ ve [O&nbsp;III] ışığı üst üste gelir. Bu çalışma, kamera ve filtrenin spektral yanıtından yola çıkarak bu katkıları kestirmeyi deniyor. Kayıt, ilk piksel çözümünden 48 sahnelik GraXpert deneyine ve gerçek veri karşılaştırmasına doğru ilerler.</p>
+        <p>Kırmızı çıktı <strong>Hα eşdeğer karışımdır</strong> (<code>Ha_equivalent_red_blend</code>). [O&nbsp;III] hedefi 500.7 ve 495.9 nm çizgilerinin toplamıdır. Mutlak fotometrik kalibrasyon olmadığından sonuçlar <strong>göreli/model birimlerindedir</strong>. Yöntem dar bant spektroskopinin yerine geçmez.</p>
+      </section>
+
+      <section id="girdi">
+        <p class="bolum-etiket veri">02 · Yöntem çerçevesi</p>
+        <h2>Girdi ve kamera–filtre yanıtı</h2>
+        <p>Gerçek veri girdisi yıldızları ayrılmış, Siril'de subtractive BackEx uygulanmış lineer bir RGB FITS dosyasıdır. Kamera duyarlılığı ile filtre geçirgenliği karışım matrisini kurar. FITS geçmişi ve kullanıcı beyanı işleme zincirinin kanıtıdır; başlık tek başına lineerliği kanıtlamaz. Kalibrasyon dosyalarının hava/vakum dalga boyu geleneği de kesin olarak doğrulanmış değildir.</p>
+        <p>Sentetik deneylerde bilinen çizgi haritaları aynı kamera–filtre yanıtıyla RGB'ye dönüştürülür. Karşılaştırmalarda girdi, gürültü ölçeği ve çözücü ayarı sabit tutulur; değiştirilen katkı ayrıca kaydedilir.</p>
+      </section>
+
+      <section id="model">
+        <p class="bolum-etiket veri">03 · Yöntem çerçevesi</p>
+        <h2>İlk model ve piksel çözümü</h2>
+<pre>y_RGB ≈ M · x + ε
+x = [Ha_equivalent_red_blend, OIII_total, Hb]ᵀ
+OIII_total = I5007 + I4959
+I5007 / I4959 = 2.98</pre>
+        <aside class="tanim"><b>NNLS</b>Negatif olmayan en küçük kareler. Ölçüm ile model arasındaki farkı küçültürken eksi ışık miktarlarını dışlar.</aside>
+        <p>Başlangıç çözümü, kanal gürültüsüyle ağırlıklandırılmış negatif olmayan en küçük karelerdir (NNLS). Her piksel ayrı çözülür; negatif ışık miktarları dışlanır. Üç hedefle kurulan bu model, sürekli tayf ve ek çizgiler de bilinmiyorsa hepsini bağımsız olarak belirleyemez.</p>
+        <p><strong>RGB'yi iyi açıklamak, fiziksel paylaştırmayı doğrulamaz.</strong> Model dışı bir katkı, yeniden kurma artığı küçük kalırken hedeflerden birine yazılabilir. Sonraki denemeler hem rastgele gürültüyü hem bu model sınırını sınar.</p>
+      </section>
+
+      <section id="sentetik">
+        <p class="bolum-etiket veri">04 · 15–16 Eylül</p>
+        <h2>Sentetik başlangıç ve komşuluk deneyi</h2>
+        <p>İlk kontrollü sahnelerde temiz, gürültülü ve sürekli tayf eklenmiş girdiler karşılaştırıldı. Gürültüsüz ve aynı modelle üretilmiş sahnenin neredeyse sıfır hatası öncelikle iç tutarlılığı gösteriyordu. Gürültü altında tek piksel çözümünün hatası büyüdü.</p>
+        <p>16 Eylül'de komşuluk bilgisi eklendi: global FISTA çözümü, RGB veri uyumuna kenar duyarlı pseudo-Huber düzenlemesi uyguladı. Gürültüsü <code>5×10⁻⁶</code> olan tek bir sentetik vakada yerel medyan Hα/Hβ/[O&nbsp;III] hataları <strong>%39,08 / %54,62 / %52,67'den %8,06 / %15,29 / %17,94'e</strong> indi. Bu yerel hata ölçüsü, sonraki GraXpert deneyinin havuzlu RMSE'siyle aynı ölçü değildir.</p>
+        <p>Kazanç yeni bir yapı koruma sorusu doğurdu. Bu deneyde kullanılan <code>λ = 0.30</code> ve 4 px rehber bulanıklığı gerçek görüntüden ölçülmemişti. Sonraki denoise deneyi bu komşuluk katmanını kapatarak farklı bir yolu ölçtü.</p>
+      </section>
+
+      <section id="ngc-ilk">
+        <p class="bolum-etiket veri">05 · 16–23 Eylül</p>
+        <h2>İlk NGC 7000 koşusu ve iddianın daralması</h2>
+        <p>16 Eylül'deki ilk NGC 7000 koşusu tamamlandı. Ancak ortak pozitif taban üç bileşene de sızdı; bulutsu destek skoru bütün karede doydu. 19 Eylül incelemesi, arka plan çıkarımının gerçek yaygın emisyonu da silebileceğini ve yumuşatmanın gürültüyle birlikte ince yapıyı da bastırabileceğini öne çıkardı.</p>
+        <aside class="tanim"><b>ABSTAIN</b>Güvenilir bir [N II] katkı aralığı yoksa sistem temiz Hα için sayı üretmez. Susmak da bir çıktıdır.</aside>
+        <p>23 Eylül'deki kaynak/sürüm düzeninde kırmızı çıktının adı ve sınırı açıklaştırıldı. [N II] veya [S II] katkısı, üç hedefli modelde Hα'ya yazılabilir. Aktif kontrol sızıntı yönünü <code>q = M⁻¹v</code> ile izler; güvenilir katkı aralıkları varsa koşullu Hα sınırları üretir, yoksa temiz Hα için sonuç vermez (<code>ABSTAIN</code>).</p>
+        <p>Bu aşama yeni bir karşılaştırma ihtiyacını hazırladı: <strong>görüntüdeki gürültüyü azaltmak, modelin görmediği fiziksel katkıyı da düzeltiyor mu?</strong></p>
+      </section>
+
+      <section id="deney">
+        <p class="bolum-etiket veri">06 · 27–29 Eylül · ana deney</p>
+        <h2>48 sahneyle GraXpert: kazanç nerede, sınır nerede?</h2>
+        <p>27 Eylül'deki tek sahneli pilot, gürültü azaltmanın bilinen çizgi haritalarına göre ölçülebileceğini gösterdi. Aynı dönemdeki Veil profil karşılaştırmaları da sakinleşme ile yapı korunmasının ayrı sorular olduğunu gösteriyordu. 29 Eylül deneyi bu soruyu farklı fiziksel katkılarda ve gürültü düzeylerinde sınamak için genişletildi.</p>
+
+        <h3>Deney nasıl kuruldu?</h3>
+        <p><strong>12 koşul × 2 morfoloji × 2 gürültü örneği = 48 adet 768×768 sahne.</strong> Üç yalnız-gürültü düzeyi; ikişer sürekli tayf, [N II] ve [S II] düzeyi; üç birleşik koşul kullanıldı. Geniş yapılar ile ince filamentler ayrı morfolojilerdi. Her sahnenin fiziksel Hα/[O&nbsp;III]/Hβ haritaları biliniyordu.</p>
+        <p>GraXpert 3.0.2 güç 0,65 ile otomatik çalıştırıldı; elle işlenen dosya yok. Aynı sahnenin öncesi ve sonrası <strong>komşuluk ve Hα/Hβ oran kısıtı kapalı NNLS</strong> ile çözüldü. Orijinal gürültü ölçeği ve başlangıç sinyal-gürültü grupları sabit kaldı; denoise sonrası pikseller başka gruba taşınmadı.</p>
+        <aside class="tanim"><b>RMSE</b>Kestirim ile bilinen harita arasındaki farkın karesel ortalamasının karekökü. Düşük olan daha iyi. Her koşulun dört sahnesi piksel sayısıyla havuzlanır; bunlar 48 bağımsız istatistiksel örnek değildir.</aside>
+
+        <h3>12 koşulun tamamında ne değişti?</h3>
+        <figure class="kanit">
+          <span class="kanit-soru">Denoise, hatayı hangi koşulda ne kadar azalttı?</span>
+          <kanit-grafik tur="kosullar" veri="/assets/data/ais001-graxpert.json" role="img" aria-label="12 sentetik koşulda fiziksel Hα, [O&nbsp;III] toplamı ve Hβ için GraXpert sonrası havuzlu RMSE azalma yüzdeleri"></kanit-grafik>
+          <figcaption>29 Eylül ana kolu. Pozitif yüzde daha düşük hata demektir. Her satır iki morfoloji × iki gürültü örneğini havuzlar. Bu grafik kalan hatayı değil, <b>azalmayı</b> gösterir.</figcaption>
+        </figure>
+        <p>Yalnız gürültüde fiziksel Hα RMSE'si yaklaşık <strong>%56</strong>, [O&nbsp;III] ve Hβ yaklaşık %47–49 azaldı. Sürekli tayf ve ek çizgiler girince kazanç koşula göre değişti. Yüksek [N II] altında Hα azalması <strong>%4,6</strong>'ya, birleşik düşük-gürültü koşulunda <strong>%2,6</strong>'ya düştü. Her sahnenin üç global hatası azalmış olsa da, modelin çözemediği katkı baskınsa temizlenmiş görüntü hâlâ yanlış fiziksel pay taşıyabiliyor.</p>
+
+        <h3>İki farklı Hα hedefi neden farklı sonuç veriyor?</h3>
+        <figure class="kanit">
+          <span class="kanit-soru">Aynı dört sahne, iki hedef: hangisini ölçtüğün sonucu değiştiriyor.</span>
+          <kanit-grafik tur="nii" veri="/assets/data/ais001-graxpert.json" role="img" aria-label="Yüksek [N II] koşulunda fiziksel Hα ve tanısal HaEq_line hedeflerinin GraXpert öncesi ve sonrası RMSE karşılaştırması"></kanit-grafik>
+          <figcaption>Dikey eksen RMSE, ×10⁻⁵ model birimi. Fiziksel Hα: <b>6,237 → 5,952</b>. Tanısal HaEq_line: <b>2,075 → 0,911</b>. İkinci hedef fiziksel [N II] ayrımı değildir.</figcaption>
+        </figure>
+        <p><code>HaEq_line</code>, yalnız çizgilerin ürettiği RGB katkısının üç hedefli ters matrise izdüşümüdür. Bu hedefte hata yaklaşık %56,1 azalırken gerçek Hα haritasına göre yalnız %4,6 azaldı. <strong>Modelin kendi kırmızı karışımını daha iyi kestirmek, temiz Hα'yı bulmakla aynı başarı değildir.</strong></p>
+
+        <h3>Başlangıç SNR'sine göre geriye ne kadar hata kaldı?</h3>
+        <figure class="kanit">
+          <span class="kanit-soru">Güçlü sinyal, karışım hatasını tek başına çözüyor mu?</span>
+          <kanit-grafik tur="kalan" veri="/assets/data/ais001-graxpert.json" role="img" aria-label="Üç fiziksel çizginin yalnız gürültü ve birleşik kirletici koşullarında, başlangıç SNR gruplarına göre GraXpert öncesi ve sonrası kalan hata yüzdeleri"></kanit-grafik>
+          <figcaption>4 Ekim'de 29 Eylül kayıtlarından hazırlanan değerlendirme; yeni bir deney değil. Kesikli çizgi önce, düz çizgi GraXpert sonrası. Dikey eksen logaritmik: kalan RRMSE (%). Önce ve sonra aynı piksel gruplarını kullanır.</figcaption>
+        </figure>
+        <aside class="tanim"><b>RRMSE</b>Grup içindeki hata RMS'inin bilinen fiziksel haritanın RMS'ine oranı. Azalma değil, kalan hata.</aside>
+        <p>Başlangıç SNR ≥ 10 grubunda, denoise sonrası fiziksel Hα hatası yalnız-gürültü havuzunda <strong>%2,35</strong>, birleşik havuzda <strong>%32,50</strong> kaldı. Aynı birleşik grupta [O&nbsp;III] %2,49, Hβ %3,93 idi. Bu, güçlü sinyalin Hα karışımını tek başına çözemediğini gösterir; gerçek gökyüzüne verilmiş bir doğruluk yüzdesi değildir.</p>
+        <p>Ayrı bir Hα/Hβ oran kısıtlı kol da 48 sahnenin eşlerinde çalıştırıldı; komşuluk yine kapalıydı. Ana NNLS koluyla aynı algoritma olmadığından fark yalnız oran kısıtına atfedilmez. Yıldızlar, gerçek PSF/debayer ve gökyüzü gradyanları bu deneyin kapsamı dışındadır.</p>
+      </section>
+
+      <section id="gercek">
+        <p class="bolum-etiket veri">07 · 4 Ekim</p>
+        <h2>Gerçek veriye dönüş: NGC 7000 eşleri</h2>
+        <p>Tek BackEx geçmişli denoise öncesi ve sonrası eşler, aynı matris ve orijinal girdiden alınan aynı gürültü ölçeğiyle 100 bölgede karşılaştırıldı. Tek fark GraXpert denoise (güç 0,65) olarak bildirildi; bu gerçek veri çiftinin model sürümü bağımsız doğrulanamadı. Komşuluk kapalıydı; Hα/Hβ oran kısıtı açıktı ama iki girdide de sonucu değiştirmedi.</p>
+        <p>Karo içi komşu-farkı MAD ölçüsünün medyanı, çizgi kestirimlerinde öncesinin <strong>yaklaşık 0,40 katına</strong> indi. Bu küçük ölçek dalgalanmasının azaldığını gösterir; gerçek sinyalin korunduğunu ya da fiziksel SNR'nin arttığını kanıtlamaz. Gerçek çizgi haritaları ve doğrulanmış boş gök referansı olmadığından bu görüntüye hata yüzdesi verilmedi.</p>
+      </section>
+
+      <section id="kayit">
+        <p class="bolum-etiket veri">08 · Kayıt düzeni</p>
+        <h2>Deneyleri birbirine karıştırmamak</h2>
+        <p>1.0.0 değişmez başlangıç sürümüdür; geliştirme ayrı bir aktif kopyada sürer. Veri, kalibrasyon, kod, ayar ve çıktı hash'leri kayda geçer. Denoise öncesi/sonrası eşleşmesi, fiziksel hedef ile model hedefi, yerel hata ile havuzlu hata ayrı tutulur.</p>
+        <p>Bilinen cevaplı sentetik deney, gerçek veri tanısı ve sürüm kabulü farklı kanıt düzeyleridir. Bu sayfa onları aynı kefeye koymaz.</p>
+      </section>
+
+      <section id="acik">
+        <p class="bolum-etiket veri">09 · Açık kalanlar</p>
+        <h2>Yeni sürüm için gerekenler</h2>
+        <ul>
+          <li>Fiziksel ek çizgi sızıntısı (C05) ve filament genişliği (C06) testlerini kabul kapılarına bağlamak.</li>
+          <li>Oran kısıtının tam izdüşümünü ve gerçek çözünürlük/gürültü davranışını doğrulamak.</li>
+          <li>Başlangıç sürümüyle aynı vakalarda karşılaştırmak.</li>
+        </ul>
+        <p>Kod, kalibrasyon ve FITS verisi herkese açık bir yeniden üretim paketi değildir. Grafikler deney kayıtlarının seçilmiş sunumudur; yeni bir bilimsel doğrulama yapılmış gibi okunmamalı.</p>
+
+        <div class="rapor-son">
+          <ais-maskot faz="aisenit" boyut="120" konus kendiliginden
+            data-sozler='["Rapor bitti. Sinyal yeterli, iddia sınırlı. Tam kıvamında.","Doğruluk yüzdesi isteyen olursa söyle: gerçek harita yok, ben de uydurmam.","Sıcak pikselim hâlâ burada. 03 bile onu kalibre edemedi."]'></ais-maskot>
+          <div>
+            <p>Kayıt burada bitiyor. Deney sürüyor.</p>
+            <nav class="kapilar" aria-label="Diğer derinlikler">
+              <a class="kapi" href="/ais-001/02/"><span class="kapi-no">02</span><span class="kapi-ad">Mantığına dön</span><span class="kapi-not">Sekiz ekranlık hikâye</span><span class="kapi-ok" aria-hidden="true">←</span></a>
+              <a class="kapi" href="/" style="--c: var(--toz)"><span class="kapi-no">00</span><span class="kapi-ad">Ana sayfa</span><span class="kapi-not">Diğer projeler ve gece arşivi</span><span class="kapi-ok" aria-hidden="true">→</span></a>
+            </nav>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="alt">
+    <div class="alt-satir veri">
+      <span>aisenit · AIS.001 · 03</span>
+      <span>Grafik verisi: 29 Eylül 2026 eşleşmiş GraXpert matrisi · SNR değerlendirmesi 4 Ekim 2026</span>
+    </div>
+  </footer>
+</body>
+</html>

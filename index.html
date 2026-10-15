@@ -1,536 +1,194 @@
 <!doctype html>
-<html lang="tr">
+<html lang="tr" class="kilitli">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>AIS — Proje Arşivi</title>
-<meta name="description" content="AIS proje arşivi: mühendislik, veri, görüntüleme ve oyun sistemlerinin görsel ve teknik kayıtları.">
-<script src="assets/js/depth-transition.js"></script>
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%23182943'/%3E%3Cpath d='M6 23 16 6l10 17M10 18h12' fill='none' stroke='%23ece8de' stroke-width='2.5'/%3E%3Ccircle cx='16' cy='23' r='2' fill='%2359a6b5'/%3E%3C/svg%3E">
-<link rel="stylesheet" href="assets/css/base.css">
-<link rel="stylesheet" href="assets/css/project-flow.css">
-<link rel="stylesheet" href="assets/css/project-detail.css">
-<link rel="stylesheet" href="assets/css/section-rail.css?v=929d06bf">
-<script src="assets/js/section-rail.js" defer></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aisenit</title>
+  <meta name="description" content="Abrek'in projeleri, deneyleri ve takipsiz bir tripodla toplanmış gece kareleri.">
+  <meta name="theme-color" content="#07080b">
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..700,0..100,0..1&family=Instrument+Sans:wght@400..600&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <link rel="stylesheet" href="/assets/css/sayfalar/ana.css">
+  <script type="module" src="/assets/js/main.js"></script>
 </head>
 <body>
-<main class="scene">
-  <header class="top">
-    <div class="mark">AIS<small>ARŞİV / 00.4</small></div>
-    <nav class="nav" aria-label="Ana menü">
-      <a href="#projects">projeler</a>
-      <a href="galeri.html">astrofotoğraflar</a>
-      <a href="#archive">indeks</a>
-      <a href="#top">hakkında</a>
+  <a class="atla" href="#icerik">İçeriğe geç</a>
+
+  <header class="ust">
+    <a class="marka" href="/" aria-label="Aisenit ana sayfa"><ais-maskot faz="ais" boyut="30"></ais-maskot><span>aisenit</span></a>
+    <nav class="ust-nav" aria-label="Ana gezinme" data-ray>
+      <a href="#ais-001">AIS.001</a>
+      <a href="#ais-002">AIS.002</a>
+      <a href="#gozlem">Gözlem</a>
+      <a href="#maskot">Maskot</a>
     </nav>
-    <div class="coord">41° / şafaktan önce<br>arşiv etkin</div>
+    <p class="entegrasyon veri" data-entegrasyon title="Bu sayfada geçirdiğin süre. Her 4 saniye bir kare sayılır.">
+      <span class="uzun">ENT</span> <b data-sure>00:00:00</b> <span class="uzun">· <span data-kare>0</span> kare</span>
+    </p>
   </header>
 
-  <section class="hero" id="top">
-    <div class="title-wrap">
-      <div class="eyebrow">bağımsız çalışmalar / mühendislik / deneyler</div>
-      <h1>
-        <span>GÖRÜNMEYENİ</span>
-        <span class="ghost">GÖRÜNÜR</span>
-        <span>KILAN SİSTEMLER.</span>
-      </h1>
-      <p class="identity-note">
-        Mühendislikten görüntü işlemeye, veriden oyunlara;
-        <strong>ölçülebilir, sınanabilir ve sonuna kadar kurcalanabilir</strong> sistemler kuruyorum.
+  <ol class="ray veri" data-ray aria-label="Bölümler">
+    <li><a href="#giris"><span>00 · Giriş</span></a></li>
+    <li><a href="#ais-001"><span>AIS.001 · Hahbolllayristirma</span></a></li>
+    <li><a href="#ais-002"><span>AIS.002 · Krallık Oyunu</span></a></li>
+    <li><a href="#gozlem"><span>Gözlem</span></a></li>
+    <li><a href="#maskot"><span>Maskot</span></a></li>
+  </ol>
+
+  <main id="icerik">
+
+    <!-- 00 · Giriş: başlık gürültünün içinden istiflenerek çıkar -->
+    <section class="ekran giris" id="giris" data-no="00">
+      <istif-tuvali metin="aisenit" kare="160" data-istif></istif-tuvali>
+      <h1 class="gizli">Aisenit</h1>
+
+      <p class="giris-olcum veri" aria-hidden="true">
+        İSTİF <b data-istif-kare>000</b>/160 <span class="ayrac">·</span>
+        SNR <b data-istif-snr>0.0</b> <span class="ayrac">·</span>
+        <span class="kucuk-harf">σ</span> 0.55
       </p>
-    </div>
 
-    <div class="wire" aria-hidden="true">
-      <svg viewBox="0 0 1000 760" fill="none">
-        <polygon points="210,130 650,50 900,190 470,280" stroke="rgba(236,232,222,.72)" stroke-width="1.2"/>
-        <polyline points="210,130 230,500 550,690 900,560 900,190" stroke="rgba(236,232,222,.58)" stroke-width="1.2"/>
-        <polyline points="470,280 480,610 230,500" stroke="rgba(236,232,222,.52)" stroke-width="1.2"/>
-        <line x1="650" y1="50" x2="660" y2="400" stroke="rgba(236,232,222,.45)" stroke-width="1"/>
-        <line x1="470" y1="280" x2="660" y2="400" stroke="rgba(236,232,222,.45)" stroke-width="1"/>
-        <polygon points="480,610 690,530 690,355 660,400 470,280" stroke="rgba(236,232,222,.33)" stroke-width="1"/>
-        <line x1="550" y1="690" x2="550" y2="525" stroke="rgba(236,232,222,.32)" stroke-width="1"/>
-        <polygon points="335,205 590,158 750,246 505,330" stroke="rgba(236,232,222,.28)" stroke-width=".9"/>
-        <polyline points="335,205 346,424 520,522 750,442 750,246" stroke="rgba(236,232,222,.25)" stroke-width=".9"/>
-        <line x1="590" y1="158" x2="598" y2="374" stroke="rgba(236,232,222,.24)" stroke-width=".8"/>
-        <line x1="346" y1="424" x2="690" y2="355" stroke="rgba(236,232,222,.2)" stroke-width=".8"/>
-        <line x1="505" y1="330" x2="230" y2="500" stroke="rgba(236,232,222,.18)" stroke-width=".8"/>
-        <polyline points="210,130 505,330 900,190" stroke="rgba(236,232,222,.2)" stroke-width=".8"/>
-      </svg>
-    </div>
-
-    <div class="float-card">
-      <div class="float-head">
-        <span>bu arşiv nasıl okunur?</span>
-        <span class="float-head-actions"><span>00</span><button class="welcome-close" type="button" aria-label="Karşılama mesajını kapat">×</button></span>
-      </div>
-      <div class="float-body">
-        <div>
-          <strong>İstersen bir bakışta gör. İstersen projenin içine gir.</strong>
-          <small>Projeler rehberli akıyor; astrofotoğraflar ayrı galeride.</small>
-          <a class="open" href="galeri.html">galeriye geç →</a>
+      <div class="giris-alt">
+        <p class="giris-soz" data-belir>Abrek'in <em class="italik">gürültüden ayıkladıkları.</em></p>
+        <p class="giris-not" data-belir style="--sira:1">Projeler, deneyler ve takipsiz bir tripodla toplanmış gece kareleri.</p>
+        <div class="giris-eylem" data-belir style="--sira:2">
+          <a class="asagi veri" href="#ais-001"><span aria-hidden="true">↓</span> Kaydır. Pozlama sürüyor.</a>
+          <button class="yeniden veri" type="button" data-yeniden>Yeniden pozla</button>
         </div>
-        <a class="open" href="#projects">akışa gir ↓</a>
-      </div>
-    </div>
-
-    <div class="mascot-zone">
-      <img class="mascot" src="assets/ais-mascot-inline.png" alt="Abrek mascot">
-    </div>
-
-    <div class="lower">
-      <div class="manifesto">
-        Farklı alanlar. Aynı dürtü:
-        <b>sistemi kur, yapıyı ortaya çıkar, geriye kalanı sına.</b>
       </div>
 
-      <div class="index">
-        <div class="index-row"><div class="num">01</div><div>Gör</div><div class="type">30 saniye</div></div>
-        <div class="index-row"><div class="num">02</div><div>Mantığını anla</div><div class="type">2 dakika</div></div>
-        <div class="index-row"><div class="num">03</div><div>Her şeyi incele</div><div class="type">tam kayıt</div></div>
-        <a class="index-row gallery-index-entry" href="galeri.html">
-          <span class="num">G</span><span>Astrofotoğraf galerisi</span><span class="type">ayrı akış →</span>
+      <ais-maskot class="giris-maskot" faz="ais" boyut="84" konus kendiliginden
+        data-sozler='["Merhaba, ben Ais. Şu an tek kareyim, o yüzden biraz bulanığım.","Yukarıdaki yazı da benim gibi: kare biriktikçe netleşiyor.","Biraz aşağıda Aisen olacağım. Söz.","Bu gürültü benim değil, sensörün. Çoğunlukla."]'></ais-maskot>
+    </section>
+
+    <!-- 01 · AIS.001 Hahbolllayristirma -->
+    <section class="ekran proje proje-001" id="ais-001" data-no="01" style="--vurgu: var(--ha)">
+      <p class="kunye veri"><b>AIS.001</b> · 01</p>
+
+      <div class="proje-gorsel" data-belir>
+        <kanal-ayrimi src="/assets/img/gozlem/veil-2400.jpg" kirp="0.27 0.28 0.44 0.48" alt="Peçe bulutsusunun yayları"></kanal-ayrimi>
+      </div>
+
+      <div class="proje-metin">
+        <p class="proje-ad veri" data-belir>Hahbolllayristirma · deneysel</p>
+        <h2 data-belir style="--sira:1">Bir fotoğrafın içindeki ışığı <em class="italik">geri ayırmak.</em></h2>
+        <p class="proje-ozet" data-belir style="--sira:2">Tek bir RGB karesinden Hα, [O&nbsp;III] ve Hβ'yı geri çağırma denemesi.</p>
+        <nav class="kapilar ince" aria-label="AIS.001 derinlikleri" data-belir style="--sira:3">
+          <a class="kapi" href="/ais-001/02/"><span class="kapi-no">02</span><span class="kapi-ad">Mantığı</span><span class="kapi-ok" aria-hidden="true">→</span></a>
+          <a class="kapi" href="/ais-001/03/"><span class="kapi-no">03</span><span class="kapi-ad">Teknik kayıt</span><span class="kapi-ok" aria-hidden="true">→</span></a>
+        </nav>
+      </div>
+    </section>
+
+    <!-- 01 · AIS.002 Krallık Oyunu -->
+    <section class="ekran proje proje-002" id="ais-002" data-no="01" style="--vurgu: var(--toz)">
+      <p class="kunye veri"><b>AIS.002</b> · 01</p>
+
+      <div class="proje-gorsel" data-belir>
+        <kale-gecesi></kale-gecesi>
+      </div>
+
+      <div class="proje-metin">
+        <p class="proje-ad veri" data-belir>Krallık Oyunu · tasarım aşaması</p>
+        <h2 data-belir style="--sira:1">Harabe bir kale. <em class="italik">Sıfırdan bir krallık.</em></h2>
+        <p class="proje-ozet" data-belir style="--sira:2">Tahtını kaybetmiş bir hükümdar, yıkık kalesine sığınanlarla yeniden başlıyor.</p>
+        <nav class="kapilar ince" aria-label="AIS.002 derinlikleri" data-belir style="--sira:3">
+          <a class="kapi" href="/ais-002/02/"><span class="kapi-no">02</span><span class="kapi-ad">Mantığı</span><span class="kapi-ok" aria-hidden="true">→</span></a>
+          <a class="kapi" href="/ais-002/03/"><span class="kapi-no">03</span><span class="kapi-ad">Tasarım kaydı</span><span class="kapi-ok" aria-hidden="true">→</span></a>
+        </nav>
+      </div>
+    </section>
+
+    <!-- Gözlem · astrofotoğraf -->
+    <section class="ekran gozlem-ozet" id="gozlem" data-no="G" style="--vurgu: var(--oiii)">
+      <p class="kunye veri"><b>GÖZLEM</b> · gece arşivi</p>
+
+      <div class="gozlem-bas">
+        <h2 data-belir>Gökyüzü dönerken, <em class="italik">binlerce kısa bakış.</em></h2>
+        <p data-belir style="--sira:1">Takipsiz, sabit bir tripod. Yıldızlar iz bırakmasın diye 2–8 saniyelik kareler, sonra binlercesini üst üste koymak. Bu sitenin bütün fikri oradan geliyor.</p>
+        <dl class="toplam veri" data-belir style="--sira:2">
+          <div><dt>Hedef</dt><dd>4</dd></div>
+          <div><dt>Kare</dt><dd>4.789</dd></div>
+          <div><dt>Entegrasyon</dt><dd>7 sa 46 dk</dd></div>
+        </dl>
+      </div>
+
+      <div class="mozaik">
+        <a class="kare kare-buyuk" href="/gozlem/#ifn" data-belir style="--sira:1">
+          <img src="/assets/img/gozlem/ifn-1000.jpg" srcset="/assets/img/gozlem/ifn-1000.jpg 1000w, /assets/img/gozlem/ifn-2400.jpg 2400w" sizes="(max-width: 760px) 100vw, 55vw" alt="Integrated Flux Nebula: LBN 552 ve LDN 1228 çevresinde kahverengi ve mavi toz bulutları" loading="lazy">
+          <span class="kare-etiket veri" lang="en"><b>G.01</b> IFN · 2597 × 8 sn</span>
+        </a>
+        <a class="kare" href="/gozlem/#andromeda" data-belir style="--sira:2">
+          <img src="/assets/img/gozlem/andromeda-1000.jpg" alt="Andromeda galaksisi, yıldız alanının ortasında eğik bir ışık diski" loading="lazy">
+          <span class="kare-etiket veri" lang="en"><b>G.02</b> M31 · 1005 × 3 sn</span>
+        </a>
+        <a class="kare" href="/gozlem/#hortum" data-belir style="--sira:3">
+          <img src="/assets/img/gozlem/elep-1000.jpg" alt="Fil Hortumu bulutsusu, IC 1396 çevresinde kırmızı H-alfa bulutu" loading="lazy">
+          <span class="kare-etiket veri" lang="en"><b>G.03</b> IC 1396 · 652 × 4 sn</span>
+        </a>
+        <a class="kare" href="/gozlem/#veil" data-belir style="--sira:4">
+          <img src="/assets/img/gozlem/veil-1000.jpg" alt="Peçe bulutsusu, kırmızı ve turkuaz iki ince yay" loading="lazy">
+          <span class="kare-etiket veri" lang="en"><b>G.04</b> Veil · 535 × 3 sn</span>
         </a>
       </div>
+
+      <a class="gozlem-git veri" href="/gozlem/" data-belir>Gözlem defterini aç <span aria-hidden="true">→</span></a>
+    </section>
+
+    <!-- Maskot -->
+    <section class="ekran maskot-ekran" id="maskot" data-no="M" style="--vurgu: var(--toz)">
+      <p class="kunye veri"><b>EK</b> · maskot</p>
+
+      <div class="maskot-bas">
+        <h2 data-belir>Ais, Aisen, Aisenit. <em class="italik">Aynı merak, farklı kare sayısı.</em></h2>
+        <p data-belir style="--sira:1">Kaydırıcıyı sür: kare biriktikçe gürültü √N ile azalır, piksel ızgarası incelir, maskot da evrilir. Astrofotoğrafta buna drizzle denir.</p>
+      </div>
+
+      <maskot-evrim>
+        <div class="evrim-sahne">
+          <ais-maskot faz="ais" boyut="180" konus kendiliginden data-evrim-maskot></ais-maskot>
+        </div>
+        <div class="evrim-kontrol">
+          <label class="veri" for="kare-sayisi">Kare sayısı <b data-evrim-n>1</b> · SNR ∝ √N = <b data-evrim-snr>1.0</b></label>
+          <input id="kare-sayisi" type="range" min="0" max="1000" value="0" step="1" data-evrim-girdi>
+          <ol class="evrim-olcek veri" aria-hidden="true"><li style="--x:0">1</li><li style="--x:.469">40</li><li style="--x:.879">1000</li></ol>
+        </div>
+      </maskot-evrim>
+
+      <ol class="fazlar">
+        <li class="faz" data-belir data-faz-kart="ais">
+          <p class="veri"><b>Faz 1</b> · ham kare · 4 px · N = 1</p>
+          <h3>Ais</h3>
+          <p>Meraklı, dağınık, kendinden pek emin değil. Yanağındaki kırmızı nokta sıcak piksel; doğuştan.</p>
+        </li>
+        <li class="faz" data-belir style="--sira:1" data-faz-kart="aisen">
+          <p class="veri"><b>Faz 2</b> · istif · 2 px · N ≥ 40</p>
+          <h3>Aisen</h3>
+          <p>Pikselleri yarıya inmiş, özgüveni ikiye katlanmış. Objektifin diyafram çivilerini saç sanıyor, kimse de düzeltmiyor.</p>
+        </li>
+        <li class="faz" data-belir style="--sira:2" data-faz-kart="aisenit">
+          <p class="veri"><b>Faz 3</b> · son işlem · 1 px · N ≥ 1000</p>
+          <h3>Aisenit</h3>
+          <p>Aynı yıldız, en ince ızgarada. Çivileri bir piksele inmiş, halesinde ayrılmış ışık. Adı nadir bir mineralden; emin değilse <code>ABSTAIN</code> der ve susar.</p>
+        </li>
+      </ol>
+
+      <p class="maskot-not" data-belir>Ais, ikinci beynimin adı. Burada üç fazda yaşıyor: ilk karede dağınık bir merak, gece boyunca biriktikçe kristalleşen bir sinyal. Arada bolca sabır var.</p>
+    </section>
+  </main>
+
+  <footer class="alt">
+    <div class="alt-ust">
+      <p class="alt-soz">Bu sayfada <b data-sure>00:00:00</b> pozlandın. <span class="isik-2">Biraz daha kalırsan sinyal artar.</span></p>
+      <ais-maskot faz="aisenit" boyut="88" konus></ais-maskot>
     </div>
-
-    <a class="scroll-invite" href="#projects">proje akışına gir</a>
-    <div class="guide-note">Gözlemci arşive eşlik eder; kanıtın önüne geçmez.</div>
-  </section>
-
-  <div class="corner">AIS / PORTFÖY SİSTEMİ<br>GERÇEK DİKEY DİLİM 00.4</div>
-  <div class="corner corner-right">GÜRÜLTÜ ≠ DEKOR<br>DOKUYU İÇERİK ÜRETİR</div>
-</main>
-
-<div class="flow-rail" aria-hidden="true">
-  <div class="flow-fill"></div>
-  <div class="flow-label">proje akışı</div>
-</div>
-<div class="project-flow" id="projects">
-  <article class="project-scene spectral" id="signal-separation" data-section="signal separation">
-    <div class="project-stage">
-      <div class="project-art" aria-hidden="true">
-        <svg viewBox="0 0 900 720" fill="none">
-          <defs>
-            <pattern id="cfa" width="48" height="48" patternUnits="userSpaceOnUse">
-              <rect width="24" height="24" fill="rgba(151,53,56,.28)"/>
-              <rect x="24" width="24" height="24" fill="rgba(78,133,116,.22)"/>
-              <rect y="24" width="24" height="24" fill="rgba(78,133,116,.22)"/>
-              <rect x="24" y="24" width="24" height="24" fill="rgba(55,128,144,.28)"/>
-            </pattern>
-          </defs>
-          <rect x="80" y="76" width="610" height="500" fill="url(#cfa)" opacity=".46"/>
-          <rect x="80" y="76" width="610" height="500" stroke="rgba(236,232,222,.62)"/>
-          <path d="M28 540 C170 510 208 180 330 350 S520 618 760 128" stroke="rgba(236,232,222,.78)" stroke-width="2"/>
-          <path d="M30 588 C190 570 244 330 370 425 S570 610 830 246" stroke="rgba(111,174,186,.82)" stroke-width="2"/>
-          <line x1="72" y1="620" x2="850" y2="620" stroke="rgba(236,232,222,.35)"/>
-          <line x1="212" y1="610" x2="212" y2="632" stroke="rgba(236,232,222,.55)"/>
-          <line x1="436" y1="610" x2="436" y2="632" stroke="rgba(236,232,222,.55)"/>
-          <line x1="690" y1="610" x2="690" y2="632" stroke="rgba(236,232,222,.55)"/>
-          <text x="190" y="652" fill="rgba(236,232,222,.55)" font-family="monospace" font-size="14">Hβ</text>
-          <text x="407" y="652" fill="rgba(236,232,222,.55)" font-family="monospace" font-size="14">[O III]</text>
-          <text x="674" y="652" fill="rgba(236,232,222,.55)" font-family="monospace" font-size="14">Hα</text>
-        </svg>
-        <div class="matrix-label a">GİRDİ / OSC RGB<br>FİLTRE / SV240</div>
-        <div class="matrix-label b">MODEL / 3×3<br>KOŞUL / 6.81</div>
-        <div class="matrix-label c">ÇIKTI / Hα · Hβ · [O III]</div>
-      </div>
-
-      <div class="project-copy">
-        <div class="project-kicker">AIS.001 / etkin araştırma / görüntüleme + matematik</div>
-        <h2 class="project-title">TEK RGB GÖRÜNTÜ.<br>ÜÇ EMİSYON BİLEŞENİ.</h2>
-        <p class="project-lead">
-          Tek bir renkli astronomi görüntüsünden Hα, Hβ ve [O III] kestirimleri üretmek;
-          sonra da hangi durumda bu sonuca güvenilmemesi gerektiğini sınayan sistemi kurmak.
-        </p>
-
-        <div class="proof-strip" aria-label="Kısa kanıtlar">
-          <div class="proof"><strong>3×3</strong><span>karışım modeli</span></div>
-          <div class="proof"><strong>24 / 24</strong><span>sentetik test</span></div>
-          <div class="proof"><strong>%8,06</strong><span>yerel Hα hatası / test vakası</span></div>
-        </div>
-
-        <div class="depth-card">
-          <div class="depth">02 / mantığını anla</div>
-          <p>Zor olan üç görüntü üretmek değil; gerçek yapıyı gürültüden, continuum'dan ve ikna edici ama sahte ayrıntı üretebilen varsayımlardan ayırmaktı.</p>
-        </div>
-        <div class="depth-entry-options" role="group" aria-label="AIS.001 katman seçenekleri">
-          <a class="depth-entry" href="/#proje/hahbolllayristirma" data-open-project="hahbolllayristirma">
-            <span class="depth-entry-copy"><small>02 / görsel anlatı</small><strong>Deneyleri, yöntemleri ve sınırları incele</strong></span>
-            <span class="depth-entry-arrow" aria-hidden="true">→</span>
-          </a>
-          <a class="depth-entry depth-entry--technical" href="/ais001/03/">
-            <span class="depth-entry-copy"><small>03 / teknik kayıt</small><strong>Model ve doğrulama kaydını incele</strong></span>
-            <span class="depth-entry-arrow" aria-hidden="true">→</span>
-          </a>
-        </div>
-      </div>
+    <div class="alt-satir veri">
+      <span>aisenit · Abrek · İstanbul, 2026</span>
+      <span><a href="/ais-001/02/">AIS.001</a> · <a href="/ais-002/02/">AIS.002</a> · <a href="/gozlem/">Gözlem</a></span>
     </div>
-  </article>
-
-  <article class="project-scene kingdom" id="kingdom" data-section="kingdom game">
-    <div class="project-stage">
-      <div class="project-art" aria-hidden="true">
-        <svg viewBox="0 0 900 720" fill="none">
-          <path d="M90 595 C190 480 150 340 310 300 S540 365 625 210 760 115 835 90" stroke="#182943" stroke-width="2" stroke-dasharray="7 8"/>
-          <path d="M120 170 L290 90 440 190 390 345 565 440 720 350 825 510 650 630 460 560 280 650 105 540Z" stroke="#182943" stroke-width="2"/>
-          <path d="M290 90L310 300M440 190L310 300M390 345L565 440M720 350L565 440M460 560L565 440M280 650L390 345" stroke="rgba(24,41,67,.42)"/>
-          <g fill="#d8dde3" stroke="#182943" stroke-width="2">
-            <circle cx="310" cy="300" r="31"/><circle cx="565" cy="440" r="31"/><circle cx="720" cy="350" r="20"/><circle cx="280" cy="650" r="20"/>
-          </g>
-          <g fill="#182943">
-            <circle cx="310" cy="300" r="8"/><circle cx="565" cy="440" r="8"/><circle cx="720" cy="350" r="6"/><circle cx="280" cy="650" r="6"/>
-          </g>
-          <text x="348" y="293" fill="#182943" font-family="monospace" font-size="14">COMMUNITY / 01</text>
-          <text x="603" y="434" fill="#182943" font-family="monospace" font-size="14">LEADER / MEMORY</text>
-        </svg>
-        <div class="matrix-label a">TUR / 02–03 SA<br>DURUM / KALICI</div>
-        <div class="matrix-label b">İŞ GÜCÜ / ORTAK<br>ARAŞTIRMA / MALİYETLİ</div>
-        <div class="matrix-label c">HARİTA / FİZİKSEL GÖREV<br>İNSAN / GÖRÜNÜR</div>
-      </div>
-
-      <div class="project-copy">
-        <div class="project-kicker">AIS.002 / sistem tasarımı / oyun</div>
-        <h2 class="project-title">YÖNETİLME BİÇİMİNİ HATIRLAYAN BİR KRALLIK.</h2>
-        <p class="project-lead">
-          Toplulukların, liderlerin, iş gücünün ve araştırmanın birbirinden kopuk menüler
-          değil, tek bir bağlı sistem gibi davrandığı tekrar oynanabilir bir devlet kurma oyunu.
-        </p>
-
-        <div class="proof-strip" aria-label="Kısa kanıtlar">
-          <div class="proof"><strong>11</strong><span>tasarım alanı</span></div>
-          <div class="proof"><strong>2–3 sa</strong><span>hedef tur</span></div>
-          <div class="proof"><strong>1 sistem</strong><span>lider + topluluk</span></div>
-        </div>
-
-        <div class="depth-card">
-          <div class="depth">02 / mantığını anla</div>
-          <p>Proje manzarayla değil kurallarla başlıyor: iş gücü ne demek, yetki nasıl ölçeklenir, bir görevin maliyeti nedir ve hangi anılar sonraki karara taşınır?</p>
-        </div>
-        <span class="deep-link" aria-disabled="true">Tasarım arşivi <small>/ sonraki dilim</small></span>
-      </div>
-    </div>
-  </article>
-
-  <section class="project-scene archive-scene" id="archive" data-section="full archive">
-    <div class="project-stage">
-      <div class="archive-grid">
-        <h2>AKIŞTA KAL.<br>YA DA İNDEKSİ AÇ.</h2>
-        <div>
-          <p>Ana sayfa rehberli bir sıra; hapishane değil. Ziyaretçi seçilmiş işler arasında akabilir veya ilgilendiği kanıta doğrudan gidebilir.</p>
-          <div class="archive-options">
-            <div class="archive-option"><span>01</span><strong>Seçilmiş işler</strong><span>rehberli</span></div>
-            <div class="archive-option"><span>02</span><strong>Tüm projeler</strong><span>indeksli</span></div>
-            <div class="archive-option"><span>03</span><strong>Notlar ve başarısız testler</strong><span>tam kayıt</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-</div>
-<aside class="project-detail" id="project-hahbolllayristirma" aria-hidden="true" aria-label="Emisyon ayrıştırma proje detayı">
-  <canvas class="detail-atmosphere-canvas" aria-hidden="true"></canvas>
-  <header class="detail-top">
-    <button class="detail-back" type="button" data-close-project>← Portföye dön</button>
-    <div class="detail-mark">AIS.001<small>02 / GÖRSEL ANLATI</small></div>
-  </header>
-
-  <section class="detail-hero">
-    <canvas class="signal-canvas" aria-hidden="true"></canvas>
-    <div class="detail-hero-copy">
-      <div class="project-kicker">Hahbolllayristirma / AIS.001 02 / görsel anlatı</div>
-      <nav class="depth-switcher" aria-label="AIS.001 katmanları">
-        <a href="/#signal-separation"><span class="depth-switcher__index">01</span><span>Kısa sunum</span></a>
-        <span class="depth-switcher__current" aria-current="page" aria-label="02 / Görsel anlatı"><span class="depth-switcher__index">02</span><span>Görsel anlatı</span></span>
-        <a href="/ais001/03/"><span class="depth-switcher__index">03</span><span>Teknik kayıt</span></a>
-      </nav>
-      <h1>TEK RGB GÖRÜNTÜNÜN İÇİNDE NE SAKLI?</h1>
-      <p>Bir renkli astronomi görüntüsünden Hα, Hβ ve [O III] bileşenlerini ayırmaya çalışıyorum. Ama asıl proje üç yeni görüntü üretmek değil; hangi ayrıntının veriden geldiğini, hangisinin model tarafından uydurulabileceğini ayırt etmek.</p>
-    </div>
-    <div class="detail-diagram" aria-hidden="true">
-      <svg viewBox="0 0 620 620" fill="none">
-        <circle cx="310" cy="310" r="210" stroke="rgba(237,233,223,.28)"/>
-        <circle cx="310" cy="310" r="130" stroke="rgba(237,233,223,.18)" stroke-dasharray="5 8"/>
-        <path d="M68 430 C180 398 178 126 286 270 S420 514 556 116" stroke="rgba(237,233,223,.82)" stroke-width="2"/>
-        <path d="M66 486 C174 462 224 260 332 344 S454 520 578 238" stroke="rgba(93,174,188,.9)" stroke-width="2"/>
-        <line x1="110" y1="520" x2="540" y2="520" stroke="rgba(237,233,223,.32)"/>
-        <text x="120" y="552" fill="rgba(237,233,223,.58)" font-family="monospace" font-size="14">486.1 / Hβ</text>
-        <text x="273" y="552" fill="rgba(237,233,223,.58)" font-family="monospace" font-size="14">500.7 / OIII</text>
-        <text x="438" y="552" fill="rgba(237,233,223,.58)" font-family="monospace" font-size="14">656.3 / Hα</text>
-      </svg>
-    </div>
-  </section>
-
-  <main class="detail-body">
-<section class="story-section" id="story-question">
-      <div class="story-aside">
-        <div class="story-number">01 / Ne görüyoruz?</div>
-        <div class="section-art prism-art" aria-hidden="true">
-          <svg class="art-scene" viewBox="0 0 360 430" fill="none">
-            <defs>
-              <linearGradient id="prismGlass" x1="95" y1="90" x2="272" y2="322" gradientUnits="userSpaceOnUse"><stop stop-color="#F0EEE7" stop-opacity=".42"/><stop offset=".48" stop-color="#7EA6B3" stop-opacity=".12"/><stop offset="1" stop-color="#D9E4E7" stop-opacity=".28"/></linearGradient>
-              <filter id="softGlow" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="5" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-            </defs>
-            <g opacity=".24" stroke="#17202B"><path d="M24 58H336M24 215H336M24 372H336"/><path d="M64 24V406M180 24V406M296 24V406"/></g>
-            <path class="incoming-light" d="M-20 156L137 217" stroke="#17202B" stroke-width="4" filter="url(#softGlow)"/>
-            <g class="prism-shell">
-              <path d="M139 102L276 224L112 322Z" fill="url(#prismGlass)" stroke="#17202B" stroke-width="2"/>
-              <path d="M139 102L191 229L112 322M191 229L276 224" stroke="rgba(23,32,43,.34)"/>
-            </g>
-            <path class="split-ray" d="M194 229L385 106" stroke="#A54F60" stroke-width="3" filter="url(#softGlow)"/>
-            <path class="split-ray r2" d="M194 229L385 220" stroke="#59A6B5" stroke-width="3" filter="url(#softGlow)"/>
-            <path class="split-ray r3" d="M194 229L385 336" stroke="#7F9EC2" stroke-width="3" filter="url(#softGlow)"/>
-            <g fill="#17202B" font-family="monospace" font-size="10" letter-spacing="1.4"><text x="292" y="93">Hα / 656.3</text><text x="282" y="207">[O III] / 500.7</text><text x="292" y="357">Hβ / 486.1</text></g>
-          </svg>
-          <div class="art-caption">Beyaz görünen karışımın içindeki üç hedeflenen çizgi</div>
-        </div>
-      </div>
-      <div>
-        <h2>Kamera üç ayrı gazı değil, tek bir RGB karışımı görüyor.</h2>
-        <p>Hα, Hβ ve [O III] bulutsunun farklı fiziksel bileşenlerinden gelen belirli dalga boylarıdır. Fakat renkli kameranın kırmızı, yeşil ve mavi kanalları bu çizgileri temiz kutulara ayırmaz. Her kanal, her çizgiden farklı miktarda pay alır. Elimizde ayrı katmanlar değil, üçünün birbirine karışmış hâli vardır.</p>
-        <div class="plain-analogy"><strong>Sezgisel olarak:</strong> Aynı anda çalan üç enstrümanı üç farklı mikrofon kaydetmiş gibi düşün. Her mikrofon her enstrümanı farklı güçte duyuyor. Mikrofonların nasıl duyduğunu bilirsek, karışımdan kaynakları kestirmeyi deneyebiliriz.</div>
-        <div class="technical-layer">
-          <div class="tech-label">Çözümleyici katmanı / ölçüm modeli</div>
-          <pre>RGB ≈ M · [Ha, OIII_total, Hb] + noise
-
-M = kamera spektral duyarlılığı × SV240 filtre geçirgenliği
-OIII_total = I5007 + I4959
-I5007 / I4959 = 2.98</pre>
-          <p>Mevcut model kare bir 3×3 sistemdir. Bu, üç RGB ölçümünü üç hedef bileşenle açıklamaya yeter; fakat bilinmeyen continuum, pedestal veya NII/SII katkısı eklendiğinde problem eksik belirlenmiş hâle gelir.</p>
-        </div>
-      </div>
-    </section>
-
-<section class="story-section" id="story-solver">
-      <div class="story-aside">
-        <div class="story-number">02 / Nasıl ayırıyoruz?</div>
-        <div class="section-art lines-art" aria-hidden="true">
-          <svg class="art-scene" viewBox="0 0 360 430" fill="none">
-            <defs><filter id="lineGlow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
-            <g opacity=".2" stroke="#17202B"><path d="M32 70H328M32 215H328M32 360H328"/><path d="M90 30V400M180 30V400M270 30V400"/></g>
-            <path class="flow-line" d="M64 -20C52 70 116 102 94 176S56 276 102 350" stroke="#A54F60" stroke-width="4" filter="url(#lineGlow)"/>
-            <path class="flow-line f2" d="M179 -20C214 70 142 112 184 189S226 279 185 350" stroke="#59A6B5" stroke-width="4" filter="url(#lineGlow)"/>
-            <path class="flow-line f3" d="M296 -20C318 72 256 110 286 184S330 275 268 350" stroke="#7F9EC2" stroke-width="4" filter="url(#lineGlow)"/>
-            <g stroke-width="3" filter="url(#lineGlow)"><path class="spectral-pulse" d="M42 365H135" stroke="#A54F60"/><path class="spectral-pulse" d="M139 365H231" stroke="#59A6B5" style="animation-delay:-1.5s"/><path class="spectral-pulse" d="M235 365H328" stroke="#7F9EC2" style="animation-delay:-3s"/></g>
-            <g fill="#17202B" font-family="monospace" font-size="10" letter-spacing="1.3" text-anchor="middle"><text x="89" y="392">Hα</text><text x="185" y="392">[O III]</text><text x="281" y="392">Hβ</text></g>
-            <text x="24" y="26" fill="rgba(23,32,43,.52)" font-family="monospace" font-size="9" letter-spacing="1.2">KARIŞIMDAN ÇİZGİLERE / AYRIŞMA</text>
-          </svg>
-          <div class="art-caption">Şematik: Hα daha uzun; [O III] ve Hβ birbirine yakın</div>
-        </div>
-      </div>
-      <div>
-        <h2>Önce her pikselde RGB karışımını ayrı ayrı çözüyoruz.</h2>
-        <p>Her pikselin kırmızı, yeşil ve mavi ölçümünden hedeflenen Hα, Hβ ve [O III] miktarlarını kestiriyoruz. Bu ilk adım yalnız o pikselin ölçümüne bakar; komşu piksellerden yardım almaz.</p>
-        <div class="story-visual" aria-hidden="true">
-          <svg viewBox="0 0 900 300" fill="none">
-            <g stroke="rgba(17,24,32,.18)">
-              <path d="M0 60H900M0 120H900M0 180H900M0 240H900"/><path d="M90 0V300M180 0V300M270 0V300M360 0V300M450 0V300M540 0V300M630 0V300M720 0V300M810 0V300"/>
-            </g>
-            <path d="M0 240 C120 228 148 86 260 128 S386 272 504 160 648 72 900 112" stroke="#1c325a" stroke-width="9" opacity=".82"/>
-            <path d="M0 248 C122 242 158 106 268 144 S390 254 512 174 652 90 900 126" stroke="#b8c4cc" stroke-width="24" opacity=".45"/>
-            <circle cx="260" cy="128" r="12" fill="#963d49"/><circle cx="504" cy="160" r="12" fill="#36849a"/>
-          </svg>
-        </div>
-        <div class="technical-layer">
-          <div class="tech-label">Çözümleyici katmanı / piksel başına ayrıştırma</div>
-          <pre>girdi   = bir pikselin [R, G, B] ölçümü
-hedef   = [Hα, [O III] toplamı, Hβ]
-yöntem  = ağırlıklı NNLS
-koşul   = üç çizgi miktarı ≥ 0</pre>
-          <p>Bu yerel çözüm gürültüye duyarlı olabilir. Komşu piksellerden gelen uzaysal bilgi bir sonraki aşamada eklenir.</p>
-        </div>
-      </div>
-    </section>
-
-<section class="story-section" id="story-evidence">
-      <div class="story-aside">
-        <div class="story-number">03 / Sonuca nasıl güveniyoruz?</div>
-        <div class="section-art" aria-hidden="true">
-          <svg class="art-scene" viewBox="0 0 420 520" fill="none">
-            <g opacity=".22" stroke="#17202B"><path d="M20 80H400M20 180H400M20 280H400M20 380H400"/><path d="M80 20V500M180 20V500M280 20V500M380 20V500"/></g>
-            <path d="M20 392C76 350 93 149 166 184S238 409 312 290 378 130 430 109" stroke="#17202B" stroke-width="34" opacity=".1"/>
-            <path d="M20 392C76 350 93 149 166 184S238 409 312 290 378 130 430 109" stroke="#59A6B5" stroke-width="3" stroke-dasharray="8 9" class="flow-line"/>
-            <path d="M20 420C90 374 103 194 174 221S247 431 322 320 380 176 430 150" stroke="#A54F60" stroke-width="2" stroke-dasharray="5 11" class="flow-line f2"/>
-            <g fill="#E3E6E8" stroke="#17202B" stroke-width="2"><circle cx="166" cy="184" r="28"/><circle cx="312" cy="290" r="28"/></g>
-            <g fill="#17202B" font-family="monospace" font-size="11" text-anchor="middle"><text x="166" y="188">TRUTH</text><text x="312" y="294">PRED</text></g>
-            <text x="28" y="44" fill="rgba(23,32,43,.58)" font-family="monospace" font-size="10" letter-spacing="1.2">AYNI SAHNE / KONTROLLÜ BOZULMA / ÖLÇÜLEBİLİR HATA</text>
-          </svg>
-          <div class="art-caption">Bilmediğimiz gerçek için önce gerçeğini bildiğimiz bir laboratuvar</div>
-        </div>
-      </div>
-      <div>
-        <h2>Gerçek gökyüzü bize doğru cevabı söylemez. Bu yüzden önce kendi gökyüzümüzü ürettik.</h2>
-        <p>Ayrıştırıcının çıktısı ikna edici görünebilir ve yine de yanlış olabilir. Kontrollü sentetik laboratuvar; gerçek Hα, Hβ ve [O III] katmanlarını bildiğimiz sahneler üretip bunları RGB'ye karıştırıyor. Sonra ayrıştırıcının bulduğu katmanları gerçekle karşılaştırıyoruz.</p>
-        <div class="plain-analogy"><strong>Amaç:</strong> “Güzel görünüyor” demek yerine, gürültü arttığında hatanın nasıl büyüdüğünü ve continuum eklendiğinde hangi kanala sızdığını ölçmek.</div>
-        <div class="technical-layer">
-          <div class="tech-label">Çözümleyici katmanı / sentetik laboratuvar</div>
-          <pre>15 generator testi + 5 evaluator testi = 20/20
-sahneler = clean → noise → extra_spectrum
-ölçüm   = yerel 100×100 karolar + truth karşılaştırması</pre>
-          <p>Clean vaka float32 yazım düzeyinde neredeyse sıfır hata verdi; bu yalnız ileri ve ters modelin eşleştiğini kanıtlar. Gerçekçilik için gürültü, continuum, calibration sapması ve model mismatch ayrıca gerekir; mevcut testlerde inverse-crime riski hâlâ vardır.</p>
-        </div>
-      </div>
-    </section>
-
-<section class="story-section" id="story-spatial">
-      <div class="story-aside">
-        <div class="story-number">04 / Komşuluk ne kazandırdı?</div>
-        <div class="section-art" aria-hidden="true">
-          <svg class="art-scene" viewBox="0 0 420 520" fill="none">
-            <g stroke="rgba(23,32,43,.18)" stroke-width="1"><path d="M45 100H375M45 155H375M45 210H375M45 265H375M45 320H375M45 375H375"/><path d="M45 100V375M100 100V375M155 100V375M210 100V375M265 100V375M320 100V375M375 100V375"/></g>
-            <path d="M45 320C112 316 128 245 181 226S273 184 375 154" stroke="#59A6B5" stroke-width="24" opacity=".24"/>
-            <path d="M45 320C112 316 128 245 181 226S273 184 375 154" stroke="#1c325a" stroke-width="4"/>
-            <rect x="183" y="210" width="54" height="54" fill="rgba(165,79,96,.12)" stroke="#A54F60" stroke-width="2"/>
-            <g fill="#17202B" font-family="monospace" font-size="10" letter-spacing="1.1"><text x="48" y="72">PİKSEL KOMŞULUĞU</text><text x="241" y="242">MERKEZ</text><text x="48" y="416">YAPIYI KORU / GÜRÜLTÜYÜ AZALT</text></g>
-          </svg>
-          <div class="art-caption">Şematik: komşu piksellerin katkısı, keskin yapıyı koruyarak gürültüyü azaltır</div>
-        </div>
-      </div>
-      <div>
-        <h2>Komşuluk, piksel çözümlerini birlikte düzenleyip filamentleri korumaya çalışıyor.</h2>
-        <p>Uzaysal optimizasyon, yakın piksellerin benzer davranmasını teşvik ederek gürültü kaynaklı sıçramaları azaltır. Kenar duyarlı ceza ise gerçek filament sınırlarının düzleşmesini sınırlamaya çalışır. Bu katkı, 02. bölümdeki piksel başına RGB çözümünden ayrıdır.</p>
-        <div class="technical-layer">
-          <div class="tech-label">Çözümleyici katmanı / global spatial solver</div>
-          <pre>uzaysal çözüm = global FISTA
-komşuluk      = kenar-ağırlıklı pseudo-Huber
-lambda        = 0.30  # sentetikte seçildi
-PSF FWHM      = 4 px  # gerçek stack'ten ölçülmedi</pre>
-          <p>Noise `5e-6` sentetik vakasında yerel medyan Hα/Hβ/OIII hataları `%39.08/%54.62/%52.67`den `%8.06/%15.29/%17.94`e indi; ayrıştırıcı testleri `24/24` geçti. Bu kontrollü deney iyileşmesidir, gerçek veri doğruluğu değildir.</p>
-        </div>
-      </div>
-    </section>
-
-<section class="story-section" id="story-ngc">
-      <div class="story-aside">
-        <div class="story-number">05 / Gerçek veri ne söyledi?</div>
-        <div class="section-art" aria-hidden="true">
-          <svg class="art-scene" viewBox="0 0 420 520" fill="none">
-            <g opacity=".24" stroke="#17202B"><circle cx="208" cy="260" r="184"/><circle cx="208" cy="260" r="126" stroke-dasharray="4 8"/><circle cx="208" cy="260" r="68"/></g>
-            <path d="M31 354C102 311 107 123 188 171S262 395 351 246 398 99 451 78" stroke="#59A6B5" stroke-width="3"/>
-            <path d="M12 405C97 365 124 191 201 223S271 421 364 291 408 164 451 131" stroke="#A54F60" stroke-width="2"/>
-            <g fill="#17202B"><circle cx="188" cy="171" r="6"/><circle cx="351" cy="246" r="6"/></g>
-            <text x="29" y="46" fill="rgba(23,32,43,.58)" font-family="monospace" font-size="10" letter-spacing="1.1">NGC 7000 / 1958×1497×3 / GERÇEK ÇALIŞTIRMA</text>
-          </svg>
-          <div class="art-caption">Sentetik laboratuvardan gerçek NGC 7000 verisine geçiş</div>
-        </div>
-      </div>
-      <div>
-        <h2>Çözücü çalıştı. Asıl sorun, başarılı çalışmasının doğru sonuç anlamına gelmemesiydi.</h2>
-        <p>NGC 7000 görüntüsünde çözücü 43 adımda sayısal durma koşuluna ulaştı ve üç katman üretti. Ortak pozitif bir taban üç çizgi haritasına da sızdığı için nebula destek skoru bütün görüntüde `1.0` oldu. Bu çalışması biten optimizasyon, ayrıştırmanın fiziksel olarak doğru olduğunu kanıtlamadı.</p>
-        <div class="technical-layer">
-          <div class="tech-label">Çözümleyici katmanı / ilk gerçek run</div>
-          <pre>boyut          = 1958 × 1497 × 3
-toplam SNR     = 81.87
-kanal SNR      = 64.12 / 68.05 / 68.18
-condition no.  = 6.81
-yakınsama      = 43 iterasyon</pre>
-          <p><code>İterasyon</code>, çözücünün mevcut katman tahminini yeniden hesapladığı adımdır. 43 iterasyon, sayısal durma koşulunun sağlandığını söyler; fiziksel doğruluğu kanıtlamaz.</p>
-          <p>Hα ve Hβ FITS dosyaları daha sonra Siril'de histogram/asinh/curves işlemleriyle yeniden yazıldı; bu nedenle mevcut dosyalar ilk lineer solver çıktısıyla doğrudan karşılaştırılamaz. OIII çıktısı raporlanan lineer run ile uyumluydu.</p>
-        </div>
-      </div>
-    </section>
-
-<section class="story-section" id="story-limits">
-      <div class="story-aside">
-        <div class="story-number">06 / Nerede geri çekilmeliyiz?</div>
-        <div class="section-art" aria-hidden="true">
-          <svg class="art-scene" viewBox="0 0 420 520" fill="none">
-            <defs><linearGradient id="pedestalFade" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#A54F60" stop-opacity=".12"/><stop offset="1" stop-color="#A54F60" stop-opacity=".55"/></linearGradient></defs>
-            <rect x="24" y="82" width="372" height="348" fill="url(#pedestalFade)" opacity=".5"/>
-            <path d="M24 330C91 286 112 190 181 223S270 353 396 169" stroke="#17202B" stroke-width="3"/>
-            <line x1="24" y1="348" x2="396" y2="348" stroke="#A54F60" stroke-width="5" stroke-dasharray="8 9" class="flow-line"/>
-            <g fill="#17202B" font-family="monospace" font-size="10"><text x="30" y="69">GÖRÜNEN YAPI</text><text x="30" y="375">ORTAK POZİTİF TABAN / PEDestal</text></g>
-          </svg>
-          <div class="art-caption">Sinyal ile ortak taban aynı görüntüde birbirine benziyor</div>
-        </div>
-      </div>
-      <div>
-        <h2>Bazen en bilimsel çıktı, yeni bir görüntü değil “henüz bilmiyoruz” demektir.</h2>
-        <p>Tanısal düzlem çıkarımı yaklaşık `0.001253` ortak pedestal buldu ve destek haritasını yeniden lokalize etti. Ancak aynı işlem geniş, gerçek diffuse emisyonu da silebilir. Tek işlenmiş RGB görüntüsü pedestalın elektronik offset mi yoksa gerçek gökyüzü sinyali mi olduğunu tek başına söyleyemez.</p>
-        <div class="plain-analogy"><strong>Karar:</strong> Plane background varsayılan çözüm yapılmadı. Yalnız tanısal karşılaştırma olarak tutuldu.</div>
-        <div class="technical-layer">
-          <div class="tech-label">Çözümleyici katmanı / belirsizlik</div>
-          <pre>BACKGROUND_MODE = none  # üretim varsayımı
-plane pedestal  ≈ 0.001253
-support(none)   = 1.0 her yerde  # geçersiz tanı
-
-durum = model-sınırlı / gerektiğinde abstain</pre>
-          <p>Ortak RGB pedestal `M⁻¹` altında yaklaşık `Ha=.005519, OIII=.000850, Hb=.001389` tabanına dönüşüyor. Bu, support doygunluğunun matematiksel olarak neden beklenebilir olduğunu açıklıyor.</p>
-        </div>
-      </div>
-    </section>
-
-<section class="story-section" id="story-redblend">
-      <div class="story-aside">
-        <div class="story-number">07 / Kırmızı kanal gerçekten Hα mı?</div>
-        <div class="section-art" aria-hidden="true">
-          <svg class="art-scene" viewBox="0 0 420 520" fill="none">
-            <g stroke="rgba(23,32,43,.2)"><path d="M20 110H400M20 260H400M20 410H400"/><path d="M90 30V490M210 30V490M330 30V490"/></g>
-            <path d="M24 405C100 360 118 95 204 171S277 434 407 130" stroke="#A54F60" stroke-width="6"/>
-            <path d="M24 421C100 376 124 118 209 190S285 450 407 151" stroke="#C87A55" stroke-width="3" stroke-dasharray="6 8"/>
-            <text x="250" y="86" fill="#17202B" font-family="monospace" font-size="11">Hα</text><text x="278" y="113" fill="#17202B" font-family="monospace" font-size="11">[N II]</text>
-            <path d="M247 91L207 172M278 118L213 191" stroke="#17202B" stroke-width="1"/>
-          </svg>
-          <div class="art-caption">Birbirine yakın iki kırmızı çizgi, aynı response yönü</div>
-        </div>
-      </div>
-      <div>
-        <h2>Filtre Hα'yı yalnız bırakmıyor. [N II] aynı yere neredeyse sessizce yazılabiliyor.</h2>
-        <p>SV240, [N II] çizgilerini Hα'ya çok yakın bir tepkiyle geçiriyor. Modelde [N II] ayrı bir bileşen olmadığı için bu katkı düşük residual ile Hα kanalına sızabilir. Bu nedenle ilk çıktıyı koşulsuz “temiz Hα” diye adlandırmak fazla iddialıdır.</p>
-        <div class="plain-analogy"><strong>Daha dürüst adlandırma adayı:</strong> `Ha_equivalent_red_blend`. Sonuç, modelin kırmızı karışımı Hα eşdeğeri olarak açıklamasıdır.</div>
-        <div class="technical-layer">
-          <div class="tech-label">Çözümleyici katmanı / tanımlanabilirlik</div>
-          <p>Üç RGB ölçümü üç hedef line bileşenini kare sistemde açıklayabilir. Continuum/pedestal, NII, SII veya başka çizgiler eklenince bilinmeyen sayısı ölçümü aşar. Hα ve NII response vektörleri neredeyse paralelse residual kirliliği göstermeyebilir. Gelecek guard tam çok-line çözüm yerine leakage bütçesi ve abstention üretmelidir.</p>
-        </div>
-      </div>
-    </section>
-
-<section class="story-section" id="story-next">
-      <div class="story-aside">
-        <div class="story-number">08 / Bundan sonra ne?</div>
-        <div class="section-art" aria-hidden="true">
-          <svg class="art-scene" viewBox="0 0 420 520" fill="none">
-            <g stroke="rgba(23,32,43,.24)" fill="none"><rect x="56" y="54" width="308" height="76"/><rect x="56" y="168" width="308" height="76"/><rect x="56" y="282" width="308" height="76"/><rect x="56" y="396" width="308" height="76"/></g>
-            <path d="M84 92H312M84 206H272M84 320H334M84 434H294" stroke="#17202B" stroke-width="3" stroke-dasharray="6 8"/>
-            <g fill="#17202B" font-family="monospace" font-size="10"><text x="70" y="78">01 / ESTIMAND + UNITS</text><text x="70" y="192">02 / IMMUTABLE RUN</text><text x="70" y="306">03 / CHALLENGE HARNESS</text><text x="70" y="420">04 / RED-BLEND GUARD</text></g>
-            <g fill="#59A6B5"><circle cx="340" cy="92" r="7"/><circle cx="340" cy="206" r="7"/><circle cx="340" cy="320" r="7"/></g><circle cx="340" cy="434" r="7" fill="#A54F60"/>
-          </svg>
-          <div class="art-caption">Görsel çıktıdan denetlenebilir bilimsel run'a</div>
-        </div>
-      </div>
-      <div>
-        <h2>Sonraki sürüm daha fazla görüntü değil, daha fazla hesap verebilirlik üretecek.</h2>
-        <p>İlk iş hangi niceliği kestirdiğimizi, birimleri ve run şemasını kesinleştirmek. Ardından her çalıştırma girdi, calibration, kod, ayar ve çıktı hash'leriyle değiştirilemez bir kayda dönüşecek. Ayrı bir challenge harness, inverse ile aynı forward modeli paylaşmadan sistemi bozmaya çalışacak.</p>
-        <div class="technical-layer">
-          <div class="tech-label">Çözümleyici katmanı / uygulanacak iş sırası</div>
-          <pre>J-WP0  estimand / units / run schema
-A-WP1  immutable provenance
-A-WP2  independent challenge harness
-B-WP1  Ha_equivalent_red_blend
-B-WP2  NII/SII contamination guard
-
-durum = GO-WITH-FIXES / kullanıcı onayı bekleyen adaylar</pre>
-          <p>Uncertainty/abstention kapsaması henüz tamamlanmadı; ikinci filtre seçeneği park edildi. Proje bugün “tamamlanmış bilimsel ayırıcı” değil, ölçülebilir iddiaları ve geri çekilme koşulları giderek sertleşen deneysel bir sistemdir.</p>
-        </div>
-      </div>
-    </section>
-
-    <a class="technical-record-door" href="/ais001/03/">
-      <span><small>03 / RAPOR DERİNLİĞİ</small><strong>Tam teknik kayda geç</strong><span class="technical-record-caption">Model, doğrulama, gerçek veri ve açık sınırlar</span></span>
-      <span class="technical-record-arrow" aria-hidden="true">↗</span>
-    </a>
-    <div class="working-note">AIS.001 / CANLI PROJE KAYDI. BU SAYFA MEVCUT KAYNAKLARI BAŞLANGIÇTAN GÜNCEL SINIRLARA KADAR ANLATIR; YENİ DENEY VE KARARLAR AYNI KAYNAK ŞEMASINDAN GÜNCELLENECEKTİR. KABUL EDİLMEMİŞ AR-GE ADAYLARI TAMAMLANMIŞ SONUÇ GİBİ SUNULMAZ.</div>
-</main>
-</aside>
-<nav class="section-rail section-rail--detail" data-section-rail data-scroll-root="#project-hahbolllayristirma" aria-label="AIS.001 02 anlatı bölümleri">
-  <button class="section-rail__item" type="button" data-detail-scroll="story-question" aria-label="Ne görüyoruz? Tek RGB görüntüde hangi emisyon çizgilerini ayırmaya çalıştığımızı tanıtır."><span class="section-rail__tooltip" aria-hidden="true"><span class="section-rail__title">Ne görüyoruz?</span><span class="section-rail__description">Tek RGB görüntüde hangi emisyon çizgilerini ayırmaya çalıştığımızı tanıtır.</span></span></button>
-  <button class="section-rail__item" type="button" data-detail-scroll="story-solver" aria-label="Nasıl ayırıyoruz? RGB ölçümlerinden Hα, Hβ ve [O III] katkılarını kestiren modeli açıklar."><span class="section-rail__tooltip" aria-hidden="true"><span class="section-rail__title">Nasıl ayırıyoruz?</span><span class="section-rail__description">RGB ölçümlerinden Hα, Hβ ve [O III] katkılarını kestiren modeli açıklar.</span></span></button>
-  <button class="section-rail__item" type="button" data-detail-scroll="story-evidence" aria-label="Deney ve kanıt Kontrollü sentetik sahnelerde doğrulamanın ne gösterdiğini özetler."><span class="section-rail__tooltip" aria-hidden="true"><span class="section-rail__title">Deney ve kanıt</span><span class="section-rail__description">Kontrollü sentetik sahnelerde doğrulamanın ne gösterdiğini özetler.</span></span></button>
-  <button class="section-rail__item" type="button" data-detail-scroll="story-spatial" aria-label="Uzaysal çözüm Komşu piksellerle gürültüyü azaltma ve filamentleri koruma denemesini anlatır."><span class="section-rail__tooltip" aria-hidden="true"><span class="section-rail__title">Uzaysal çözüm</span><span class="section-rail__description">Komşu piksellerle gürültüyü azaltma ve filamentleri koruma denemesini anlatır.</span></span></button>
-  <button class="section-rail__item" type="button" data-detail-scroll="story-ngc" aria-label="Gerçek veri NGC 7000 çalıştırmasının bulgularını ve doğruluk sınırını gösterir."><span class="section-rail__tooltip" aria-hidden="true"><span class="section-rail__title">Gerçek veri</span><span class="section-rail__description">NGC 7000 çalıştırmasının bulgularını ve doğruluk sınırını gösterir.</span></span></button>
-  <button class="section-rail__item" type="button" data-detail-scroll="story-limits" aria-label="Sınırlar Ortak taban ve belirsizliğin sonucu nasıl etkileyebildiğini açıklar."><span class="section-rail__tooltip" aria-hidden="true"><span class="section-rail__title">Sınırlar</span><span class="section-rail__description">Ortak taban ve belirsizliğin sonucu nasıl etkileyebildiğini açıklar.</span></span></button>
-  <button class="section-rail__item" type="button" data-detail-scroll="story-redblend" aria-label="Kırmızı karışım Hα sinyaline [N II] katkısının karışabileceğini açıklar."><span class="section-rail__tooltip" aria-hidden="true"><span class="section-rail__title">Kırmızı karışım</span><span class="section-rail__description">Hα sinyaline [N II] katkısının karışabileceğini açıklar.</span></span></button>
-  <button class="section-rail__item" type="button" data-detail-scroll="story-next" aria-label="Sonraki adımlar Ölçülebilirlik, tekrar üretilebilirlik ve sızıntı denetimi için sıradaki işleri listeler."><span class="section-rail__tooltip" aria-hidden="true"><span class="section-rail__title">Sonraki adımlar</span><span class="section-rail__description">Ölçülebilirlik, tekrar üretilebilirlik ve sızıntı denetimi için sıradaki işleri listeler.</span></span></button>
-</nav>
-<script src="assets/js/site.js" defer></script>
+  </footer>
 </body>
 </html>

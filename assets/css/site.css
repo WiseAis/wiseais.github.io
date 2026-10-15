@@ -1,0 +1,5 @@
+/* Sitenin tek stil girişi. Sıra önemli: belirteçler → temel → bileşenler.
+   Sayfaya özgü stiller sayfalar/ altında, ayrıca bağlanır. */
+@import url("tokens.css");
+@import url("base.css");
+@import url("components.css");
