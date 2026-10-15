@@ -130,6 +130,28 @@
   top: 0;
 }
 
+/* Geniş ekran: yazı + boşluk + çizim tek blok olarak ekranda ortalanır.
+   Sütunlar içerik kadar; aradaki boşluk eski düzendeki görünen aralığı izler
+   (1440 px'te ~100, 2000 px'te ~480), böylece sol ve sağ boşluk eşitlenir. */
+@media (min-width: 1400px) {
+  .kapak,
+  .adim {
+    --ara: clamp(var(--a-12), 69vw - 56rem, 36rem);
+    justify-content: center;
+    column-gap: var(--ara);
+    padding-inline: calc(var(--kenar) + 2.5rem);
+  }
+  .kapak {
+    grid-template-columns: minmax(0, 40rem) minmax(0, 24rem);
+  }
+  .adim {
+    grid-template-columns: minmax(16rem, 31rem) minmax(0, 40rem);
+    /* Sahne SVG'lerinin sağında ortalama ~3 rem iç boşluk var; görünen çizim
+       ortalansın diye blok yarısı kadar sağa itilir */
+    padding-left: calc(var(--kenar) + 5.5rem);
+  }
+}
+
 @media (max-width: 900px) {
   .kapak,
   .adim {
