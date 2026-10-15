@@ -298,6 +298,16 @@ body {
   line-height: 1.35;
 }
 
+/* 03 henüz yazılmadığında */
+.hazirlaniyor {
+  padding: var(--a-12) var(--kenar) var(--a-24);
+}
+
+.hazirlaniyor .rapor-son {
+  margin-top: 0;
+  max-width: 56rem;
+}
+
 @media (max-width: 960px) {
   .rapor-bas,
   .rapor {
