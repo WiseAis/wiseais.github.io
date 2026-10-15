@@ -459,3 +459,15 @@ maskot-evrim {
 .isik-2 {
   color: var(--isik-2);
 }
+
+/* Geniş ekran: metin sütunu metin kadar, görsel kalan alanı alır; iki yan
+   boşluk eşit kalır, ekranın bir yanında boşluk birikmez. */
+@media (min-width: 1400px) {
+  .proje {
+    grid-template-columns: minmax(0, 26rem) minmax(0, 1fr);
+    padding-inline: calc(var(--kenar) + 2rem);
+  }
+  .proje-002 {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 26rem);
+  }
+}

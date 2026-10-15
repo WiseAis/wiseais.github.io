@@ -321,3 +321,12 @@ body {
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--cizgi);
 }
+
+/* Geniş ekran: içindekiler + metin + kenar notları tek blok olarak ortalanır.
+   Blok 80rem: 15 içindekiler, 3 ara, 44 metin, 18 kenar notu. */
+@media (min-width: 1400px) {
+  .rapor-bas,
+  .rapor {
+    padding-inline: max(var(--kenar), calc((100% - 80rem) / 2));
+  }
+}

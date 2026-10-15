@@ -217,7 +217,9 @@ class KaleGecesi extends HTMLElement {
   }
 
   _kale(c, W, H, t) {
-    const zemin = H * 0.745;
+    // Duvarlar arazinin altına kadar iner; zemin kaleden sonra çizilip tabanı örter.
+    // Düz bir taban tepeli arazide boşluk bırakıp kaleyi havada gösteriyordu.
+    const zemin = H * 0.8;
     const X = (v) => v * W;
     const Y = (v) => v * H;
     c.fillStyle = "#040507";
