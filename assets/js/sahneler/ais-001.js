@@ -1,17 +1,9 @@
-/* ==========================================================================
-   AIS.001 · Hahbolllayristirma · 02 sahneleri
-   Her sahne bulunduğu ekrandaki bilgiye bağlıdır; sayılar gerçek
-   kayıtlardan gelir, çizimler temsilîdir.
-   Sözleşme: (kok) => ({ adim(t) }) ; t saniye. adim isteğe bağlı.
-   ========================================================================== */
-
 import { el, svg, CIZGI, RENK } from "../lib/svg.js";
 import { tohumlu } from "../lib/rastgele.js";
 
 const nmX = (nm, a = 400, b = 700, x0 = 40, x1 = 440) => x0 + ((nm - a) / (b - a)) * (x1 - x0);
 const gaus = (x, m, s) => Math.exp(-((x - m) ** 2) / (2 * s * s));
 
-/* Temsilî kamera yanıtları: yalnız şekil anlatmak için, ölçülmüş eğri değil */
 const KANALLAR = [
   { ad: "B", m: 465, s: 28, p: 0.85 },
   { ad: "G", m: 535, s: 36, p: 1 },
@@ -19,7 +11,6 @@ const KANALLAR = [
 ];
 const yanit = (k, nm) => k.p * gaus(nm, k.m, k.s) + (k.ad === "R" ? 0.35 * gaus(nm, 655, 16) : 0);
 
-/* ---- 1 · Spektrum: üç çizgi, üç kanal, bir karışım matrisi --------------- */
 function spektrum(kok) {
   const s = svg(480, 360, kok);
   const ust = 40;
@@ -50,7 +41,6 @@ function spektrum(kok) {
     return g;
   });
 
-  // Karışım matrisi: her hücre, o kanalın o çizgiye tepkisi
   const hucre = 34;
   const x0 = 300;
   const y0 = 250;
@@ -69,7 +59,6 @@ function spektrum(kok) {
   return {};
 }
 
-/* ---- 2 · Piksel piksel NNLS --------------------------------------------- */
 function piksel(kok) {
   const s = svg(480, 360, kok);
   const S = 12;
@@ -81,7 +70,7 @@ function piksel(kok) {
   const hucreler = [];
   for (let y = 0; y < Y; y++) {
     for (let x = 0; x < S; x++) {
-      // Temel bulutsu: sol üstte kırmızı, sağ altta turkuaz baskın
+
       const ha = 0.25 + 0.6 * gaus(x, 3, 3) * gaus(y, 2, 3);
       const oiii = 0.15 + 0.55 * gaus(x, 9, 2.5) * gaus(y, 5, 2.5);
       const hb = ha * 0.3;
@@ -134,7 +123,6 @@ function piksel(kok) {
   };
 }
 
-/* ---- 3 · Sentetik sahne: doğru cevabı bilince hata görünür --------------- */
 function sentetik(kok) {
   const G = 48;
   const tuval = document.createElement("canvas");
@@ -201,7 +189,6 @@ function sentetik(kok) {
   };
 }
 
-/* ---- 4 · Komşuluk: kazanç ve bedel ------------------------------------- */
 function komsuluk(kok) {
   const s = svg(480, 360, kok);
   const N = 160;
@@ -254,7 +241,7 @@ function komsuluk(kok) {
       const gurultulu = gercek.map((v, i) => v + gurultu[i] * (1 - l));
       const sonuc = bulanik(gurultulu, l * 4.5);
       cizgi.setAttribute("d", yol(sonuc));
-      // İplik genişliği: tepe yarı yüksekliğinde tam genişlik
+
       let tepe = 0;
       for (let i = 100; i < 125; i++) tepe = Math.max(tepe, sonuc[i]);
       const yari = (tepe + 0.08 + 0.42 * gaus(112, 55, 22)) / 2;
@@ -275,7 +262,6 @@ function komsuluk(kok) {
   };
 }
 
-/* ---- 5 · Ortak taban: modelin görmediği şey ---------------------------- */
 function taban(kok) {
   const s = svg(480, 360, kok);
   const seritler = [
@@ -322,7 +308,6 @@ function taban(kok) {
   };
 }
 
-/* ---- 6 · Kırmızı karışım: Hα ile [N II] aynı kanala düşer -------------- */
 function kirmizi(kok) {
   const s = svg(480, 360, kok);
   const a = 640;
@@ -350,7 +335,6 @@ function kirmizi(kok) {
   el("text", { x: X(658.3) + 6, y: 70, fill: RENK.toz, metin: "[N II]" }, s);
   el("text", { x: X(672.3), y: 120, "text-anchor": "middle", fill: "#c98bd8", metin: "[S II]" }, s);
 
-  // Çıktı: kırmızı karışımın tek sayısı
   el("rect", { x: 380, y: 60, width: 40, height: 160, fill: "none", stroke: RENK.isik3 }, s);
   const cubuk = el("rect", { x: 381, width: 38, fill: RENK.ha, "fill-opacity": 0.7 }, s);
   el("text", { x: 400, y: 240, "text-anchor": "middle", metin: "çıktı" }, s);
@@ -382,7 +366,6 @@ function kirmizi(kok) {
   };
 }
 
-/* ---- 7 · 48 sahne: gerçek Hα RMSE azalmaları --------------------------- */
 const KOSULLAR = [
   ["G·D", "Yalnız gürültü · düşük", 56.3],
   ["G·O", "Yalnız gürültü · orta", 55.9],
@@ -446,7 +429,6 @@ function kirkSekiz(kok) {
   };
 }
 
-/* ---- 8 · Gerçek veri: 100 karo, doğruluk bilinmiyor --------------------- */
 function gercek(kok) {
   const G = 120;
   const Y = 80;
@@ -466,7 +448,7 @@ function gercek(kok) {
   const resim = c.createImageData(G, Y);
   const rnd = tohumlu(7000);
   const sinyal = new Float32Array(G * Y);
-  // Kuzey Amerika bulutsusunu andıran kaba bir H-alfa yapısı
+
   for (let y = 0; y < Y; y++)
     for (let x = 0; x < G; x++) {
       const kita = gaus(x, 48, 26) * gaus(y, 42, 22) * (1 - gaus(x, 70, 7) * gaus(y, 52, 12) * 0.9);

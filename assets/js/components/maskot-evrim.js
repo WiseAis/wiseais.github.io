@@ -1,10 +1,3 @@
-/* ==========================================================================
-   <maskot-evrim>
-   Ana sayfadaki kaydırıcı. Kare sayısı 1'den 2597'ye logaritmik ölçekte
-   ilerler (2597, IFN çekimindeki gerçek kare sayısı). SNR √N ile büyür,
-   eşikler aşıldıkça maskot bir sonraki faza geçer.
-   ========================================================================== */
-
 const UST = 2597;
 const ESIKLER = [
   [1000, "aisenit"],

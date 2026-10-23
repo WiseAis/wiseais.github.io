@@ -1,15 +1,5 @@
-/* ==========================================================================
-   <kanal-ayrimi src="..." kirp="x y g y" alt="...">
-   Bir fotoğrafı üç ışık katmanına ayırıp patlatılmış bir yığın gibi açar.
-   Katmanlar fotoğrafın R, G, B kanallarıdır; parlaklık saydamlığa dönüşür,
-   böylece karanlık gökyüzü kaybolur ve yalnız ışık kalır.
-   kirp: görselin kullanılacak bölgesi, 0–1 arası "x y genişlik yükseklik".
-   Bu temsilîdir: gerçek ayrıştırma kamera–filtre karışım matrisiyle yapılır.
-   ========================================================================== */
-
 import { azHareket } from "../lib/rastgele.js";
 
-// Yığının alttan üste sırası: Hβ, [O III], Hα
 const KATMANLAR = [
   { kanal: 2, renk: [138, 162, 255], ad: "Hβ", dalga: "486.1 nm", css: "#8aa2ff" },
   { kanal: 1, renk: [69, 214, 200], ad: "[O III]", dalga: "500.7 nm", css: "var(--oiii)" },
@@ -53,7 +43,7 @@ class KanalAyrimi extends HTMLElement {
     if (azHareket()) {
       this.ayrik(true);
     } else {
-      // Ekrana girince kendi kendine nefes alır: birleşir, ayrılır
+
       new IntersectionObserver(([g]) => {
         clearInterval(this._dongu);
         if (!g.isIntersecting || this._elle) return;
@@ -88,7 +78,7 @@ class KanalAyrimi extends HTMLElement {
     const veri = kc.getImageData(0, 0, G, Y).data;
 
     const tuvaller = this.querySelectorAll(".ka-katman canvas");
-    // Asıl kare: kırpılmış hâliyle
+
     const asil = tuvaller[KATMANLAR.length];
     asil.width = G;
     asil.height = Y;
@@ -102,7 +92,7 @@ class KanalAyrimi extends HTMLElement {
       const cikti = c.createImageData(G, Y);
       const d = cikti.data;
       for (let p = 0; p < veri.length; p += 4) {
-        // Kanal parlaklığı → saydamlık; sönük yapı da görünsün diye hafif gerdirme
+
         const v = veri[p + kanal] / 255;
         const a = Math.min(1, Math.pow(Math.max(0, v - 0.09) / 0.91, 0.95) * 3.4);
         d[p] = renk[0];
@@ -112,7 +102,6 @@ class KanalAyrimi extends HTMLElement {
       }
       c.putImageData(cikti, 0, 0);
 
-      // Parıltı: aynı katmanın bulanık kopyası altına
       const hedef = tuvaller[i];
       hedef.width = G;
       hedef.height = Y;

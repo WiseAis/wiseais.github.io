@@ -1,48 +1,37 @@
-/* ==========================================================================
-   Aisenit v2 · tasarım belirteçleri
-   Tasarım dili: "Sinyal / Gürültü". Renkler emisyon çizgilerinden,
-   aralıklar 4'lük ızgaradan, zaman ise pozlamadan gelir.
-   Yeni bir değer gerekiyorsa önce buraya ekle, sonra kullan.
-   ========================================================================== */
-
 :root {
-  /* Gökyüzü katmanları: saf siyah değil, Bortle 8'in o yorgun karanlığı */
+
   --gok-0: #07080b;
   --gok-1: #0c0e13;
   --gok-2: #13161d;
   --gok-3: #1c2029;
 
-  /* Yıldız ışığı: hafif sıcak beyaz */
   --isik: #ece8e1;
   --isik-2: #a9a7a3;
   --isik-3: #85858b;
   --isik-4: #3d3f46;
 
-  /* Emisyon çizgileri */
-  --ha: #ff4f61;          /* H-alfa · 656.3 nm */
+  --ha: #ff4f61;
   --ha-soluk: #ff4f6126;
-  --oiii: #45d6c8;        /* O-III · 500.7 nm */
+  --oiii: #45d6c8;
   --oiii-soluk: #45d6c826;
-  --toz: #e0a26a;         /* IFN tozu, yansıma bulutsusu */
+  --toz: #e0a26a;
   --toz-soluk: #e0a26a26;
   --yildiz: #fff4e2;
 
   --cizgi: rgba(236, 232, 225, 0.1);
   --cizgi-guclu: rgba(236, 232, 225, 0.22);
 
-  /* Tipografi */
   --font-baslik: "Fraunces", "Iowan Old Style", Georgia, serif;
   --font-govde: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
   --font-veri: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
 
-  --t-mikro: 0.6875rem;   /* 11px · etiket */
-  --t-kucuk: 0.8125rem;   /* 13px */
-  --t-govde: 1.0625rem;   /* 17px */
+  --t-mikro: 0.6875rem;
+  --t-kucuk: 0.8125rem;
+  --t-govde: 1.0625rem;
   --t-orta: clamp(1.25rem, 1.05rem + 0.8vw, 1.6rem);
   --t-buyuk: clamp(2rem, 1.3rem + 3vw, 3.6rem);
   --t-dev: clamp(3.2rem, 1.4rem + 8vw, 9rem);
 
-  /* Aralık: 4'lük ızgara */
   --a-1: 0.25rem;
   --a-2: 0.5rem;
   --a-3: 0.75rem;
@@ -54,13 +43,12 @@
   --a-16: 4rem;
   --a-24: 6rem;
 
-  --kenar: clamp(1rem, 4vw, 3.5rem);   /* sayfa yan boşluğu */
-  --olcu: 38rem;                       /* okuma genişliği */
+  --kenar: clamp(1rem, 4vw, 3.5rem);
+  --olcu: 38rem;
   --ust-bar: 3.5rem;
 
-  --yaricap: 2px;                      /* köşeler neredeyse keskin */
+  --yaricap: 2px;
 
-  /* Hareket: pozlama gibi, acele etmeden */
   --egri: cubic-bezier(0.22, 0.61, 0.36, 1);
   --egri-yay: cubic-bezier(0.34, 1.56, 0.64, 1);
   --sure-kisa: 180ms;

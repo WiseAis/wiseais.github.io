@@ -1,10 +1,3 @@
-/* ==========================================================================
-   <kanit-grafik tur="kosullar|nii|kalan" veri="/assets/data/ais001-graxpert.json">
-   03 raporundaki kanıt grafikleri. Sayılar 29 Eylül 2026 deney kayıtlarından
-   (chart-data.json, snr-error-data.json) aynen alınır; yalnız çizim yenidir.
-   Her nokta <title> taşır: üstüne gelince değeri söyler.
-   ========================================================================== */
-
 import { el, svg, RENK } from "../lib/svg.js";
 
 const CIZGILER = [
@@ -20,7 +13,6 @@ const veriGetir = (yol) => {
   return veriOnbellek.get(yol);
 };
 
-/* ---- 1 · 12 koşulda RMSE azalması (nokta grafiği) ---------------------- */
 function kosullar(kok, veri) {
   const satir = 30;
   const sol = 190;
@@ -43,7 +35,7 @@ function kosullar(kok, veri) {
 
   veri.kosullar.forEach((k, i) => {
     const y = ust + i * satir;
-    // Koşul aileleri arasında ince bir ayraç
+
     const grupBasi = ["continuum-low", "nii-low", "sii-low", "combined-low-noise"].includes(k.id);
     if (grupBasi) el("line", { x1: 0, x2: sag, y1: y - satir / 2, y2: y - satir / 2, stroke: RENK.isik4, "stroke-dasharray": "2 4" }, s);
     el("text", { x: sol - 16, y: y + 4, "text-anchor": "end", class: k.id === "nii-high" || k.id.startsWith("combined") ? "vurgu" : "", metin: k.ad }, s);
@@ -57,7 +49,6 @@ function kosullar(kok, veri) {
   });
 }
 
-/* ---- 2 · Yüksek [N II]: iki hedef, iki hikâye (eğim grafiği) ----------- */
 function nii(kok, veri) {
   const s = svg(660, 330, kok);
   const sol = 170;
@@ -89,7 +80,6 @@ function nii(kok, veri) {
   }
 }
 
-/* ---- 3 · Başlangıç SNR'sine göre kalan hata (küçük çoklu, log ölçek) --- */
 function kalan(kok, veri) {
   const genislik = 660;
   const s = svg(genislik, 360, kok);

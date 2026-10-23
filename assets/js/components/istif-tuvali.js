@@ -1,13 +1,3 @@
-/* ==========================================================================
-   <istif-tuvali metin="aisenit" kare="160">
-   Gerçek istifleme mantığıyla çalışan bir tuval. Her karede aynı sinyale
-   yeni bir gürültü eklenir, ekranda kümülatif ortalama gösterilir.
-   Gürültü √N ile azalır; yazı ve yıldızlar kendiliğinden belirir.
-   Olaylar:
-     istif  { detail: { kare, snr } }  her karede
-     bitti                              hedef kare sayısına ulaşınca
-   ========================================================================== */
-
 import { tohumlu } from "../lib/rastgele.js";
 
 const GAUSS_BOY = 1 << 16;
@@ -25,7 +15,6 @@ function gauss() {
   return gaussTablo;
 }
 
-/* Düşük frekanslı değer gürültüsü: bulutsu için */
 function degerGurultusu(G, Y, hucre, rnd) {
   const gx = Math.ceil(G / hucre) + 2;
   const gy = Math.ceil(Y / hucre) + 2;
@@ -98,8 +87,6 @@ class IstifTuvali extends HTMLElement {
     const Gr = new Float32Array(N);
     const B = new Float32Array(N);
 
-    // 1 · Bulutsu: fraktal gürültüden ince, ipliksi yapılar.
-    //     H-alfa kırmızısı geniş alanda, O-III turkuazı daha dar bölgede.
     const fraktal = (taban) => {
       const toplam = new Float32Array(N);
       let agirlik = 0.5;
@@ -118,7 +105,7 @@ class IstifTuvali extends HTMLElement {
     const ha = fraktal(3.2);
     const oiii = fraktal(4.5);
     for (let i = 0; i < N; i++) {
-      // Sırt (ridge) dönüşümü: 0.5 çevresinde ince filamentler
+
       const sirt = 1 - Math.abs(ha[i] - 0.5) * 2;
       const kirmizi = Math.pow(Math.max(0, sirt - 0.55) / 0.45, 2.2) * 0.34 + Math.max(0, ha[i] - 0.6) * 0.18;
       const mavi = Math.pow(Math.max(0, oiii[i] - 0.6) / 0.4, 1.8) * 0.2;
@@ -127,7 +114,6 @@ class IstifTuvali extends HTMLElement {
       B[i] += kirmizi * 0.3 + mavi * 0.78;
     }
 
-    // 2 · Yıldızlar: kuvvet yasası parlaklık, Gauss PSF
     const yildizSayisi = Math.round(N / 520);
     for (let s = 0; s < yildizSayisi; s++) {
       const x = rnd() * G;
@@ -153,7 +139,6 @@ class IstifTuvali extends HTMLElement {
       }
     }
 
-    // 3 · Metin: gürültünün içinden çıkacak olan şey
     const metin = this.getAttribute("metin");
     if (metin) {
       const boy = Math.round(Math.min(Y * 0.36, G * 0.2));
@@ -191,7 +176,7 @@ class IstifTuvali extends HTMLElement {
     this._kare = 0;
     this._calisiyor = true;
     if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      // Hareket istemeyenler için doğrudan son kare
+
       this._istifle(this._hedef);
       this._ciz();
       this._calisiyor = false;
@@ -208,7 +193,7 @@ class IstifTuvali extends HTMLElement {
 
   _tik() {
     if (!this._calisiyor || !this._gorunur) return;
-    // İlk karelerde yavaş, sonra hızlanarak: gürültünün azalışını göstermek için
+
     const adim = this._kare < 12 ? 1 : this._kare < 40 ? 2 : 4;
     const simdi = performance.now();
     if (this._son && simdi - this._son < (this._kare < 12 ? 110 : 40)) {
@@ -236,7 +221,7 @@ class IstifTuvali extends HTMLElement {
       let o = (Math.random() * GAUSS_BOY) | 0;
       const kanal = Math.random() < 0.5;
       for (let i = 0; i < N; i++) {
-        // Ortak parlaklık gürültüsü + küçük renk gürültüsü (DSLR sensörü gibi)
+
         const ortak = tablo[(o + i) & (GAUSS_BOY - 1)] * sigma;
         const renk = tablo[(o + i * 7 + 11) & (GAUSS_BOY - 1)] * sigma * 0.35;
         tR[i] += R[i] + ortak + (kanal ? renk : -renk);
@@ -254,7 +239,7 @@ class IstifTuvali extends HTMLElement {
     const d = this._resim.data;
     const n = this._kare || 1;
     const N = tR.length;
-    // Gerdirme: arka plan biraz yukarıda, asinh benzeri yumuşak tepe
+
     const taban = 0.04;
     const kazanc = 1.9;
     const ger = (v) => {

@@ -1,5 +1,3 @@
-/* Tohumlu, tekrarlanabilir rastgele sayı üreteci (mulberry32).
-   Aynı tohum her yüklemede aynı yıldız alanını, aynı maskot gürültüsünü verir. */
 export function tohumlu(tohum) {
   let s = tohum >>> 0;
   return () => {

@@ -1,11 +1,3 @@
-/* ==========================================================================
-   <germe-foto src="...-1000.jpg" buyuk="...-2400.jpg" alt="...">
-   Astrofotoğrafın gerdirilmiş hâlinden lineer hâline giden kaydırıcı.
-   Lineer veri neredeyse siyahtır; gördüğümüz fotoğraf, o verinin
-   güçlü bir eğriyle gerilmiş hâlidir. Bu bileşen eğriyi geri sarar.
-   Temsilîdir: gerçek lineer veri değil, işlenmiş JPEG'e ters bir eğri uygulanır.
-   ========================================================================== */
-
 class GermeFoto extends HTMLElement {
   connectedCallback() {
     if (this._kuruldu) return;
@@ -30,7 +22,7 @@ class GermeFoto extends HTMLElement {
     this._durum = this.querySelector(".gf-durum");
     this._girdi = this.querySelector("input");
     this._girdi.addEventListener("input", () => this._planla());
-    // Görsel tembel yüklenir; kullanıcı erken kaydırdıysa yüklenince yeniden çiz
+
     this._img.addEventListener("load", () => {
       this._kaynak = null;
       if (this._girdi.value < 100) this._planla();
@@ -73,7 +65,7 @@ class GermeFoto extends HTMLElement {
       return;
     }
     this.classList.add("lineer");
-    // Ters germe: k=1 gördüğümüz, k=0 kameranın kaydettiğine yakın
+
     const us = 1 + Math.pow(1 - k, 1.5) * 3.6;
     const kara = Math.pow(1 - k, 2) * 0.05;
     const tablo = new Uint8ClampedArray(256);

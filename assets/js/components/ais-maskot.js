@@ -1,32 +1,13 @@
-/* ==========================================================================
-   <ais-maskot faz="ais|aisen|aisenit" boyut="96" konus kendiliginden aksesuar="tac">
-   Sitenin maskotu. Üç faz, üç sinyal düzeyi; üçü de piksel.
-   Fazlar "drizzle" mantığıyla incelir: kare biriktikçe aynı yüz daha ince
-   bir ızgarada yeniden kurulur.
-     ais     · tek ham kare, 4 px ızgara. Gürültülü, meraklı, emin değil.
-     aisen   · istiflenmiş yıldız, 2 px ızgara. Netleşmiş, biraz havalı.
-     aisenit · son işlenmiş yıldız, 1 px ızgara. Sakin, sabırlı, keskin.
-   Üç fazın yüz iskeleti ortaktır (YUZ): göz kutuları, sağ gözün biraz yukarıda
-   oluşu, ağız ve sıcak pikselin yeri değişmez. Aynı merak, farklı kare sayısı.
-   Öznitelikler:
-     faz           hangi faz çizilecek (varsayılan: ais)
-     boyut         piksel cinsinden genişlik (varsayılan: 96)
-     konus         tıklanınca konuşma balonu açar; data-sozler ile söz listesi verilir
-     kendiliginden ekrana ilk girişinde bir kez kendi konuşur
-     aksesuar      "tac": küçük piksel bir taç (AIS.002 için)
-   ========================================================================== */
-
 import { tohumlu, azHareket } from "../lib/rastgele.js";
 import { el } from "../lib/svg.js";
 
 let sayac = 0;
 
-/* Ortak yüz iskeleti: Ais'in ilk yüzü referanstır, diğer fazlar ona uyar */
 const YUZ = {
-  sol: { x: -13, y: -6, g: 6, y2: 8 }, // sol göz kutusu
-  sag: { x: 5, y: -7, g: 6, y2: 9 }, // sağ göz: biraz büyük, bir birim yukarıda
-  sicak: { x: 14, y: 6, g: 4 }, // sıcak piksel
-  agiz: "M-6 10h4v2h4v-2h4", // basamaklı piksel gülümseme
+  sol: { x: -13, y: -6, g: 6, y2: 8 },
+  sag: { x: 5, y: -7, g: 6, y2: 9 },
+  sicak: { x: 14, y: 6, g: 4 },
+  agiz: "M-6 10h4v2h4v-2h4",
   koyu: "#0b0a10",
 };
 
@@ -54,9 +35,6 @@ export const SOZLER = {
   ],
 };
 
-/* ---- Piksel çizim yardımcıları ------------------------------------------ */
-
-// 4×4 Bayer matrisi: düz renk geçişleri yerine piksel-sanatı dither'ı
 const BAYER = [0, 8, 2, 10, 12, 4, 14, 6, 3, 11, 1, 9, 15, 7, 13, 5].map((v) => (v + 0.5) / 16);
 const bayer = (ix, iy) => BAYER[(iy & 3) * 4 + (ix & 3)];
 const sinirla = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v));
@@ -68,9 +46,6 @@ function ditherSec(tonlar, v, ix, iy) {
   return tonlar[Math.min(tonlar.length - 1, i)];
 }
 
-/* Izgarayı tarar; her hücre için renk (ya da null) ister.
-   Aynı satırda yan yana aynı renkteki hücreleri tek dikdörtgende birleştirip
-   renk başına tek bir <path> üretir: binlerce hücre, bir avuç eleman. */
 function rasterCiz(g, boy, renkF, alan = 60) {
   const yollar = new Map();
   for (let y = -alan; y < alan; y += boy) {
@@ -97,8 +72,6 @@ function sicakPiksel(g) {
   el("rect", { x, y, width: b, height: b, fill: "#ff4f61", class: "m-sicak", "shape-rendering": "crispEdges" }, g);
 }
 
-/* Yüz: üç fazda aynı kutular, aynı parıltı, aynı ağız.
-   yuvarlak: göz köşeleri bir birim kırpılır (incelen ızgaranın yumuşaması) */
 function yuzCiz(yuz, { yuvarlak = false, ikinciParilti = false } = {}) {
   const gozler = el("g", { class: "m-goz" }, yuz);
   for (const k of [YUZ.sol, YUZ.sag]) {
@@ -118,7 +91,6 @@ function allik(x, y) {
   return sol || sag;
 }
 
-/* ---- Faz 1 · Ais: 4 px ızgara, canlı gürültü ---------------------------- */
 function cizAis(svg) {
   const g = el("g", { class: "m-govde m-ais" }, svg);
   const pikseller = el("g", { class: "m-pikseller" }, g);
@@ -129,7 +101,7 @@ function cizAis(svg) {
     for (let x = -32; x < 32; x += H) {
       const cx = x + H / 2;
       const cy = y + H / 2;
-      // hafif yamuk bir daire: tam yuvarlak olmak için henüz erken
+
       const r = Math.hypot(cx * 1.04, (cy - 2) * 0.96);
       const sinir = 29 + (rnd() - 0.5) * 6;
       if (r > sinir) continue;
@@ -155,7 +127,6 @@ function cizAis(svg) {
   return { boya };
 }
 
-/* Perçem: tepedeki çivinin kendine yaptığı kıvrım; Aisen ve Aisenit'te aynı */
 function percemNoktalari() {
   const nokta = [];
   for (let t = 0; t <= 1; t += 0.02) {
@@ -168,21 +139,18 @@ function percemNoktalari() {
   return nokta;
 }
 
-/* ---- Faz 2 · Aisen: 2 px ızgara, istiflenmiş yıldız --------------------- */
 const AISEN_TON = ["#c97f4a", "#eea566", "#ffc98a", "#ffe0b4", "#fff1da", "#fffbf3"];
 
 function cizAisen(svg) {
   const g = el("g", { class: "m-govde m-aisen" }, svg);
   const R = 27;
 
-  // Hale: gövdenin çevresinde seyrekleşen sıcak pikseller
   rasterCiz(el("g", { class: "m-hale" }, g), 2, (x, y, ix, iy) => {
     const r = Math.hypot(x, y);
     if (r <= R || r > 38) return null;
     return bayer(ix, iy) < (1 - (r - R) / 11) * 0.42 ? "#ffe2b866" : null;
   });
 
-  // Diyafram çivileri: eksenler boyunca incelen piksel çizgiler
   rasterCiz(el("g", { class: "m-civiler" }, g), 2, (x, y, ix, iy) => {
     const yatay = y > -2 && y < 0;
     const dikey = x > -2 && x < 0;
@@ -192,11 +160,9 @@ function cizAisen(svg) {
     return bayer(ix, iy) < 1 - (d - R) / 29 ? "#fff4e2" : null;
   });
 
-  // Perçem: çivinin kendine yaptığı kıvrım
   const percem = percemNoktalari();
   rasterCiz(el("g", { class: "m-percem" }, g), 2, (x, y) => (percem.some(([px, py]) => Math.abs(px - x) < 1.2 && Math.abs(py - y) < 1.2) ? "#fff4e2" : null));
 
-  // Gövde: yukarı-soldan ışık alan, dither'lı yıldız
   rasterCiz(g, 2, (x, y, ix, iy) => {
     const r = Math.hypot(x, y);
     if (r > R) return null;
@@ -210,7 +176,6 @@ function cizAisen(svg) {
   yuzCiz(yuz, { yuvarlak: true });
   sicakPiksel(yuz);
 
-  // Çevresinde istiflenmeyi bekleyen küçük yıldızlar
   const kivilcim = el("g", { class: "m-kivilcim" }, g);
   for (const [x, y] of [[-40, -28], [36, -36], [40, 22], [-36, 32]]) {
     el("rect", { x, y, width: 2, height: 2, fill: "#fff4e2", "shape-rendering": "crispEdges" }, kivilcim);
@@ -218,30 +183,23 @@ function cizAisen(svg) {
   return {};
 }
 
-/* ---- Faz 3 · Aisenit: 1 px ızgara, son işlenmiş yıldız ------------------
-   Aisen'in devamı: aynı yuvarlak gövde, aynı perçem, aynı sıcak tonlar.
-   Fark kare sayısında: ızgara 1 px, ton geçişleri yumuşak, çiviler ince ve
-   uzun, köşegenlerde ikincil kırınım. Yanında ayrılmış iki ışık: Hα ve [O III]. */
 const AISENIT_TON = ["#b9683a", "#d9864f", "#f0a565", "#ffc387", "#ffdcb0", "#ffeed6", "#fff8ec", "#fffdf8"];
 
 function cizAisenit(svg) {
   const g = el("g", { class: "m-govde m-aisenit" }, svg);
   const R = 29;
 
-  // Hale: Aisen'inkinin ince ızgaralı hâli; dış kenarı ayrılmış ışıkla renklenir,
-  // sol altta Hα, sağ üstte [O III]
   rasterCiz(el("g", { class: "m-hale" }, g), 1, (x, y, ix, iy) => {
     const r = Math.hypot(x, y);
     if (r <= R || r > 44) return null;
     if (bayer(ix, iy) >= (1 - (r - R) / 15) * 0.4) return null;
     if (r < R + 5) return "#ffe2b866";
-    const yon = (x - y) / r; // +1 sağ üst, -1 sol alt
+    const yon = (x - y) / r;
     if (yon < -0.55) return "#ff7a8a59";
     if (yon > 0.55) return "#6fe3d659";
     return "#ffe2b84d";
   });
 
-  // Kırınım çivileri: dört ana çivi bir piksel inceliğinde, köşegenlerde kısa ikinciler
   rasterCiz(el("g", { class: "m-civiler" }, g), 1, (x, y, ix, iy) => {
     const ana = Math.abs(y) < 1 || Math.abs(x) < 1;
     const kose = Math.abs(Math.abs(x) - Math.abs(y)) < 1;
@@ -252,11 +210,9 @@ function cizAisenit(svg) {
     return bayer(ix, iy) < 1 - (d - R) / boy ? (ana ? "#fff4e2" : "#ffe2b8") : null;
   });
 
-  // Perçem: Aisen'deki kıvrımın aynısı, daha ince çizgiyle
   const percem = percemNoktalari();
   rasterCiz(el("g", { class: "m-percem" }, g), 1, (x, y) => (percem.some(([px, py]) => Math.abs(px - x) < 1 && Math.abs(py - y) < 1) ? "#fff4e2" : null));
 
-  // Gövde: Aisen'in ışığı, daha çok tonla ve daha ince dither'la
   rasterCiz(g, 1, (x, y, ix, iy) => {
     const r = Math.hypot(x, y);
     if (r > R) return null;
@@ -265,25 +221,22 @@ function cizAisenit(svg) {
     const yon = ((-x * 0.6 - y * 0.8) / R) * 0.28;
     return ditherSec(AISENIT_TON, isik * 0.84 + 0.1 + yon, ix, iy);
   });
-  // Sol üstte ışık lekesi: netleşen yüzeyin parıltısı
+
   el("path", { d: "M-17 -14h3v1h1v3h-1v1h-3v-1h-1v-3h1z", fill: "#ffffff", opacity: 0.85, "shape-rendering": "crispEdges" }, g);
 
   const yuz = el("g", { class: "m-yuz" }, g);
   yuzCiz(yuz, { yuvarlak: true, ikinciParilti: true });
   sicakPiksel(yuz);
 
-  // Ayrılmış ışıklar: Hα kırmızısı ve [O III] turkuazı, istiflenmeyi bitirmiş kıvılcımlar
   const kivilcim = el("g", { class: "m-kivilcim" }, g);
   for (const [x, y, fill] of [[-42, -26, "#ff7a8a"], [38, -34, "#fff4e2"], [41, 24, "#6fe3d6"], [-37, 33, "#fff4e2"]]) {
     el("path", { d: `M${x} ${y - 1}h1v1h1v1h-1v1h-1v-1h-1v-1h1z`, fill, "shape-rendering": "crispEdges" }, kivilcim);
   }
 
-  // Piksel parıltı
   el("path", { d: "M36 -45h1v9h-1z M32 -41h9v1h-9z", fill: "#fff4e2", class: "m-parilti", "shape-rendering": "crispEdges" }, g);
   return {};
 }
 
-/* Piksel taç: AIS.002'de çiviye takılmış, biraz yamuk */
 const TAC = ["X...X...X", "XX.XXX.XX", "XXXXXXXXX", "XXXXRXXXX", "XXXXXXXXX"];
 function tacCiz(svg, faz) {
   const yer = { ais: "translate(-2 -40) rotate(10)", aisen: "translate(-7 -46) rotate(16)", aisenit: "translate(-6 -50) rotate(8)" }[faz];
@@ -369,8 +322,7 @@ class AisMaskot extends HTMLElement {
     this.tabIndex = 0;
     this.title = "Tıkla, bir şey söylesin";
     let sira = 0;
-    // Liste her konuşmada yeniden okunur: faz sonradan değişebilir (maskot-evrim).
-    // Bozuk bir söz listesi maskotu susturmasın: fazın kendi sözlerine düş.
+
     const sozler = () => {
       try {
         if (this.dataset.sozler) return JSON.parse(this.dataset.sozler);
@@ -383,7 +335,7 @@ class AisMaskot extends HTMLElement {
       const liste = sozler();
       balon.textContent = liste[sira % liste.length];
       sira++;
-      // Balon ekranın dışına taşmasın: maskotun konumuna göre yön seç
+
       const k = this.getBoundingClientRect();
       balon.classList.toggle("sola", k.left + k.width / 2 > innerWidth * 0.55);
       balon.classList.toggle("alta", k.top < 150);
@@ -399,7 +351,6 @@ class AisMaskot extends HTMLElement {
       }
     });
 
-    // Sayfadaki ana maskot, ilk görünüşünde bir kez kendiliğinden konuşur
     if (this.hasAttribute("kendiliginden")) {
       const gozcu = new IntersectionObserver(([g]) => {
         if (!g.isIntersecting) return;

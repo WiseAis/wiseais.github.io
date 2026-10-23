@@ -1,7 +1,3 @@
-/* ==========================================================================
-   Gözlem defteri: her kare bir ekran, her ekranın künyesi gerçek
-   ========================================================================== */
-
 .gozlem-kapak {
   grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
   gap: var(--a-12);
@@ -9,7 +5,6 @@
   overflow: hidden;
 }
 
-/* Defter, en uzun pozlamasıyla açılır */
 .gozlem-kapak::before {
   content: "";
   position: absolute;
@@ -72,7 +67,6 @@
   color: var(--isik);
 }
 
-/* ---- Tek kare ekranı ---------------------------------------------------- */
 .kayit {
   padding-right: calc(var(--kenar) + 2rem);
   grid-template-columns: minmax(0, 8fr) minmax(16rem, 4fr);
@@ -128,7 +122,6 @@
   color: var(--toz);
 }
 
-/* ---- <germe-foto> ------------------------------------------------------- */
 germe-foto {
   display: grid;
   gap: var(--a-3);

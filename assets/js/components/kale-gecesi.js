@@ -1,11 +1,3 @@
-/* ==========================================================================
-   <kale-gecesi>
-   AIS.002'nin 01 görseli. Gece, harabe bir kale ve ondan yayılan küçük
-   ışıklar. Topluluk grupları kaleden çıkıp haritadaki hedeflere yürür;
-   günler geçtikçe yeni evler belirir. Oyunun çekirdeği tek sahnede:
-   kişi sayısı seç, hedef göster, insanlar yürüsün, yerleşim büyüsün.
-   ========================================================================== */
-
 import { tohumlu, azHareket } from "../lib/rastgele.js";
 
 const HEDEFLER = [
@@ -84,13 +76,13 @@ class KaleGecesi extends HTMLElement {
   }
 
   zeminY(x) {
-    // Hafif tepeli bir arazi
+
     return this._H * (0.74 + Math.sin(x * 7.1) * 0.012 + Math.sin(x * 2.3 + 1) * 0.018);
   }
 
   _guncelle(dt) {
     this._zaman += dt;
-    // Her 5 saniye yeni bir gün; her iki günde bir yeni ev
+
     if (this._zaman - this._sonGun > 5) {
       this._sonGun = this._zaman;
       this._gun++;
@@ -101,7 +93,6 @@ class KaleGecesi extends HTMLElement {
     }
     for (const e of this._evler) e.t += dt;
 
-    // Görevlendirme: kişi sayısı seç, hedef göster
     if (this._zaman - this._sonGrup > 2.2 && this._gruplar.length < 3 + this._evler.length / 2) {
       this._sonGrup = this._zaman;
       const hedef = HEDEFLER[(Math.random() * HEDEFLER.length) | 0];
@@ -138,7 +129,6 @@ class KaleGecesi extends HTMLElement {
     const H = this._H;
     if (!W || !H) return;
 
-    // Gökyüzü: tepede gece, ufukta kalenin ateşinden sıcak bir yansıma
     const gok = c.createLinearGradient(0, 0, 0, H);
     gok.addColorStop(0, "#07080b");
     gok.addColorStop(0.55, "#0c0d13");
@@ -157,7 +147,6 @@ class KaleGecesi extends HTMLElement {
     }
     c.globalAlpha = 1;
 
-    // Kalenin arkasındaki sıcak hale
     const hale = c.createRadialGradient(W * KAPI_X, H * 0.66, 0, W * KAPI_X, H * 0.66, W * 0.32);
     hale.addColorStop(0, "rgba(224,162,106,0.22)");
     hale.addColorStop(1, "rgba(224,162,106,0)");
@@ -166,7 +155,6 @@ class KaleGecesi extends HTMLElement {
 
     this._kale(c, W, H, t);
 
-    // Zemin
     c.fillStyle = "#050608";
     c.beginPath();
     c.moveTo(0, H);
@@ -176,7 +164,6 @@ class KaleGecesi extends HTMLElement {
 
     this._hedefleriCiz(c, W, H);
 
-    // Evler: yerden yükselerek belirir
     for (const e of this._evler) {
       const b = Math.min(1, e.t / 1.2);
       const x = e.x * W;
@@ -198,7 +185,6 @@ class KaleGecesi extends HTMLElement {
       }
     }
 
-    // İnsanlar: grup halinde yürüyen küçük ışıklar
     for (const g of this._gruplar) {
       for (let k = 0; k < g.kisi; k++) {
         const ofs = (k - g.kisi / 2) * 0.0045 * -g.yon;
@@ -217,14 +203,12 @@ class KaleGecesi extends HTMLElement {
   }
 
   _kale(c, W, H, t) {
-    // Duvarlar arazinin altına kadar iner; zemin kaleden sonra çizilip tabanı örter.
-    // Düz bir taban tepeli arazide boşluk bırakıp kaleyi havada gösteriyordu.
+
     const zemin = H * 0.8;
     const X = (v) => v * W;
     const Y = (v) => v * H;
     c.fillStyle = "#040507";
 
-    // Mazgallı üst kenar; bozuk dişler yıkılmışlığı anlatır
     const mazgal = (x1, x2, ust, dis, bozuk = []) => {
       c.beginPath();
       c.moveTo(X(x1), zemin);
@@ -244,10 +228,9 @@ class KaleGecesi extends HTMLElement {
       c.fill();
     };
 
-    // Sur: ortası yıkılmış
     mazgal(0.33, 0.43, 0.57, 6, [4, 5]);
     mazgal(0.47, 0.57, 0.585, 6, [0, 1]);
-    // Yıkık orta kısım: alçak ve tırtıklı
+
     c.beginPath();
     c.moveTo(X(0.43), zemin);
     c.lineTo(X(0.43), Y(0.6));
@@ -259,11 +242,10 @@ class KaleGecesi extends HTMLElement {
     c.lineTo(X(0.47), zemin);
     c.fill();
 
-    // Sol kule: sağlam
     mazgal(0.3, 0.345, 0.43, 4);
-    // Ana burç
+
     mazgal(0.385, 0.425, 0.36, 4, [3]);
-    // Sağ kule: tepesi kırık, eğri
+
     c.beginPath();
     c.moveTo(X(0.555), zemin);
     c.lineTo(X(0.555), Y(0.5));
@@ -274,7 +256,6 @@ class KaleGecesi extends HTMLElement {
     c.lineTo(X(0.59), zemin);
     c.fill();
 
-    // Kapı ve pencerelerde ateş
     const ates = (x, y, w, h, faz) => {
       const a = 0.55 + 0.35 * Math.sin(t * 7 + faz) * Math.sin(t * 3.1 + faz * 2);
       c.fillStyle = `rgba(255,170,95,${a})`;
@@ -284,7 +265,7 @@ class KaleGecesi extends HTMLElement {
     ates(0.4, 0.4, 0.007, 0.02, 2);
     ates(0.4, 0.47, 0.007, 0.02, 3.4);
     ates(0.567, 0.53, 0.007, 0.018, 5);
-    // Kapı kemeri
+
     const k = 0.55 + 0.25 * Math.sin(t * 5.3);
     c.fillStyle = `rgba(255,170,95,${k * 0.8})`;
     c.beginPath();
@@ -301,7 +282,7 @@ class KaleGecesi extends HTMLElement {
     for (const h of HEDEFLER) {
       const x = h.x * W;
       const y = this.zeminY(h.x);
-      // Hedef işareti: haritada gösterilen nokta
+
       c.strokeStyle = "rgba(224,162,106,0.55)";
       c.setLineDash([2, 3]);
       c.beginPath();

@@ -1,7 +1,3 @@
-/* ==========================================================================
-   Temel: sıfırlama, tipografi, genel yardımcılar
-   ========================================================================== */
-
 *,
 *::before,
 *::after {
@@ -31,8 +27,6 @@ body {
   overflow-x: hidden;
 }
 
-/* Sitenin her yerinde çok hafif bir sensör gürültüsü.
-   Konseptin kendisi: hiçbir kare tamamen temiz değildir. */
 body::after {
   content: "";
   position: fixed;
@@ -101,8 +95,6 @@ p {
   text-wrap: pretty;
 }
 
-/* ---- Yardımcılar ------------------------------------------------------ */
-
 .gizli {
   position: absolute !important;
   width: 1px;
@@ -152,7 +144,6 @@ p {
   transform: none;
 }
 
-/* Kaydırınca beliren öğeler. JS yoksa her şey görünür kalır. */
 .js [data-belir] {
   opacity: 0;
   transform: translateY(14px);

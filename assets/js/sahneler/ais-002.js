@@ -1,10 +1,3 @@
-/* ==========================================================================
-   AIS.002 · Krallık Oyunu · 02 sahneleri
-   Oyun tasarım aşamasında; bu çizimler kabul edilmiş tasarım kararlarını
-   anlatır, oynanabilir bir sürümü göstermez.
-   Sözleşme: (kok) => ({ adim(t) }) ; t saniye.
-   ========================================================================== */
-
 import { el, svg, RENK } from "../lib/svg.js";
 import { tohumlu } from "../lib/rastgele.js";
 
@@ -12,7 +5,6 @@ const SICAK = "#ffd29a";
 const yumusak = (x) => x * x * (3 - 2 * x);
 const kis = (a, b, k) => a + (b - a) * k;
 
-/* ---- 1 · Kral önce taşır, sonra liderler yönetir ----------------------- */
 function devir(kok) {
   const s = svg(480, 360, kok);
   const kral = { x: 240, y: 60 };
@@ -36,7 +28,6 @@ function devir(kok) {
   const lk = liderler.map((l) => el("line", { x1: kral.x, y1: kral.y, x2: l.x, y2: l.y, stroke: RENK.toz, "stroke-width": 2 }, kralCizgileri));
   const lc = insanlar.map((p) => el("line", { x1: liderler[p.g].x, y1: liderler[p.g].y, x2: p.x, y2: p.y, stroke: RENK.isik3, "stroke-width": 1 }, liderCizgileri));
 
-  // Taç
   el("path", { d: `M${kral.x - 16} ${kral.y + 8} l4 -16 6 9 6 -13 6 13 6 -9 4 16z`, fill: RENK.toz }, s);
   el("text", { x: kral.x + 26, y: kral.y + 2, metin: "eski kral" }, s);
   const liderNoktalari = liderler.map((l) => {
@@ -64,7 +55,6 @@ function devir(kok) {
   };
 }
 
-/* ---- 2 · Kişi sayısını seç, hedefi göster ------------------------------ */
 function gorev(kok) {
   const s = svg(480, 360, kok);
   const zemin = 250;
@@ -75,14 +65,12 @@ function gorev(kok) {
   el("stop", { offset: "0", "stop-color": RENK.toz, "stop-opacity": 0.28 }, hale);
   el("stop", { offset: "1", "stop-color": RENK.toz, "stop-opacity": 0 }, hale);
 
-  // Gece: yıldızlar ve kalenin ateşinden yansıyan ufuk
   const rnd = tohumlu(312);
   const yildizlar = Array.from({ length: 60 }, () => el("circle", { cx: rnd() * 480, cy: rnd() * 200, r: 0.4 + rnd() * 0.9, fill: "#fff4e2", opacity: 0.5 }, s));
   el("ellipse", { cx: 96, cy: zemin - 10, rx: 120, ry: 70, fill: "url(#gorev-hale)" }, s);
   el("rect", { x: 0, y: zemin, width: 480, height: 110, fill: "#050608" }, s);
   el("line", { x1: 0, x2: 480, y1: zemin, y2: zemin, stroke: RENK.isik4 }, s);
 
-  // Harabe kale silueti
   el("path", { d: `M56 ${zemin} v-64 h6 v-7 h5 v7 h5 v-7 h5 v7 h6 v28 h14 v-10 h4 l3 6 3 -9 4 13 v40z`, fill: "#030405" }, s);
   el("rect", { x: 66, y: zemin - 52, width: 4, height: 7, fill: SICAK, opacity: 0.85 }, s);
   el("path", { d: `M83 ${zemin} v-14 q6 -7 12 0 v14z`, fill: RENK.toz, opacity: 0.75 }, s);
@@ -93,7 +81,7 @@ function gorev(kok) {
     { ad: "taş ocağı", x: 330 },
     { ad: "tarla", x: 420 },
   ];
-  // Orman siluetleri
+
   for (const [dx, b] of [[-16, 1], [-6, 1.3], [6, 1.1], [16, 0.9]]) {
     el("path", { d: `M${230 + dx - 6 * b} ${zemin} L${230 + dx} ${zemin - 22 * b} L${230 + dx + 6 * b} ${zemin}z`, fill: "#030405" }, s);
   }
@@ -122,7 +110,7 @@ function gorev(kok) {
       const n = 3 + (tur % 3);
       isaret.forEach((g, i) => g.setAttribute("opacity", hedefler[i] === hedef && d > 1 ? 1 : 0.35));
       yildizlar.forEach((y, i) => y.setAttribute("opacity", (0.3 + 0.4 * (0.5 + 0.5 * Math.sin(t * 1.3 + i))).toFixed(2)));
-      // 0–1 sn seçim, 1–4 yürüyüş, 4–5 iş, 5–7.5 dönüş
+
       let ilerleme = 0;
       if (d > 1 && d <= 4) ilerleme = yumusak((d - 1) / 3);
       else if (d > 4 && d <= 5) ilerleme = 1;
@@ -143,7 +131,6 @@ function gorev(kok) {
   };
 }
 
-/* ---- 3 · Araştırma: harcanan XP değil, yeniden dağıtılan kapasite ------ */
 function kapasite(kok) {
   const s = svg(480, 360, kok);
   const dallar = [
@@ -197,7 +184,6 @@ function kapasite(kok) {
   };
 }
 
-/* ---- 4 · Simya: kimya yol açar, rün bedel ister ------------------------ */
 function simya(kok) {
   const s = svg(480, 360, kok);
   const x0 = 50;
@@ -219,7 +205,7 @@ function simya(kok) {
   let r = 0;
   for (let i = 0; i < N; i++) {
     k += 4.2;
-    if (i % 4 === 0) k += 6; // yeni gelişim kapısı
+    if (i % 4 === 0) k += 6;
     r += 7.5;
     if (rnd() < 0.14 && i > 3) {
       r -= 26 + rnd() * 16;
@@ -256,7 +242,6 @@ function simya(kok) {
   };
 }
 
-/* ---- 5 · Yol menüden seçilmez; kararlar biriktirir --------------------- */
 function yol(kok) {
   const s = svg(480, 360, kok);
   const m = { x: 240, y: 185 };
@@ -287,7 +272,7 @@ function yol(kok) {
         noktalar = [{ ...m }];
         for (let i = 0; i < 22; i++) {
           const son = noktalar.at(-1);
-          // Her karar bir yöne hafif çeker; eğilim oyuncunun geçmişinden doğar
+
           const yon = uclar[(rnd() * 5) | 0];
           const egilim = uclar[tur % 5];
           noktalar.push({

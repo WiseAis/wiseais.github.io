@@ -1,13 +1,7 @@
-/* ==========================================================================
-   03 · Rapor sayfaları: estetik geri çekilir, bilgi öne çıkar.
-   Aynı gece, daha parlak bir okuma lambası.
-   ========================================================================== */
-
 body {
   background: var(--gok-1);
 }
 
-/* Okuma ilerlemesi: üst barın altında ince bir spektrum çizgisi */
 .ilerleme {
   position: fixed;
   top: var(--ust-bar);
@@ -47,7 +41,6 @@ body {
   max-width: 44ch;
 }
 
-/* FITS başlığı biçiminde künye */
 .fits {
   padding: var(--a-4) var(--a-6);
   background: var(--gok-0);
@@ -68,7 +61,6 @@ body {
   .fits .y { display: none; }
 }
 
-/* ---- Gövde: içindekiler + metin ----------------------------------------- */
 .rapor {
   display: grid;
   grid-template-columns: minmax(12rem, 15rem) minmax(0, 1fr);
@@ -181,7 +173,6 @@ body {
   color: var(--vurgu);
 }
 
-/* Kenar notu: tanımlar için. Geniş ekranda sağ boşluğa taşar. */
 .tanim {
   margin: var(--a-6) 0;
   padding: var(--a-3) var(--a-4);
@@ -214,7 +205,6 @@ body {
   }
 }
 
-/* Kanıt figürleri */
 .kanit {
   margin: var(--a-8) 0;
   padding: var(--a-6);
@@ -254,7 +244,6 @@ body {
   letter-spacing: 0.04em;
 }
 
-/* CSS, SVG'nin fill özniteliğini ezer; varsayılanı yalnız renksizlere ver */
 .grafik text:not([fill]) { fill: var(--isik-2); }
 .grafik text.zayif:not([fill]) { fill: var(--isik-3); }
 .grafik text.vurgu:not([fill]) { fill: var(--toz); }
@@ -275,7 +264,6 @@ body {
   r: 8;
 }
 
-/* Kapanış */
 .rapor-son {
   display: flex;
   flex-wrap: wrap;
@@ -298,7 +286,6 @@ body {
   line-height: 1.35;
 }
 
-/* 03 henüz yazılmadığında */
 .hazirlaniyor {
   padding: var(--a-12) var(--kenar) var(--a-24);
 }
@@ -325,15 +312,12 @@ body {
   }
 }
 
-/* Uzun metinde üst bar okunaklı kalsın */
 .ust {
   background: rgba(12, 14, 19, 0.94);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--cizgi);
 }
 
-/* Geniş ekran: içindekiler + metin + kenar notları tek blok olarak ortalanır.
-   Blok 80rem: 15 içindekiler, 3 ara, 44 metin, 18 kenar notu. */
 @media (min-width: 1400px) {
   .rapor-bas,
   .rapor {

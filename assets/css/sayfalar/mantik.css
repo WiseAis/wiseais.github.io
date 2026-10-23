@@ -1,9 +1,3 @@
-/* ==========================================================================
-   02 · Mantık sayfaları: %60 estetik, %40 bilgi.
-   Bir ekran = bir konu. Metin solda nefes alır, çizim sağda yaşar.
-   ========================================================================== */
-
-/* ---- Kapak -------------------------------------------------------------- */
 .kapak {
   grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
   gap: var(--a-12);
@@ -74,7 +68,6 @@
   font-size: var(--t-kucuk);
 }
 
-/* ---- Adım ekranı -------------------------------------------------------- */
 .adim {
   grid-template-columns: minmax(16rem, 5fr) minmax(0, 8fr);
   gap: var(--a-8) clamp(var(--a-6), 4vw, var(--a-16));
@@ -130,9 +123,6 @@
   top: 0;
 }
 
-/* Geniş ekran: yazı + boşluk + çizim tek blok olarak ekranda ortalanır.
-   Sütunlar içerik kadar; aradaki boşluk eski düzendeki görünen aralığı izler
-   (1440 px'te ~100, 2000 px'te ~480), böylece sol ve sağ boşluk eşitlenir. */
 @media (min-width: 1400px) {
   .kapak,
   .adim {
@@ -146,8 +136,7 @@
   }
   .adim {
     grid-template-columns: minmax(16rem, 31rem) minmax(0, 40rem);
-    /* Sahne SVG'lerinin sağında ortalama ~3 rem iç boşluk var; görünen çizim
-       ortalansın diye blok yarısı kadar sağa itilir */
+
     padding-left: calc(var(--kenar) + 5.5rem);
   }
 }
@@ -169,7 +158,6 @@
   }
 }
 
-/* ---- Son ekran: 03'e kapı ----------------------------------------------- */
 .son {
   justify-items: start;
   gap: var(--a-8);

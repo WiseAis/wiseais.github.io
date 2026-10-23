@@ -1,11 +1,3 @@
-/* ==========================================================================
-   <sahne-cizim proje="ais-001" tur="spektrum" dur="6">
-   02 sayfalarındaki hareketli çizimlerin ortak kabı. Sahnelerin kendisi
-   proje başına sahneler/<proje>.js dosyalarında yaşar.
-   Yeni proje: sahneler/ais-00x.js oluştur, KAYIT'a bir satır ekle.
-     dur  hareket istemeyen kullanıcıya gösterilecek anın saniyesi
-   ========================================================================== */
-
 import { azHareket } from "../lib/rastgele.js";
 
 const KAYIT = {

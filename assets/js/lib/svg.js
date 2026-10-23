@@ -1,4 +1,3 @@
-/* Küçük SVG yardımcıları: bileşenler aynı dili konuşsun */
 export const NS = "http://www.w3.org/2000/svg";
 
 export function el(ad, oz = {}, ebeveyn) {
@@ -15,7 +14,6 @@ export function svg(genislik, yukseklik, ebeveyn) {
   return el("svg", { viewBox: `0 0 ${genislik} ${yukseklik}`, "aria-hidden": "true" }, ebeveyn);
 }
 
-/* Emisyon çizgileri ve renkleri: sitenin paleti buradan gelir */
 export const CIZGI = {
   ha: { ad: "Hα", nm: 656.3, renk: "#ff4f61" },
   oiii: { ad: "[O III]", nm: 500.7, renk: "#45d6c8" },

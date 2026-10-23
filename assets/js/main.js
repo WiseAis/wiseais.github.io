@@ -1,15 +1,8 @@
-/* ==========================================================================
-   Aisenit v2 · ortak giriş noktası
-   Her sayfa yalnız bunu yükler. Bileşenler kendi dosyalarında yaşar;
-   sayfa yalnız kullandığı etiketi koyar, gerisini bu dosya bağlar.
-   ========================================================================== */
-
 import "./components/ais-maskot.js";
 import { azHareket } from "./lib/rastgele.js";
 
 document.documentElement.classList.add("js");
 
-/* Sayfada hangi bileşen varsa onu tembel yükle: ağır tuvaller her sayfaya girmesin */
 const TEMBEL = {
   "istif-tuvali": () => import("./components/istif-tuvali.js"),
   "germe-foto": () => import("./components/germe-foto.js"),
@@ -23,8 +16,6 @@ for (const [etiket, yukle] of Object.entries(TEMBEL)) {
   if (document.querySelector(etiket)) yukle();
 }
 
-/* ---- Kaydırınca belirme: kare kare netleşir ----------------------------- */
-// Girişin kendisi ilk ekrandır; gözlemciyi beklemeden, sırayla belirir
 document.querySelectorAll(".giris [data-belir], .kapak [data-belir], .gozlem-kapak [data-belir]").forEach((e) => {
   requestAnimationFrame(() => e.classList.add("gorundu"));
 });
@@ -46,8 +37,6 @@ if (belirler.length && !azHareket()) {
   belirler.forEach((b) => b.classList.add("gorundu"));
 }
 
-/* ---- Entegrasyon sayacı: bu sayfada geçirdiğin süre, pozlama gibi -------
-   Her 4 saniye bir "kare" sayılır. Gözlemcinin de bir pozlama süresi vardır. */
 if (document.querySelector("[data-sure]")) {
   const KARE_SN = 4;
   const basla = performance.now();
@@ -69,7 +58,6 @@ if (document.querySelector("[data-sure]")) {
   setInterval(guncelle, 1000);
 }
 
-/* ---- Bölüm göstergesi: hangi ekrandasın ---------------------------------- */
 const raylar = document.querySelectorAll("[data-ray] a[href^='#']");
 if (raylar.length) {
   const hedefler = [...raylar].map((a) => document.querySelector(a.getAttribute("href"))).filter(Boolean);
@@ -87,7 +75,6 @@ if (raylar.length) {
   hedefler.forEach((h) => gozcu.observe(h));
 }
 
-/* ---- Okuma ilerlemesi (03 raporları) ------------------------------------- */
 const ilerleme = document.querySelector("[data-ilerleme]");
 if (ilerleme) {
   const guncelle = () => {
@@ -99,7 +86,6 @@ if (ilerleme) {
   guncelle();
 }
 
-/* ---- Giriş istifi: ölçüm satırı ve yeniden pozlama ---------------------- */
 const istif = document.querySelector("[data-istif]");
 if (istif) {
   const kare = document.querySelector("[data-istif-kare]");
@@ -111,18 +97,9 @@ if (istif) {
   document.querySelector("[data-yeniden]")?.addEventListener("click", () => istif.basla());
 }
 
-/* ---- Ekran ekran gezinme (tam ekran sayfalar) ----------------------------
-   Masaüstünde bir tekerlek/trackpad hareketi = bir ekran.
-   · Duraklar açık bir listedir: her ekranın tepesi, ekrandan uzun bölümlerin
-     dibi ve sayfanın sonu. Konum bu listeye göre bulunur, tahmin edilmez.
-   · Geçiş kendi yumuşak eğrisiyle (~0.9 sn) yapılır; bitip tekerlek 320 ms
-     susmadan yeni geçiş başlamaz. Hızlı çentik serisi ya da trackpad ataleti
-     tek hareket sayılır.
-   · Ekrandan uzun bölümün içinde normal kaydırılır; kenarına gelince durak işler.
-   Dokunmatikte CSS snap (mandatory) çalışmaya devam eder. */
 if (document.documentElement.classList.contains("kilitli") && matchMedia("(hover: hover) and (pointer: fine)").matches) {
   document.documentElement.classList.add("js-kaydirma");
-  const PAY = 6; // piksel toleransı
+  const PAY = 6;
   const SESSIZLIK = 320;
 
   const duraklar = () => {
@@ -132,7 +109,7 @@ if (document.documentElement.classList.contains("kilitli") && matchMedia("(hover
       const alt = Math.min(Math.max(ust, e.offsetTop + e.offsetHeight - innerHeight), max);
       return { ust, alt };
     });
-    // Sayfa sonu (alt bilgi) kendi durağıdır
+
     if (max - liste.at(-1).alt > PAY) liste.push({ ust: max, alt: max });
     return liste;
   };
@@ -140,8 +117,8 @@ if (document.documentElement.classList.contains("kilitli") && matchMedia("(hover
   let animasyon = null;
   let kilit = false;
   let sonOlay = 0;
-  let sonYon = 0; // son geçişin yönü
-  let sonDelta = 0; // atalet sönerken delta küçülür; büyüyorsa yeni harekettir
+  let sonYon = 0;
+  let sonDelta = 0;
 
   const kaydir = (hedef) => {
     cancelAnimationFrame(animasyon);
@@ -162,7 +139,6 @@ if (document.documentElement.classList.contains("kilitli") && matchMedia("(hover
     animasyon = requestAnimationFrame(adim);
   };
 
-  // Kilit, geçiş bitene ve tekerlek SESSIZLIK kadar susana dek kalkmaz
   const kilidiDene = (tekerlekBekle) => {
     if (animasyon) return setTimeout(() => kilidiDene(tekerlekBekle), 60);
     const kalan = tekerlekBekle ? SESSIZLIK - (performance.now() - sonOlay) : 0;
@@ -170,12 +146,11 @@ if (document.documentElement.classList.contains("kilitli") && matchMedia("(hover
     kilit = false;
   };
 
-  // yon: +1 / -1. Dönüş: "gec" (biz kaydırdık), "yerel" (tarayıcı kaydırsın), "dur" (kenar)
   const git = (yon) => {
     const d = duraklar();
     const y = scrollY;
     const uzun = (s) => s.alt - s.ust > PAY;
-    // Uzun bir bölümün içindeysek ya da içine doğru gidiyorsak tarayıcı kaydırsın
+
     for (const s of d) {
       if (!uzun(s)) continue;
       if (y > s.ust + PAY && y < s.alt - PAY) return "yerel";
@@ -187,7 +162,7 @@ if (document.documentElement.classList.contains("kilitli") && matchMedia("(hover
       hedef = d.find((s) => s.ust > y + PAY)?.ust;
     } else {
       const onceki = [...d].reverse().find((s) => s.ust < y - PAY);
-      // Uzun bölüme yukarıdan dönerken dibine in, oradan yukarı kaydırılabilsin
+
       if (onceki) hedef = uzun(onceki) && onceki.alt < y - PAY ? onceki.alt : onceki.ust;
     }
     if (hedef === undefined) return "dur";
@@ -210,7 +185,7 @@ if (document.documentElement.classList.contains("kilitli") && matchMedia("(hover
       const buyuyor = buyukluk > sonDelta * 1.6 && buyukluk > 8;
       sonDelta = buyukluk;
       if (kilit) {
-        // Geçiş bittiyse: ters yön ya da büyüyen delta ataletin değil, yeni bir hareketin işaretidir
+
         if (!animasyon && yon && (yon !== sonYon || buyuyor)) {
           kilit = false;
           birikim = 0;
@@ -220,7 +195,7 @@ if (document.documentElement.classList.contains("kilitli") && matchMedia("(hover
         }
       }
       if (!yon) return;
-      // Küçük trackpad kıpırtıları sayılmasın: kısa sürede 30 px birikince geç
+
       birikim += e.deltaY;
       clearTimeout(birikimSifir);
       birikimSifir = setTimeout(() => (birikim = 0), 200);

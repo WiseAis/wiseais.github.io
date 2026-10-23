@@ -1,8 +1,3 @@
-/* ==========================================================================
-   Ana sayfa: giriş istifi, proje ekranları (01), gözlem, maskot
-   ========================================================================== */
-
-/* ---- Giriş -------------------------------------------------------------- */
 .giris {
   padding: 0;
   align-content: end;
@@ -113,7 +108,6 @@
   }
 }
 
-/* ---- Proje ekranları (01): %90 estetik, %10 bilgi ----------------------- */
 .proje,
 .gozlem-ozet,
 .maskot-ekran {
@@ -181,8 +175,6 @@
   gap: var(--a-2);
 }
 
-
-
 @media (max-width: 900px) {
   .proje,
   .proje-002 {
@@ -196,7 +188,6 @@
   }
 }
 
-/* ---- Gözlem özeti ------------------------------------------------------- */
 .gozlem-ozet {
   grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
   gap: var(--a-8) clamp(var(--a-8), 4vw, var(--a-16));
@@ -324,7 +315,6 @@
   }
 }
 
-/* ---- Maskot ekranı ------------------------------------------------------ */
 .maskot-ekran {
   grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
   grid-template-areas:
@@ -460,8 +450,6 @@ maskot-evrim {
   color: var(--isik-2);
 }
 
-/* Geniş ekran: metin sütunu metin kadar, görsel kalan alanı alır; iki yan
-   boşluk eşit kalır, ekranın bir yanında boşluk birikmez. */
 @media (min-width: 1400px) {
   .proje {
     grid-template-columns: minmax(0, 26rem) minmax(0, 1fr);
