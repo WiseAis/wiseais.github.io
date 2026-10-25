@@ -315,50 +315,62 @@ class AisMaskot extends HTMLElement {
   }
 
   _konusmayiKur() {
-    const balon = document.createElement("span");
-    balon.className = "maskot-balon";
-    balon.setAttribute("role", "status");
-    this.append(balon);
-    this.tabIndex = 0;
-    this.title = "Tıkla, bir şey söylesin";
-    let sira = 0;
+    konusmayiKur(this, () => SOZLER[this.faz]);
+  }
+}
 
-    const sozler = () => {
-      try {
-        if (this.dataset.sozler) return JSON.parse(this.dataset.sozler);
-      } catch (hata) {
-        console.warn("ais-maskot: data-sozler okunamadı", hata);
-      }
-      return SOZLER[this.faz];
-    };
-    const konus = () => {
-      const liste = sozler();
-      balon.textContent = liste[sira % liste.length];
-      sira++;
+export function konusmayiKur(maskot, yedekSozler) {
+  const balon = document.createElement("span");
+  balon.className = "maskot-balon";
+  balon.setAttribute("role", "status");
+  maskot.append(balon);
+  maskot.tabIndex = 0;
+  maskot.title ||= "Tıkla, bir şey söylesin";
+  let sira = 0;
+  let sus;
 
-      const k = this.getBoundingClientRect();
-      balon.classList.toggle("sola", k.left + k.width / 2 > innerWidth * 0.55);
-      balon.classList.toggle("alta", k.top < 150);
-      this.classList.add("konusuyor");
-      clearTimeout(this._sus);
-      this._sus = setTimeout(() => this.classList.remove("konusuyor"), 5600);
-    };
-    this.addEventListener("click", konus);
-    this.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        konus();
-      }
-    });
-
-    if (this.hasAttribute("kendiliginden")) {
-      const gozcu = new IntersectionObserver(([g]) => {
-        if (!g.isIntersecting) return;
-        gozcu.disconnect();
-        setTimeout(konus, 1600);
-      }, { threshold: 0.6 });
-      gozcu.observe(this);
+  const sozler = () => {
+    try {
+      if (maskot.dataset.sozler) return JSON.parse(maskot.dataset.sozler);
+    } catch (hata) {
+      console.warn("maskot: data-sozler okunamadı", hata);
     }
+    return yedekSozler();
+  };
+  const soyle = (metin) => {
+    balon.textContent = metin;
+
+    const k = maskot.getBoundingClientRect();
+    balon.classList.toggle("sola", k.left + k.width / 2 > innerWidth * 0.55);
+    balon.classList.toggle("alta", k.top < 150);
+    maskot.classList.add("konusuyor");
+    clearTimeout(sus);
+    sus = setTimeout(() => maskot.classList.remove("konusuyor"), 5600);
+  };
+
+  maskot.soyle = soyle;
+  const konus = () => {
+    const liste = sozler();
+    const i = sira % liste.length;
+    sira++;
+    soyle(liste[i]);
+    maskot.dispatchEvent(new CustomEvent("konustu", { detail: { sira: i } }));
+  };
+  maskot.addEventListener("click", konus);
+  maskot.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      konus();
+    }
+  });
+
+  if (maskot.hasAttribute("kendiliginden")) {
+    const gozcu = new IntersectionObserver(([g]) => {
+      if (!g.isIntersecting) return;
+      gozcu.disconnect();
+      setTimeout(konus, 1600);
+    }, { threshold: 0.6 });
+    gozcu.observe(maskot);
   }
 }
 

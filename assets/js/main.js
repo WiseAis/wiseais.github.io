@@ -11,6 +11,7 @@ const TEMBEL = {
   "kale-gecesi": () => import("./components/kale-gecesi.js"),
   "kanal-ayrimi": () => import("./components/kanal-ayrimi.js"),
   "maskot-evrim": () => import("./components/maskot-evrim.js"),
+  "limon-maskot": () => import("./components/limon-maskot.js"),
 };
 for (const [etiket, yukle] of Object.entries(TEMBEL)) {
   if (document.querySelector(etiket)) yukle();

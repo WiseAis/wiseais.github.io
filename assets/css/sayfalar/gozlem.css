@@ -67,6 +67,27 @@
   color: var(--isik);
 }
 
+.ipucu-maskotlar {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-top: var(--a-2);
+}
+
+.limon {
+  position: relative;
+  display: block;
+  width: 4.5rem;
+  cursor: pointer;
+}
+
+.limon img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: saturate(0.8) brightness(0.92);
+}
+
 .kayit {
   padding-right: calc(var(--kenar) + 2rem);
   grid-template-columns: minmax(0, 8fr) minmax(16rem, 4fr);
