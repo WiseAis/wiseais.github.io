@@ -118,11 +118,6 @@ p {
   color: var(--isik);
 }
 
-.italik {
-  font-style: italic;
-  font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 96;
-}
-
 .ha { color: var(--ha); }
 .oiii { color: var(--oiii); }
 .toz { color: var(--toz); }

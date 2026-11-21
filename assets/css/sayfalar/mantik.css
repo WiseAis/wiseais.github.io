@@ -16,10 +16,6 @@
   letter-spacing: -0.035em;
 }
 
-.kapak h1 em {
-  color: var(--vurgu);
-}
-
 .kapak-ozet {
   color: var(--isik-2);
   font-size: 1.125rem;
@@ -175,4 +171,328 @@
 
 .son .kapilar {
   width: min(100%, 40rem);
+}
+
+.sahne-merdiven {
+  position: relative;
+}
+
+.sahne-merdiven .sahne-maskot {
+  position: absolute;
+  width: 15%;
+  height: auto;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  transition: opacity var(--sure) var(--egri);
+}
+
+.kapak {
+  row-gap: var(--a-6);
+}
+
+.kapak-galeri {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: var(--a-3);
+  min-width: 0;
+}
+
+.galeri-ust {
+  display: flex;
+  align-items: center;
+  gap: var(--a-4);
+  padding-top: var(--a-3);
+  border-top: 1px solid var(--cizgi);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--isik-3);
+}
+
+.galeri-ust > span:first-child {
+  color: var(--vurgu);
+}
+
+.galeri-ipucu {
+  margin-left: auto;
+  transition: opacity var(--sure);
+}
+
+.kapak-galeri.kaydirildi .galeri-ipucu {
+  opacity: 0;
+}
+
+.galeri-oklar {
+  display: flex;
+  gap: var(--a-2);
+}
+
+.galeri-ok {
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  font: inherit;
+  font-size: 0.875rem;
+  letter-spacing: 0;
+  color: var(--isik-2);
+  background: none;
+  border: 1px solid var(--cizgi);
+  border-radius: 0;
+  cursor: pointer;
+  transition: color var(--sure-kisa), border-color var(--sure-kisa);
+}
+
+.galeri-ok:hover:not(:disabled) {
+  color: var(--isik);
+  border-color: var(--vurgu);
+}
+
+.galeri-ok:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.galeri-pencere {
+  overflow-x: auto;
+  overflow-y: hidden;
+  margin-right: calc(var(--kenar) * -1);
+  padding-right: var(--kenar);
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+  cursor: grab;
+  -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 5rem), transparent);
+  mask-image: linear-gradient(to right, #000 calc(100% - 5rem), transparent);
+}
+
+.kapak-galeri.sonda .galeri-pencere {
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
+.galeri-pencere::-webkit-scrollbar {
+  display: none;
+}
+
+.galeri-pencere:focus-visible {
+  outline: 1px solid var(--vurgu);
+  outline-offset: 4px;
+}
+
+.galeri-pencere.suruklenyor {
+  cursor: grabbing;
+  scroll-snap-type: none;
+  user-select: none;
+}
+
+.galeri-serit {
+  display: flex;
+  gap: var(--a-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  width: max-content;
+}
+
+.galeri-oge {
+  flex: none;
+  width: clamp(14rem, 19vw, 21rem);
+  scroll-snap-align: start;
+}
+
+.galeri-kare {
+  display: grid;
+  gap: var(--a-2);
+  width: 100%;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  background: none;
+  border: 0;
+  cursor: inherit;
+}
+
+.galeri-kare img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  background: var(--gok-1);
+  border: 1px solid var(--cizgi);
+  transition: border-color var(--sure-kisa);
+}
+
+.galeri-kare:hover img,
+.galeri-kare:focus-visible img {
+  border-color: var(--vurgu);
+}
+
+.galeri-kare:focus-visible {
+  outline: none;
+}
+
+.galeri-ad {
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  color: var(--isik-3);
+}
+
+.galeri-buyuk {
+
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  color: var(--isik-2);
+  background: rgba(4, 5, 8, 0.96);
+  border: 0;
+  overflow: hidden;
+}
+
+.galeri-buyuk[open] {
+  display: grid;
+  place-items: center;
+}
+
+.galeri-buyuk::backdrop {
+  background: rgba(4, 5, 8, 0.96);
+}
+
+.galeri-buyuk figure {
+  display: grid;
+  gap: var(--a-2);
+  justify-items: stretch;
+  margin: 0;
+  padding: 0;
+}
+
+.galeri-sahne {
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+
+.galeri-buyuk img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 82.8vw;
+  max-height: calc(0.9 * (94vh - 4rem));
+  object-fit: contain;
+  background: var(--gok-0);
+  border: 1px solid var(--cizgi);
+}
+
+.galeri-buyuk figcaption {
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  color: var(--isik-3);
+}
+
+.galeri-gezin {
+  position: absolute;
+  top: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  font: inherit;
+  font-size: 1rem;
+  color: var(--isik-2);
+  background: var(--gok-0);
+  border: 1px solid var(--cizgi);
+  border-radius: 0;
+  cursor: pointer;
+  transform: translateY(-50%);
+  transition: color var(--sure-kisa), border-color var(--sure-kisa);
+}
+
+.galeri-gezin:hover,
+.galeri-gezin:focus-visible {
+  color: var(--isik);
+  border-color: var(--vurgu);
+}
+
+.galeri-gezin.onceki {
+  right: calc(100% + var(--a-3));
+}
+
+.galeri-gezin.sonraki {
+  left: calc(100% + var(--a-3));
+}
+
+.galeri-kapat {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: var(--a-2) var(--a-3);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--isik-2);
+  background: var(--gok-0);
+  border: 0;
+  border-left: 1px solid var(--cizgi);
+  border-bottom: 1px solid var(--cizgi);
+  cursor: pointer;
+}
+
+@media (max-width: 760px) {
+  .galeri-gezin {
+    top: 100%;
+    margin-top: var(--a-2);
+    transform: none;
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+  .galeri-gezin.onceki {
+    right: auto;
+    left: 0;
+  }
+  .galeri-gezin.sonraki {
+    left: auto;
+    right: 0;
+  }
+  .galeri-buyuk figcaption {
+    padding: 0 3.25rem;
+    min-height: 2.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+@media (max-width: 900px) {
+  .kapak-galeri {
+    margin-top: var(--a-2);
+  }
+  .galeri-oge {
+    width: clamp(14rem, 62vw, 20rem);
+  }
+}
+
+@media (max-width: 560px) {
+  .galeri-ipucu {
+    display: none;
+  }
+  .galeri-oklar {
+    margin-left: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .galeri-pencere {
+    scroll-behavior: auto;
+  }
 }

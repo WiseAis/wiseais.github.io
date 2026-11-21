@@ -1,5 +1,5 @@
-import { el, svg, CIZGI, RENK } from "../lib/svg.js";
-import { tohumlu } from "../lib/rastgele.js";
+import { el, svg, CIZGI, RENK } from "../lib/svg.js?v=20261121g";
+import { tohumlu } from "../lib/rastgele.js?v=20261121g";
 
 const nmX = (nm, a = 400, b = 700, x0 = 40, x1 = 440) => x0 + ((nm - a) / (b - a)) * (x1 - x0);
 const gaus = (x, m, s) => Math.exp(-((x - m) ** 2) / (2 * s * s));

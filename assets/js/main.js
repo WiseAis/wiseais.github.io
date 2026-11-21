@@ -1,21 +1,22 @@
-import "./components/ais-maskot.js";
-import { azHareket } from "./lib/rastgele.js";
+import "./components/ais-maskot.js?v=20261121g";
+import { azHareket } from "./lib/rastgele.js?v=20261121g";
 
 document.documentElement.classList.add("js");
 
 const TEMBEL = {
-  "istif-tuvali": () => import("./components/istif-tuvali.js"),
-  "germe-foto": () => import("./components/germe-foto.js"),
-  "sahne-cizim": () => import("./components/sahne-cizim.js"),
-  "kanit-grafik": () => import("./components/kanit-grafik.js"),
-  "kale-gecesi": () => import("./components/kale-gecesi.js"),
-  "kanal-ayrimi": () => import("./components/kanal-ayrimi.js"),
-  "maskot-evrim": () => import("./components/maskot-evrim.js"),
-  "limon-maskot": () => import("./components/limon-maskot.js"),
+  "istif-tuvali": () => import("./components/istif-tuvali.js?v=20261121g"),
+  "germe-foto": () => import("./components/germe-foto.js?v=20261121g"),
+  "sahne-cizim": () => import("./components/sahne-cizim.js?v=20261121g"),
+  "kanit-grafik": () => import("./components/kanit-grafik.js?v=20261121g"),
+  "kanal-ayrimi": () => import("./components/kanal-ayrimi.js?v=20261121g"),
+  "maskot-evrim": () => import("./components/maskot-evrim.js?v=20261121g"),
 };
 for (const [etiket, yukle] of Object.entries(TEMBEL)) {
   if (document.querySelector(etiket)) yukle();
 }
+
+const yolcu = document.querySelector("[data-yol-arkadasi]");
+if (yolcu) import("./components/yol-arkadasi.js?v=20261121g").then((m) => m.yolArkadasi(yolcu));
 
 document.querySelectorAll(".giris [data-belir], .kapak [data-belir], .gozlem-kapak [data-belir]").forEach((e) => {
   requestAnimationFrame(() => e.classList.add("gorundu"));

@@ -21,10 +21,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..700,0..100,0..1&family=Instrument+Sans:wght@400..600&family=JetBrains+Mono:wght@400;500&display=swap">
-  <link rel="stylesheet" href="/assets/css/site.css">
-  <link rel="stylesheet" href="/assets/css/sayfalar/ana.css">
-  <link rel="stylesheet" href="/assets/css/sayfalar/gozlem.css">
-  <script type="module" src="/assets/js/main.js"></script>
+  <link rel="stylesheet" href="/assets/css/site.css?v=20261121g">
+  <link rel="stylesheet" href="/assets/css/sayfalar/ana.css?v=20261121g">
+  <link rel="stylesheet" href="/assets/css/sayfalar/gozlem.css?v=20261121g">
+  <script type="module" src="/assets/js/main.js?v=20261121g"></script>
 </head>
 <body style="--vurgu: var(--oiii)">
   <a class="atla" href="#icerik">İçeriğe geç</a>
@@ -58,7 +58,7 @@
     <section class="ekran gozlem-kapak" id="kapak">
       <p class="kunye veri"><b>GÖZLEM</b> · defter</p>
       <div class="gozlem-kapak-metin">
-        <h1 data-belir>Gece <em class="italik">arşivi.</em></h1>
+        <h1 data-belir>Gece arşivi.</h1>
         <p data-belir style="--sira:1">Takipsiz, sabit bir tripod. Dünya dönerken yıldızlar iz bırakmasın diye 2–8 saniyelik kareler; sonra binlercesini üst üste koymak.</p>
         <dl class="toplam veri" data-belir style="--sira:2">
           <div><dt>Kare</dt><dd>5.160</dd></div>
@@ -69,13 +69,8 @@
       <div class="ipucu" data-belir style="--sira:3">
         <p><b>Kaydırıcıyı sola çek.</b> Kameranın kaydettiği lineer veri neredeyse siyahtır; bulutsular sensörde ancak birkaç sayılık bir fark olarak durur. Gördüğün fotoğraf, o farkın güçlü bir eğriyle gerilmiş hâli.</p>
         <p class="veri">Temsilî: işlenmiş JPEG'e ters eğri uygulanır.</p>
-        <div class="ipucu-maskotlar">
-          <limon-maskot class="limon" title="Limon · misafir gözlemci" kendiliginden muhatap="#ipucu-ais"
-            data-sozler='["Uyumuyorum. Uzun pozlama yapıyorum.","Sarıyım diye yıldız sanmayın. Ben sadece bakıyorum.","Bulutsular da benim gibi: renk vermek için saatler istiyorlar."]'
-            data-karsilik="Gözün kapalı ama. Ben de sabahları aynısını söylüyorum."><img src="/assets/img/limon-teleskop.png" width="360" height="511" alt="Limon: teleskopla gözlem yapan, sıkılgın bakışlı limon maskot" loading="lazy"></limon-maskot>
-          <ais-maskot id="ipucu-ais" faz="ais" boyut="64" konus
-            data-sozler='["Lineer hâlimi görme. Sabah ilk uyandığım hâlim gibi.","Ben de bu fotoğraflar gibiyim: önce siyah, sonra gerdirince bir şeyler çıkıyor."]'></ais-maskot>
-        </div>
+        <ais-maskot faz="ais" boyut="64" konus kendiliginden
+          data-sozler='["Lineer hâlimi görme. Sabah ilk uyandığım hâlim gibi.","Ben de bu fotoğraflar gibiyim: önce siyah, sonra gerdirince bir şeyler çıkıyor."]'></ais-maskot>
       </div>
     </section>
 

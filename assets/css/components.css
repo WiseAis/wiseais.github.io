@@ -255,10 +255,9 @@
   grid-row: span 2;
   font-family: var(--font-baslik);
   font-size: 2rem;
-  font-style: italic;
   color: var(--c);
   line-height: 1;
-  font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 72;
+  font-variation-settings: "SOFT" 60, "WONK" 0, "opsz" 72;
 }
 
 .kapi-ad {
@@ -351,6 +350,11 @@ ais-maskot svg {
   overflow: visible;
   width: 100%;
   height: 100%;
+}
+
+.maskot .m-yuz {
+  transform: translate(calc(var(--bak-x, 0) * 1px), calc(var(--bak-y, 0) * 1px));
+  transition: transform 0.45s var(--egri);
 }
 
 .maskot .m-goz {
@@ -682,34 +686,6 @@ kanal-ayrimi {
   padding-bottom: 2px;
 }
 
-kale-gecesi {
-  position: relative;
-  display: block;
-  width: 100%;
-  height: 100%;
-  min-height: inherit;
-  overflow: hidden;
-  border-radius: var(--yaricap);
-  mask-image: radial-gradient(ellipse 70% 75% at 50% 50%, #000 55%, transparent 100%);
-}
-
-kale-gecesi canvas {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.kg-sayac {
-  position: absolute;
-  left: 50%;
-  bottom: 8%;
-  transform: translateX(-50%);
-  white-space: nowrap;
-  font-variant-numeric: tabular-nums;
-  color: var(--toz);
-}
-
 .evrim-olcek {
   position: relative;
   height: 1.2em;
@@ -837,4 +813,85 @@ ais-maskot.evrildi svg {
   background-image:
     linear-gradient(to right, rgba(69, 214, 200, 0.22) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(69, 214, 200, 0.22) 1px, transparent 1px);
+}
+
+.yol-arkadasi {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 40;
+  transition: opacity 0.6s var(--egri), filter 0.8s var(--egri);
+  will-change: transform;
+}
+
+.yol-arkadasi.fener {
+  filter: drop-shadow(0 0 10px rgba(224, 162, 106, 0.75)) drop-shadow(0 0 34px rgba(224, 162, 106, 0.35));
+}
+
+.yol-arkadasi svg {
+  transform: rotate(calc(var(--egim, 0) * 1deg)) scale(var(--olcek, 1));
+  transition: transform 0.5s var(--egri);
+}
+
+.yol-arkadasi.fener {
+  --olcek: 0.62;
+}
+
+.yol-arkadasi {
+  touch-action: none;
+  cursor: grab;
+}
+
+.yol-arkadasi.tutuluyor {
+  --olcek: 1.12;
+  cursor: grabbing;
+}
+
+.yol-arkadasi.fener.tutuluyor {
+  --olcek: 0.72;
+}
+
+.yol-arkadasi.evde {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.yol-arkadasi.uyuyor .m-goz {
+  animation: none;
+  transform: scaleY(0.12);
+}
+
+.yol-arkadasi.uyuyor::after {
+  content: "z";
+  position: absolute;
+  right: -2px;
+  top: -6px;
+  font-family: var(--font-veri);
+  font-size: 0.8rem;
+  color: var(--isik-2);
+  animation: uyku 2.4s steps(4) infinite;
+}
+
+@keyframes uyku {
+  0% { transform: translate(0, 0); opacity: 0; }
+  30% { opacity: 1; }
+  100% { transform: translate(8px, -14px); opacity: 0; }
+}
+
+.ais-iz {
+  position: fixed;
+  z-index: 39;
+  pointer-events: none;
+  image-rendering: pixelated;
+  animation: iz-son 1.9s steps(6) forwards;
+}
+
+@keyframes iz-son {
+  0% { opacity: 0.95; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(var(--dy, 12px)); }
+}
+
+.maskot-balon.serbest {
+  transform-origin: center;
+  border-radius: 10px;
 }

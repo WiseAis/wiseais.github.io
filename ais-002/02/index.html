@@ -4,15 +4,16 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AIS.002 · Mantığı</title>
-  <meta name="description" content="Krallık Oyunu'nun mantığı: kral, liderler, görevlendirme, araştırma kapasitesi, simya ve kararlarla şekillenen yollar.">
+  <meta name="description" content="Krallık'ın beş mekaniği beş ekranda: ilk ateş, görevlendirme, kış hesabı, alışkanlıktan çıkan liderler ve Ais'in ışığıyla gelen taç. Sayılar oyunun kendi ayar dosyalarından.">
   <meta name="theme-color" content="#07080b">
   <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..700,0..100,0..1&family=Instrument+Sans:wght@400..600&family=JetBrains+Mono:wght@400;500&display=swap">
-  <link rel="stylesheet" href="/assets/css/site.css">
-  <link rel="stylesheet" href="/assets/css/sayfalar/mantik.css">
-  <script type="module" src="/assets/js/main.js"></script>
+  <link rel="stylesheet" href="/assets/css/site.css?v=20261121g">
+  <link rel="stylesheet" href="/assets/css/sayfalar/mantik.css?v=20261121g">
+  <script type="module" src="/assets/js/main.js?v=20261121g"></script>
+  <script type="module" src="/assets/js/components/galeri.js?v=20261121g"></script>
 </head>
 <body style="--vurgu: var(--toz)">
   <a class="atla" href="#icerik">İçeriğe geç</a>
@@ -31,108 +32,230 @@
   </header>
 
   <ol class="ray veri" data-ray aria-label="Adımlar">
-    <li><a href="#devir"><span>01 · Kral ve liderler</span></a></li>
+    <li><a href="#ates"><span>01 · Ateş</span></a></li>
     <li><a href="#gorev"><span>02 · Görevlendirme</span></a></li>
-    <li><a href="#kapasite"><span>03 · Kapasite</span></a></li>
-    <li><a href="#simya"><span>04 · Simya</span></a></li>
-    <li><a href="#yol"><span>05 · Yollar</span></a></li>
+    <li><a href="#kis"><span>03 · Kış</span></a></li>
+    <li><a href="#liderler"><span>04 · Liderler</span></a></li>
+    <li><a href="#tac"><span>05 · Taç</span></a></li>
   </ol>
 
   <main id="icerik">
+
     <section class="ekran kapak" id="kapak">
       <p class="kunye veri"><b>AIS.002</b> · 02 · mantığı</p>
       <div class="kapak-metin">
-        <h1 data-belir>Taç yok. <em class="italik">Topluluk var.</em></h1>
-        <p class="kapak-ozet" data-belir style="--sira:1">Krallık Oyunu henüz tasarım aşamasında. Bu sayfa kabul edilmiş kararları beş ekranda anlatıyor. Oynanabilir bir sürüm yok; ama oyunun nasıl düşündüğü belli.</p>
+        <h1 data-belir>İlk ocaktan taç törenine.</h1>
+        <p class="kapak-ozet" data-belir style="--sira:1">Oyuncu tek bir ocakla başlar, kaleyi onarır ve prensi tahta çıkarır. Beş mekaniği beş ekranda anlattık; sayılar oyunun kendi verisinden.</p>
         <ol class="kapak-dizin" data-belir style="--sira:2">
-          <li><a href="#devir"><span class="veri">01</span> Kral ve liderler</a></li>
+          <li><a href="#ates"><span class="veri">01</span> Gece gelmeden ateş</a></li>
           <li><a href="#gorev"><span class="veri">02</span> Kaç kişi, nereye?</a></li>
-          <li><a href="#kapasite"><span class="veri">03</span> Araştırma kapasitesi</a></li>
-          <li><a href="#simya"><span class="veri">04</span> Kimya ve rün</a></li>
-          <li><a href="#yol"><span class="veri">05</span> Kararla açılan yollar</a></li>
+          <li><a href="#kis"><span class="veri">03</span> Kış hesabı</a></li>
+          <li><a href="#liderler"><span class="veri">04</span> Alışkanlıktan çıkan liderler</a></li>
+          <li><a href="#tac"><span class="veri">05</span> Ais'in ışığı ve taç</a></li>
         </ol>
       </div>
       <div class="kapak-rehber" data-belir style="--sira:3">
         <ais-maskot faz="aisen" boyut="150" konus kendiliginden aksesuar="tac"
-          data-sozler='["Bu oyunda NPC olmak isterdim. Lider olmak fazla sorumluluk.","Oynanabilir sürüm yok. Ama ben buradayım, o da bir şey.","Kral değilim ama tacı denedim. Çivilerime takıldı, çıkmıyor."]'></ais-maskot>
-        <p>Rehberin yine Aisen. Bu sefer tacıyla.</p>
+          data-sozler='["Bu oyunda prensi ben büyüttüm. Kolum yok; on yedi kış sürdü.","Oyunda her yardım benden bir parça götürüyor. O yüzden kısa konuşuyorum.","Bu taç sitede süs. Oyunda tacı prens hak ediyor, ben yolunu aydınlatıyorum."]'></ais-maskot>
+        <p>Rehberin Aisen, Ais'in ikinci evresi. Oyunda fenerdeki ışık o.</p>
       </div>
+
+      <div class="kapak-galeri" data-belir style="--sira:4" data-galeri>
+        <div class="galeri-ust veri">
+          <span>Oyundan gerçek kareler · 9</span>
+          <span class="galeri-ipucu" aria-hidden="true">← → kaydır</span>
+          <span class="galeri-oklar">
+            <button type="button" class="galeri-ok" data-yon="-1" aria-label="Önceki kareler">←</button>
+            <button type="button" class="galeri-ok" data-yon="1" aria-label="Sonraki kareler">→</button>
+          </span>
+        </div>
+        <div class="galeri-pencere" role="region" aria-label="Oyundan gerçek kareler, yatay kaydırılır" tabindex="0">
+          <ul class="galeri-serit">
+            <li class="galeri-oge">
+              <button class="galeri-kare" type="button" data-buyuk="/assets/img/krallik/galeri/genel-3-1600.jpg" data-ad="KALE · GECE" aria-label="KALE · GECE: büyüt">
+                <img src="/assets/img/krallik/galeri/genel-3-800.jpg" srcset="/assets/img/krallik/galeri/genel-3-800.jpg 800w, /assets/img/krallik/galeri/genel-3-1600.jpg 1600w" sizes="(max-width: 760px) 78vw, 28rem" width="1600" height="1000" alt="Gece, ormanla çevrili tepede taş duvarlı kale; kale çevresine evler, değirmen ve küçük bir göl dağılmış." loading="lazy" draggable="false">
+                <span class="galeri-ad veri">KALE · GECE</span>
+              </button>
+            </li>
+            <li class="galeri-oge">
+              <button class="galeri-kare" type="button" data-buyuk="/assets/img/krallik/galeri/gorev-1-1600.jpg" data-ad="GÖREVLENDİRME · SURUN DIŞI" aria-label="GÖREVLENDİRME · SURUN DIŞI: büyüt">
+                <img src="/assets/img/krallik/galeri/gorev-1-800.jpg" srcset="/assets/img/krallik/galeri/gorev-1-800.jpg 800w, /assets/img/krallik/galeri/gorev-1-1600.jpg 1600w" sizes="(max-width: 760px) 78vw, 28rem" width="1600" height="1000" alt="Kale surunun dışında yürüyen işçiler; arkada ateşi yanan avlu ve turuncu çatılı evler." loading="lazy" draggable="false">
+                <span class="galeri-ad veri">GÖREVLENDİRME · SURUN DIŞI</span>
+              </button>
+            </li>
+            <li class="galeri-oge">
+              <button class="galeri-kare" type="button" data-buyuk="/assets/img/krallik/galeri/gorev-2-1600.jpg" data-ad="İŞÇİLER YOLDA" aria-label="İŞÇİLER YOLDA: büyüt">
+                <img src="/assets/img/krallik/galeri/gorev-2-800.jpg" srcset="/assets/img/krallik/galeri/gorev-2-800.jpg 800w, /assets/img/krallik/galeri/gorev-2-1600.jpg 1600w" sizes="(max-width: 760px) 78vw, 28rem" width="1600" height="1000" alt="Daha yakın açı: surun dışında çimenlik yolda yürüyen işçiler; avluda odun yığını ve ateş." loading="lazy" draggable="false">
+                <span class="galeri-ad veri">İŞÇİLER YOLDA</span>
+              </button>
+            </li>
+            <li class="galeri-oge">
+              <button class="galeri-kare" type="button" data-buyuk="/assets/img/krallik/galeri/kis-1-1600.jpg" data-ad="KIŞ · KALE" aria-label="KIŞ · KALE: büyüt">
+                <img src="/assets/img/krallik/galeri/kis-1-800.jpg" srcset="/assets/img/krallik/galeri/kis-1-800.jpg 800w, /assets/img/krallik/galeri/kis-1-1600.jpg 1600w" sizes="(max-width: 760px) 78vw, 28rem" width="1600" height="1000" alt="Karla kaplı kış manzarası: karlı çamlar arasında surları ve kuleleri olan kale, solda su değirmeni." loading="lazy" draggable="false">
+                <span class="galeri-ad veri">KIŞ · KALE</span>
+              </button>
+            </li>
+            <li class="galeri-oge">
+              <button class="galeri-kare" type="button" data-buyuk="/assets/img/krallik/galeri/kis-2-1600.jpg" data-ad="KIŞ · GECE" aria-label="KIŞ · GECE: büyüt">
+                <img src="/assets/img/krallik/galeri/kis-2-800.jpg" srcset="/assets/img/krallik/galeri/kis-2-800.jpg 800w, /assets/img/krallik/galeri/kis-2-1600.jpg 1600w" sizes="(max-width: 760px) 78vw, 28rem" width="1600" height="1000" alt="Yıldızlı kış gecesinde karlı ormanın ortasında küçük kale, önde su değirmeni ve bir ev." loading="lazy" draggable="false">
+                <span class="galeri-ad veri">KIŞ · GECE</span>
+              </button>
+            </li>
+            <li class="galeri-oge">
+              <button class="galeri-kare" type="button" data-buyuk="/assets/img/krallik/galeri/kis-3-1600.jpg" data-ad="KIŞ · AVLU" aria-label="KIŞ · AVLU: büyüt">
+                <img src="/assets/img/krallik/galeri/kis-3-800.jpg" srcset="/assets/img/krallik/galeri/kis-3-800.jpg 800w, /assets/img/krallik/galeri/kis-3-1600.jpg 1600w" sizes="(max-width: 760px) 78vw, 28rem" width="1600" height="1000" alt="Karla örtülü kale avlusunun yakın görüntüsü: bayraklar, depolanmış odun, ahşap iskeleler ve duvarlar." loading="lazy" draggable="false">
+                <span class="galeri-ad veri">KIŞ · AVLU</span>
+              </button>
+            </li>
+            <li class="galeri-oge">
+              <button class="galeri-kare" type="button" data-buyuk="/assets/img/krallik/galeri/lider-1-1600.jpg" data-ad="LİDER · AVLU" aria-label="LİDER · AVLU: büyüt">
+                <img src="/assets/img/krallik/galeri/lider-1-800.jpg" srcset="/assets/img/krallik/galeri/lider-1-800.jpg 800w, /assets/img/krallik/galeri/lider-1-1600.jpg 1600w" sizes="(max-width: 760px) 78vw, 28rem" width="1600" height="1000" alt="Avluda ateşin çevresinde toplanan köylüler ve aralarında daha iri bir lider; odun yığını, ahşap yapı ve sarı kırmızı bayrak." loading="lazy" draggable="false">
+                <span class="galeri-ad veri">LİDER · AVLU</span>
+              </button>
+            </li>
+            <li class="galeri-oge">
+              <button class="galeri-kare" type="button" data-buyuk="/assets/img/krallik/galeri/lider-2-1600.jpg" data-ad="LİDER · ATEŞ BAŞI" aria-label="LİDER · ATEŞ BAŞI: büyüt">
+                <img src="/assets/img/krallik/galeri/lider-2-800.jpg" srcset="/assets/img/krallik/galeri/lider-2-800.jpg 800w, /assets/img/krallik/galeri/lider-2-1600.jpg 1600w" sizes="(max-width: 760px) 78vw, 28rem" width="1600" height="1000" alt="Kale avlusunda ateşin yanında köylülerden iri duran bir lider; çevrede odun yığınları ve mavi bayraklar." loading="lazy" draggable="false">
+                <span class="galeri-ad veri">LİDER · ATEŞ BAŞI</span>
+              </button>
+            </li>
+            <li class="galeri-oge">
+              <button class="galeri-kare" type="button" data-buyuk="/assets/img/krallik/galeri/tac-1-1600.jpg" data-ad="TAÇ TÖRENİ" aria-label="TAÇ TÖRENİ: büyüt">
+                <img src="/assets/img/krallik/galeri/tac-1-800.jpg" srcset="/assets/img/krallik/galeri/tac-1-800.jpg 800w, /assets/img/krallik/galeri/tac-1-1600.jpg 1600w" sizes="(max-width: 760px) 78vw, 28rem" width="1600" height="1000" alt="Onarılmış kale: köşe kulelerinde sarı çatılar, avlunun ortasında parlak bir ışık; sol üstte evler ve dere." loading="lazy" draggable="false">
+                <span class="galeri-ad veri">TAÇ TÖRENİ</span>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <dialog class="galeri-buyuk" aria-label="Büyütülmüş kare">
+        <figure>
+          <img alt="" src="">
+          <figcaption class="veri"></figcaption>
+        </figure>
+        <button type="button" class="galeri-kapat veri" aria-label="Kapat">Kapat · Esc</button>
+      </dialog>
     </section>
 
-    <section class="ekran adim" id="devir" data-no="02.1">
+    <section class="ekran adim" id="ates" data-no="02.1">
       <div class="adim-metin">
-        <p class="adim-etiket veri" data-belir><b>01</b> Kral ve liderler</p>
-        <h2 data-belir style="--sira:1">Önce kral taşır, sonra liderler yönetir.</h2>
-        <p data-belir style="--sira:2">Krallığını kaybetmiş eski hükümdar, başta işin tam içindedir: kurar, karar verir, taşı kendi taşır. Yerleşim büyüdükçe <strong>yorucu mikro yönetim azalır</strong> ve iş meslek ve toplum gruplarının liderlerine geçer.</p>
-        <p data-belir style="--sira:3">Lider ile temsil ettiği topluluk tek bir oyun birimidir. Lider, topluluğun kalıcı yüzü ve kolektif beynidir; kral onlarla konuşmadan ilerleyemez.</p>
+        <p class="adim-etiket veri" data-belir><b>01</b> Açılış</p>
+        <h2 data-belir style="--sira:1">Gece gelmeden ateş yak.</h2>
+        <p data-belir style="--sira:2">Krallığın ocakları bir kış birer birer söndü, insanlar kaleyi bıraktı. Oyunu bu yüzden tek bir ocakla açtık.</p>
+        <p data-belir style="--sira:3">Prens dal taşıyıp yıkık ocağı yakar; ateş yanana kadar akşam ilerlemez. Ateşi uzaktan görenler tepeye gelir, sabah hedef “Kış gelmeden hazırlan” olur.</p>
         <details class="teknik" data-belir style="--sira:4">
-          <summary class="veri">Açık soru</summary>
-          <div class="teknik-govde"><p>Lider etkileşiminde kapasite dağıtımı, kritik karar ve görev verme hangi arayüzlerle ayrılacak?</p></div>
+          <summary class="veri">Zaman</summary>
+          <div class="teknik-govde">
+            <pre>1 gün  = 240 sn (1×)
+         168 gündüz + 72 gece
+mevsim = 6 gün · yıl = 24 gün
+başlangıç  Yaz 3, akşamüstü
+ilk kış    oyun günü 11</pre>
+            <p>1×'te ilk kışa yaklaşık 37 dakika var: açılış gecesinden sonra dokuz tam gün (36 dakika), üstüne ocağı yakma süresi. Oyun duraklatılır ya da 2×, 4× hızlanır.</p>
+          </div>
         </details>
       </div>
-      <div class="adim-gorsel" data-belir style="--sira:2"><sahne-cizim proje="ais-002" tur="devir" dur="7"></sahne-cizim></div>
+      <div class="adim-gorsel" data-belir style="--sira:2"><sahne-cizim proje="ais-002" tur="ates" dur="12"></sahne-cizim></div>
     </section>
 
     <section class="ekran adim" id="gorev" data-no="02.2">
       <div class="adim-metin">
         <p class="adim-etiket veri" data-belir><b>02</b> Görevlendirme</p>
         <h2 data-belir style="--sira:1">Kaç kişi, nereye?</h2>
-        <p data-belir style="--sira:2">Oyuncu topluluktan kaç kişi göndereceğini seçer ve haritada hedefi gösterir. Küçük insanlar hedefe yürür; görev sürdükçe <strong>kullanılabilir nüfustan düşerler.</strong></p>
-        <p data-belir style="--sira:3">Böylece her görevin bir bedeli olur: ormana giden dört kişi, o sırada tarlada değildir.</p>
+        <p data-belir style="--sira:2">“Kalenin insanları” panelinden iş (odun, yiyecek ya da taş), kişi sayısı ve haritada yer seçilir. İnsanlar oraya gerçekten yürür, yükü avludaki depoya taşır; yolda geçen süre işten gider.</p>
+        <p data-belir style="--sira:3">Aynı işe eklenen her kişi bir öncekinden az katar: yürüyüş hariç, dört kişi tek ormanda günde yaklaşık 9,1 odun getirir, ikişer kişi iki ayrı yerde 10,4. Bir ağaca tıklanınca prens de kendi elleriyle çalışır.</p>
         <details class="teknik" data-belir style="--sira:4">
-          <summary class="veri">Açık soru</summary>
-          <div class="teknik-govde"><p>Savaş ve keşif, bu temel harita görevlendirmesinden ne kadar ayrılacak? Bir oyun günü hangi eylemlerden oluşacak, zaman nasıl akacak?</p></div>
+          <summary class="veri">Verim</summary>
+          <div class="teknik-govde">
+            <pre>çıktı/gün = taban × n^0,8
+gece      × 0,4
+fener     6 birim içinde +%20</pre>
+            <p>Taban, kişi başına günde: odun 3, yiyecek 3, taş 1,5. 3 × 4^0,8 ≈ 9,1; 2 × 3 × 2^0,8 ≈ 10,4.</p>
+          </div>
         </details>
       </div>
-      <div class="adim-gorsel" data-belir style="--sira:2"><sahne-cizim proje="ais-002" tur="gorev" dur="3"></sahne-cizim></div>
+      <div class="adim-gorsel" data-belir style="--sira:2">
+        <sahne-cizim proje="ais-002" tur="gorev" dur="3"></sahne-cizim>
+        <ais-maskot class="adim-maskot" faz="aisen" boyut="72" konus aksesuar="tac"
+          data-sozler='["Ben ışık tutuyorum. Bunu da iş sayıyoruz.","Taş taşımam. Taşıyanın yolunu aydınlatırım, aynı kapıya çıkar."]'></ais-maskot>
+      </div>
     </section>
 
-    <section class="ekran adim" id="kapasite" data-no="02.3">
+    <section class="ekran adim" id="kis" data-no="02.3">
       <div class="adim-metin">
-        <p class="adim-etiket veri" data-belir><b>03</b> Araştırma kapasitesi</p>
-        <h2 data-belir style="--sira:1">Araştırma harcanmaz, yer değiştirir.</h2>
-        <p data-belir style="--sira:2">Araştırma, biriktirilip harcanan bir XP değildir. <strong>Dallar arasında yeniden dağıtılan sürekli bir kapasitedir.</strong></p>
-        <p data-belir style="--sira:3">Bir dala verilen pay, o işle uğraşan topluluğun iş gücünden yer. İlk denge hipotezi: verilen payın yarısı kadar etkin iş gücü kaybı.</p>
+        <p class="adim-etiket veri" data-belir><b>03</b> İlk kış</p>
+        <h2 data-belir style="--sira:1">İlk kış on birinci gün gelir.</h2>
+        <p data-belir style="--sira:2">Sonbahar hasadı bol verir; kışın yiyecek toplanmaz, odun yavaş gelir. Soldaki “Kış hesabı” erzakın kaç gün yeteceğini ve kaç kişinin açıkta kaldığını gösterir.</p>
+        <p data-belir style="--sira:3">Açıkta kalan, çatı altındakinin dokuz katı odun yakar; onarılan her harabe ev dört kişiyi içeri alır. Yiyecek iki gün yetmezse ilk kişi gider, sonra her üç günde biri; üşüyen hastalanıp gider.</p>
         <details class="teknik" data-belir style="--sira:4">
-          <summary class="veri">Not</summary>
-          <div class="teknik-govde"><p>Bu bir hipotez; henüz oynanarak dengelenmedi. Çizimdeki dağılımlar örnektir.</p></div>
+          <summary class="veri">Sayılar</summary>
+          <div class="teknik-govde">
+            <pre>yiyecek   bahar ×0,5 · yaz ×1
+toplama   sonbahar ×1,5 · kış 0
+kışın odun ×0,6
+ev onarımı 10 taş + 6 odun
+           + 4 iş-günü · 4 kişi
+odun/kişi/gün  çatı altı 0,5
+               açıkta    4,5</pre>
+            <p>Her kış bir öncekinden soğuktur (ısı ihtiyacı ×1,2), ikinci yıldan itibaren yiyecek ×1,15 harcanır. Köylü sayısı ikinin altına inerse krallık çöker; o anı 05'te Ais karşılar.</p>
+          </div>
         </details>
       </div>
-      <div class="adim-gorsel" data-belir style="--sira:2"><sahne-cizim proje="ais-002" tur="kapasite" dur="1.5"></sahne-cizim></div>
+      <div class="adim-gorsel" data-belir style="--sira:2"><sahne-cizim proje="ais-002" tur="kis" dur="14"></sahne-cizim></div>
     </section>
 
-    <section class="ekran adim" id="simya" data-no="02.4">
+    <section class="ekran adim" id="liderler" data-no="02.4">
       <div class="adim-metin">
-        <p class="adim-etiket veri" data-belir><b>04</b> Simya</p>
-        <h2 data-belir style="--sira:1">Kimya yol açar, rün bedel ister.</h2>
-        <p data-belir style="--sira:2">Simya iki kök dala ayrılıyor. <strong>Kimya</strong> yeni gelişimlerin yolunu açar. <strong>Rünler</strong> güçlü fayda verir ama karşılığında kayıp ve risk getirir.</p>
-        <p data-belir style="--sira:3">Rüne yatırım yapan, kimyadan geri kalır. Kestirme bir yol var; faturası sonra gelir.</p>
-      </div>
-      <div class="adim-gorsel" data-belir style="--sira:2"><sahne-cizim proje="ais-002" tur="simya" dur="8"></sahne-cizim></div>
-    </section>
-
-    <section class="ekran adim" id="yol" data-no="02.5">
-      <div class="adim-metin">
-        <p class="adim-etiket veri" data-belir><b>05</b> Kararla açılan yollar</p>
-        <h2 data-belir style="--sira:1">Yol menüden seçilmez.</h2>
-        <p data-belir style="--sira:2">Askerî restorasyon, refah, diplomasi, rünler, halk desteği. Oyuncu bunlardan birini menüden kesin olarak seçmez; <strong>oyun boyunca verdiği kararlar sonucu belirler.</strong></p>
-        <p data-belir style="--sira:3">Rekabet zorunlu PvP değil. İster dış rakiplere ve eski topraklara yönelirsin, ister daha sakin bir gelişim ve hikâye akışı izlersin.</p>
+        <p class="adim-etiket veri" data-belir><b>04</b> Liderler</p>
+        <h2 data-belir style="--sira:1">Liderler alışkanlıktan çıkar.</h2>
+        <p data-belir style="--sira:2">Üç kişi aynı işte ikişer iş-günü doldurunca en çok çalışanı lider olur; oduncuların lideri Hazel böyle çıkar. Lider grubunun başında çalışır ve prense dilekçe getirir.</p>
+        <p data-belir style="--sira:3">Prens lidere gidip bir seçeneği onaylar ya da erteler. Cevaplar unutulmaz, sonraki kartlar onları anar: “Hazel'la ilk tanıştığınızda ‘Kıyıdan kes, yerine fidan dik’ demiştin.”</p>
         <details class="teknik" data-belir style="--sira:4">
-          <summary class="veri">Tur yapısı</summary>
-          <div class="teknik-govde"><p>Her oyun yaklaşık 2–3 saatlik bağımsız bir tur. Oyun sonları yeni ham güçten çok yeni liderler, rünler ve başlangıçlar açarak yeniden oynanabilirliği genişletecek.</p></div>
+          <summary class="veri">Kadro</summary>
+          <div class="teknik-govde">
+            <pre>Mother Hazel     Oduncular
+Goodman Tobin    Çiftçiler
+Master Dunstan   Taşçılar
+Captain Garrick  Muhafızlar · yıl 2
+Mey              Simyacılar · yıl 2
+Smith Brenna     henüz yolda</pre>
+            <p>Güven (0–5) yükseldikçe ilişki Emir'den Devamlı iş'e ve Emanet'e geçer. Simyacıların lideri Mey alışkanlıktan çıkmaz, ikinci yıl kapıdan gelir.</p>
+          </div>
         </details>
       </div>
-      <div class="adim-gorsel" data-belir style="--sira:2"><sahne-cizim proje="ais-002" tur="yol" dur="11"></sahne-cizim></div>
+      <div class="adim-gorsel" data-belir style="--sira:2"><sahne-cizim proje="ais-002" tur="lider" dur="8"></sahne-cizim></div>
+    </section>
+
+    <section class="ekran adim" id="tac" data-no="02.5">
+      <div class="adim-metin">
+        <p class="adim-etiket veri" data-belir><b>05</b> Ais'in ışığı</p>
+        <h2 data-belir style="--sira:1">Prense ilk kez taç töreninde kral denir.</h2>
+        <p data-belir style="--sira:2">Sitedeki rehber maskot Ais, oyunda prensin fenerindeki ışık. Prensi ormanda o büyüttü; oyunda her yardımı ondan bir parça götürür ve ilk kıştan önce fenere çekilip dinlenir.</p>
+        <p data-belir style="--sira:3">Prensin unvanı Ais'in üç evresiyle yükselir. Basamakları halkın tanınması ve kalenin onarımı açar; ortadaki basamak, Ais'in gökten düşerken kaybettiği üç parçayı da ister. Son basamakta kuledeki eski lamba yeniden yanar ve taç töreni yapılır.</p>
+        <details class="teknik" data-belir style="--sira:4">
+          <summary class="veri">Şartlar</summary>
+          <div class="teknik-govde">
+            <pre>Fener    Warden          ilk kıştan önce
+Aisen    Lord Protector  tanınma 50
+                         kale 3 · ham Aisenit 3
+Aisenit  King · Taç      tanınma 85 · kale 5
+                         Ais Aisen evresinde</pre>
+            <p>Kale onarımı 0'dan 5'e: sur, kapı, kuleler, çatılar, taht salonu. Parçaları (ham Aisenit) prens ve Ais geceleri fenerle arar. Test botları tacı oyun günü 55 ile 95 arasında alıyor, 1×'te kabaca 3,5–6,5 saat.</p>
+            <p>Krallık çökerken Ais dünyayı bir kez durdurur ve ışığını insanlara, ambara ya da duvarlara verir; karşılığında bir evre düşer, en alt evredeyse bir mevsim uyur. İkinci çöküşte oyun biter.</p>
+          </div>
+        </details>
+      </div>
+      <div class="adim-gorsel" data-belir style="--sira:2"><sahne-cizim proje="ais-002" tur="merdiven" dur="21"></sahne-cizim></div>
     </section>
 
     <section class="ekran son" id="son">
       <p class="kunye veri"><b>AIS.002</b> · 02 → 03</p>
-      <h2 data-belir>Kale hâlâ harabe. <em class="italik toz">Plan netleşiyor.</em></h2>
-      <p data-belir style="--sira:1">03 tasarım kaydı olacak, ama henüz yazılmadı. Kararlar oturdukça gelecek.</p>
+      <h2 data-belir>Kalenin dışı henüz yapılmadı.</h2>
+      <p data-belir style="--sira:1">İlk ateşten taç törenine kadarki kısım baştan sona oynanabiliyor ama oyun henüz yayında değil; komşu lordlar, harita ekranı ve demir zinciri de yok. Buradaki sayıları, oyunu kendi başına oynayan dört test botuyla ölçtük; nasıl çalıştıkları <a href="/ais-002/03/#botlar">03'te</a>.</p>
       <nav class="kapilar" data-belir style="--sira:2" aria-label="Sonraki derinlik">
         <a class="kapi" href="/ais-002/03/">
-          <span class="kapi-no">03</span><span class="kapi-ad">Tasarım kaydı</span>
-          <span class="kapi-not">Hazırlanıyor</span><span class="kapi-ok" aria-hidden="true">→</span>
+          <span class="kapi-no">03</span><span class="kapi-ad">Ajan ekibi</span>
+          <span class="kapi-not">Oyunun nasıl yapıldığı</span><span class="kapi-ok" aria-hidden="true">→</span>
         </a>
         <a class="kapi" href="/gozlem/" style="--c: var(--oiii)">
           <span class="kapi-no">G</span><span class="kapi-ad">Gözlem defteri</span>
@@ -145,7 +268,7 @@
   <footer class="alt">
     <div class="alt-satir veri">
       <span>aisenit · AIS.002 · 02</span>
-      <span><a href="/">Ana sayfa</a> · <a href="/ais-002/03/">03 · Tasarım kaydı</a> · <a href="/gozlem/">Gözlem</a></span>
+      <span><a href="/">Ana sayfa</a> · <a href="/ais-002/03/">03 · Ajan ekibi</a> · <a href="/gozlem/">Gözlem</a></span>
     </div>
   </footer>
 </body>

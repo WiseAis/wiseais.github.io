@@ -52,10 +52,6 @@
   line-height: 1.2;
 }
 
-.giris-soz em {
-  color: var(--toz);
-}
-
 .giris-not {
   color: var(--isik-2);
   max-width: 34ch;
@@ -92,20 +88,6 @@
 
 .yeniden:hover {
   color: var(--isik);
-}
-
-.giris-maskot {
-  position: absolute;
-  right: var(--kenar);
-  bottom: var(--a-12);
-}
-
-@media (max-width: 760px) {
-  .giris-maskot {
-    bottom: auto;
-    top: calc(var(--ust-bar) + var(--a-12));
-    --boyut: 64px !important;
-  }
 }
 
 .proje,
@@ -156,12 +138,6 @@
 
 .proje h2 {
   font-size: var(--t-buyuk);
-}
-
-.proje h2 em,
-.gozlem-bas h2 em,
-.maskot-bas h2 em {
-  color: var(--vurgu);
 }
 
 .proje-ozet {
@@ -413,8 +389,7 @@ maskot-evrim {
 
 .faz h3 {
   font-size: 1.9rem;
-  font-style: italic;
-  font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 72;
+  font-variation-settings: "SOFT" 60, "WONK" 0, "opsz" 72;
 }
 
 .faz > p:last-child {
@@ -430,7 +405,6 @@ maskot-evrim {
   grid-area: not;
   max-width: 52ch;
   font-family: var(--font-baslik);
-  font-style: italic;
   font-size: 1.125rem;
   color: var(--isik-2);
 }
@@ -458,4 +432,60 @@ maskot-evrim {
   .proje-002 {
     grid-template-columns: minmax(0, 1fr) minmax(0, 26rem);
   }
+}
+
+.krallik-kare {
+  position: relative;
+  align-self: center;
+  width: 100%;
+  aspect-ratio: 2000 / 1250;
+  margin: 0;
+}
+
+.krallik-kare img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.95) contrast(1.02);
+
+  mask-image: linear-gradient(to right, transparent, #000 9%, #000 91%, transparent), linear-gradient(to bottom, transparent, #000 11%, #000 89%, transparent);
+  mask-composite: intersect;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 9%, #000 91%, transparent), linear-gradient(to bottom, transparent, #000 11%, #000 89%, transparent);
+  -webkit-mask-composite: source-in;
+}
+
+.krallik-etiket {
+  position: absolute;
+  left: 9%;
+  bottom: 4%;
+  margin: 0;
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--isik-3);
+}
+
+.krallik-fener {
+  position: absolute;
+  left: 52%;
+  top: 43%;
+  width: 14%;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(255, 210, 154, 0.32), rgba(224, 162, 106, 0.12) 35%, transparent 68%);
+  mix-blend-mode: screen;
+  pointer-events: none;
+  animation: fener-titre 3.4s ease-in-out infinite;
+}
+
+@keyframes fener-titre {
+  0%, 100% { opacity: 0.85; }
+  40% { opacity: 1; }
+  55% { opacity: 0.7; }
+  70% { opacity: 0.95; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .krallik-fener { animation: none; }
 }

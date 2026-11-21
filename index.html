@@ -21,9 +21,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..700,0..100,0..1&family=Instrument+Sans:wght@400..600&family=JetBrains+Mono:wght@400;500&display=swap">
-  <link rel="stylesheet" href="/assets/css/site.css">
-  <link rel="stylesheet" href="/assets/css/sayfalar/ana.css">
-  <script type="module" src="/assets/js/main.js"></script>
+  <link rel="stylesheet" href="/assets/css/site.css?v=20261121g">
+  <link rel="stylesheet" href="/assets/css/sayfalar/ana.css?v=20261121g">
+  <script type="module" src="/assets/js/main.js?v=20261121g"></script>
 </head>
 <body>
   <a class="atla" href="#icerik">İçeriğe geç</a>
@@ -44,14 +44,14 @@
   <ol class="ray veri" data-ray aria-label="Bölümler">
     <li><a href="#giris"><span>00 · Giriş</span></a></li>
     <li><a href="#ais-001"><span>AIS.001 · Hahbolllayristirma</span></a></li>
-    <li><a href="#ais-002"><span>AIS.002 · Krallık Oyunu</span></a></li>
+    <li><a href="#ais-002"><span>AIS.002 · Krallık</span></a></li>
     <li><a href="#gozlem"><span>Gözlem</span></a></li>
     <li><a href="#maskot"><span>Maskot</span></a></li>
   </ol>
 
   <main id="icerik">
 
-    <section class="ekran giris" id="giris" data-no="00">
+    <section class="ekran giris" id="giris" data-no="00" data-ais-hedef=".giris" data-ais-konum="1 1 -78 -78" data-ais-sozler='["Merhaba, ben Ais. Tutup fırlatabilirsin beni. Kenarlardan sekerim, alışkınım.", "Şu an tek kareyim, o yüzden biraz bulanığım.", "Yukarıdaki yazı da benim gibi: kare biriktikçe netleşiyor.", "Bu gürültü benim değil, sensörün. Çoğunlukla.", "Kaydırırsan seninle gelirim. Burası yalnız gezilecek yer değil."]'>
       <istif-tuvali metin="aisenit" kare="160" data-istif></istif-tuvali>
       <h1 class="gizli">Aisenit</h1>
 
@@ -62,7 +62,7 @@
       </p>
 
       <div class="giris-alt">
-        <p class="giris-soz" data-belir>Abrek'in <em class="italik">gürültüden ayıkladıkları.</em></p>
+        <p class="giris-soz" data-belir>Abrek'in gürültüden ayıkladıkları.</p>
         <p class="giris-not" data-belir style="--sira:1">Projeler, deneyler ve takipsiz bir tripodla toplanmış gece kareleri.</p>
         <div class="giris-eylem" data-belir style="--sira:2">
           <a class="asagi veri" href="#ais-001"><span aria-hidden="true">↓</span> Kaydır. Pozlama sürüyor.</a>
@@ -70,11 +70,9 @@
         </div>
       </div>
 
-      <ais-maskot class="giris-maskot" faz="ais" boyut="84" konus kendiliginden
-        data-sozler='["Merhaba, ben Ais. Şu an tek kareyim, o yüzden biraz bulanığım.","Yukarıdaki yazı da benim gibi: kare biriktikçe netleşiyor.","Biraz aşağıda Aisen olacağım. Söz.","Bu gürültü benim değil, sensörün. Çoğunlukla."]'></ais-maskot>
     </section>
 
-    <section class="ekran proje proje-001" id="ais-001" data-no="01" style="--vurgu: var(--ha)">
+    <section class="ekran proje proje-001" id="ais-001" data-no="01" style="--vurgu: var(--ha)" data-ais-hedef=".proje-gorsel" data-ais-konum="0.93 0.1" data-ais-sozler='["Bu fotoğrafı üç ışığa ayırıyorlar. Ben tek ışığım, sıramı bekliyorum.", "Hα kırmızı, [O III] yeşilimsi mavi. Ben hangisiyim, kimse söylemiyor.", "Tek bir RGB karesinden üç gaz çıkarmak. Ben tek kareden kendimi zor çıkarıyorum.", "Üçe ayrılınca daha mı net oluyorsun? Denemeye korkuyorum."]'>
       <p class="kunye veri"><b>AIS.001</b> · 01</p>
 
       <div class="proje-gorsel" data-belir>
@@ -83,7 +81,7 @@
 
       <div class="proje-metin">
         <p class="proje-ad veri" data-belir>Hahbolllayristirma · deneysel</p>
-        <h2 data-belir style="--sira:1">Bir fotoğrafın içindeki ışığı <em class="italik">geri ayırmak.</em></h2>
+        <h2 data-belir style="--sira:1">Bir fotoğrafın içindeki ışığı geri ayırmak.</h2>
         <p class="proje-ozet" data-belir style="--sira:2">Tek bir RGB karesinden Hα, [O&nbsp;III] ve Hβ'yı geri çağırma denemesi.</p>
         <nav class="kapilar ince" aria-label="AIS.001 derinlikleri" data-belir style="--sira:3">
           <a class="kapi" href="/ais-001/02/"><span class="kapi-no">02</span><span class="kapi-ad">Mantığı</span><span class="kapi-ok" aria-hidden="true">→</span></a>
@@ -92,29 +90,33 @@
       </div>
     </section>
 
-    <section class="ekran proje proje-002" id="ais-002" data-no="01" style="--vurgu: var(--toz)">
+    <section class="ekran proje proje-002" id="ais-002" data-no="01" style="--vurgu: var(--toz)" data-ais-hedef=".krallik-kare" data-ais-konum="0.655 0.07" data-ais-fener data-ais-sozler='["Oyunda fenerdeyim. Yardım ettikçe sönüyorum, burada şarj oluyorum.", "Yanımdaki köylü %20 hızlı çalışır. Sadece bakıyorum, işe yarıyor.", "Gökten düşerken parçalarımı kaybettim. Prensle geceleri arıyoruz.", "Krallık çökerse dünyayı bir kez durdururum. İkincisine ışığım yetmez."]'>
       <p class="kunye veri"><b>AIS.002</b> · 01</p>
 
       <div class="proje-gorsel" data-belir>
-        <kale-gecesi></kale-gecesi>
+        <figure class="krallik-kare">
+          <img src="/assets/img/krallik/gercek-01-2000.jpg" srcset="/assets/img/krallik/gercek-01-1000.jpg 1000w, /assets/img/krallik/gercek-01-2000.jpg 2000w" sizes="(max-width: 760px) 100vw, 55vw" width="2000" height="1250" alt="Oyundan bir kare: gece, ormanla çevrili bir tepede dört kuleli taş kale. Avlunun ortasında bir ateş yanıyor, solda dereyle köprü ve su değirmeni, çevrede çam ağaçları ve küçük evler görünüyor." loading="lazy">
+          <span class="krallik-fener" aria-hidden="true"></span>
+          <figcaption class="krallik-etiket veri">Oyun içi · gerçek kare</figcaption>
+        </figure>
       </div>
 
       <div class="proje-metin">
-        <p class="proje-ad veri" data-belir>Krallık Oyunu · tasarım aşaması</p>
-        <h2 data-belir style="--sira:1">Harabe bir kale. <em class="italik">Sıfırdan bir krallık.</em></h2>
-        <p class="proje-ozet" data-belir style="--sira:2">Tahtını kaybetmiş bir hükümdar, yıkık kalesine sığınanlarla yeniden başlıyor.</p>
+        <p class="proje-ad veri" data-belir>Krallık · yapımı süren oyun</p>
+        <h2 data-belir style="--sira:1">Sönmüş bir krallığı ocak ocak yeniden yakmak.</h2>
+        <p class="proje-ozet" data-belir style="--sira:2">Tarayıcıda oynanan, stilize 3B bir yerleşim ve hikâye oyunu; kodunu ve testlerini bir yapay zekâ ajan ekibi yazıyor. Oyunu tasarladık ve ekibin kurallarını koyduk: her işi, onu yapmamış bir ajan onaylar; her birleştirmede 200 test oyunu oynanır.</p>
         <nav class="kapilar ince" aria-label="AIS.002 derinlikleri" data-belir style="--sira:3">
           <a class="kapi" href="/ais-002/02/"><span class="kapi-no">02</span><span class="kapi-ad">Mantığı</span><span class="kapi-ok" aria-hidden="true">→</span></a>
-          <a class="kapi" href="/ais-002/03/"><span class="kapi-no">03</span><span class="kapi-ad">Tasarım kaydı</span><span class="kapi-ok" aria-hidden="true">→</span></a>
+          <a class="kapi" href="/ais-002/03/"><span class="kapi-no">03</span><span class="kapi-ad">Ajan ekibi</span><span class="kapi-ok" aria-hidden="true">→</span></a>
         </nav>
       </div>
     </section>
 
-    <section class="ekran gozlem-ozet" id="gozlem" data-no="G" style="--vurgu: var(--oiii)">
+    <section class="ekran gozlem-ozet" id="gozlem" data-no="G" style="--vurgu: var(--oiii)" data-ais-hedef=".toplam" data-ais-konum="0.12 1 0 130" data-ais-sozler='["Dört gece, 2.597 kare. Ben ilk karede sıkılmıştım.", "Hepsi takipsiz tripodla. Gökyüzü kaçıyor, biz kısa kısa yakalıyoruz.", "Andromeda her baktığımda biraz yaklaşmış gibi geliyor. Çünkü yaklaşıyor."]'>
       <p class="kunye veri"><b>GÖZLEM</b> · gece arşivi</p>
 
       <div class="gozlem-bas">
-        <h2 data-belir>Gökyüzü dönerken, <em class="italik">binlerce kısa bakış.</em></h2>
+        <h2 data-belir>Gökyüzü dönerken, binlerce kısa bakış.</h2>
         <p data-belir style="--sira:1">Takipsiz, sabit bir tripod. Yıldızlar iz bırakmasın diye 2–8 saniyelik kareler, sonra binlercesini üst üste koymak.</p>
         <dl class="toplam veri" data-belir style="--sira:2">
           <div><dt>Hedef</dt><dd>6</dd></div>
@@ -144,11 +146,11 @@
       <a class="gozlem-git veri" href="/gozlem/" data-belir>Gözlem defterini aç <span aria-hidden="true">→</span></a>
     </section>
 
-    <section class="ekran maskot-ekran" id="maskot" data-no="M" style="--vurgu: var(--toz)">
+    <section class="ekran maskot-ekran" id="maskot" data-no="M" style="--vurgu: var(--toz)" data-ais-hedef=".evrim-sahne ais-maskot" data-ais-konum="0.5 0.5" data-ais-ev>
       <p class="kunye veri"><b>EK</b> · maskot</p>
 
       <div class="maskot-bas">
-        <h2 data-belir>Ais, Aisen, Aisenit. <em class="italik">Aynı merak, farklı kare sayısı.</em></h2>
+        <h2 data-belir>Ais, Aisen, Aisenit. Aynı merak, farklı kare sayısı.</h2>
         <p data-belir style="--sira:1">Kaydırıcıyı sür: kare biriktikçe gürültü √N ile azalır, piksel ızgarası incelir, maskot da evrilir. Astrofotoğrafta buna drizzle denir.</p>
       </div>
 
@@ -177,11 +179,13 @@
         <li class="faz" data-belir style="--sira:2" data-faz-kart="aisenit">
           <p class="veri"><b>Faz 3</b> · son işlem · 1 px · N ≥ 1000</p>
           <h3>Aisenit</h3>
-          <p>Aynı yıldız, en ince ızgarada. Çivileri bir piksele inmiş, halesinde ayrılmış ışık. Adı nadir bir mineralden; emin değilse <code>ABSTAIN</code> der ve susar.</p>
+          <p>Aynı yıldız, en ince ızgarada. Çivileri bir piksele inmiş, halesinde ayrılmış ışık. Adı nadir bir mineralden.</p>
         </li>
       </ol>
     </section>
   </main>
+
+  <ais-maskot data-yol-arkadasi faz="ais" boyut="84" konus></ais-maskot>
 
   <footer class="alt">
     <div class="alt-ust">

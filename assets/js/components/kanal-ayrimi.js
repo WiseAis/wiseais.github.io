@@ -1,4 +1,4 @@
-import { azHareket } from "../lib/rastgele.js";
+import { azHareket } from "../lib/rastgele.js?v=20261121g";
 
 const KATMANLAR = [
   { kanal: 2, renk: [138, 162, 255], ad: "Hβ", dalga: "486.1 nm", css: "#8aa2ff" },

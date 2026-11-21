@@ -3,22 +3,111 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AIS.002 · Tasarım kaydı</title>
-  <meta name="description" content="Krallık Oyunu tasarım kaydı hazırlanıyor.">
+  <title>AIS.002 · Ajan ekibi</title>
+  <meta name="description" content="Krallık Oyunu'nu yazan yapay zekâ ajan ekibi ve Abrek'in rolü: roller ve modeller, test kapısı, dört bot, model güven defteri, kayıt düzeni ve limit kesintisine karşı önlemler.">
   <meta name="theme-color" content="#0c0e13">
   <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..700,0..100,0..1&family=Instrument+Sans:wght@400..600&family=JetBrains+Mono:wght@400;500&display=swap">
-  <link rel="stylesheet" href="/assets/css/site.css">
-  <link rel="stylesheet" href="/assets/css/sayfalar/rapor.css">
-  <script type="module" src="/assets/js/main.js"></script>
+  <link rel="stylesheet" href="/assets/css/site.css?v=20261121g">
+  <link rel="stylesheet" href="/assets/css/sayfalar/rapor.css?v=20261121g">
+  <style>
+    .rapor-bas h1 { font-size: clamp(2.2rem, 1.3rem + 3vw, 3.75rem); line-height: 1.04; }
+    .rapor-bas .acilis {
+      margin-top: var(--a-4);
+      max-width: 62ch;
+      color: var(--isik-2);
+      line-height: 1.65;
+    }
+    .otuz-kap { padding: var(--a-8) var(--kenar) 0; }
+    .otuz {
+      display: grid;
+      grid-template-columns: minmax(12rem, 15rem) minmax(0, 1fr);
+      gap: var(--a-6) var(--a-12);
+      padding: var(--a-6);
+      background: var(--gok-0);
+      border: 1px solid var(--cizgi-guclu);
+      border-radius: var(--yaricap);
+    }
+    .otuz-rol .veri { color: var(--vurgu); }
+    .otuz-rol p + p { margin-top: var(--a-2); }
+    .otuz-rol p:not(.veri) { font-size: var(--t-kucuk); line-height: 1.55; color: var(--isik-2); }
+    .otuz-sag { display: grid; gap: var(--a-6); }
+    .otuz-sayi {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: var(--a-4);
+      margin: 0;
+    }
+    .otuz-sayi > div { display: grid; align-content: start; gap: 0.15rem; }
+    .otuz-sayi dd {
+      order: -1;
+      margin: 0;
+      font-family: var(--font-baslik);
+      font-size: 2rem;
+      line-height: 1.05;
+      color: var(--isik);
+    }
+    .otuz-sayi dt { font-size: var(--t-kucuk); color: var(--isik); }
+    .otuz-sayi .otuz-alt { font-size: var(--t-mikro); line-height: 1.4; color: var(--isik-3); }
+    .otuz-olay {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--a-4);
+      margin: 0;
+      padding: var(--a-4) 0 0;
+      list-style: none;
+      border-top: 1px solid var(--cizgi);
+      counter-reset: olay;
+    }
+    .otuz-olay li {
+      counter-increment: olay;
+      font-size: var(--t-kucuk);
+      line-height: 1.55;
+      color: var(--isik-2);
+    }
+    .otuz-olay li::before {
+      content: "0" counter(olay);
+      display: block;
+      font-family: var(--font-veri);
+      font-size: var(--t-mikro);
+      color: var(--isik-3);
+    }
+    .otuz-olay a {
+      display: block;
+      color: var(--isik);
+      font-weight: 600;
+      text-decoration-color: var(--vurgu);
+    }
+    .otuz-olay a::after { content: " ↓"; font-weight: 400; color: var(--vurgu); }
+    .metin [id] { scroll-margin-top: calc(var(--ust-bar) + var(--a-6)); }
+    .metin details.teknik { margin: var(--a-6) 0; }
+    .metin details.teknik summary { font-size: var(--t-kucuk); color: var(--isik-2); }
+    .metin .teknik-govde ul { padding-left: 1.2rem; }
+    .alinti-notu { margin-top: calc(var(--a-2) * -1); color: var(--isik-3); }
+    @media (min-width: 1400px) {
+      .otuz-kap { padding-inline: max(var(--kenar), calc((100% - 80rem) / 2)); }
+    }
+    @media (max-width: 1100px) {
+      .otuz-sayi { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+    @media (max-width: 960px) {
+      .otuz { grid-template-columns: minmax(0, 1fr); padding: var(--a-4); }
+      .otuz-olay { grid-template-columns: minmax(0, 1fr); }
+    }
+    @media (max-width: 520px) {
+      .otuz-sayi { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .otuz-sayi dd { font-size: 1.6rem; }
+    }
+  </style>
+  <script type="module" src="/assets/js/main.js?v=20261121g"></script>
 </head>
 <body style="--vurgu: var(--toz)">
   <a class="atla" href="#icerik">İçeriğe geç</a>
 
   <header class="ust">
-    <a class="marka" href="/" aria-label="Aisenit ana sayfa"><ais-maskot faz="aisenit" boyut="30"></ais-maskot><span>aisenit</span></a>
+    <a class="marka" href="/" aria-label="Aisenit ana sayfa"><ais-maskot faz="aisenit" boyut="30" aksesuar="tac"></ais-maskot><span>aisenit</span></a>
     <nav class="derinlik" aria-label="AIS.002 derinlikleri">
       <span class="yol veri">AIS.002 · Krallık Oyunu</span>
       <a href="/#ais-002">01</a>
@@ -33,28 +122,488 @@
 
   <header class="rapor-bas">
     <div>
-      <p class="veri"><b>AIS.002</b> · 03 · tasarım kaydı</p>
-      <h1>Tasarım kaydı <em class="italik">hazırlanıyor.</em></h1>
-      <p class="alt-baslik">Oyun hâlâ tasarım aşamasında ve henüz kayda geçecek kadar oturmuş bir şey yok. Kararlar netleştikçe bu sayfa dolacak. O zamana kadar oyunun mantığı 02'de.</p>
+      <p class="veri"><b>AIS.002</b> · 03 · ajan ekibi</p>
+      <h1>Krallık'ı yazan ajan ekibi ve çalışma düzeni.</h1>
+      <p class="alt-baslik">Abrek kod yazmıyor. Oyunun tasarımına ve ekibin kurallarına o karar veriyor; kodu, testleri ve kayıtları Claude ve Gemini modellerinden kurulu bir ajan ekibi yazıyor.</p>
+      <p class="acilis">Akşam gecenin işini tarif ediyor. Gece ajanlar tasarım kartını ve kodu yazıyor, testleri koşuyor, birbirinin işini denetliyor. Sabah raporu okuyor, oyunu oynuyor, onay bekleyen kararları bağlıyor. Gece kimseye soru sorulamadığı için asıl iş önceden yapılıyor: bir ajanın belirsizlikte, kırmızı bir testte ya da limit bittiğinde ne yapacağı kurala bağlanıyor. Bu sayfa o kuralları ve tutmadıkları yerleri kayıtlardan anlatıyor.</p>
     </div>
+<pre class="fits" aria-label="Rapor künyesi"><span class="a">OBJECT  </span>= <span class="d">'Krallik Oyunu'</span>      <span class="y">/ AIS.002</span>
+<span class="a">ORCHESTR</span>= <span class="d">'Opus 5.5'</span>           <span class="y">/ iş yapmaz</span>
+<span class="a">DESIGNER</span>= <span class="d">'Opus 5.5'</span>
+<span class="a">WORKERS </span>= <span class="d">'Sonnet 5.5, Neon'</span>
+<span class="a">VERIFIER</span>= <span class="d">'Opus 5.5 high'</span>      <span class="y">/ işi yapmamış</span>
+<span class="a">NCOMMIT </span>=                  <span class="d">645</span>  <span class="y">/ ana dal</span>
+<span class="a">DATE-RNG</span>= <span class="d">'2026-10-16..11-20'</span>
+<span class="a">NCHECK  </span>=                 <span class="d">1506</span>  <span class="y">/ tam kapı</span>
+<span class="a">RECORDS </span>=                  <span class="d">269</span>  <span class="y">/ Kayıtlar</span>
+<span class="a">STATUS  </span>= <span class="d">'YAPIMDA'</span>
+<span class="a">END</span></pre>
   </header>
 
-  <main class="hazirlaniyor" id="icerik">
-    <div class="rapor-son">
-      <ais-maskot faz="aisenit" boyut="120" konus kendiliginden aksesuar="tac"
-        data-sozler='["Burası henüz boş. Kale de öyle.","Kayıt için önce kararların oturması lazım."]'></ais-maskot>
-      <div>
-        <nav class="kapilar" aria-label="Diğer derinlikler">
-          <a class="kapi" href="/ais-002/02/"><span class="kapi-no">02</span><span class="kapi-ad">Mantığına dön</span><span class="kapi-not">Beş ekranlık anlatım</span><span class="kapi-ok" aria-hidden="true">←</span></a>
-          <a class="kapi" href="/" style="--c: var(--ha)"><span class="kapi-no">00</span><span class="kapi-ad">Ana sayfa</span><span class="kapi-not">AIS.001 ve gece arşivi</span><span class="kapi-ok" aria-hidden="true">→</span></a>
-        </nav>
+  <section class="otuz-kap" aria-labelledby="otuz-baslik">
+    <div class="otuz">
+      <div class="otuz-rol">
+        <p class="veri" id="otuz-baslik">30 saniyede</p>
+        <p><b>Abrek:</b> oyunun tasarımı, ekibin kuralları, oyunu oynayıp sınamak, onay bekleyen kararlar.</p>
+        <p><b>Ajanlar:</b> tasarım kartı, kod, test, ölçüm, denetim, kayıt.</p>
+      </div>
+      <div class="otuz-sag">
+        <dl class="otuz-sayi">
+          <div><dt>commit / gün</dt><dd>18</dd><span class="otuz-alt">645 commit, 16 Ekim – 20 Kasım</span></div>
+          <div><dt>tam oyun</dt><dd>200</dd><span class="otuz-alt">her birleştirmeden önce, 4 bot × 50 tohum</span></div>
+          <div><dt>kontrol satırı</dt><dd>1506</dd><span class="otuz-alt">bir tam test koşusunda</span></div>
+          <div><dt>kayıt</dt><dd>269</dd><span class="otuz-alt">karar, iş, hata, tuzak, ölçüm, gece</span></div>
+          <div><dt>ajan rolü</dt><dd>7</dd><span class="otuz-alt">Claude ve Gemini modelleri</span></div>
+        </dl>
+        <ol class="otuz-olay">
+          <li><a href="#cikis-kodu">Test kırmızı, çıkış kodu 0</a>Test motoru kırmızı testi de “başarılı” çıkış koduyla bitiriyordu; ekip sonucu çıktıdan okuyan ayrı bir kapı betiği yazdı.</li>
+          <li><a href="#uydurma">Uydurulan kart satırları</a>Bir Gemini modeli bir kartta olmayan satırları varmış gibi yazdı. Artık alıntılar dosyada betikle aranıyor; sonraki işte 137 alıntının 137'si tuttu.</li>
+          <li><a href="#ev-yapmayan">Oyunda tutmayan kural</a>Abrek'in “ev yapmayan biri oyunu bitirememeli” kuralı tutmuyordu: ev kurmayan bir test botu oyunların %38'ini kazandı.</li>
+        </ol>
       </div>
     </div>
-  </main>
+  </section>
+
+  <div class="rapor">
+    <nav class="icindekiler" aria-label="Bölümler" data-ray>
+      <p class="veri">İçindekiler</p>
+      <ol>
+        <li><a href="#roller"><span class="veri">01</span>Roller ve üç el</a></li>
+        <li><a href="#kapi"><span class="veri">02</span>Test kapısı</a></li>
+        <li><a href="#botlar"><span class="veri">03</span>Dört bot</a></li>
+        <li><a href="#guven"><span class="veri">04</span>Güven defteri</a></li>
+        <li><a href="#gece"><span class="veri">05</span>Bir gecenin akışı</a></li>
+        <li><a href="#kayit"><span class="veri">06</span>Kayıt düzeni</a></li>
+        <li><a href="#kesinti"><span class="veri">07</span>Limit kesintisi</a></li>
+        <li><a href="#acik"><span class="veri">08</span>Açık kalanlar</a></li>
+      </ol>
+    </nav>
+
+    <main class="metin" id="icerik">
+      <section id="roller">
+        <p class="bolum-etiket veri">01 · Roller</p>
+        <h2>Kim neyi yapıyor, neden o model</h2>
+        <figure class="kanit">
+          <span class="kanit-soru">Bir iş, fikirden ana dala hangi ellerden geçiyor?</span>
+          <div class="ekip-kaydir"><svg class="ekip-svg" viewBox="0 0 640 558" role="img" aria-label="İş akışı: Abrek, orkestratör, kod haritası, tasarım kartı, ikinci görüş, uygulama, kapı, doğrulayıcı, ana dal, sabah raporu; her adımın kayda bıraktığı iz">
+<defs><marker id="ekip-uc" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="e-uc" d="M0 0 L8 4 L0 8 z"/></marker><marker id="ekip-uc-geri" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="e-uc geri" d="M0 0 L8 4 L0 8 z"/></marker><marker id="ekip-uc-dongu" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="e-uc dongu" d="M0 0 L8 4 L0 8 z"/></marker></defs>
+<text class="e-iz" x="474" y="20">KAYDA GEÇEN</text>
+<rect class="e-kutu abrek" x="150" y="34" width="290" height="40" rx="2"/>
+<text x="162" y="49"><tspan class="e-abrek">ABREK · AKŞAM</tspan></text>
+<text class="e-not" x="162" y="65">İşi tarif eder, kural koyar; oyunu o oynar.</text>
+<line class="e-bag" x1="440" x2="466" y1="54" y2="54"/>
+<text class="e-iz" x="474" y="57.5">söz defteri, harfi harfine</text>
+<line class="e-ok" x1="295.0" x2="295.0" y1="74" y2="84.5" marker-end="url(#ekip-uc)"/>
+<rect class="e-kutu" x="150" y="86" width="290" height="40" rx="2"/>
+<text x="162" y="101"><tspan class="e-ad">ORKESTRATÖR · OPUS 5.5</tspan></text>
+<text class="e-not" x="162" y="117">Planlar, dağıtır, kaydeder. Kod yazmaz.</text>
+<line class="e-bag" x1="440" x2="466" y1="106" y2="106"/>
+<text class="e-iz" x="474" y="109.5">karar K&lt;n&gt; · gece dosyası</text>
+<line class="e-ok" x1="295.0" x2="295.0" y1="126" y2="136.5" marker-end="url(#ekip-uc)"/>
+<rect class="e-kutu" x="150" y="138" width="290" height="40" rx="2"/>
+<text x="162" y="153"><tspan class="e-gemini">KOD HARİTASI · GEMINI HYDROGEN</tspan></text>
+<text class="e-not" x="162" y="169">Kanıt: dosya:satır ve aynen alıntı.</text>
+<line class="e-bag" x1="440" x2="466" y1="158" y2="158"/>
+<text class="e-iz" x="474" y="161.5">haritalar · alıntı betiği</text>
+<line class="e-ok" x1="295.0" x2="295.0" y1="178" y2="188.5" marker-end="url(#ekip-uc)"/>
+<rect class="e-kutu" x="150" y="190" width="290" height="40" rx="2"/>
+<text x="162" y="205"><tspan class="e-ad">TASARIM KARTI · OPUS 5.5</tspan></text>
+<text class="e-not" x="162" y="221">Eşik, biçim ve his kararları burada.</text>
+<line class="e-bag" x1="440" x2="466" y1="210" y2="210"/>
+<text class="e-iz" x="474" y="213.5">iş kartı</text>
+<line class="e-ok" x1="295.0" x2="295.0" y1="230" y2="240.5" marker-end="url(#ekip-uc)"/>
+<rect class="e-kutu" x="150" y="242" width="290" height="40" rx="2"/>
+<text x="162" y="257"><tspan class="e-gemini">İKİNCİ GÖRÜŞ · GEMINI ARGON</tspan></text>
+<text class="e-not" x="162" y="273">Kartı koddan sınar, düzeltme önerir.</text>
+<line class="e-bag" x1="440" x2="466" y1="262" y2="262"/>
+<text class="e-iz" x="474" y="265.5">güven defteri</text>
+<line class="e-ok" x1="295.0" x2="295.0" y1="282" y2="292.5" marker-end="url(#ekip-uc)"/>
+<rect class="e-kutu" x="150" y="294" width="290" height="40" rx="2"/>
+<text x="162" y="309"><tspan class="e-ad">UYGULAMA · SONNET 5.5 / </tspan><tspan class="e-gemini">GEMINI NEON</tspan></text>
+<text class="e-not" x="162" y="325">Kendi dalında. Tasarım kararı vermez.</text>
+<line class="e-bag" x1="440" x2="466" y1="314" y2="314"/>
+<text class="e-iz" x="474" y="317.5">iş kartı · [bekliyor]</text>
+<line class="e-ok" x1="295.0" x2="295.0" y1="334" y2="344.5" marker-end="url(#ekip-uc)"/>
+<rect class="e-kutu" x="150" y="346" width="290" height="40" rx="2"/>
+<text x="162" y="361"><tspan class="e-ad">KAPI · HIZLI + TAM</tspan></text>
+<text class="e-not" x="162" y="377">Her commit hızlı; her dal tek başına tam.</text>
+<line class="e-bag" x1="440" x2="466" y1="366" y2="366"/>
+<text class="e-iz" x="474" y="369.5">koşu kaydı · hata kaydı</text>
+<line class="e-ok" x1="295.0" x2="295.0" y1="386" y2="396.5" marker-end="url(#ekip-uc)"/>
+<rect class="e-kutu" x="150" y="398" width="290" height="40" rx="2"/>
+<text x="162" y="413"><tspan class="e-ad">DOĞRULAYICI · OPUS 5.5 HIGH</tspan></text>
+<text class="e-not" x="162" y="429">İşi yapmamış; hüküm ve iddia listesi.</text>
+<line class="e-bag" x1="440" x2="466" y1="418" y2="418"/>
+<text class="e-iz" x="474" y="421.5">güven defteri · basamak</text>
+<line class="e-ok" x1="295.0" x2="295.0" y1="438" y2="448.5" marker-end="url(#ekip-uc)"/>
+<rect class="e-kutu" x="150" y="450" width="290" height="40" rx="2"/>
+<text x="162" y="465"><tspan class="e-ad">ANA DAL</tspan></text>
+<text class="e-not" x="162" y="481">Dallar birer birer girer, sonra yine kapı.</text>
+<line class="e-bag" x1="440" x2="466" y1="470" y2="470"/>
+<text class="e-iz" x="474" y="473.5">karar: oyunda var</text>
+<line class="e-ok" x1="295.0" x2="295.0" y1="490" y2="500.5" marker-end="url(#ekip-uc)"/>
+<rect class="e-kutu abrek" x="150" y="502" width="290" height="40" rx="2"/>
+<text x="162" y="517"><tspan class="e-abrek">ABREK · SABAH RAPORU</tspan></text>
+<text class="e-not" x="162" y="533">Raporu okur, oynar, onay bekleyeni bağlar.</text>
+<line class="e-bag" x1="440" x2="466" y1="522" y2="522"/>
+<text class="e-iz" x="474" y="525.5">gece dosyası › Sabah</text>
+<path class="e-ok geri" d="M150 366 H128 M150 418 H128 V314 H148.5" marker-end="url(#ekip-uc-geri)"/>
+<text class="e-sorun" x="120" y="362" text-anchor="end">kırmızı ya da</text>
+<text class="e-sorun" x="120" y="375" text-anchor="end">onaysız: geri</text>
+<path class="e-ok dongu" d="M150 522 H30 V54 H148.5" marker-end="url(#ekip-uc-dongu)"/>
+<text class="e-abrek" transform="translate(22 288) rotate(-90)" text-anchor="middle">ertesi akşam yeni fikir</text>
+</svg></div>
+          <figcaption>Toz renkli iki kutu insan; ötekiler ayrı birer ajan oturumu (açık başlık Claude, turkuaz Gemini). Sağda adımın kayda bıraktığı iz. Kapı kırmızıysa ya da doğrulayıcı onaylamazsa iş kırmızı döngüyle geri döner.</figcaption>
+        </figure>
+        <p>Yargı ve hayal gücü isteyen işler Opus 5.5'e, yükü ağır ama tarifi net işler Sonnet 5.5'e veriliyor; bu ayrım Abrek'in kararı. 17 Kasım'dan beri Gemini 4 modelleri de dar rollerle ekipte.</p>
+        <p><strong>Orkestratör (Opus 5.5).</strong> İşi dağıtır, sonucu denetler, kaydı tutar; kendisi kod ya da test yazmaz. 12–14 Kasım'da bu rolde Fable 5.2 denendi, sonra Abrek'in kararıyla önceki düzene, Opus'a dönüldü.</p>
+        <p><strong>Tasarımcı (Opus 5.5).</strong> Her iş eşikleri, oyuncunun ne hissedeceğini ve hangi testin neyi kanıtlayacağını yazan bir kartla başlar. Kart yoksa kod da yok.</p>
+        <p><strong>Uygulayıcı (Sonnet 5.5, 19 Kasım'dan beri Gemini Neon da).</strong> Kartı kendi dalında uygular.</p>
+        <p><strong>Kod haritası (Gemini Hydrogen).</strong> Tasarımdan önce kodun ilgili yerlerini <code>dosya:satır</code> ve aynen alıntıyla çıkarır; bir betik her alıntıyı dosyada arar.</p>
+        <p><strong>İkinci görüş (Gemini Argon).</strong> Opus'un kartını koddan sınar. Birleştirme hiçbir Gemini modeline verilmez.</p>
+        <p><strong>Doğrulayıcı (Opus 5.5 high).</strong> İşi yapmamış ayrı bir ajan; yalnız hüküm ve tutmayan iddiaları döner. Abrek tam denetimin orkestratörün bağlamını şişirdiğini görünce 20 Kasım'da ayrıldı.</p>
+        <p><strong>Kalite kontrolcü (Opus 5.5).</strong> Bir gecenin işini yalnız okuyarak denetler, model karnesini yazar.</p>
+        <p><strong>Oyuncu (Abrek).</strong> Kalıcı bir yapay “oyun eleştirmeni” önerildi ve kurulmadı; cevabı “e ben varım ben test ediyorum” oldu. Ajanlara otomatik bir duman koşusu kaldı: gerçek tarayıcıda oyunu açıp birkaç gün oynuyor, kaydedip yeniliyor, aynı dünyanın döndüğünü sınıyor.</p>
+
+        <h3 id="uc-el">Üç el (K127, 12 Kasım)</h3>
+        <p>Kartı Opus yazar, uygulayıcı uygular, işi yapmamış bir ajan doğrular; aynı ajan hem yazıp hem onaylayınca kendi varsayımını da onaylar. Gece soru sorulamadığı için ajanın çıkış yolu belli: en makul seçenekle ilerle, geri alınabilir bırak, iş kartına <code>[bekliyor]</code> yaz.</p>
+        <aside class="tanim"><b>[bekliyor]</b>Ajanın gece verdiği, geri alınabilir ara karar. Bağlanana dek kesin değildir.</aside>
+        <details class="teknik">
+          <summary class="veri">Kuralın işe yaradığı iki an</summary>
+          <div class="teknik-govde">
+            <ul>
+              <li>Sonnet, kartın bir talimatının var olan bir testle çeliştiğini gördü; testi kendine uydurmak yerine durup sordu.</li>
+              <li>Neon iki işte kartın açığını koddan yakaladı, en dar düzeltmeyi yapıp <code>[bekliyor]</code> yazdı.</li>
+            </ul>
+          </div>
+        </details>
+      </section>
+
+      <section id="kapi">
+        <p class="bolum-etiket veri">02 · Test kapısı · 9 Kasım'dan beri</p>
+        <h2>Test kırmızı dedi, çıkış kodu 0 döndü</h2>
+        <p>Mimari denetimin ardından, 9 Kasım'da Abrek dört değişmez koydu: testler zayıflatılmaz; bulunan her hata aynı oturumda kayda geçer; oyuncunun kaydı silinmez; kararları aynı gün deftere girer. Birincinin gerekçesi:</p>
+        <blockquote class="soz">
+          <p>“Özellikle testlerin zayıflatılması gibi sorunlar asla kabul edilemez.”</p>
+          <footer class="veri">Abrek · 9 Kasım</footer>
+        </blockquote>
+        <p class="alinti-notu veri">Alıntılarda yazım düzeltildi; kayıtta olduğu gibi duruyor.</p>
+        <p>Zayıflatma geniş tanımlı: eşiği gevşetmek, tohum azaltmak, testi atlamak, kırmızıyı “gürültü” saymak. Bir bant ancak ayrı commit, gerekçe ve işi yapmamış bir doğrulayıcının onayıyla değişir.</p>
+
+        <h3 id="cikis-kodu">Neden ayrı bir kapı betiği var</h3>
+        <p>Testler macOS'un yerleşik JavaScript motoru <code>jsc</code> ile koşuyor. <code>jsc</code>'de test kendini kırmızı ilan edip <code>quit(1)</code> çağırsa bile çıkış kodu 0; çıkış koduna bakan her araç ve her ajan kırmızıyı yeşil görüyor. Deneme bu sayfa yazılırken yeniden yapıldı:</p>
+<pre>$ jsc -m kirik.mjs; echo "cikis=$?"
+OK    bir
+HATA  iki
+1 BAŞARISIZ
+cikis=0</pre>
+        <aside class="tanim"><b>Kapı</b>Testleri koşan, çıktıda <code>HATA</code>, <code>BAŞARISIZ</code> ya da eksik başarı satırı arayan ve sonucu gerçek bir çıkış koduyla bildiren betik (<code>tools/kapi.sh</code>). “Geçti” demenin tek yolu.</aside>
+        <p>Hızlı kapı 22 kısa testi saniyeler içinde koşar ve her commit'ten önce git kancasıyla çalışır. Tam kapı bütün paketi koşar: 20 Kasım akşamı geçen son koşuda 1506 kontrol satırı ve 200 tam oyun, yaklaşık 40 dakika. Dallar ana dala birer birer, her biri kendi tam kapısından geçerek girer.</p>
+      </section>
+
+      <section id="botlar">
+        <p class="bolum-etiket veri">03 · Tam oyun testi</p>
+        <h2>Her birleştirmeden önce iki yüz oyun baştan sona oynanıyor</h2>
+        <p>Oyun dört oyuncu tipiyle sınanıyor. Ekransız botlar oyunu başlık ekranından Taç Töreni'ne ya da çöküşe kadar oynuyor: akıllı iyi oynuyor, dengeli makul, açgözlü kısa yoldan büyümeye çalışıyor, boşta hiçbir şey yapmıyor.</p>
+        <p>Bu yön 19 Ekim'de Abrek'ten geldi: “Sadece benim oynayış şeklime göre yaptırma ... sırf ben sevdim diye.” Bantlar bunun sayıya dökülmüş hâli: akıllı Taç'a ortanca 55–70. günde ulaşmalı, dengeli 65–95. günde; açgözlü kazanamamalı; boşta duran 13–19. gün arasında kaybetmeli.</p>
+        <aside class="tanim"><b>Tohum · Bant</b>Tohum: rastgeleliğin başlangıç sayısı; 50 tohum 50 ayrı oyun. Bant: sonucun düşmesi gereken aralık.</aside>
+        <figure class="kanit">
+          <span class="kanit-soru">Bantlar tutuyor mu? 20 Kasım'daki son tam kapı.</span>
+          <div class="ekip-kaydir"><svg class="ekip-svg" viewBox="0 0 680 316" role="img" aria-label="Dört botun bantları ve 20 Kasım ölçümleri; ayrıca ev yapmayan Dengeli botunun ana daldaki ölçümü ve düzeltme dalındaki sonucu">
+<line class="e-izgara" x1="200" x2="200" y1="20" y2="270"/><text x="200" y="284" text-anchor="middle">0</text>
+<line class="e-izgara" x1="275.3" x2="275.3" y1="20" y2="270"/><text x="275.3" y="284" text-anchor="middle">20</text>
+<line class="e-izgara" x1="350.7" x2="350.7" y1="20" y2="270"/><text x="350.7" y="284" text-anchor="middle">40</text>
+<line class="e-izgara" x1="426" x2="426" y1="20" y2="270"/><text x="426" y="284" text-anchor="middle">60</text>
+<line class="e-izgara" x1="501.3" x2="501.3" y1="20" y2="270"/><text x="501.3" y="284" text-anchor="middle">80</text>
+<line class="e-izgara" x1="576.7" x2="576.7" y1="20" y2="270"/><text x="576.7" y="284" text-anchor="middle">100</text>
+<line class="e-izgara" x1="652" x2="652" y1="20" y2="270"/><text x="652" y="284" text-anchor="middle">120</text>
+<text class="e-iz" x="652" y="300" text-anchor="end">oyun günü (1 gün = 4 dk) · 120: test sonu</text>
+<text class="e-iz" x="200" y="14">bant ve ölçüm</text>
+<text class="e-bot" x="10" y="51">akıllı</text>
+<text class="e-iz" x="10" y="66">zafer %100 · en az %95</text>
+<rect class="e-bant" x="407.2" y="44" width="56.5" height="18"><title>akıllı: zafer günü bandı 55–70</title></rect>
+<line class="e-aralik" x1="399.6" x2="444.8" y1="53" y2="53"/>
+<line class="e-aralik" x1="399.6" x2="399.6" y1="49" y2="57"/>
+<line class="e-aralik" x1="444.8" x2="444.8" y1="49" y2="57"/>
+<circle class="e-ortanca" cx="414.7" cy="53" r="4.5"><title>akıllı: ortanca zafer günü 57</title></circle>
+<text class="e-deger" x="414.7" y="40" text-anchor="middle">57</text>
+<text class="e-bot" x="10" y="97">dengeli</text>
+<text class="e-iz" x="10" y="112">zafer %98 · en az %80</text>
+<rect class="e-bant" x="444.8" y="90" width="113" height="18"><title>dengeli: zafer günü bandı 65–95</title></rect>
+<line class="e-aralik" x1="437.3" x2="561.6" y1="99" y2="99"/>
+<line class="e-aralik" x1="437.3" x2="437.3" y1="95" y2="103"/>
+<line class="e-aralik" x1="561.6" x2="561.6" y1="95" y2="103"/>
+<circle class="e-ortanca" cx="475" cy="99" r="4.5"><title>dengeli: ortanca zafer günü 73</title></circle>
+<text class="e-deger" x="475" y="86" text-anchor="middle">73</text>
+<text class="e-bot" x="10" y="143">açgözlü</text>
+<text class="e-iz" x="10" y="158">zafer %0 · kayıp %30</text>
+<rect class="e-bant kayip" x="294.2" y="136" width="131.8" height="18"><title>açgözlü: kayıp günü bandı 25–60</title></rect>
+<circle class="e-ortanca kayip" cx="354.4" cy="145" r="4.5"><title>açgözlü: ortanca kayıp günü 41</title></circle>
+<text class="e-deger" x="354.4" y="132" text-anchor="middle">41</text>
+<text class="e-bot" x="10" y="189">boşta</text>
+<text class="e-iz" x="10" y="204">kayıp %100 · en az %95</text>
+<rect class="e-bant kayip" x="249" y="182" width="22.6" height="18"><title>boşta: kayıp günü bandı 13–19</title></rect>
+<circle class="e-ortanca kayip" cx="264" cy="191" r="4.5"><title>boşta: ortanca kayıp günü 17</title></circle>
+<text class="e-deger" x="264" y="178" text-anchor="middle">17</text>
+<line class="e-ayrac" x1="10" x2="652" y1="216" y2="216"/>
+<text class="e-bot" x="10" y="235">ev yapmayan dengeli</text>
+<text class="e-sorun" x="10" y="250">zafer %38 · olmalı ≤ %5</text>
+<line class="e-aralik sorun" x1="463.7" x2="550.3" y1="237" y2="237"/>
+<line class="e-aralik sorun" x1="463.7" x2="463.7" y1="233" y2="241"/>
+<line class="e-aralik sorun" x1="550.3" x2="550.3" y1="233" y2="241"/>
+<circle class="e-ortanca kayip" cx="520.2" cy="237" r="4.5"><title>ev yapmayan dengeli: ortanca zafer günü 85</title></circle>
+<text class="e-deger" x="520.2" y="224" text-anchor="middle">85</text>
+<text class="e-iz" x="652" y="257" text-anchor="end">düzeltme dalında: zafer %0 (dal ana dala girmedi)</text>
+</svg></div>
+          <figcaption>4 bot × 50 tohum, oyun günü 120'ye kadar. Açık şerit bant, nokta ortanca, ince çizgi tohumların %10–90 aralığı. Açgözlü ve boştada ölçülen zafer değil, kayıp günü. En alt satır ev yapmayan Dengeli botunun aynı gün ana dalda ölçülen sonucu; olması gereken “kazanamaz” (zafer en çok %5).</figcaption>
+        </figure>
+        <details class="teknik">
+          <summary class="veri">Tohum sayısı neden 50</summary>
+          <div class="teknik-govde">
+            <p>Başta 20'ydi. 12 Kasım'da açgözlü bot 20 tohumda %10 kaybediyordu, bant (en az %20) kırmızıydı; 50 tohumda kayıp %24 çıktı. Tohumu artırmak kırmızıyı yeşile çevirdiği için karar kaydı bunu açıkça yazdı ve eşikleri yerinde bıraktı. Bedeli: tam kapı 23 dakikadan 40 dakikaya uzadı.</p>
+          </div>
+        </details>
+
+        <h3 id="ev-yapmayan">Bir kuralın oyunda tutmadığını bot buldu</h3>
+        <p>14 Kasım'da Abrek bir ilke koydu: “Ev yapmayan biri oyunu bitirememeli zaten.” O gün bunu ölçen bir oyuncu yoktu; tam oyundaki Dengeli bot ev kuruyordu. Ekip Dengeli'nin hiç ev kurmayan bir kopyasını teste ekledi. 20 Kasım'daki ilk ölçümde bu bot oyunların %38'ini kazanıyordu. Hata kaydının başlığı açık: kural oyunda tutmuyor.</p>
+        <p>Aynı akşam Opus'un denge kartıyla bir düzeltme dalı yazıldı: Taç en az bir bitmiş ev istiyor, ev kurulmadan geçen kışlar ikinci yıldan sonra ağırlaşıyor. Dalın tam kapısında ev yapmayan bot hiç kazanmadı (%38 → %0), öteki dört botun sonuçları değişmedi. Ama aynı koşuda Taç'ın şartlarını sınayan bir hikâye testi kırmızı verdi; dal ana dala girmedi. 21 Kasım itibarıyla dal dışarıda, hata kaydı açık.</p>
+      </section>
+
+      <section id="guven">
+        <p class="bolum-etiket veri">04 · Model karnesi</p>
+        <h2>Modeller güveni iş türüne göre kazanıyor ve kaybediyor</h2>
+        <p>Gemini ekibe girince bir modelin işinin ne kadar denetleneceği sorusu doğdu. Ekibin cevabı bir güven defteri: her model, her iş türünde ayrı bir basamakta durur; basamak, doğrulamanın derinliğini belirler.</p>
+        <aside class="tanim"><b>D0 · D1 · D2</b>D0: her iddia ve her diff satırı koddan açılır. D1: test araçlarındaki her değişiklik ve karara dayanak iddialar. D2: kapılar ve tam diff okuması.</aside>
+        <p>Kural bilerek simetrik değil: aynı iş türünde art arda üç temiz iş bir basamak çıkarır; tek bir uydurma iddia, tek ağır kaçırma ya da tek test gevşetme bir basamak indirir. Defter Claude modellerini de kapsıyor.</p>
+        <div class="tablo-kap">
+          <table class="karne">
+            <caption class="veri">Güven defteri · 20 Kasım akşamı</caption>
+            <thead>
+              <tr><th scope="col">Model</th><th scope="col">İş türü</th><th scope="col">Basamak</th><th scope="col">Defterden</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Gemini Neon</td><td>uygulama</td><td><span class="basamak d1">D1</span></td><td>Beş temiz iş üst üste; ikisinde kartın açığını koddan yakaladı.</td></tr>
+              <tr><td>Gemini Neon</td><td>ikinci görüş</td><td><span class="basamak d0">D0</span></td><td>İlk işinde, oyun çalışınca hata verecek bir değişken çakışmasını kaçırdı.</td></tr>
+              <tr><td>Gemini Hydrogen</td><td>kod haritası</td><td><span class="basamak d1">D1</span></td><td>Bir haritada 148 alıntının hepsi tuttu; bir başkasında biçim hatası.</td></tr>
+              <tr><td>Gemini Hydrogen</td><td>görsel kabul</td><td><span class="basamak d0">D0</span></td><td>Pikselce aynı iki görüntüde fark gördü; D1'den indi.</td></tr>
+              <tr><td>Gemini Argon</td><td>ikinci görüş</td><td><span class="basamak d0">D0</span></td><td>İlk altı işin her birinde gerçek hata buldu; sonra iki kez kartta olmayanı kartta varmış gibi yazdı.</td></tr>
+              <tr><td>Sonnet 5.5</td><td>uygulama</td><td><span class="basamak d1">D1</span></td><td>Kapılar ve test araçlarının diff'i her seferinde temiz.</td></tr>
+              <tr><td>Sonnet 5.5</td><td>ikinci görüş</td><td><span class="basamak d0">D0</span></td><td>Güçlü; bir kanıtsız ifade: “dosya yok” dedi, dosya erişiminin dışındaydı.</td></tr>
+              <tr><td>Opus 5.5</td><td>tasarım kartı</td><td><span class="basamak d1">D1</span></td><td>Koddan doğrulamadığı ölçüler yüzünden ikinci görüş şart.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3 id="uydurma">Kartta olmayan satırlar</h3>
+        <p>Argon bir tasarım kartına ikinci görüşte “tablodaki 10 kayıttan 9'u oyunda yok” dedi. Gece orkestratörü iddianın yarısını doğruladı: o 9 kimlik gerçekten oyunda yoktu. Öteki yarısını açmadı: kimlikler kartta da yoktu. Argon kartın içeriğini uydurmuş, üstüne “kritik bulgu” kurmuştu; ertesi sabah ortaya çıktı.</p>
+        <p>Deftere iki satır girdi: “kart X diyor” iddiası kartın satırı açılmadan bulgu sayılmaz; Argon'un görevlerine de <code>dosya:satır</code> + aynen alıntı şartı kondu. Şartlı ilk Argon işinde betik 137 alıntının 137'sini dosyada buldu.</p>
+        <p>Opus da denetleniyor. Bir performans kartında gölge filtresinin doku okuma sayısını koddan saymadan yazmıştı; Neon ve Argon birbirinden habersiz bu yanlışı yakaladı. Tablodaki “ikinci görüş şart” notu buradan geliyor.</p>
+      </section>
+
+      <section id="gece">
+        <p class="bolum-etiket veri">05 · Çalışma biçimi</p>
+        <h2>Bir gecenin akışı</h2>
+        <p>Gece çalışma düzeni 12 Kasım'da karar olarak yazıldı (K131), 9 Kasım'daki değişmezlerin üstüne. Üç şart getirdi: ajan belirsizlikte ne yapacağını bilmeli; sabah raporu gece sohbetini okumadan yazılabilmeli; yarım kalan işi ertesi gece başka bir model sürdürebilmeli.</p>
+        <aside class="tanim"><b>Sabah raporu</b>Üç başlık: yapıldı, yarım kaldı, onay bekleyen. Oyunda görünen adlarla yazılır; kod adı, numara, iç terim girmez.</aside>
+        <p>Gece dosyasının sabah bölümünde karar kodu, <code>commit</code>, “bant” gibi bir ekip içi terim geçerse kayıt denetimi kırmızı verir.</p>
+        <figure class="kanit">
+          <span class="kanit-soru">36 günde 645 commit: ekip ne zaman çalıştı?</span>
+          <div class="ekip-kaydir"><svg class="ekip-svg" viewBox="0 0 680 236" role="img" aria-label="16 Ekim ile 20 Kasım 2026 arasında gün başına commit sayısı; 645 commit, 27 gün, en yüksek 63">
+<line class="e-izgara" x1="40" x2="668" y1="137.1" y2="137.1"/>
+<text x="32" y="140.6" text-anchor="end">20</text>
+<line class="e-izgara" x1="40" x2="668" y1="98.3" y2="98.3"/>
+<text x="32" y="101.8" text-anchor="end">40</text>
+<line class="e-izgara" x1="40" x2="668" y1="59.4" y2="59.4"/>
+<text x="32" y="62.9" text-anchor="end">60</text>
+<line class="e-eksen" x1="40" x2="668" y1="176" y2="176"/>
+<rect class="e-cubuk" x="43.2" y="73" width="11" height="103"><title>16 Ekim: 53 commit</title></rect>
+<line class="e-eksen" x1="48.7" x2="48.7" y1="176" y2="180"/><text x="48.7" y="193" text-anchor="middle">16 Eki</text>
+<rect class="e-cubuk" x="60.7" y="113.8" width="11" height="62.2"><title>17 Ekim: 32 commit</title></rect>
+<rect class="e-cubuk" x="78.1" y="57.5" width="11" height="118.5"><title>18 Ekim: 61 commit</title></rect>
+<rect class="e-cubuk" x="95.6" y="156.6" width="11" height="19.4"><title>19 Ekim: 10 commit</title></rect>
+<rect class="e-sifir" x="117.5" y="173" width="2" height="3"/>
+<rect class="e-cubuk" x="130.4" y="139.1" width="11" height="36.9"><title>21 Ekim: 19 commit</title></rect>
+<line class="e-eksen" x1="135.9" x2="135.9" y1="176" y2="180"/><text x="135.9" y="193" text-anchor="middle">21 Eki</text>
+<rect class="e-sifir" x="152.4" y="173" width="2" height="3"/>
+<rect class="e-sifir" x="169.8" y="173" width="2" height="3"/>
+<rect class="e-sifir" x="187.3" y="173" width="2" height="3"/>
+<rect class="e-sifir" x="204.7" y="173" width="2" height="3"/>
+<rect class="e-cubuk" x="217.7" y="86.6" width="11" height="89.4"><title>26 Ekim: 46 commit</title></rect>
+<line class="e-eksen" x1="223.2" x2="223.2" y1="176" y2="180"/><text x="223.2" y="193" text-anchor="middle">26 Eki</text>
+<rect class="e-cubuk" x="235.1" y="158.5" width="11" height="17.5"><title>27 Ekim: 9 commit</title></rect>
+<rect class="e-cubuk" x="252.6" y="86.6" width="11" height="89.4"><title>28 Ekim: 46 commit</title></rect>
+<rect class="e-cubuk" x="270" y="168.2" width="11" height="7.8"><title>29 Ekim: 4 commit</title></rect>
+<rect class="e-sifir" x="291.9" y="173" width="2" height="3"/>
+<rect class="e-sifir" x="309.4" y="173" width="2" height="3"/>
+<line class="e-eksen" x1="310.4" x2="310.4" y1="176" y2="180"/><text x="310.4" y="193" text-anchor="middle">31 Eki</text>
+<rect class="e-cubuk" x="322.3" y="100.2" width="11" height="75.8"><title>1 Kasım: 39 commit</title></rect>
+<rect class="e-cubuk" x="339.8" y="90.5" width="11" height="85.5"><title>2 Kasım: 44 commit</title></rect>
+<rect class="e-cubuk" x="357.2" y="172.1" width="11" height="3.9"><title>3 Kasım: 2 commit</title></rect>
+<rect class="e-cubuk" x="374.7" y="154.6" width="11" height="21.4"><title>4 Kasım: 11 commit</title></rect>
+<rect class="e-cubuk" x="392.1" y="53.6" width="11" height="122.4"><title>5 Kasım: 63 commit</title></rect>
+<line class="e-eksen" x1="397.6" x2="397.6" y1="176" y2="180"/><text x="397.6" y="193" text-anchor="middle">5 Kas</text>
+<rect class="e-cubuk" x="409.6" y="113.8" width="11" height="62.2"><title>6 Kasım: 32 commit</title></rect>
+<rect class="e-cubuk" x="427" y="174.1" width="11" height="1.9"><title>7 Kasım: 1 commit</title></rect>
+<rect class="e-cubuk" x="444.4" y="168.2" width="11" height="7.8"><title>8 Kasım: 4 commit</title></rect>
+<rect class="e-cubuk" x="461.9" y="146.9" width="11" height="29.1"><title>9 Kasım: 15 commit</title></rect>
+<circle class="e-isaret" cx="467.4" cy="134.9" r="7"/><text class="e-isaret-no" x="467.4" y="138.4" text-anchor="middle">1</text>
+<rect class="e-sifir" x="483.8" y="173" width="2" height="3"/>
+<line class="e-eksen" x1="484.8" x2="484.8" y1="176" y2="180"/><text x="484.8" y="193" text-anchor="middle">10 Kas</text>
+<rect class="e-cubuk" x="496.8" y="133.3" width="11" height="42.7"><title>11 Kasım: 22 commit</title></rect>
+<rect class="e-cubuk" x="514.2" y="129.4" width="11" height="46.6"><title>12 Kasım: 24 commit</title></rect>
+<circle class="e-isaret" cx="519.7" cy="117.4" r="7"/><text class="e-isaret-no" x="519.7" y="120.9" text-anchor="middle">2</text>
+<rect class="e-cubuk" x="531.7" y="170.2" width="11" height="5.8"><title>13 Kasım: 3 commit</title></rect>
+<rect class="e-cubuk" x="549.1" y="115.8" width="11" height="60.2"><title>14 Kasım: 31 commit</title></rect>
+<circle class="e-isaret" cx="554.6" cy="103.8" r="7"/><text class="e-isaret-no" x="554.6" y="107.3" text-anchor="middle">3</text>
+<rect class="e-sifir" x="571.1" y="173" width="2" height="3"/>
+<line class="e-eksen" x1="572.1" x2="572.1" y1="176" y2="180"/><text x="572.1" y="193" text-anchor="middle">15 Kas</text>
+<rect class="e-cubuk" x="584" y="166.3" width="11" height="9.7"><title>16 Kasım: 5 commit</title></rect>
+<rect class="e-cubuk" x="601.4" y="170.2" width="11" height="5.8"><title>17 Kasım: 3 commit</title></rect>
+<circle class="e-isaret" cx="606.9" cy="158.2" r="7"/><text class="e-isaret-no" x="606.9" y="161.7" text-anchor="middle">4</text>
+<rect class="e-cubuk" x="618.9" y="148.8" width="11" height="27.2"><title>18 Kasım: 14 commit</title></rect>
+<rect class="e-cubuk" x="636.3" y="121.6" width="11" height="54.4"><title>19 Kasım: 28 commit</title></rect>
+<rect class="e-cubuk" x="653.8" y="129.4" width="11" height="46.6"><title>20 Kasım: 24 commit</title></rect>
+<circle class="e-isaret" cx="659.3" cy="117.4" r="7"/><text class="e-isaret-no" x="659.3" y="120.9" text-anchor="middle">5</text>
+<line class="e-eksen" x1="659.3" x2="659.3" y1="176" y2="180"/><text x="659.3" y="193" text-anchor="middle">20 Kas</text>
+<line class="e-fable" x1="511" x2="563.3" y1="204" y2="204"/>
+<text class="e-iz" x="505" y="207.5" text-anchor="end">orkestratör Fable 5.2</text>
+<text class="e-iz" x="40" y="18">commit / gün</text>
+</svg></div>
+          <figcaption>Ana daldaki commit'lerin güne dağılımı, 16 Ekim – 20 Kasım 2026 (<code>git log</code>). 189'u (%29) gece yarısı ile sabah 7 arasında. Numaralar süreç kurallarının girdiği günler: <b>1</b> değişmezler (9 Kas) · <b>2</b> kayıt düzeni ve üç el (12 Kas) · <b>3</b> kesinti önlemleri, orkestratörün Opus'a dönüşü (14 Kas) · <b>4</b> ilk Gemini gecesi (17 Kas) · <b>5</b> ayrı doğrulayıcı ajan (20 Kas).</figcaption>
+        </figure>
+        <p>İlk üç günde (16–18 Ekim) 146 commit'le iskelet ve oynanabilir ilk sürüm çıktı. 8–9 Kasım'daki mimari denetim yeniden yazım gerekmediğine hükmetti ama üç eksik saydı: gerçek bir test kapısı, tek doğru kaynak, kayıt güvenliği.</p>
+      </section>
+
+      <section id="kayit">
+        <p class="bolum-etiket veri">06 · Ajanların hafızası</p>
+        <h2>Küçük, imzalı, denetlenen dosyalar</h2>
+        <p>Ajanlar birbirini görmüyor ve limit bir oturumu ortasında kesebiliyor; ortak hafıza bu yüzden sohbet geçmişi değil, dosyalar. Kayıtları bölme ve her kayda kaynağını, yazanını, tarihini, fikir mi yorum mu olduğunu ekleme önerisi 12 Kasım'da Abrek'ten geldi.</p>
+        <p>Her kayıt tek konulu küçük bir Markdown dosyası. 20 Kasım akşamı 269 kayıt vardı: 100 karar, 72 iş kartı, 57 hata (27'si açık), 15 tuzak, 8 gece dosyası, 5 ölçüm, 9 günlük söz defteri ve 3 kök belge (düzen, ajan kuralları, yol planı). Üç el kuralının kaydı:</p>
+<pre>---
+tur: karar
+tarih: 2026-11-12
+yazan: uygulayıcı, Sonnet 5.5
+kaynak: abrek-onayi
+durum: gecerli
+konu: surec
+oyunda: -
+---
+
+# K127 · Üç el: Opus tasarım kartı yazar, Sonnet uygular,
+#        ayrı bir ajan doğrular
+
+## Abrek
+&gt; "tamam bunu da uygulayalım bundan sonra ben zaten öyle
+&gt;  yapılıyo sanıyodum" — abrek/2026-11-12
+
+## Yorum (uygulayıcı, Sonnet 5.5)
+12 Kasım 20:27. Öneri üç el (Opus tasarım kartı, Sonnet kod,
+ayrı doğrulayıcı); Abrek'in cevabı öneriyi onaylıyor.</pre>
+        <p>Söz bölümüne yalnız harfi harfine alıntı girer, yazım hatası düzeltilmez (“sanıyodum” kalır); ajanın anladığı en çok üç satırlık “Yorum”a gider. Bir betik her alıntıyı söz defterinde arar; bulamazsa kayıt kırmızı. Böylece bir ajanın yorumu birkaç devir sonra karar gibi okunamıyor.</p>
+        <p>Değişen kayıt silinmez, eskir: orkestratörün Opus'a dönüşünde K126 “eskidi” diye işaretlendi, yerine K167 geçti. Betik kayıtları dokuz kuralla denetliyor ve her kuralı bilerek bozulmuş bir kayıtla sınıyor.</p>
+        <p>Hafızanın bir kaybı da oldu. 13 Kasım'da bir alt ajan bir iş kartını betikle düzenlerken dosyayı boşalttı; kayıtlar sürüm kontrolünde olmadığı için geri gelmedi. İki gün sonra fark edilince açık her işten önce kapatıldı: kayıtlar artık her ajan dönüşünden sonra commit'leniyor.</p>
+      </section>
+
+      <section id="kesinti">
+        <p class="bolum-etiket veri">07 · K169 · 14 Kasım</p>
+        <h2>Limit gece yarısı bitince iş nerede kalıyor</h2>
+        <p>Kullanım limiti bir oturumu ortasında kesebiliyor. 14 Kasım'da bu oldu: 42 dakikalık bir testin sonucu sahipsiz kaldı. Abrek sorunu şöyle koydu:</p>
+        <blockquote class="soz">
+          <p>“Benim bence en büyük sorunum, geceleri veya fark etmez sabahları işleri yapılırken limit bir anda bitiyor ve her şey bir anda duruyor.”</p>
+          <footer class="veri">Abrek · 14 Kasım</footer>
+        </blockquote>
+        <p>Aynı gün dört önlem kondu:</p>
+        <ol>
+          <li><strong>Yakıt göstergesi.</strong> Orkestratör her ajan dönüşünde kalan limite bakar; sona yaklaşınca yeni iş açmaz, sıradaki uzun testi başlatıp bırakır.</li>
+          <li><strong>Ajansız test kuyruğu.</strong> Uzun testler bir kabuk betiğinde sırayla koşar ve sonucunu kendisi yazar; limit bitmişken de makine çalışır.</li>
+          <li><strong>Tek komutla ana dala alma.</strong> Yarıda kalabilecek ara adım yok.</li>
+          <li><strong>Önce yaz, sonra yap.</strong> İş başlamadan listede satırı “başladı HH:MM” olur; sonraki oturum neyin yarım kaldığını kayıttan okur.</li>
+        </ol>
+        <h3>Bir günün test kuyruğu</h3>
+        <p>Tam kapı makinede tek başına koşar, çünkü bazı kontroller duvar saatine bağlı (“en yavaş simülasyon adımı 150 ms'nin altında”) ve makine yüklüyken sahte kırmızı veriyor.</p>
+        <figure class="kanit">
+          <span class="kanit-soru">20 Kasım: on bir tam kapı, dört kırmızı. Hangisi gerçekti?</span>
+          <div class="ekip-kaydir"><svg class="ekip-svg" viewBox="0 0 680 178" role="img" aria-label="20 Kasım test kuyruğu: 11 tam kapı koşusu, 7 geçti, 3 yük altında süre kırmızısı, 1 gerçek kırmızı; 2 ana dala birleştirme">
+<defs><pattern id="ekip-tarali" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect class="e-tarali-zemin" width="5" height="5"/><line class="e-tarali" x1="0" y1="0" x2="0" y2="5"/></pattern></defs>
+<line class="e-izgara" x1="31.8" x2="31.8" y1="34" y2="98"/><text x="31.8" y="112" text-anchor="middle">13:00</text>
+<line class="e-izgara" x1="95" x2="95" y1="34" y2="98"/><text x="95" y="112" text-anchor="middle">14:00</text>
+<line class="e-izgara" x1="158.2" x2="158.2" y1="34" y2="98"/><text x="158.2" y="112" text-anchor="middle">15:00</text>
+<line class="e-izgara" x1="221.5" x2="221.5" y1="34" y2="98"/><text x="221.5" y="112" text-anchor="middle">16:00</text>
+<line class="e-izgara" x1="284.7" x2="284.7" y1="34" y2="98"/><text x="284.7" y="112" text-anchor="middle">17:00</text>
+<line class="e-izgara" x1="347.9" x2="347.9" y1="34" y2="98"/><text x="347.9" y="112" text-anchor="middle">18:00</text>
+<line class="e-izgara" x1="411.1" x2="411.1" y1="34" y2="98"/><text x="411.1" y="112" text-anchor="middle">19:00</text>
+<line class="e-izgara" x1="474.3" x2="474.3" y1="34" y2="98"/><text x="474.3" y="112" text-anchor="middle">20:00</text>
+<line class="e-izgara" x1="537.6" x2="537.6" y1="34" y2="98"/><text x="537.6" y="112" text-anchor="middle">21:00</text>
+<line class="e-izgara" x1="600.8" x2="600.8" y1="34" y2="98"/><text x="600.8" y="112" text-anchor="middle">22:00</text>
+<rect class="e-yuk" x="31.4" y="64" width="74.7" height="28"><title>test-dilim1-2: kırmızı (yük altında süre)</title></rect>
+<text class="e-etiket" x="68.7" y="57" text-anchor="middle">dilim1</text>
+<rect class="e-olcum" x="106.6" y="72" width="15.8" height="12"><title>Gemini Hydrogen ölçümü h17</title></rect>
+<rect class="e-yuk" x="123" y="64" width="40.9" height="28"><title>performans-d4-son: kırmızı (yük altında süre)</title></rect>
+<text class="e-etiket" x="143.5" y="45" text-anchor="middle">D4</text>
+<rect class="e-gecti" x="165.2" y="64" width="40.9" height="28"><title>ust-serit: geçti</title></rect>
+<text class="e-etiket" x="185.6" y="57" text-anchor="middle">üst şerit</text>
+<rect class="e-gecti" x="207.3" y="64" width="40.9" height="28"><title>agac3-uyg: geçti</title></rect>
+<text class="e-etiket" x="227.8" y="45" text-anchor="middle">ağaç 3</text>
+<rect class="e-gecti" x="253.7" y="64" width="55.7" height="28"><title>test-dilim1-3: geçti</title></rect>
+<text class="e-etiket" x="281.5" y="57" text-anchor="middle">dilim1</text>
+<rect class="e-olcum" x="310" y="72" width="19" height="12"><title>Gemini Hydrogen ölçümü h18</title></rect>
+<rect class="e-yuk" x="329.5" y="64" width="40.9" height="28"><title>performans-d10-dal: kırmızı (yük altında süre)</title></rect>
+<text class="e-etiket" x="350" y="45" text-anchor="middle">D10</text>
+<rect class="e-olcum" x="371.1" y="72" width="16.9" height="12"><title>Gemini Hydrogen ölçümü h19</title></rect>
+<rect class="e-gecti" x="388.5" y="64" width="40.9" height="28"><title>performans-d11-parcacik: geçti</title></rect>
+<text class="e-etiket" x="409" y="57" text-anchor="middle">D11</text>
+<rect class="e-olcum" x="430.1" y="72" width="16.9" height="12"><title>Gemini Hydrogen ölçümü h20</title></rect>
+<rect class="e-gecti" x="447.5" y="64" width="39.9" height="28"><title>performans-d9-kirpma: geçti</title></rect>
+<text class="e-etiket" x="467.5" y="45" text-anchor="middle">D9</text>
+<rect class="e-gecti" x="488.6" y="64" width="40.9" height="28"><title>performans-d4-son-2: geçti</title></rect>
+<text class="e-etiket" x="509.1" y="57" text-anchor="middle">D4</text>
+<rect class="e-gecti" x="544.5" y="64" width="42" height="28"><title>performans-d4-ac: geçti</title></rect>
+<text class="e-etiket" x="565.5" y="45" text-anchor="middle">D4 aç</text>
+<rect class="e-kirmizi" x="588.7" y="64" width="59.9" height="28"><title>ev yapmayan bot düzeltmesi: kırmızı (gerçek)</title></rect>
+<text class="e-etiket" x="618.7" y="57" text-anchor="middle">ev yapmayan</text>
+<path class="e-birlesme" d="M530.2 87 l5 6 l-5 6 l-5 -6 z"><title>test-dilim1 ana dala (f60aa65)</title></path>
+<path class="e-birlesme" d="M587.1 87 l5 6 l-5 6 l-5 -6 z"><title>performans-d4-ac ana dala (b31ec4d)</title></path>
+<rect class="e-gecti" x="16" y="141" width="14" height="10"/><text x="36" y="150">geçti</text>
+<rect class="e-yuk" x="75.0" y="141" width="14" height="10"/><text x="95.0" y="150">kırmızı: yük altında süre</text>
+<rect class="e-kirmizi" x="258.0" y="141" width="14" height="10"/><text x="278.0" y="150">kırmızı: gerçek</text>
+<rect class="e-olcum" x="379.0" y="141" width="14" height="10"/><text x="399.0" y="150">Gemini ölçümü</text>
+<path class="e-birlesme" d="M492.6 140 l5 6 l-5 6 l-5 -6 z"/><text x="503.6" y="150">ana dala</text>
+</svg></div>
+          <figcaption>Ajansız test kuyruğunun günlüğünden, 12:59–22:46. Her blok bir dalın tam kapısı. Taralı kırmızı: süre kontrolü yük altında eşiği aştı (en yavaş adım <b>1309</b>, <b>180</b> ve <b>150</b> ms; eşik 150'nin altı).</figcaption>
+        </figure>
+        <p>İlk kırmızı orkestratörün hatasıydı: tam kapıyı başka ajanlar çalışırken başlatmıştı. Sonraki ikisi yalnız görüntü koduna dokunan dallardaydı; simülasyon testleri o kodu yüklemiyor. Üçünde de eşik yerinde kaldı, dallar sakin makinede yeniden koşulup geçti. Son kırmızı gerçekti: <a href="#ev-yapmayan">ev yapmayan bot dalı</a> ana dala girmedi.</p>
+        <p>Bu döneme ait bir tuzak da kayıtta: bitişi <code>pgrep -f "kapi.sh tam"</code> ile bekleyen döngüler, desen kendi komut satırlarında da geçtiği için hiç bitmedi.</p>
+      </section>
+
+      <section id="acik">
+        <p class="bolum-etiket veri">08 · Açık kalanlar</p>
+        <h2>Henüz bitmeyenler ve sürecin bedeli</h2>
+        <p>Oyun baştan sona oynanıyor (açılış, ilk kış, liderler, kale onarımı, Taç Töreni ya da kayıp) ama bitmiş değil: dış dünya başlamadı, demir ve alet zinciri ile araştırma yok. 20 Kasım akşamı kayıtlarda 27 açık hata ve 32 açık iş vardı. Oyun 135 dosyada yaklaşık 26 bin satır; test ve araçlar 89 dosyada yaklaşık 11,6 bin satır.</p>
+        <p>Süreç ağır: tek satırlık bir düzeltme de karttan, uygulamadan, kapıdan ve doğrulayıcıdan geçiyor. Abrek bu yükü bir geçiş dönemi olarak bilerek kabul etti; temel sağlam olmazsa üstüne büyük bir iş kurulamayacağı çekincesiyle. Yükü azaltmanın planlanan yolu kuralı gevşetmek değil, güveni hak eden modelleri üst basamaklara çıkarmak.</p>
+        <h3>Öğrenilenler</h3>
+        <ul>
+          <li>Alıntıyı, piksel farkını, çıkış kodunu betik denetlediğinde modelin dikkati gerektiği yere gidiyor.</li>
+          <li>Her kural onu doğuran olayı ve kaynağındaki sözü taşıyor; yeni gelen ajan kuralın neden orada olduğunu okuyabiliyor.</li>
+        </ul>
+
+        <div class="rapor-son">
+          <ais-maskot faz="aisenit" boyut="120" konus kendiliginden aksesuar="tac"
+            data-sozler='["Ekip gece çalışıyor. Ben fenerde oturup ışığı tutuyorum. İş bölümü.","Testi gevşetmek mi? Tacım düşer.","Bu sözü de kayda geçirdiler. Yazım hatasıyla."]'></ais-maskot>
+          <div>
+            <p>Bu sayfayı ekip kayıtlardan yazdı.</p>
+            <nav class="kapilar" aria-label="Diğer derinlikler">
+              <a class="kapi" href="/ais-002/02/"><span class="kapi-no">02</span><span class="kapi-ad">Mantığına dön</span><span class="kapi-not">Oyunun kendisi nasıl işliyor</span><span class="kapi-ok" aria-hidden="true">←</span></a>
+              <a class="kapi" href="/" style="--c: var(--ha)"><span class="kapi-no">00</span><span class="kapi-ad">Ana sayfa</span><span class="kapi-not">AIS.001 ve gece arşivi</span><span class="kapi-ok" aria-hidden="true">→</span></a>
+            </nav>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
 
   <footer class="alt">
     <div class="alt-satir veri">
       <span>aisenit · AIS.002 · 03</span>
+      <span>Kaynak: oyun deposunun git geçmişi (ana dal, son commit 20 Kasım 2026 21:47) · proje kayıtları · tam kapı günlükleri · durum 21 Kasım itibarıyla</span>
     </div>
   </footer>
 </body>

@@ -1,4 +1,4 @@
-import { tohumlu } from "../lib/rastgele.js";
+import { tohumlu } from "../lib/rastgele.js?v=20261121g";
 
 const GAUSS_BOY = 1 << 16;
 let gaussTablo;

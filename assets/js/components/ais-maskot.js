@@ -1,5 +1,5 @@
-import { tohumlu, azHareket } from "../lib/rastgele.js";
-import { el } from "../lib/svg.js";
+import { tohumlu, azHareket } from "../lib/rastgele.js?v=20261121g";
+import { el } from "../lib/svg.js?v=20261121g";
 
 let sayac = 0;
 
@@ -31,7 +31,6 @@ export const SOZLER = {
     "En ince ızgaradayım. Yine de pikselim, unutmayalım.",
     "Çivilerim artık bir piksel. İnce ama keskin.",
     "Sıcak pikselim hâlâ yerinde. Bazı şeyler kalibre edilmez.",
-    "Emin değilsem ABSTAIN derim. Sessizlik de bir ölçümdür.",
   ],
 };
 
@@ -319,6 +318,71 @@ class AisMaskot extends HTMLElement {
   }
 }
 
+const ONEMLI = "a[href], button, summary, h1, h2, h3, p, figcaption, [role='button'], [tabindex]";
+
+function balonuKacir(maskot, balon) {
+  const k = maskot.getBoundingClientRect();
+  if (!k.width) return;
+  balon.classList.remove("serbest");
+  for (const ozellik of ["left", "right", "top", "bottom", "max-width", "--tx"]) balon.style.removeProperty(ozellik);
+  const onemli = [...document.querySelectorAll(ONEMLI)]
+    .filter((e) => !e.closest(".maskot, ais-maskot") && e !== document.body)
+    .map((e) => e.getBoundingClientRect())
+    .filter((r) => r.width > 0 && r.height > 0 && r.bottom > 0 && r.top < innerHeight && r.right > 0 && r.left < innerWidth);
+
+  const kesisim = (a, b) => Math.max(0, Math.min(a.r, b.right) - Math.max(a.l, b.left)) * Math.max(0, Math.min(a.b, b.bottom) - Math.max(a.t, b.top));
+  const cx = k.left + k.width / 2;
+  const PAY = 6;
+  const sonuc = [];
+  const ilkSola = balon.classList.contains("sola");
+  const ilkAlta = balon.classList.contains("alta");
+  const genislikler = ["", "11rem"];
+
+  for (const g of genislikler) {
+    balon.style.maxWidth = g;
+    const w = balon.offsetWidth;
+    const h = balon.offsetHeight;
+    for (const alta of [ilkAlta, !ilkAlta]) {
+      for (const sola of [ilkSola, !ilkSola]) {
+        const l = sola ? cx + 0.12 * w - w : cx - 0.12 * w;
+        const t = alta ? k.bottom + PAY : k.top - PAY - h;
+        const kutu = { l, t, r: l + w, b: t + h };
+        const disari = w * h - kesisim(kutu, { left: 8, right: innerWidth - 8, top: 8, bottom: innerHeight - 8 });
+        const ceza = onemli.reduce((n, r) => n + kesisim(kutu, r), 0) + disari * 6;
+        sonuc.push({ g, alta, sola, ceza });
+      }
+    }
+  }
+
+  const en = sonuc.reduce((a, b) => (b.ceza < a.ceza - 1 ? b : a));
+  balon.style.maxWidth = en.g;
+  balon.classList.toggle("sola", en.sola);
+  balon.classList.toggle("alta", en.alta);
+  if (en.ceza <= 1) return;
+
+  balon.style.maxWidth = "13rem";
+  const w = balon.offsetWidth;
+  const h = balon.offsetHeight;
+  const l = Math.max(8, Math.min(innerWidth - w - 8, cx - w / 2));
+  let secim = null;
+  for (let t = 64; t <= innerHeight - h - 8; t += 6) {
+    const kutu = { l, t, r: l + w, b: t + h };
+    const ceza = onemli.reduce((n, r) => n + kesisim(kutu, r), 0);
+    const uzak = Math.abs(t + h / 2 - (k.top + k.height / 2));
+    if (!secim || ceza < secim.ceza - 1 || (ceza <= secim.ceza + 1 && uzak < secim.uzak)) secim = { t, ceza, uzak };
+  }
+  if (!secim || secim.ceza >= en.ceza) {
+    balon.style.maxWidth = en.g;
+    return;
+  }
+  balon.classList.add("serbest");
+  balon.style.setProperty("--tx", "0px");
+  balon.style.left = `${l - k.left}px`;
+  balon.style.right = "auto";
+  balon.style.top = `${secim.t - k.top}px`;
+  balon.style.bottom = "auto";
+}
+
 export function konusmayiKur(maskot, yedekSozler) {
   const balon = document.createElement("span");
   balon.className = "maskot-balon";
@@ -328,6 +392,18 @@ export function konusmayiKur(maskot, yedekSozler) {
   maskot.title ||= "Tıkla, bir şey söylesin";
   let sira = 0;
   let sus;
+  let tazele;
+  let bekleyenKacis = 0;
+
+  const kayinca = () => {
+    if (!maskot.classList.contains("konusuyor") || bekleyenKacis) return;
+    bekleyenKacis = requestAnimationFrame(() => {
+      bekleyenKacis = 0;
+      balonuKacir(maskot, balon);
+    });
+  };
+  addEventListener("scroll", kayinca, { passive: true });
+  addEventListener("resize", kayinca);
 
   const sozler = () => {
     try {
@@ -343,9 +419,12 @@ export function konusmayiKur(maskot, yedekSozler) {
     const k = maskot.getBoundingClientRect();
     balon.classList.toggle("sola", k.left + k.width / 2 > innerWidth * 0.55);
     balon.classList.toggle("alta", k.top < 150);
+    balonuKacir(maskot, balon);
     maskot.classList.add("konusuyor");
     clearTimeout(sus);
     sus = setTimeout(() => maskot.classList.remove("konusuyor"), 5600);
+    clearTimeout(tazele);
+    tazele = setTimeout(() => balonuKacir(maskot, balon), 1500);
   };
 
   maskot.soyle = soyle;
@@ -372,6 +451,30 @@ export function konusmayiKur(maskot, yedekSozler) {
     }, { threshold: 0.6 });
     gozcu.observe(maskot);
   }
+}
+
+if (!azHareket() && matchMedia("(hover: hover) and (pointer: fine)").matches) {
+  let bekleyen = null;
+  addEventListener(
+    "pointermove",
+    (e) => {
+      if (bekleyen) return;
+      bekleyen = requestAnimationFrame(() => {
+        bekleyen = null;
+        for (const m of document.querySelectorAll(".maskot")) {
+          const k = m.getBoundingClientRect();
+          if (k.bottom < 0 || k.top > innerHeight || !k.width) continue;
+          const dx = e.clientX - (k.left + k.width / 2);
+          const dy = e.clientY - (k.top + k.height / 2);
+          const u = Math.hypot(dx, dy) || 1;
+          const g = Math.min(1, u / 260) * 3;
+          m.style.setProperty("--bak-x", ((dx / u) * g).toFixed(2));
+          m.style.setProperty("--bak-y", ((dy / u) * g * 0.7).toFixed(2));
+        }
+      });
+    },
+    { passive: true },
+  );
 }
 
 customElements.define("ais-maskot", AisMaskot);
