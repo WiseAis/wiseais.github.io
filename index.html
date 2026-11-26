@@ -21,11 +21,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..700,0..100,0..1&family=Instrument+Sans:wght@400..600&family=JetBrains+Mono:wght@400;500&display=swap">
-  <link rel="stylesheet" href="/assets/css/site.css?v=20261121g">
-  <link rel="stylesheet" href="/assets/css/sayfalar/ana.css?v=20261121g">
-  <script type="module" src="/assets/js/main.js?v=20261121g"></script>
+  <link rel="stylesheet" href="/assets/css/site.css?v=20261126a">
+  <link rel="stylesheet" href="/assets/css/sayfalar/ana.css?v=20261126a">
+  <script type="module" src="/assets/js/main.js?v=20261126a"></script>
 </head>
-<body>
+<body data-ekran="giris">
+  <gok-atmosfer></gok-atmosfer>
   <a class="atla" href="#icerik">İçeriğe geç</a>
 
   <header class="ust">
@@ -36,10 +37,16 @@
       <a href="#gozlem">Gözlem</a>
       <a href="#maskot">Maskot</a>
     </nav>
-    <p class="entegrasyon veri" data-entegrasyon title="Bu sayfada geçirdiğin süre. Her 4 saniye bir kare sayılır.">
+    <button type="button" class="entegrasyon veri" data-entegrasyon aria-expanded="false" aria-controls="ent-fis" title="Bu sayfada geçirdiğin süre. Her 4 saniye bir kare sayılır.">
       <span class="uzun">ENT</span> <b data-sure>00:00:00</b> <span class="uzun">· <span data-kare>0</span> kare</span>
-    </p>
+      <span class="ent-serit" aria-hidden="true"><i></i></span>
+    </button>
   </header>
+
+  <aside class="ent-fis veri" id="ent-fis" data-ent-fis hidden aria-label="Oturum pozlama özeti">
+    <p class="ent-fis-bas" data-ent-fis-bas>OTURUM · 0 KARE · √N = 1.0</p>
+    <p class="ent-fis-durum" data-ent-fis-durum>Henüz tek kare sayılırsın. Gürültü yüksek.</p>
+  </aside>
 
   <ol class="ray veri" data-ray aria-label="Bölümler">
     <li><a href="#giris"><span>00 · Giriş</span></a></li>
@@ -51,14 +58,14 @@
 
   <main id="icerik">
 
-    <section class="ekran giris" id="giris" data-no="00" data-ais-hedef=".giris" data-ais-konum="1 1 -78 -78" data-ais-sozler='["Merhaba, ben Ais. Tutup fırlatabilirsin beni. Kenarlardan sekerim, alışkınım.", "Şu an tek kareyim, o yüzden biraz bulanığım.", "Yukarıdaki yazı da benim gibi: kare biriktikçe netleşiyor.", "Bu gürültü benim değil, sensörün. Çoğunlukla.", "Kaydırırsan seninle gelirim. Burası yalnız gezilecek yer değil."]'>
+    <section class="ekran giris" id="giris" data-no="00" data-ais-hedef=".giris" data-ais-konum="1 1 -78 -78" data-ais-sozler='["Merhaba, ben Ais. Tutup fırlatabilirsin; kenarlardan sekerim, alışkınım.", "Bu gürültü benim değil, sensörün. Çoğunlukla.", "Yukarıdaki harfler 160 karede netleşiyor. Ben tek karedeyim, idare et.", "Yeniden pozla dersen harfler sıfırlanır. Ben sıfırlanmam, hafızam var.", "Aşağıda işler ciddileşiyor. Yine de gelirim."]'>
       <istif-tuvali metin="aisenit" kare="160" data-istif></istif-tuvali>
       <h1 class="gizli">Aisenit</h1>
 
-      <p class="giris-olcum veri" aria-hidden="true">
-        İSTİF <b data-istif-kare>000</b>/160 <span class="ayrac">·</span>
-        SNR <b data-istif-snr>0.0</b> <span class="ayrac">·</span>
-        <span class="kucuk-harf">σ</span> 0.55
+      <p class="giris-olcum veri">
+        <span class="giris-olcum-veri" aria-hidden="true">İSTİF <b data-istif-kare>000</b>/160 <span class="ayrac">·</span> SNR <b data-istif-snr>0.0</b> <span class="ayrac">·</span> <span class="kucuk-harf">σ</span> 0.55</span>
+        <span class="giris-clip-not" data-istif-clip role="status" aria-live="polite" hidden>UYDU İZİ · <span class="kucuk-harf">σ</span>-CLIP REDDETTİ</span>
+        <span class="giris-uyari" data-istif-uyari role="status" aria-live="polite" hidden><span class="giris-uyari-metin" data-istif-uyari-metin>1 kare kirli ·</span> <button type="button" class="giris-at" data-istif-at>[At]</button></span>
       </p>
 
       <div class="giris-alt">
@@ -72,7 +79,7 @@
 
     </section>
 
-    <section class="ekran proje proje-001" id="ais-001" data-no="01" style="--vurgu: var(--ha)" data-ais-hedef=".proje-gorsel" data-ais-konum="0.93 0.1" data-ais-sozler='["Bu fotoğrafı üç ışığa ayırıyorlar. Ben tek ışığım, sıramı bekliyorum.", "Hα kırmızı, [O III] yeşilimsi mavi. Ben hangisiyim, kimse söylemiyor.", "Tek bir RGB karesinden üç gaz çıkarmak. Ben tek kareden kendimi zor çıkarıyorum.", "Üçe ayrılınca daha mı net oluyorsun? Denemeye korkuyorum."]'>
+    <section class="ekran proje proje-001" id="ais-001" data-no="01" style="--vurgu: var(--ha)" data-ais-hedef=".proje-gorsel" data-ais-konum="0.93 0.1" data-ais-sozler='["Tek RGB karesinden üç ayrı gaz çıkarıyoruz. Ben tek kareden kendimi zor çıkarıyorum.", "Hα kırmızı, [O III] turkuaz. Ben hangisiyim, hâlâ tartışmalı.", "Üçe ayrılınca daha mı net oluyorsun? Denemeye korkuyorum.", "Görselin üstüne fırlat beni istersen. Kanal kayması nasıl olurmuş gör."]'>
       <p class="kunye veri"><b>AIS.001</b> · 01</p>
 
       <div class="proje-gorsel" data-belir>
@@ -80,39 +87,75 @@
       </div>
 
       <div class="proje-metin">
-        <p class="proje-ad veri" data-belir>Hahbolllayristirma · deneysel</p>
-        <h2 data-belir style="--sira:1">Bir fotoğrafın içindeki ışığı geri ayırmak.</h2>
-        <p class="proje-ozet" data-belir style="--sira:2">Tek bir RGB karesinden Hα, [O&nbsp;III] ve Hβ'yı geri çağırma denemesi.</p>
-        <nav class="kapilar ince" aria-label="AIS.001 derinlikleri" data-belir style="--sira:3">
-          <a class="kapi" href="/ais-001/02/"><span class="kapi-no">02</span><span class="kapi-ad">Mantığı</span><span class="kapi-ok" aria-hidden="true">→</span></a>
-          <a class="kapi" href="/ais-001/03/"><span class="kapi-no">03</span><span class="kapi-ad">Teknik kayıt</span><span class="kapi-ok" aria-hidden="true">→</span></a>
-        </nav>
+        <div class="enstruman-ust" data-belir>
+          <div class="emisyon-cetvel veri" aria-label="Görünür tayf emisyon çizgileri: 380–700 nanometre">
+            <div class="cetvel-eksen" aria-hidden="true">
+              <span class="cetvel-uc">380 <span class="kucuk-harf">nm</span></span>
+              <span class="cetvel-uc">700 <span class="kucuk-harf">nm</span></span>
+            </div>
+            <div class="cetvel-hat">
+              <span class="cetvel-centik cetvel-ust cetvel-sol" data-cetvel="hb" style="--pos:33.16%;--c:#8aa2ff">
+                <i aria-hidden="true"></i>
+                <span class="cetvel-etiket"><b>486.1</b> <span class="kucuk-harf">Hβ</span></span>
+              </span>
+              <span class="cetvel-centik cetvel-alt cetvel-sag" data-cetvel="oiii" style="--pos:37.72%;--c:var(--oiii)">
+                <i aria-hidden="true"></i>
+                <span class="cetvel-etiket"><b>500.7</b> <span class="kucuk-harf">[O&nbsp;III]</span></span>
+              </span>
+              <span class="cetvel-centik cetvel-ust cetvel-sol" data-cetvel="ha" style="--pos:86.34%;--c:var(--ha)">
+                <i aria-hidden="true"></i>
+                <span class="cetvel-etiket"><b>656.3</b> <span class="kucuk-harf">Hα</span></span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="proje-govde">
+          <p class="proje-ad veri" data-belir>Hahbolllayristirma · deneysel</p>
+          <h2 data-belir style="--sira:1">Bir fotoğrafın içindeki ışığı geri ayırmak.</h2>
+          <p class="proje-ozet" data-belir style="--sira:2">Tek bir RGB karesinden Hα, [O&nbsp;III] ve Hβ'yı geri çağırma denemesi.</p>
+          <nav class="kapilar ince" aria-label="AIS.001 derinlikleri" data-belir style="--sira:3">
+            <a class="kapi" href="/ais-001/02/"><span class="kapi-no">02</span><span class="kapi-ad">Mantığı</span><span class="kapi-ok" aria-hidden="true">→</span></a>
+            <a class="kapi" href="/ais-001/03/"><span class="kapi-no">03</span><span class="kapi-ad">Teknik kayıt</span><span class="kapi-ok" aria-hidden="true">→</span></a>
+          </nav>
+        </div>
       </div>
     </section>
 
-    <section class="ekran proje proje-002" id="ais-002" data-no="01" style="--vurgu: var(--toz)" data-ais-hedef=".krallik-kare" data-ais-konum="0.655 0.07" data-ais-fener data-ais-sozler='["Oyunda fenerdeyim. Yardım ettikçe sönüyorum, burada şarj oluyorum.", "Yanımdaki köylü %20 hızlı çalışır. Sadece bakıyorum, işe yarıyor.", "Gökten düşerken parçalarımı kaybettim. Prensle geceleri arıyoruz.", "Krallık çökerse dünyayı bir kez durdururum. İkincisine ışığım yetmez."]'>
+    <section class="ekran proje proje-002" id="ais-002" data-no="01" style="--vurgu: var(--toz)" data-ais-hedef=".krallik-kare" data-ais-konum="0.655 0.07" data-ais-fener data-ais-sozler='["Oyunda fenerdeyim. Yardım ettikçe sönüyorum, burada şarj oluyorum.", "Yanımdaki köylü %20 hızlı çalışıyor. Sadece bakıyorum, işe yarıyor.", "Her değişiklikte 200 test oyunu oynanıyor. Bazılarında kaleyi yakıyorlar.", "Krallık çökerse dünyayı bir kez durdururum. İkincisine ışığım yetmez."]'>
       <p class="kunye veri"><b>AIS.002</b> · 01</p>
 
       <div class="proje-gorsel" data-belir>
-        <figure class="krallik-kare">
-          <img src="/assets/img/krallik/gercek-01-2000.jpg" srcset="/assets/img/krallik/gercek-01-1000.jpg 1000w, /assets/img/krallik/gercek-01-2000.jpg 2000w" sizes="(max-width: 760px) 100vw, 55vw" width="2000" height="1250" alt="Oyundan bir kare: gece, ormanla çevrili bir tepede dört kuleli taş kale. Avlunun ortasında bir ateş yanıyor, solda dereyle köprü ve su değirmeni, çevrede çam ağaçları ve küçük evler görünüyor." loading="lazy">
-          <span class="krallik-fener" aria-hidden="true"></span>
-          <figcaption class="krallik-etiket veri">Oyun içi · gerçek kare</figcaption>
-        </figure>
+        <krallik-sahne></krallik-sahne>
       </div>
 
       <div class="proje-metin">
-        <p class="proje-ad veri" data-belir>Krallık · yapımı süren oyun</p>
-        <h2 data-belir style="--sira:1">Sönmüş bir krallığı ocak ocak yeniden yakmak.</h2>
-        <p class="proje-ozet" data-belir style="--sira:2">Tarayıcıda oynanan, stilize 3B bir yerleşim ve hikâye oyunu; kodunu ve testlerini bir yapay zekâ ajan ekibi yazıyor. Oyunu tasarladık ve ekibin kurallarını koyduk: her işi, onu yapmamış bir ajan onaylar; her birleştirmede 200 test oyunu oynanır.</p>
-        <nav class="kapilar ince" aria-label="AIS.002 derinlikleri" data-belir style="--sira:3">
-          <a class="kapi" href="/ais-002/02/"><span class="kapi-no">02</span><span class="kapi-ad">Mantığı</span><span class="kapi-ok" aria-hidden="true">→</span></a>
-          <a class="kapi" href="/ais-002/03/"><span class="kapi-no">03</span><span class="kapi-ad">Ajan ekibi</span><span class="kapi-ok" aria-hidden="true">→</span></a>
-        </nav>
+        <div class="enstruman-ust" data-belir>
+          <div class="krallik-dongu veri" aria-label="Krallık sahne döngüsü">
+            <ol class="dongu-serit">
+              <li><button type="button" class="dongu-adim etkin" data-dongu="gece" data-sahne-indeks="0" aria-pressed="true">OCAK</button></li>
+              <li><button type="button" class="dongu-adim" data-dongu="gorev" data-sahne-indeks="2" aria-pressed="false">GÖREV</button></li>
+              <li><button type="button" class="dongu-adim" data-dongu="kis" data-sahne-indeks="4" aria-pressed="false">KIŞ</button></li>
+              <li><button type="button" class="dongu-adim" data-dongu="lider" data-sahne-indeks="7" aria-pressed="false">LİDER</button></li>
+              <li><button type="button" class="dongu-adim" data-dongu="tac" data-sahne-indeks="8" aria-pressed="false">TAÇ</button></li>
+            </ol>
+            <p class="krallik-sistem">1 GÜN = 240 SN · 200 TEST OYUNU / PR</p>
+          </div>
+        </div>
+
+        <div class="proje-govde">
+          <p class="proje-ad veri" data-belir>Krallık · yapımı süren oyun</p>
+          <h2 data-belir style="--sira:1">Sönmüş bir krallığı ocak ocak yeniden yakmak.</h2>
+          <p class="proje-ozet" data-belir style="--sira:2">Tarayıcıda oynanan, stilize 3B bir yerleşim ve hikâye oyunu; kodunu ve testlerini bir yapay zekâ ajan ekibi yazıyor. Oyunu tasarladık ve ekibin kurallarını koyduk: her işi, onu yapmamış bir ajan onaylar; her birleştirmede 200 test oyunu oynanır.</p>
+          <nav class="kapilar ince" aria-label="AIS.002 derinlikleri" data-belir style="--sira:3">
+            <a class="kapi" href="/ais-002/02/"><span class="kapi-no">02</span><span class="kapi-ad">Mantığı</span><span class="kapi-ok" aria-hidden="true">→</span></a>
+            <a class="kapi" href="/ais-002/03/"><span class="kapi-no">03</span><span class="kapi-ad">Ajan ekibi</span><span class="kapi-ok" aria-hidden="true">→</span></a>
+          </nav>
+        </div>
       </div>
     </section>
 
-    <section class="ekran gozlem-ozet" id="gozlem" data-no="G" style="--vurgu: var(--oiii)" data-ais-hedef=".toplam" data-ais-konum="0.12 1 0 130" data-ais-sozler='["Dört gece, 2.597 kare. Ben ilk karede sıkılmıştım.", "Hepsi takipsiz tripodla. Gökyüzü kaçıyor, biz kısa kısa yakalıyoruz.", "Andromeda her baktığımda biraz yaklaşmış gibi geliyor. Çünkü yaklaşıyor."]'>
+    <section class="ekran gozlem-ozet" id="gozlem" data-no="G" style="--vurgu: var(--oiii)" data-ais-hedef=".gozlem-telemetri" data-ais-konum="0.08 1 0 68" data-ais-sozler='["Dört gece, 2.597 kare. Ben ilk karede sıkılmıştım.", "Andromeda her baktığımda biraz yaklaşmış gibi geliyor. Çünkü yaklaşıyor.", "Hepsi takipsiz tripodla. Gökyüzü kaçıyor, kısa kısa yakalıyoruz.", "Bazen kadrajdan Starlink geçiyor. Onları istiften atıyoruz; kibar bir şekilde."]'>
       <p class="kunye veri"><b>GÖZLEM</b> · gece arşivi</p>
 
       <div class="gozlem-bas">
@@ -122,26 +165,62 @@
           <div><dt>Hedef</dt><dd>6</dd></div>
           <div><dt>Kare</dt><dd>5.160</dd></div>
           <div><dt>Entegrasyon</dt><dd>8 sa 2 dk</dd></div>
-        </dl>      </div>
-
-      <div class="mozaik">
-        <a class="kare kare-buyuk" href="/gozlem/" data-belir style="--sira:1">
-          <img src="/assets/img/gozlem/ifn-1000.jpg" srcset="/assets/img/gozlem/ifn-1000.jpg 1000w, /assets/img/gozlem/ifn-2400.jpg 2400w" sizes="(max-width: 760px) 100vw, 55vw" alt="Integrated Flux Nebula: LBN 552 ve LDN 1228 çevresinde kahverengi ve mavi toz bulutları" loading="lazy">
-          <span class="kare-etiket veri" lang="en"><b>G.01</b> IFN · 2597 × 8 sn</span>
-        </a>
-        <a class="kare" href="/gozlem/" data-belir style="--sira:2">
-          <img src="/assets/img/gozlem/andromeda-1000.jpg" alt="Andromeda galaksisi, yıldız alanının ortasında eğik bir ışık diski" loading="lazy">
-          <span class="kare-etiket veri" lang="en"><b>G.02</b> M31 · 1005 × 3 sn</span>
-        </a>
-        <a class="kare" href="/gozlem/" data-belir style="--sira:3">
-          <img src="/assets/img/gozlem/elep-1000.jpg" alt="Fil Hortumu bulutsusu, IC 1396 çevresinde kırmızı H-alfa bulutu" loading="lazy">
-          <span class="kare-etiket veri" lang="en"><b>G.03</b> IC 1396 · 635 × 4 sn</span>
-        </a>
-        <a class="kare" href="/gozlem/" data-belir style="--sira:4">
-          <img src="/assets/img/gozlem/m42-1000.jpg" alt="Orion bulutsusu, yıldız alanının ortasında mavi-pembe bir parıltı" loading="lazy">
-          <span class="kare-etiket veri" lang="en"><b>G.06</b> M42 · 168 × 2 sn</span>
-        </a>
+        </dl>
+        <div class="gozlem-araclar" data-belir style="--sira:3">
+          <div class="gozlem-mod veri" role="group" aria-label="Görüntü tonu">
+            <button type="button" data-gozlem-mod="gerilmis" class="etkin" aria-pressed="true">Gerilmiş</button>
+            <span class="gozlem-mod-ayrac" aria-hidden="true">/</span>
+            <button type="button" data-gozlem-mod="lineer" aria-pressed="false">Lineer (ham)</button>
+            <span class="gozlem-mod-tus" aria-hidden="true">L</span>
+          </div>
+          <p class="gozlem-telemetri veri" data-gozlem-telemetri>TOPLAM · 6&nbsp;HEDEF · SABİT&nbsp;TRİPOD · 5.160&nbsp;KARE</p>
+        </div>
       </div>
+
+      <gozlem-masa class="mozaik">
+        <a class="kare kare-buyuk" href="/gozlem/#ifn" data-belir style="--sira:1" data-kod="G.01" data-hedef="IFN" data-takimyildiz="Cepheus" data-yer="Eşkel" data-optik="75&nbsp;mm&nbsp;f/1.8" data-poz="2597&nbsp;×&nbsp;8&nbsp;sn">
+          <img src="/assets/img/gozlem/ifn-1000.jpg" srcset="/assets/img/gozlem/ifn-1000.jpg 1000w, /assets/img/gozlem/ifn-2400.jpg 2400w" sizes="(max-width: 760px) 100vw, 40vw" alt="Integrated Flux Nebula: LBN 552 ve LDN 1228 çevresinde kahverengi ve mavi toz bulutları" loading="lazy">
+          <span class="kare-etiket veri">
+            <span class="kare-ust"><b>G.01</b> <span lang="en">IFN</span></span>
+            <span class="kare-poz">2597&nbsp;×&nbsp;8&nbsp;sn</span>
+          </span>
+        </a>
+        <a class="kare" href="/gozlem/#andromeda" data-belir style="--sira:2" data-kod="G.02" data-hedef="M31 Andromeda" data-takimyildiz="Andromeda" data-yer="Eşkel" data-optik="75&nbsp;mm&nbsp;f/1.8" data-poz="1005&nbsp;×&nbsp;3&nbsp;sn">
+          <img src="/assets/img/gozlem/andromeda-1000.jpg" alt="Andromeda galaksisi, yıldız alanının ortasında eğik bir ışık diski" loading="lazy">
+          <span class="kare-etiket veri">
+            <span class="kare-ust"><b>G.02</b> <span lang="en">M31</span></span>
+            <span class="kare-poz">1005&nbsp;×&nbsp;3&nbsp;sn</span>
+          </span>
+        </a>
+        <a class="kare" href="/gozlem/#hortum" data-belir style="--sira:3" data-kod="G.03" data-hedef="Fil Hortumu" data-takimyildiz="Cepheus" data-yer="İstanbul" data-optik="75&nbsp;mm&nbsp;f/1.8" data-poz="635&nbsp;×&nbsp;4&nbsp;sn">
+          <img src="/assets/img/gozlem/elep-1000.jpg" alt="Fil Hortumu bulutsusu, IC 1396 çevresinde kırmızı H-alfa bulutu" loading="lazy">
+          <span class="kare-etiket veri">
+            <span class="kare-ust"><b>G.03</b> <span lang="en">IC 1396</span></span>
+            <span class="kare-poz">635&nbsp;×&nbsp;4&nbsp;sn</span>
+          </span>
+        </a>
+        <a class="kare" href="/gozlem/#veil" data-belir style="--sira:4" data-kod="G.04" data-hedef="Peçe Bulutsusu" data-takimyildiz="Kuğu" data-yer="İstanbul" data-optik="75&nbsp;mm&nbsp;f/1.6" data-poz="535&nbsp;×&nbsp;3&nbsp;sn">
+          <img src="/assets/img/gozlem/veil-1000.jpg" alt="Peçe bulutsusu, yıldız alanının içinde kırmızı ve turkuaz iki ince yay" loading="lazy">
+          <span class="kare-etiket veri">
+            <span class="kare-ust"><b>G.04</b> Peçe</span>
+            <span class="kare-poz">535&nbsp;×&nbsp;3&nbsp;sn</span>
+          </span>
+        </a>
+        <a class="kare" href="/gozlem/#ngc7000" data-belir style="--sira:5" data-kod="G.05" data-hedef="Kuzey Amerika" data-takimyildiz="Kuğu" data-yer="İstanbul" data-optik="75&nbsp;mm&nbsp;f/1.8" data-poz="220&nbsp;×&nbsp;3&nbsp;sn">
+          <img src="/assets/img/gozlem/ngc7000-1000.jpg" alt="Kuzey Amerika bulutsusu NGC 7000 ve yanında Pelikan bulutsusu" loading="lazy">
+          <span class="kare-etiket veri">
+            <span class="kare-ust"><b>G.05</b> <span lang="en">NGC 7000</span></span>
+            <span class="kare-poz">220&nbsp;×&nbsp;3&nbsp;sn</span>
+          </span>
+        </a>
+        <a class="kare kare-genis" href="/gozlem/#m42" data-belir style="--sira:6" data-kod="G.06" data-hedef="Orion Bulutsusu" data-takimyildiz="Avcı" data-yer="Marmara Ereğlisi" data-optik="75&nbsp;mm&nbsp;f/1.8" data-poz="168&nbsp;×&nbsp;2&nbsp;sn">
+          <img src="/assets/img/gozlem/m42-1000.jpg" alt="Orion bulutsusu, yıldız alanının ortasında mavi-pembe bir parıltı" loading="lazy">
+          <span class="kare-etiket veri">
+            <span class="kare-ust"><b>G.06</b> <span lang="en">M42</span></span>
+            <span class="kare-poz">168&nbsp;×&nbsp;2&nbsp;sn</span>
+          </span>
+        </a>
+      </gozlem-masa>
 
       <a class="gozlem-git veri" href="/gozlem/" data-belir>Gözlem defterini aç <span aria-hidden="true">→</span></a>
     </section>
@@ -155,7 +234,7 @@
       </div>
 
       <maskot-evrim>
-        <div class="evrim-sahne">
+        <div class="evrim-sahne" data-izgara="16">
           <ais-maskot faz="ais" boyut="180" konus kendiliginden data-evrim-maskot></ais-maskot>
         </div>
         <div class="evrim-kontrol">
@@ -190,11 +269,14 @@
   <footer class="alt">
     <div class="alt-ust">
       <p class="alt-soz">Bu sayfada <b data-sure>00:00:00</b> pozlandın. <span class="isik-2">Biraz daha kalırsan sinyal artar.</span></p>
-      <ais-maskot faz="aisenit" boyut="88" konus></ais-maskot>
+      <ais-maskot faz="aisenit" boyut="88" konus data-sozler='["Aisenit · nadir mineral. Sertlik: Mohs 7. Sabır: 2597 × 8 sn.", "Sıcak pikselim hâlâ yerinde. Bazı şeyler kalibre edilmez.", "Sayfa bitti. Ama sensör hâlâ açık; aşağıyı biraz daha zorlayabilirsin."]'></ais-maskot>
     </div>
     <div class="alt-satir veri">
       <span>aisenit · Abrek · İstanbul, 2026</span>
-      <span><a href="/ais-001/02/">AIS.001</a> · <a href="/ais-002/02/">AIS.002</a> · <a href="/gozlem/">Gözlem</a></span>
+      <span class="alt-baglar">
+        <a href="/ais-001/02/">AIS.001</a> · <a href="/ais-002/02/">AIS.002</a> · <a href="/gozlem/">Gözlem</a>
+        <button type="button" class="kk-tetik veri" data-kk-tetik title="Karanlık kare (3 kez dokun veya basılı tut)"><span class="kk-nokta" aria-hidden="true"></span>00-ALT</button>
+      </span>
     </div>
   </footer>
 <script data-goatcounter="https://wiseais.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>

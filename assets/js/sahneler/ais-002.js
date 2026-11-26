@@ -1,5 +1,5 @@
-import { el, svg, RENK } from "../lib/svg.js?v=20261121g";
-import { tohumlu } from "../lib/rastgele.js?v=20261121g";
+import { el, svg, RENK } from "../lib/svg.js?v=20261126a";
+import { tohumlu } from "../lib/rastgele.js?v=20261126a";
 
 const SICAK = "#ffd29a";
 const SOGUK = "#8aa2ff";

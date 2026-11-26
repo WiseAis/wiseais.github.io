@@ -1,4 +1,4 @@
-import { el, svg, RENK } from "../lib/svg.js?v=20261121g";
+import { el, svg, RENK } from "../lib/svg.js?v=20261126a";
 
 const CIZGILER = [
   { anahtar: "Ha", veriAnahtar: "Ha", ad: "Fiziksel Hα", renk: RENK.ha },

@@ -1,8 +1,8 @@
-import { azHareket } from "../lib/rastgele.js?v=20261121g";
+import { azHareket } from "../lib/rastgele.js?v=20261126a";
 
 const KAYIT = {
-  "ais-001": () => import("../sahneler/ais-001.js?v=20261121g"),
-  "ais-002": () => import("../sahneler/ais-002.js?v=20261121g"),
+  "ais-001": () => import("../sahneler/ais-001.js?v=20261126a"),
+  "ais-002": () => import("../sahneler/ais-002.js?v=20261126a"),
 };
 
 class SahneCizim extends HTMLElement {
