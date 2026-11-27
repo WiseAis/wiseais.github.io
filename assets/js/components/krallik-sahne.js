@@ -1,4 +1,4 @@
-import { tohumlu, azHareket } from "../lib/rastgele.js?v=20261126a";
+import { tohumlu, azHareket } from "../lib/rastgele.js?v=20261127a";
 
 const KOK = "/assets/img/krallik/";
 const SIZES = "(max-width: 760px) 100vw, 55vw";

@@ -145,12 +145,24 @@
     padding-right: var(--kenar);
     padding-top: calc(var(--ust-bar) + var(--a-12));
   }
+
+  .son {
+    padding-top: calc(var(--ust-bar) + var(--a-12));
+  }
   .adim-gorsel {
     order: -1;
     min-height: 0;
   }
   .kapak-rehber {
     display: none;
+  }
+}
+
+@media (max-width: 520px) {
+
+  .kapak-dizin {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--a-1);
   }
 }
 

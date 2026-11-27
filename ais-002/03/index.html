@@ -10,100 +10,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..700,0..100,0..1&family=Instrument+Sans:wght@400..600&family=JetBrains+Mono:wght@400;500&display=swap">
-  <link rel="stylesheet" href="/assets/css/site.css?v=20261126a">
-  <link rel="stylesheet" href="/assets/css/sayfalar/rapor.css?v=20261126a">
-  <style>
-    .rapor-bas h1 { font-size: clamp(2.2rem, 1.3rem + 3vw, 3.75rem); line-height: 1.04; }
-    .rapor-bas .acilis {
-      margin-top: var(--a-4);
-      max-width: 62ch;
-      color: var(--isik-2);
-      line-height: 1.65;
-    }
-    .otuz-kap { padding: var(--a-8) var(--kenar) 0; }
-    .otuz {
-      display: grid;
-      grid-template-columns: minmax(12rem, 15rem) minmax(0, 1fr);
-      gap: var(--a-6) var(--a-12);
-      padding: var(--a-6);
-      background: var(--gok-0);
-      border: 1px solid var(--cizgi-guclu);
-      border-radius: var(--yaricap);
-    }
-    .otuz-rol .veri { color: var(--vurgu); }
-    .otuz-rol p + p { margin-top: var(--a-2); }
-    .otuz-rol p:not(.veri) { font-size: var(--t-kucuk); line-height: 1.55; color: var(--isik-2); }
-    .otuz-sag { display: grid; gap: var(--a-6); }
-    .otuz-sayi {
-      display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      gap: var(--a-4);
-      margin: 0;
-    }
-    .otuz-sayi > div { display: grid; align-content: start; gap: 0.15rem; }
-    .otuz-sayi dd {
-      order: -1;
-      margin: 0;
-      font-family: var(--font-baslik);
-      font-size: 2rem;
-      line-height: 1.05;
-      color: var(--isik);
-    }
-    .otuz-sayi dt { font-size: var(--t-kucuk); color: var(--isik); }
-    .otuz-sayi .otuz-alt { font-size: var(--t-mikro); line-height: 1.4; color: var(--isik-3); }
-    .otuz-olay {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: var(--a-4);
-      margin: 0;
-      padding: var(--a-4) 0 0;
-      list-style: none;
-      border-top: 1px solid var(--cizgi);
-      counter-reset: olay;
-    }
-    .otuz-olay li {
-      counter-increment: olay;
-      font-size: var(--t-kucuk);
-      line-height: 1.55;
-      color: var(--isik-2);
-    }
-    .otuz-olay li::before {
-      content: "0" counter(olay);
-      display: block;
-      font-family: var(--font-veri);
-      font-size: var(--t-mikro);
-      color: var(--isik-3);
-    }
-    .otuz-olay a {
-      display: block;
-      color: var(--isik);
-      font-weight: 600;
-      text-decoration-color: var(--vurgu);
-    }
-    .otuz-olay a::after { content: " ↓"; font-weight: 400; color: var(--vurgu); }
-    .metin [id] { scroll-margin-top: calc(var(--ust-bar) + var(--a-6)); }
-    .metin details.teknik { margin: var(--a-6) 0; }
-    .metin details.teknik summary { font-size: var(--t-kucuk); color: var(--isik-2); }
-    .metin .teknik-govde ul { padding-left: 1.2rem; }
-    .alinti-notu { margin-top: calc(var(--a-2) * -1); color: var(--isik-3); }
-    @media (min-width: 1400px) {
-      .otuz-kap { padding-inline: max(var(--kenar), calc((100% - 80rem) / 2)); }
-    }
-    @media (max-width: 1100px) {
-      .otuz-sayi { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    }
-    @media (max-width: 960px) {
-      .otuz { grid-template-columns: minmax(0, 1fr); padding: var(--a-4); }
-      .otuz-olay { grid-template-columns: minmax(0, 1fr); }
-    }
-    @media (max-width: 520px) {
-      .otuz-sayi { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .otuz-sayi dd { font-size: 1.6rem; }
-    }
-  </style>
-  <script type="module" src="/assets/js/main.js?v=20261126a"></script>
+  <link rel="stylesheet" href="/assets/css/site.css?v=20261127a">
+  <link rel="stylesheet" href="/assets/css/sayfalar/rapor.css?v=20261127a">
+  <script type="module" src="/assets/js/main.js?v=20261127a"></script>
 </head>
-<body style="--vurgu: var(--toz)">
+<body class="rapor-sayfa" style="--vurgu: var(--toz)" data-sayfa="ais-002-03" data-ekran="roller" data-ais-tac>
+  <gok-atmosfer></gok-atmosfer>
   <a class="atla" href="#icerik">İçeriğe geç</a>
 
   <header class="ust">
@@ -114,10 +26,16 @@
       <a href="/ais-002/02/">02</a>
       <a href="/ais-002/03/" aria-current="page">03</a>
     </nav>
-    <p class="entegrasyon veri" data-entegrasyon title="Bu sayfada geçirdiğin süre.">
-      <span class="uzun">ENT</span> <b data-sure>00:00:00</b>
-    </p>
+    <button type="button" class="entegrasyon veri" data-entegrasyon aria-expanded="false" aria-controls="ent-fis" title="Bu oturumda geçirdiğin süre. Her 4 saniye bir kare sayılır.">
+      <span class="uzun">ENT</span> <b data-sure>00:00:00</b> <span class="uzun">· <span data-kare>0</span> kare</span>
+      <span class="ent-serit" aria-hidden="true"><i></i></span>
+    </button>
   </header>
+
+  <aside class="ent-fis veri" id="ent-fis" data-ent-fis hidden aria-label="Oturum pozlama özeti">
+    <p class="ent-fis-bas" data-ent-fis-bas>OTURUM · 0 KARE · √N = 1.0</p>
+    <p class="ent-fis-durum" data-ent-fis-durum>Henüz tek kare sayılırsın. Gürültü yüksek.</p>
+  </aside>
   <div class="ilerleme" data-ilerleme aria-hidden="true"></div>
 
   <header class="rapor-bas">
@@ -164,7 +82,7 @@
     </div>
   </section>
 
-  <div class="rapor">
+  <div class="rapor" data-rapor-etkilesim>
     <nav class="icindekiler" aria-label="Bölümler" data-ray>
       <p class="veri">İçindekiler</p>
       <ol>
@@ -377,17 +295,22 @@ cikis=0</pre>
         <p>Kural bilerek simetrik değil: aynı iş türünde art arda üç temiz iş bir basamak çıkarır; tek bir uydurma iddia, tek ağır kaçırma ya da tek test gevşetme bir basamak indirir. Defter Claude modellerini de kapsıyor.</p>
         <div class="tablo-kap">
           <table class="karne">
-            <caption class="veri">Güven defteri · 20 Kasım akşamı</caption>
+            <caption class="veri">Güven defteri · 25 Kasım</caption>
             <thead>
               <tr><th scope="col">Model</th><th scope="col">İş türü</th><th scope="col">Basamak</th><th scope="col">Defterden</th></tr>
             </thead>
             <tbody>
-              <tr><td>Gemini Neon</td><td>uygulama</td><td><span class="basamak d1">D1</span></td><td>Beş temiz iş üst üste; ikisinde kartın açığını koddan yakaladı.</td></tr>
-              <tr><td>Gemini Neon</td><td>ikinci görüş</td><td><span class="basamak d0">D0</span></td><td>İlk işinde, oyun çalışınca hata verecek bir değişken çakışmasını kaçırdı.</td></tr>
+              <tr><td>Gemini Neon</td><td>büyük uygulama</td><td><span class="basamak d0">D0</span></td><td>Bir yoklama işinde kartta olmayan bir test denetimini sildi; D1'den indi. Sonraki büyük işleri temiz.</td></tr>
+              <tr><td>Gemini Neon</td><td>dar uygulama</td><td><span class="basamak d2">D2</span></td><td>Art arda üç temiz işle D1'den çıktı; kırmızı testi önce yazıp sonra yeşile çeviriyor.</td></tr>
+              <tr><td>Gemini Neon</td><td>ikinci görüş</td><td><span class="basamak d1">D1</span></td><td>İlk işinde bir değişken çakışmasını kaçırdı; sonraki yoklamada açılan 24 iddianın 24'ü tuttu.</td></tr>
+              <tr><td>Gemini Neon</td><td>kod haritası</td><td><span class="basamak d1">D1</span></td><td>Alıntı denetimli üç haritada 127 alıntının hepsi dosyada bulundu.</td></tr>
+              <tr><td>Gemini Neon</td><td>görsel kabul</td><td><span class="basamak d0">D0</span></td><td>İlk tarayıcı işinde 32 durumu ölçtü; gözlemleri görüntüyle tuttu.</td></tr>
+              <tr><td>Gemini Neon</td><td>kör öneri</td><td><span class="basamak d0">D0</span></td><td>İlk önerisinden beş fikir karta girdi; dört kaynak iddiası tutmadı.</td></tr>
               <tr><td>Gemini Hydrogen</td><td>kod haritası</td><td><span class="basamak d1">D1</span></td><td>Bir haritada 148 alıntının hepsi tuttu; bir başkasında biçim hatası.</td></tr>
               <tr><td>Gemini Hydrogen</td><td>görsel kabul</td><td><span class="basamak d0">D0</span></td><td>Pikselce aynı iki görüntüde fark gördü; D1'den indi.</td></tr>
-              <tr><td>Gemini Argon</td><td>ikinci görüş</td><td><span class="basamak d0">D0</span></td><td>İlk altı işin her birinde gerçek hata buldu; sonra iki kez kartta olmayanı kartta varmış gibi yazdı.</td></tr>
+              <tr><td>Gemini Argon</td><td>ikinci görüş</td><td><span class="basamak d0">D0</span></td><td>İlk altı işin her birinde gerçek hata buldu; sonra iki kez kartta olmayanı kartta varmış gibi yazdı. 25 Kasım'dan beri Abrek'in kararıyla kullanılmıyor.</td></tr>
               <tr><td>Sonnet 5.5</td><td>uygulama</td><td><span class="basamak d1">D1</span></td><td>Kapılar ve test araçlarının diff'i her seferinde temiz.</td></tr>
+              <tr><td>Sonnet 5.5</td><td>ince simülasyon</td><td><span class="basamak d1">D1</span></td><td>Yeni karakter yokken oyunun ana dalla birebir aynı oynandığını betikle kanıtladı; bağımsız doğrulama iki orta bulgu çıkardı.</td></tr>
               <tr><td>Sonnet 5.5</td><td>ikinci görüş</td><td><span class="basamak d0">D0</span></td><td>Güçlü; bir kanıtsız ifade: “dosya yok” dedi, dosya erişiminin dışındaydı.</td></tr>
               <tr><td>Opus 5.5</td><td>tasarım kartı</td><td><span class="basamak d1">D1</span></td><td>Koddan doğrulamadığı ölçüler yüzünden ikinci görüş şart.</td></tr>
             </tbody>
@@ -585,9 +508,7 @@ ayrı doğrulayıcı); Abrek'in cevabı öneriyi onaylıyor.</pre>
           <li>Her kural onu doğuran olayı ve kaynağındaki sözü taşıyor; yeni gelen ajan kuralın neden orada olduğunu okuyabiliyor.</li>
         </ul>
 
-        <div class="rapor-son">
-          <ais-maskot faz="aisenit" boyut="120" konus kendiliginden aksesuar="tac"
-            data-sozler='["Ekip gece çalışıyor. Ben fenerde oturup ışığı tutuyorum. İş bölümü.","Testi gevşetmek mi? Tacım düşer.","Bu sözü de kayda geçirdiler. Yazım hatasıyla."]'></ais-maskot>
+        <div class="rapor-son" data-ais-ev>
           <div>
             <p>Bu sayfayı ekip kayıtlardan yazdı.</p>
             <nav class="kapilar" aria-label="Diğer derinlikler">
@@ -603,7 +524,10 @@ ayrı doğrulayıcı); Abrek'in cevabı öneriyi onaylıyor.</pre>
   <footer class="alt">
     <div class="alt-satir veri">
       <span>aisenit · AIS.002 · 03</span>
-      <span>Kaynak: oyun deposunun git geçmişi (ana dal, son commit 20 Kasım 2026 21:47) · proje kayıtları · tam kapı günlükleri · durum 21 Kasım itibarıyla</span>
+      <span class="alt-baglar">
+        <span>Kaynak: oyun deposunun git geçmişi (ana dal, son commit 20 Kasım 2026 21:47) · proje kayıtları · tam kapı günlükleri · durum 21 Kasım itibarıyla</span>
+        <button type="button" class="kk-tetik veri" data-kk-tetik title="Karanlık kare (3 kez dokun veya basılı tut)"><span class="kk-nokta" aria-hidden="true"></span>00-ALT</button>
+      </span>
     </div>
   </footer>
 <script data-goatcounter="https://wiseais.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>

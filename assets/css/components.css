@@ -94,7 +94,289 @@ body[data-ekran="maskot"] {
   --gok-y: 42%;
 }
 
-body[data-ekran="alt"] {
+.rapor-sayfa .gok-isima {
+  opacity: 0.45;
+}
+
+body[data-sayfa="ais-001-02"][data-ekran="kapak"] {
+  --gok-renk-1: rgba(255, 79, 97, 0.12);
+  --gok-renk-2: rgba(28, 50, 90, 0.3);
+  --gok-x: 68%;
+  --gok-y: 42%;
+}
+
+body[data-sayfa="ais-001-02"][data-ekran="soru"] {
+  --gok-renk-1: rgba(138, 162, 255, 0.13);
+  --gok-renk-2: rgba(255, 79, 97, 0.1);
+  --gok-x: 64%;
+  --gok-y: 46%;
+}
+
+body[data-sayfa="ais-001-02"][data-ekran="cozum"] {
+  --gok-renk-1: rgba(69, 214, 200, 0.11);
+  --gok-renk-2: rgba(28, 50, 90, 0.32);
+  --gok-x: 66%;
+  --gok-y: 48%;
+}
+
+body[data-sayfa="ais-001-02"][data-ekran="sentetik"] {
+  --gok-renk-1: rgba(138, 162, 255, 0.14);
+  --gok-renk-2: rgba(69, 214, 200, 0.08);
+  --gok-x: 62%;
+  --gok-y: 50%;
+}
+
+body[data-sayfa="ais-001-02"][data-ekran="komsuluk"] {
+  --gok-renk-1: rgba(224, 162, 106, 0.12);
+  --gok-renk-2: rgba(28, 50, 90, 0.28);
+  --gok-x: 64%;
+  --gok-y: 46%;
+}
+
+body[data-sayfa="ais-001-02"][data-ekran="ngc"] {
+  --gok-renk-1: rgba(255, 79, 97, 0.13);
+  --gok-renk-2: rgba(224, 162, 106, 0.11);
+  --gok-x: 68%;
+  --gok-y: 44%;
+}
+
+body[data-sayfa="ais-001-02"][data-ekran="sinirlar"] {
+  --gok-renk-1: rgba(224, 162, 106, 0.14);
+  --gok-renk-2: rgba(255, 79, 97, 0.12);
+  --gok-x: 62%;
+  --gok-y: 52%;
+}
+
+body[data-sayfa="ais-001-02"][data-ekran="deney"] {
+  --gok-renk-1: rgba(69, 214, 200, 0.12);
+  --gok-renk-2: rgba(255, 79, 97, 0.09);
+  --gok-x: 66%;
+  --gok-y: 48%;
+}
+
+body[data-sayfa="ais-001-02"][data-ekran="gercek"] {
+  --gok-renk-1: rgba(255, 79, 97, 0.11);
+  --gok-renk-2: rgba(28, 50, 90, 0.32);
+  --gok-x: 65%;
+  --gok-y: 46%;
+}
+
+body[data-sayfa="ais-001-02"][data-ekran="son"] {
+  --gok-renk-1: rgba(255, 79, 97, 0.09);
+  --gok-renk-2: rgba(28, 50, 90, 0.24);
+  --gok-x: 35%;
+  --gok-y: 54%;
+}
+
+body[data-sayfa="ais-002-02"][data-ekran="kapak"] {
+  --gok-renk-1: rgba(224, 162, 106, 0.13);
+  --gok-renk-2: rgba(28, 50, 90, 0.28);
+  --gok-x: 64%;
+  --gok-y: 42%;
+}
+
+body[data-sayfa="ais-002-02"][data-ekran="ates"] {
+  --gok-renk-1: rgba(224, 162, 106, 0.16);
+  --gok-renk-2: rgba(28, 50, 90, 0.26);
+  --gok-x: 66%;
+  --gok-y: 48%;
+}
+
+body[data-sayfa="ais-002-02"][data-ekran="gorev"] {
+  --gok-renk-1: rgba(224, 162, 106, 0.12);
+  --gok-renk-2: rgba(28, 50, 90, 0.3);
+  --gok-x: 64%;
+  --gok-y: 46%;
+}
+
+body[data-sayfa="ais-002-02"][data-ekran="kis"],
+body[data-sayfa="ais-002-02"][data-ekran="ates"][data-krallik-mevsim="kis"] {
+  --gok-renk-1: rgba(110, 164, 245, 0.17);
+  --gok-renk-2: rgba(28, 50, 90, 0.36);
+  --gok-x: 62%;
+  --gok-y: 44%;
+}
+
+body[data-sayfa="ais-002-02"][data-ekran="liderler"] {
+  --gok-renk-1: rgba(224, 162, 106, 0.15);
+  --gok-renk-2: rgba(255, 79, 97, 0.08);
+  --gok-x: 64%;
+  --gok-y: 50%;
+}
+
+body[data-sayfa="ais-002-02"][data-ekran="tac"] {
+  --gok-renk-1: rgba(255, 214, 158, 0.16);
+  --gok-renk-2: rgba(224, 162, 106, 0.12);
+  --gok-x: 66%;
+  --gok-y: 42%;
+}
+
+body[data-sayfa="ais-002-02"][data-ekran="son"] {
+  --gok-renk-1: rgba(224, 162, 106, 0.09);
+  --gok-renk-2: rgba(28, 50, 90, 0.24);
+  --gok-x: 35%;
+  --gok-y: 54%;
+}
+
+body[data-sayfa="ais-001-03"][data-ekran="kapsam"],
+body[data-sayfa="ais-001-03"][data-ekran="girdi"] {
+  --gok-renk-1: rgba(255, 79, 97, 0.12);
+  --gok-renk-2: rgba(28, 50, 90, 0.28);
+  --gok-x: 72%;
+  --gok-y: 34%;
+}
+
+body[data-sayfa="ais-001-03"][data-ekran="model"],
+body[data-sayfa="ais-001-03"][data-ekran="sentetik"] {
+  --gok-renk-1: rgba(138, 162, 255, 0.13);
+  --gok-renk-2: rgba(69, 214, 200, 0.1);
+  --gok-x: 70%;
+  --gok-y: 42%;
+}
+
+body[data-sayfa="ais-001-03"][data-ekran="ngc-ilk"] {
+  --gok-renk-1: rgba(224, 162, 106, 0.13);
+  --gok-renk-2: rgba(255, 79, 97, 0.1);
+  --gok-x: 68%;
+  --gok-y: 48%;
+}
+
+body[data-sayfa="ais-001-03"][data-ekran="deney"] {
+  --gok-renk-1: rgba(69, 214, 200, 0.13);
+  --gok-renk-2: rgba(255, 79, 97, 0.1);
+  --gok-x: 72%;
+  --gok-y: 45%;
+}
+
+body[data-sayfa="ais-001-03"][data-ekran="gercek"],
+body[data-sayfa="ais-001-03"][data-ekran="kayit"] {
+  --gok-renk-1: rgba(255, 79, 97, 0.11);
+  --gok-renk-2: rgba(28, 50, 90, 0.3);
+  --gok-x: 66%;
+  --gok-y: 50%;
+}
+
+body[data-sayfa="ais-001-03"][data-ekran="acik"] {
+  --gok-renk-1: rgba(224, 162, 106, 0.11);
+  --gok-renk-2: rgba(28, 50, 90, 0.26);
+  --gok-x: 62%;
+  --gok-y: 56%;
+}
+
+body[data-sayfa="ais-002-03"][data-ekran="roller"] {
+  --gok-renk-1: rgba(224, 162, 106, 0.13);
+  --gok-renk-2: rgba(69, 214, 200, 0.09);
+  --gok-x: 72%;
+  --gok-y: 34%;
+}
+
+body[data-sayfa="ais-002-03"][data-ekran="kapi"] {
+  --gok-renk-1: rgba(255, 79, 97, 0.12);
+  --gok-renk-2: rgba(28, 50, 90, 0.28);
+  --gok-x: 68%;
+  --gok-y: 44%;
+}
+
+body[data-sayfa="ais-002-03"][data-ekran="botlar"] {
+  --gok-renk-1: rgba(224, 162, 106, 0.13);
+  --gok-renk-2: rgba(28, 50, 90, 0.3);
+  --gok-x: 72%;
+  --gok-y: 46%;
+}
+
+body[data-sayfa="ais-002-03"][data-ekran="guven"] {
+  --gok-renk-1: rgba(69, 214, 200, 0.12);
+  --gok-renk-2: rgba(224, 162, 106, 0.1);
+  --gok-x: 68%;
+  --gok-y: 42%;
+}
+
+body[data-sayfa="ais-002-03"][data-ekran="gece"] {
+  --gok-renk-1: rgba(224, 162, 106, 0.14);
+  --gok-renk-2: rgba(28, 50, 90, 0.32);
+  --gok-x: 64%;
+  --gok-y: 48%;
+}
+
+body[data-sayfa="ais-002-03"][data-ekran="kayit"] {
+  --gok-renk-1: rgba(138, 162, 255, 0.12);
+  --gok-renk-2: rgba(28, 50, 90, 0.28);
+  --gok-x: 70%;
+  --gok-y: 44%;
+}
+
+body[data-sayfa="ais-002-03"][data-ekran="kesinti"] {
+  --gok-renk-1: rgba(255, 79, 97, 0.13);
+  --gok-renk-2: rgba(224, 162, 106, 0.09);
+  --gok-x: 66%;
+  --gok-y: 50%;
+}
+
+body[data-sayfa="ais-002-03"][data-ekran="acik"] {
+  --gok-renk-1: rgba(224, 162, 106, 0.11);
+  --gok-renk-2: rgba(28, 50, 90, 0.26);
+  --gok-x: 62%;
+  --gok-y: 54%;
+}
+
+body[data-sayfa="gozlem"][data-ekran="kapak"] {
+  --gok-renk-1: rgba(69, 214, 200, 0.11);
+  --gok-renk-2: rgba(28, 50, 90, 0.32);
+  --gok-x: 64%;
+  --gok-y: 46%;
+}
+
+body[data-sayfa="gozlem"][data-ekran="ifn"] {
+  --gok-renk-1: rgba(224, 162, 106, 0.13);
+  --gok-renk-2: rgba(28, 50, 90, 0.32);
+  --gok-x: 34%;
+  --gok-y: 48%;
+}
+
+body[data-sayfa="gozlem"][data-ekran="andromeda"] {
+  --gok-renk-1: rgba(138, 162, 255, 0.14);
+  --gok-renk-2: rgba(224, 162, 106, 0.08);
+  --gok-x: 36%;
+  --gok-y: 46%;
+}
+
+body[data-sayfa="gozlem"][data-ekran="hortum"] {
+  --gok-renk-1: rgba(255, 79, 97, 0.13);
+  --gok-renk-2: rgba(28, 50, 90, 0.3);
+  --gok-x: 34%;
+  --gok-y: 50%;
+}
+
+body[data-sayfa="gozlem"][data-ekran="veil"] {
+  --gok-renk-1: rgba(69, 214, 200, 0.13);
+  --gok-renk-2: rgba(255, 79, 97, 0.1);
+  --gok-x: 36%;
+  --gok-y: 46%;
+}
+
+body[data-sayfa="gozlem"][data-ekran="ngc7000"] {
+  --gok-renk-1: rgba(255, 79, 97, 0.14);
+  --gok-renk-2: rgba(28, 50, 90, 0.28);
+  --gok-x: 32%;
+  --gok-y: 48%;
+}
+
+body[data-sayfa="gozlem"][data-ekran="m42"] {
+  --gok-renk-1: rgba(138, 162, 255, 0.14);
+  --gok-renk-2: rgba(255, 79, 97, 0.11);
+  --gok-x: 36%;
+  --gok-y: 50%;
+}
+
+body[data-sayfa="kayip"][data-ekran="kayip"] {
+  --gok-renk-1: rgba(28, 50, 90, 0.22);
+  --gok-renk-2: rgba(255, 79, 97, 0.06);
+  --gok-x: 50%;
+  --gok-y: 48%;
+}
+
+body[data-ekran="alt"],
+body[data-sayfa][data-ekran="alt"] {
   --gok-renk-1: rgba(28, 50, 90, 0.14);
   --gok-renk-2: rgba(12, 18, 34, 0.16);
   --gok-x: 50%;
@@ -272,6 +554,17 @@ body[data-ekran="alt"] {
 
 @keyframes kayit {
   50% { opacity: 0.25; }
+}
+
+.marka + .entegrasyon {
+  margin-left: auto;
+}
+
+@media (max-width: 860px) {
+
+  .derinlik .yol {
+    display: none;
+  }
 }
 
 @media (max-width: 760px) {
@@ -497,6 +790,26 @@ body[data-ekran="alt"] {
 
 .kapilar.ince .kapi-ok {
   grid-row: auto;
+}
+
+.toplam {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--a-4) var(--a-8);
+}
+
+.toplam dt {
+  color: var(--isik-3);
+}
+
+.toplam dd {
+  white-space: nowrap;
+  margin: var(--a-1) 0 0;
+  font-family: var(--font-baslik);
+  font-size: 1.6rem;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  color: var(--isik);
 }
 
 .cip {
@@ -1420,10 +1733,17 @@ html.ais-tutus * {
   --olcek: 0.72;
 }
 
-.yol-arkadasi.evde {
+.yol-arkadasi.evde,
+.yol-arkadasi.okuma-bekle {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
+}
+
+@media (max-width: 960px) {
+  .yol-arkadasi.ais-okuma {
+    display: none !important;
+  }
 }
 
 .yol-arkadasi.ezildi svg {

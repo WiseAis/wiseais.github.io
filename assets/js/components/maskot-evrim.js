@@ -1,5 +1,5 @@
-import { azHareket } from "../lib/rastgele.js?v=20261126a";
-import { SOZLER } from "./ais-maskot.js?v=20261126a";
+import { azHareket } from "../lib/rastgele.js?v=20261127a";
+import { SOZLER } from "./ais-maskot.js?v=20261127a";
 
 const UST = 2597;
 const ESIKLER = [

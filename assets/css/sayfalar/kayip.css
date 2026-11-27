@@ -1,0 +1,217 @@
+.kayip {
+  gap: var(--a-4);
+  padding: calc(var(--ust-bar) + clamp(5.5rem, 12svh, 7.5rem)) var(--kenar) var(--a-12);
+  cursor: crosshair;
+  overflow: hidden;
+}
+
+.kayip a,
+.kayip button,
+.kayip ais-maskot {
+  cursor: pointer;
+}
+
+.kayip istif-tuvali {
+  opacity: 0.34;
+  filter: brightness(0.42) contrast(1.22) saturate(0.42);
+  mask-image: radial-gradient(
+    ellipse 88% 82% at 50% 48%,
+    rgba(0, 0, 0, 0.92) 0%,
+    rgba(0, 0, 0, 0.62) 60%,
+    transparent 100%
+  );
+  -webkit-mask-image: radial-gradient(
+    ellipse 88% 82% at 50% 48%,
+    rgba(0, 0, 0, 0.92) 0%,
+    rgba(0, 0, 0, 0.62) 60%,
+    transparent 100%
+  );
+  transition: opacity 220ms var(--egri), filter 220ms var(--egri);
+}
+
+.kayip.kayip-nabiz istif-tuvali {
+  opacity: 0.48;
+  filter: brightness(0.56) contrast(1.26) saturate(0.52);
+}
+
+.kayip::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      ellipse 56% 58% at 50% 54%,
+      rgba(7, 8, 11, 0.84) 0%,
+      rgba(7, 8, 11, 0.56) 50%,
+      rgba(7, 8, 11, 0.14) 82%,
+      transparent 100%
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(7, 8, 11, 0.48) 0%,
+      transparent 22%,
+      transparent 78%,
+      rgba(7, 8, 11, 0.68) 100%
+    );
+}
+
+.kayip > :not(istif-tuvali):not(.kayip-halka-katman) {
+  position: relative;
+  z-index: 2;
+}
+
+.kayip ais-maskot {
+  z-index: 4;
+  margin-bottom: var(--a-1);
+}
+
+.kayip > p.veri {
+  color: var(--ha);
+  letter-spacing: 0.14em;
+  text-shadow: 0 2px 16px rgba(7, 8, 11, 0.95);
+}
+
+.kayip-istif {
+  padding: 0.44rem 0.8rem;
+  background: rgba(7, 8, 11, 0.78);
+  border: 1px solid var(--cizgi-guclu);
+  border-radius: var(--yaricap);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--isik-2);
+  font-variant-numeric: tabular-nums;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
+}
+
+.kayip-sayac b {
+  color: var(--isik);
+  transition: color 180ms var(--egri);
+}
+
+.kayip.kayip-nabiz .kayip-sayac b {
+  color: var(--ha);
+}
+
+.kayip-ekle {
+  min-height: 36px;
+  padding: 0.3rem 0.72rem;
+  background: rgba(255, 79, 97, 0.1);
+  border: 1px solid rgba(255, 79, 97, 0.46);
+  color: var(--isik);
+  transition: border-color var(--sure-kisa), background-color var(--sure-kisa), color var(--sure-kisa);
+}
+
+.kayip-ekle:hover,
+.kayip-ekle:focus-visible {
+  border-color: var(--ha);
+  background: rgba(255, 79, 97, 0.22);
+  color: var(--isik);
+}
+
+.kayip h1 {
+  font-size: clamp(2.5rem, 1.3rem + 5.2vw, 5.6rem);
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  color: var(--isik);
+  text-shadow: 0 4px 28px rgba(7, 8, 11, 0.96);
+}
+
+.kayip > p:not(.veri) {
+  color: var(--isik);
+  opacity: 0.88;
+  max-width: 38ch;
+  text-shadow: 0 2px 18px rgba(7, 8, 11, 0.98);
+}
+
+.kayip .kapi {
+  margin-top: var(--a-2);
+  background: rgba(7, 8, 11, 0.82);
+  border-color: var(--cizgi-guclu);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  text-align: left;
+}
+
+.kayip-ipucu {
+  font-size: 0.625rem;
+  letter-spacing: 0.1em;
+  color: var(--isik-3);
+  text-shadow: 0 1px 12px rgba(7, 8, 11, 0.95);
+  transition: opacity 360ms var(--egri);
+}
+
+.kayip.kayip-etkilesimli .kayip-ipucu {
+  opacity: 0.5;
+}
+
+.kayip-halka-katman {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.kayip-halka {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 79, 97, 0.55);
+  box-shadow: 0 0 16px rgba(255, 79, 97, 0.28);
+  transform: translate(-50%, -50%) scale(0.5);
+  animation: kayip-halka-yayil 560ms var(--egri) forwards;
+}
+
+@keyframes kayip-halka-yayil {
+  0% {
+    opacity: 0.85;
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(6.5);
+  }
+}
+
+@media (max-width: 600px) {
+  .kayip {
+    padding-top: calc(var(--ust-bar) + 5.75rem);
+    gap: var(--a-3);
+  }
+
+  .kayip ais-maskot {
+    --boyut: 108px;
+  }
+
+  .kayip-istif {
+    width: min(100%, 22rem);
+    padding: 0.5rem 0.7rem;
+    gap: var(--a-2);
+  }
+
+  .kayip-ekle {
+    min-width: 44px;
+    min-height: 44px;
+    padding: 0.4rem 0.85rem;
+  }
+
+  .kayip .kapi {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kayip istif-tuvali,
+  .kayip-sayac b,
+  .kayip-ipucu {
+    transition: none;
+  }
+  .kayip-halka {
+    animation: none;
+    display: none;
+  }
+}

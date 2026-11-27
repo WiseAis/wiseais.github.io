@@ -4,31 +4,38 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AIS.001 · Teknik kayıt</title>
-  <meta name="description" content="Hahbolllayristirma teknik kaydı: yöntem çerçevesi, 48 sahnelik GraXpert deneyi, NGC 7000 gerçek veri tanısı ve açık kalan kapılar.">
+  <meta name="description" content="Tayf teknik kaydı: yöntem çerçevesi, 48 sahnelik GraXpert deneyi, NGC 7000 gerçek veri tanısı ve açık kalan kapılar.">
   <meta name="theme-color" content="#0c0e13">
   <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..700,0..100,0..1&family=Instrument+Sans:wght@400..600&family=JetBrains+Mono:wght@400;500&display=swap">
-  <link rel="stylesheet" href="/assets/css/site.css?v=20261126a">
-  <link rel="stylesheet" href="/assets/css/sayfalar/rapor.css?v=20261126a">
-  <script type="module" src="/assets/js/main.js?v=20261126a"></script>
+  <link rel="stylesheet" href="/assets/css/site.css?v=20261127a">
+  <link rel="stylesheet" href="/assets/css/sayfalar/rapor.css?v=20261127a">
+  <script type="module" src="/assets/js/main.js?v=20261127a"></script>
 </head>
-<body style="--vurgu: var(--ha)">
+<body class="rapor-sayfa" style="--vurgu: var(--ha)" data-sayfa="ais-001-03" data-ekran="kapsam">
+  <gok-atmosfer></gok-atmosfer>
   <a class="atla" href="#icerik">İçeriğe geç</a>
 
   <header class="ust">
     <a class="marka" href="/" aria-label="Aisenit ana sayfa"><ais-maskot faz="aisenit" boyut="30"></ais-maskot><span>aisenit</span></a>
     <nav class="derinlik" aria-label="AIS.001 derinlikleri">
-      <span class="yol veri">AIS.001 · Hahbolllayristirma</span>
+      <span class="yol veri">AIS.001 · Tayf</span>
       <a href="/#ais-001">01</a>
       <a href="/ais-001/02/">02</a>
       <a href="/ais-001/03/" aria-current="page">03</a>
     </nav>
-    <p class="entegrasyon veri" data-entegrasyon title="Bu sayfada geçirdiğin süre.">
-      <span class="uzun">ENT</span> <b data-sure>00:00:00</b>
-    </p>
+    <button type="button" class="entegrasyon veri" data-entegrasyon aria-expanded="false" aria-controls="ent-fis" title="Bu oturumda geçirdiğin süre. Her 4 saniye bir kare sayılır.">
+      <span class="uzun">ENT</span> <b data-sure>00:00:00</b> <span class="uzun">· <span data-kare>0</span> kare</span>
+      <span class="ent-serit" aria-hidden="true"><i></i></span>
+    </button>
   </header>
+
+  <aside class="ent-fis veri" id="ent-fis" data-ent-fis hidden aria-label="Oturum pozlama özeti">
+    <p class="ent-fis-bas" data-ent-fis-bas>OTURUM · 0 KARE · √N = 1.0</p>
+    <p class="ent-fis-durum" data-ent-fis-durum>Henüz tek kare sayılırsın. Gürültü yüksek.</p>
+  </aside>
   <div class="ilerleme" data-ilerleme aria-hidden="true"></div>
 
   <header class="rapor-bas">
@@ -37,7 +44,7 @@
       <h1>Tek RGB görüntüden emisyon bileşenleri.</h1>
       <p class="alt-baslik">İlk çözümden 48 sahnelik GraXpert deneyine. Yöntem çerçevesi, tarihli deney akışı, gerçek veri tanısı ve açık kalanlar.</p>
     </div>
-<pre class="fits" aria-label="Rapor künyesi"><span class="a">OBJECT  </span>= <span class="d">'Hahbolllayristirma'</span>  <span class="y">/ AIS.001</span>
+<pre class="fits" aria-label="Rapor künyesi"><span class="a">OBJECT  </span>= <span class="d">'Tayf'</span>  <span class="y">/ AIS.001</span>
 <span class="a">INSTRUME</span>= <span class="d">'Nikon Z fc'</span>          <span class="y">/ + SV240</span>
 <span class="a">ESTIMAND</span>= <span class="d">'Ha_eq_red_blend'</span>     <span class="y">/ temiz Hα değil</span>
 <span class="a">         </span>  <span class="d">'OIII_total, Hb'</span>
@@ -47,7 +54,7 @@
 <span class="a">END</span></pre>
   </header>
 
-  <div class="rapor">
+  <div class="rapor" data-rapor-etkilesim>
     <nav class="icindekiler" aria-label="Bölümler" data-ray>
       <p class="veri">İçindekiler</p>
       <ol>
@@ -168,9 +175,7 @@ I5007 / I4959 = 2.98</pre>
         </ul>
         <p>Kod, kalibrasyon ve FITS verisi herkese açık bir yeniden üretim paketi değildir. Grafikler deney kayıtlarının seçilmiş sunumudur; yeni bir bilimsel doğrulama yapılmış gibi okunmamalı.</p>
 
-        <div class="rapor-son">
-          <ais-maskot faz="aisenit" boyut="120" konus kendiliginden
-            data-sozler='["Rapor bitti. Sinyal yeterli, iddia sınırlı. Tam kıvamında.","Doğruluk yüzdesi isteyen olursa söyle: gerçek harita yok, ben de uydurmam.","Sıcak pikselim hâlâ burada. 03 bile onu kalibre edemedi."]'></ais-maskot>
+        <div class="rapor-son" data-ais-ev>
           <div>
             <p>Kayıt burada bitiyor. Deney sürüyor.</p>
             <nav class="kapilar" aria-label="Diğer derinlikler">
@@ -186,7 +191,10 @@ I5007 / I4959 = 2.98</pre>
   <footer class="alt">
     <div class="alt-satir veri">
       <span>aisenit · AIS.001 · 03</span>
-      <span>Grafik verisi: 29 Eylül 2026 eşleşmiş GraXpert matrisi · SNR değerlendirmesi 4 Ekim 2026</span>
+      <span class="alt-baglar">
+        <span>Grafik verisi: 29 Eylül 2026 eşleşmiş GraXpert matrisi · SNR değerlendirmesi 4 Ekim 2026</span>
+        <button type="button" class="kk-tetik veri" data-kk-tetik title="Karanlık kare (3 kez dokun veya basılı tut)"><span class="kk-nokta" aria-hidden="true"></span>00-ALT</button>
+      </span>
     </div>
   </footer>
 <script data-goatcounter="https://wiseais.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>

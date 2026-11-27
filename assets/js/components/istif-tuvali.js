@@ -1,4 +1,4 @@
-import { tohumlu, azHareket } from "../lib/rastgele.js?v=20261126a";
+import { tohumlu, azHareket } from "../lib/rastgele.js?v=20261127a";
 
 const GAUSS_BOY = 1 << 16;
 const DARBE_MS = 1050;
@@ -315,6 +315,9 @@ class IstifTuvali extends TemelOge {
     this.append(this._tuval, this._ustTuval);
 
     this._hedef = Number(this.getAttribute("kare")) || 160;
+
+    this._cozulmez = this.hasAttribute("cozulmez");
+    this._eklenecek = 0;
     this._gorunur = true;
     this._bitti = false;
     this._darbeler = [];
@@ -654,8 +657,25 @@ class IstifTuvali extends TemelOge {
 
     for (const t of this._top) t.fill(0);
     this._kare = 0;
+    this._eklenecek = 0;
     this._bitti = false;
     this._calisiyor = true;
+    if (this._cozulmez) {
+      if (azHareket()) {
+
+        this._kare = this._hedef;
+        this._cozulmezCiz(0);
+        this.dispatchEvent(
+          new CustomEvent("istif", { detail: { kare: this._kare, hedef: this._hedef, snr: 0, cozulmez: true } }),
+        );
+        this._calisiyor = false;
+        this._bitti = true;
+        return;
+      }
+      this._son = 0;
+      this._planla();
+      return;
+    }
     if (azHareket()) {
 
       this._kare = this._hedef;
@@ -669,6 +689,53 @@ class IstifTuvali extends TemelOge {
       return;
     }
     this._planla();
+  }
+
+  kareEkle(n = 40) {
+    const adet = Math.max(1, Math.round(Number(n) || 0));
+    if (!this._sinyal) return;
+    if (this._cozulmez) {
+      if (azHareket()) {
+        this._kare += adet;
+        this._cozulmezCiz(0);
+        this.dispatchEvent(
+          new CustomEvent("istif", { detail: { kare: this._kare, hedef: this._hedef, snr: 0, cozulmez: true } }),
+        );
+        return;
+      }
+      this._eklenecek += adet;
+      this._calisiyor = true;
+      this._son = 0;
+      if (this._gorunur && !document.hidden) this._planla();
+      return;
+    }
+    this._istifle(adet);
+    this._ciz();
+    if (this._bitti) this._tabanCtx.putImageData(this._resim, 0, 0);
+  }
+
+  _cozulmezCiz(patlama = 0) {
+    const tablo = gauss();
+    const [R, G, B] = this._sinyal;
+    const d = this._resim.data;
+    const N = R.length;
+    const o = (Math.random() * GAUSS_BOY) | 0;
+    const kanal = Math.random() < 0.5;
+    const sinyalPay = 0.2 + patlama * 0.1;
+    const sigma = SIGMA_TABAN * (1 + patlama * 0.28);
+    for (let i = 0, j = 0; i < N; i++, j += 4) {
+      const ortak = tablo[(o + i) & (GAUSS_BOY - 1)] * sigma;
+      const renk = tablo[(o + i * 7 + 11) & (GAUSS_BOY - 1)] * sigma * 0.35;
+      const r = R[i] * sinyalPay + ortak + (kanal ? renk : -renk);
+      const g = G[i] * sinyalPay + ortak;
+      const b = B[i] * sinyalPay + ortak + (kanal ? -renk : renk);
+      d[j] = gerDeger(r, 0.03, 1.55);
+      d[j + 1] = gerDeger(g, 0.03, 1.55);
+      d[j + 2] = gerDeger(b, 0.03, 1.55);
+      d[j + 3] = 255;
+    }
+    this._ctx.putImageData(this._resim, 0, 0);
+    if (this._darbeler.length) this._darbeleriCiz(performance.now());
   }
 
   uyduyuAt() {
@@ -746,9 +813,34 @@ class IstifTuvali extends TemelOge {
 
   _tik() {
     if (!this._calisiyor || !this._gorunur || document.hidden) return;
+    const simdi = performance.now();
+    if (this._cozulmez) {
+
+      const patlamaAktif = this._eklenecek > 0;
+      const aralik = patlamaAktif ? 42 : this._kare < this._hedef ? 95 : 220;
+      if (this._son && simdi - this._son < aralik) {
+        this._planla();
+        return;
+      }
+      this._son = simdi;
+      let patlama = 0;
+      if (patlamaAktif) {
+        const adim = Math.min(this._eklenecek, 8);
+        this._eklenecek -= adim;
+        this._kare += adim;
+        patlama = Math.min(1, this._eklenecek / 20 + 0.35);
+      } else {
+        this._kare += this._kare < this._hedef ? 4 : 1;
+      }
+      this._cozulmezCiz(patlama);
+      this.dispatchEvent(
+        new CustomEvent("istif", { detail: { kare: this._kare, hedef: this._hedef, snr: 0, cozulmez: true } }),
+      );
+      this._planla();
+      return;
+    }
 
     const adim = this._kare < 12 ? 1 : this._kare < 40 ? 2 : 4;
-    const simdi = performance.now();
     if (this._son && simdi - this._son < (this._kare < 12 ? 110 : 40)) {
       this._planla();
       return;

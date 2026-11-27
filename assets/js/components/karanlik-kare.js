@@ -1,5 +1,5 @@
-import { azHareket } from "../lib/rastgele.js?v=20261126a";
-import { oturum, oturumGuncelle } from "../lib/oturum.js?v=20261126a";
+import { azHareket } from "../lib/rastgele.js?v=20261127a";
+import { oturum, oturumGuncelle } from "../lib/oturum.js?v=20261127a";
 
 const ZORLAMA_SURE_MS = 4500;
 const ZORLAMA_ARALIK_MS = 160;

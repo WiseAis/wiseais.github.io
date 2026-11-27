@@ -10,12 +10,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..700,0..100,0..1&family=Instrument+Sans:wght@400..600&family=JetBrains+Mono:wght@400;500&display=swap">
-  <link rel="stylesheet" href="/assets/css/site.css?v=20261126a">
-  <link rel="stylesheet" href="/assets/css/sayfalar/mantik.css?v=20261126a">
-  <script type="module" src="/assets/js/main.js?v=20261126a"></script>
-  <script type="module" src="/assets/js/components/galeri.js?v=20261126a"></script>
+  <link rel="stylesheet" href="/assets/css/site.css?v=20261127a">
+  <link rel="stylesheet" href="/assets/css/sayfalar/mantik.css?v=20261127a">
+  <link rel="stylesheet" href="/assets/css/sayfalar/ais-002-02.css?v=20261127a">
+  <script type="module" src="/assets/js/main.js?v=20261127a"></script>
+  <script type="module" src="/assets/js/components/galeri.js?v=20261127a"></script>
 </head>
-<body style="--vurgu: var(--toz)">
+<body style="--vurgu: var(--toz)" data-sayfa="ais-002-02" data-ekran="kapak" data-ais-tac>
+  <gok-atmosfer></gok-atmosfer>
   <a class="atla" href="#icerik">İçeriğe geç</a>
 
   <header class="ust">
@@ -26,10 +28,16 @@
       <a href="/ais-002/02/" aria-current="page">02</a>
       <a href="/ais-002/03/">03</a>
     </nav>
-    <p class="entegrasyon veri" data-entegrasyon title="Bu sayfada geçirdiğin süre.">
-      <span class="uzun">ENT</span> <b data-sure>00:00:00</b>
-    </p>
+    <button type="button" class="entegrasyon veri" data-entegrasyon aria-expanded="false" aria-controls="ent-fis" title="Bu oturumda geçirdiğin süre. Her 4 saniye bir kare sayılır.">
+      <span class="uzun">ENT</span> <b data-sure>00:00:00</b> <span class="uzun">· <span data-kare>0</span> kare</span>
+      <span class="ent-serit" aria-hidden="true"><i></i></span>
+    </button>
   </header>
+
+  <aside class="ent-fis veri" id="ent-fis" data-ent-fis hidden aria-label="Oturum pozlama özeti">
+    <p class="ent-fis-bas" data-ent-fis-bas>OTURUM · 0 KARE · √N = 1.0</p>
+    <p class="ent-fis-durum" data-ent-fis-durum>Henüz tek kare sayılırsın. Gürültü yüksek.</p>
+  </aside>
 
   <ol class="ray veri" data-ray aria-label="Adımlar">
     <li><a href="#ates"><span>01 · Ateş</span></a></li>
@@ -41,7 +49,7 @@
 
   <main id="icerik">
 
-    <section class="ekran kapak" id="kapak">
+    <section class="ekran kapak" id="kapak" data-ais-hedef=".kapak-rehber ais-maskot" data-ais-konum="0.5 0.5" data-ais-ev>
       <p class="kunye veri"><b>AIS.002</b> · 02 · mantığı</p>
       <div class="kapak-metin">
         <h1 data-belir>İlk ocaktan taç törenine.</h1>
@@ -53,11 +61,6 @@
           <li><a href="#liderler"><span class="veri">04</span> Alışkanlıktan çıkan liderler</a></li>
           <li><a href="#tac"><span class="veri">05</span> Ais'in ışığı ve taç</a></li>
         </ol>
-      </div>
-      <div class="kapak-rehber" data-belir style="--sira:3">
-        <ais-maskot faz="aisen" boyut="150" konus kendiliginden aksesuar="tac"
-          data-sozler='["Bu oyunda prensi ben büyüttüm. Kolum yok; on yedi kış sürdü.","Oyunda her yardım benden bir parça götürüyor. O yüzden kısa konuşuyorum.","Bu taç sitede süs. Oyunda tacı prens hak ediyor, ben yolunu aydınlatıyorum."]'></ais-maskot>
-        <p>Rehberin Aisen, Ais'in ikinci evresi. Oyunda fenerdeki ışık o.</p>
       </div>
 
       <div class="kapak-galeri" data-belir style="--sira:4" data-galeri>
@@ -137,7 +140,7 @@
       </dialog>
     </section>
 
-    <section class="ekran adim" id="ates" data-no="02.1">
+    <section class="ekran adim" id="ates" data-no="02.1" data-ais-hedef=".adim-gorsel" data-ais-konum="0.94 0.08" data-ais-sozler='["Ocağa basılı tut. Ben de üşüdüm, taç ısıtmıyor."]'>
       <div class="adim-metin">
         <p class="adim-etiket veri" data-belir><b>01</b> Açılış</p>
         <h2 data-belir style="--sira:1">Gece gelmeden ateş yak.</h2>
@@ -155,10 +158,10 @@ ilk kış    oyun günü 11</pre>
           </div>
         </details>
       </div>
-      <div class="adim-gorsel" data-belir style="--sira:2"><sahne-cizim proje="ais-002" tur="ates" dur="12"></sahne-cizim></div>
+      <div class="adim-gorsel" data-belir style="--sira:2"><sahne-cizim proje="ais-002-v2" tur="ates" dur="12"></sahne-cizim></div>
     </section>
 
-    <section class="ekran adim" id="gorev" data-no="02.2">
+    <section class="ekran adim" id="gorev" data-no="02.2" data-ais-hedef=".adim-gorsel" data-ais-konum="0.94 0.08" data-ais-sozler='["Ben ışık tutuyorum. Bunu da iş sayıyoruz.","Taş taşımam. Taşıyanın yolunu aydınlatırım, aynı kapıya çıkar."]'>
       <div class="adim-metin">
         <p class="adim-etiket veri" data-belir><b>02</b> Görevlendirme</p>
         <h2 data-belir style="--sira:1">Kaç kişi, nereye?</h2>
@@ -175,13 +178,11 @@ fener     6 birim içinde +%20</pre>
         </details>
       </div>
       <div class="adim-gorsel" data-belir style="--sira:2">
-        <sahne-cizim proje="ais-002" tur="gorev" dur="3"></sahne-cizim>
-        <ais-maskot class="adim-maskot" faz="aisen" boyut="72" konus aksesuar="tac"
-          data-sozler='["Ben ışık tutuyorum. Bunu da iş sayıyoruz.","Taş taşımam. Taşıyanın yolunu aydınlatırım, aynı kapıya çıkar."]'></ais-maskot>
+        <sahne-cizim proje="ais-002-v2" tur="gorev" dur="3"></sahne-cizim>
       </div>
     </section>
 
-    <section class="ekran adim" id="kis" data-no="02.3">
+    <section class="ekran adim" id="kis" data-no="02.3" data-ais-hedef=".adim-gorsel" data-ais-konum="0.94 0.08" data-ais-sozler='["Açıkta kalan çok yakıyor. Ben fenerdeyim, kira ödemiyorum."]'>
       <div class="adim-metin">
         <p class="adim-etiket veri" data-belir><b>03</b> İlk kış</p>
         <h2 data-belir style="--sira:1">İlk kış on birinci gün gelir.</h2>
@@ -201,10 +202,10 @@ odun/kişi/gün  çatı altı 0,5
           </div>
         </details>
       </div>
-      <div class="adim-gorsel" data-belir style="--sira:2"><sahne-cizim proje="ais-002" tur="kis" dur="14"></sahne-cizim></div>
+      <div class="adim-gorsel" data-belir style="--sira:2"><sahne-cizim proje="ais-002-v2" tur="kis" dur="14"></sahne-cizim></div>
     </section>
 
-    <section class="ekran adim" id="liderler" data-no="02.4">
+    <section class="ekran adim" id="liderler" data-no="02.4" data-ais-hedef=".adim-gorsel" data-ais-konum="0.94 0.08" data-ais-sozler='["Ne dersen hatırlıyorlar. O yüzden kısa konuşuyorum."]'>
       <div class="adim-metin">
         <p class="adim-etiket veri" data-belir><b>04</b> Liderler</p>
         <h2 data-belir style="--sira:1">Liderler alışkanlıktan çıkar.</h2>
@@ -223,10 +224,10 @@ Smith Brenna     henüz yolda</pre>
           </div>
         </details>
       </div>
-      <div class="adim-gorsel" data-belir style="--sira:2"><sahne-cizim proje="ais-002" tur="lider" dur="8"></sahne-cizim></div>
+      <div class="adim-gorsel" data-belir style="--sira:2"><sahne-cizim proje="ais-002-v2" tur="lider" dur="8"></sahne-cizim></div>
     </section>
 
-    <section class="ekran adim" id="tac" data-no="02.5">
+    <section class="ekran adim" id="tac" data-no="02.5" data-ais-hedef=".adim-gorsel" data-ais-konum="0.5 0.5" data-ais-ev>
       <div class="adim-metin">
         <p class="adim-etiket veri" data-belir><b>05</b> Ais'in ışığı</p>
         <h2 data-belir style="--sira:1">Prense ilk kez taç töreninde kral denir.</h2>
@@ -245,10 +246,10 @@ Aisenit  King · Taç      tanınma 85 · kale 5
           </div>
         </details>
       </div>
-      <div class="adim-gorsel" data-belir style="--sira:2"><sahne-cizim proje="ais-002" tur="merdiven" dur="21"></sahne-cizim></div>
+      <div class="adim-gorsel" data-belir style="--sira:2"><sahne-cizim proje="ais-002-v2" tur="merdiven" dur="21"></sahne-cizim></div>
     </section>
 
-    <section class="ekran son" id="son">
+    <section class="ekran son" id="son" data-ais-hedef=".son" data-ais-konum="0.88 0.25" data-ais-sozler='["Kalenin dışı yok henüz. Fırlatırsan sınırdan dönerim."]'>
       <p class="kunye veri"><b>AIS.002</b> · 02 → 03</p>
       <h2 data-belir>Kalenin dışı henüz yapılmadı.</h2>
       <p data-belir style="--sira:1">İlk ateşten taç törenine kadarki kısım baştan sona oynanabiliyor ama oyun henüz yayında değil; komşu lordlar, harita ekranı ve demir zinciri de yok. Buradaki sayıları, oyunu kendi başına oynayan dört test botuyla ölçtük; nasıl çalıştıkları <a href="/ais-002/03/#botlar">03'te</a>.</p>
@@ -268,7 +269,10 @@ Aisenit  King · Taç      tanınma 85 · kale 5
   <footer class="alt">
     <div class="alt-satir veri">
       <span>aisenit · AIS.002 · 02</span>
-      <span><a href="/">Ana sayfa</a> · <a href="/ais-002/03/">03 · Ajan ekibi</a> · <a href="/gozlem/">Gözlem</a></span>
+      <span class="alt-baglar">
+        <a href="/">Ana sayfa</a> · <a href="/ais-002/03/">03 · Ajan ekibi</a> · <a href="/gozlem/">Gözlem</a>
+        <button type="button" class="kk-tetik veri" data-kk-tetik title="Karanlık kare (3 kez dokun veya basılı tut)"><span class="kk-nokta" aria-hidden="true"></span>00-ALT</button>
+      </span>
     </div>
   </footer>
 <script data-goatcounter="https://wiseais.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>

@@ -4,31 +4,40 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AIS.001 · Mantığı</title>
-  <meta name="description" content="Hahbolllayristirma'nın mantığı: tek RGB görüntüden Hα, [O&nbsp;III] ve Hβ katkılarını kestirme denemesi, sekiz adımda.">
+  <meta name="description" content="Tayf'ın mantığı: tek RGB görüntüden Hα, [O&nbsp;III] ve Hβ katkılarını kestirme denemesi, sekiz adımda.">
   <meta name="theme-color" content="#07080b">
   <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..700,0..100,0..1&family=Instrument+Sans:wght@400..600&family=JetBrains+Mono:wght@400;500&display=swap">
-  <link rel="stylesheet" href="/assets/css/site.css?v=20261126a">
-  <link rel="stylesheet" href="/assets/css/sayfalar/mantik.css?v=20261126a">
-  <script type="module" src="/assets/js/main.js?v=20261126a"></script>
+  <link rel="stylesheet" href="/assets/css/site.css?v=20261127a">
+  <link rel="stylesheet" href="/assets/css/sayfalar/mantik.css?v=20261127a">
+  <link rel="stylesheet" href="/assets/css/sayfalar/ais-001-02-a.css?v=20261127a">
+  <link rel="stylesheet" href="/assets/css/sayfalar/ais-001-02-b.css?v=20261127a">
+  <script type="module" src="/assets/js/main.js?v=20261127a"></script>
 </head>
-<body style="--vurgu: var(--ha)">
+<body style="--vurgu: var(--ha)" data-sayfa="ais-001-02" data-ekran="kapak">
+  <gok-atmosfer></gok-atmosfer>
   <a class="atla" href="#icerik">İçeriğe geç</a>
 
   <header class="ust">
     <a class="marka" href="/" aria-label="Aisenit ana sayfa"><ais-maskot faz="aisen" boyut="30"></ais-maskot><span>aisenit</span></a>
     <nav class="derinlik" aria-label="AIS.001 derinlikleri">
-      <span class="yol veri">AIS.001 · Hahbolllayristirma</span>
+      <span class="yol veri">AIS.001 · Tayf</span>
       <a href="/#ais-001">01</a>
       <a href="/ais-001/02/" aria-current="page">02</a>
       <a href="/ais-001/03/">03</a>
     </nav>
-    <p class="entegrasyon veri" data-entegrasyon title="Bu sayfada geçirdiğin süre. Her 4 saniye bir kare sayılır.">
-      <span class="uzun">ENT</span> <b data-sure>00:00:00</b>
-    </p>
+    <button type="button" class="entegrasyon veri" data-entegrasyon aria-expanded="false" aria-controls="ent-fis" title="Bu oturumda geçirdiğin süre. Her 4 saniye bir kare sayılır.">
+      <span class="uzun">ENT</span> <b data-sure>00:00:00</b> <span class="uzun">· <span data-kare>0</span> kare</span>
+      <span class="ent-serit" aria-hidden="true"><i></i></span>
+    </button>
   </header>
+
+  <aside class="ent-fis veri" id="ent-fis" data-ent-fis hidden aria-label="Oturum pozlama özeti">
+    <p class="ent-fis-bas" data-ent-fis-bas>OTURUM · 0 KARE · √N = 1.0</p>
+    <p class="ent-fis-durum" data-ent-fis-durum>Henüz tek kare sayılırsın. Gürültü yüksek.</p>
+  </aside>
 
   <ol class="ray veri" data-ray aria-label="Adımlar">
     <li><a href="#soru"><span>01 · Soru</span></a></li>
@@ -43,7 +52,7 @@
 
   <main id="icerik">
 
-    <section class="ekran kapak" id="kapak">
+    <section class="ekran kapak" id="kapak" data-ais-hedef=".kapak-rehber ais-maskot" data-ais-konum="0.5 0.5" data-ais-ev>
       <p class="kunye veri"><b>AIS.001</b> · 02 · mantığı</p>
       <div class="kapak-metin">
         <h1 data-belir>Işığı geri yürümek.</h1>
@@ -59,14 +68,9 @@
           <li><a href="#gercek"><span class="veri">08</span> 4 Ekim · gerçek veri</a></li>
         </ol>
       </div>
-      <div class="kapak-rehber" data-belir style="--sira:3">
-        <ais-maskot faz="aisen" boyut="150" konus kendiliginden
-          data-sozler='["Ben Aisen. 02 benim katım: biraz netleştim, biraz da havalandım.","Her ekranda tek konu var. Aşağı kaydır, ben buradayım.","Teknik notlar kapalı duruyor. Merak edersen + işaretine bas."]'></ais-maskot>
-        <p>Rehberin Aisen. Tıklarsan konuşur.</p>
-      </div>
     </section>
 
-    <section class="ekran adim" id="soru" data-no="02.1">
+    <section class="ekran adim" id="soru" data-no="02.1" data-ais-hedef=".adim-gorsel" data-ais-konum="0.94 0.08" data-ais-sozler='["Üç gaz tek karede sıkışmış. Ben tek pikselde zor sığıyorum.","Çizgiyi sağa sola çek, belki benim sıcak pikselim de çıkar."]'>
       <div class="adim-metin">
         <p class="adim-etiket veri" data-belir><b>01</b> Başlangıç sorusu</p>
         <h2 data-belir style="--sira:1">Bir fotoğrafın içindeki ışığı ayırabilir miyiz?</h2>
@@ -80,10 +84,10 @@
           </div>
         </details>
       </div>
-      <div class="adim-gorsel" data-belir style="--sira:2"><sahne-cizim proje="ais-001" tur="spektrum"></sahne-cizim></div>
+      <div class="adim-gorsel" data-belir style="--sira:2"><sahne-cizim proje="ais-001-a" tur="spektrum"></sahne-cizim></div>
     </section>
 
-    <section class="ekran adim" id="cozum" data-no="02.2">
+    <section class="ekran adim" id="cozum" data-no="02.2" data-ais-hedef=".adim-gorsel" data-ais-konum="0.94 0.08" data-ais-sozler='["Komşusuna bakmadan karar veriyor. Biraz tanıdık geldi.","Basılı tutarsan gürültü biniyor. Benim doğal hâlim."]'>
       <div class="adim-metin">
         <p class="adim-etiket veri" data-belir><b>02</b> İlk çözüm</p>
         <h2 data-belir style="--sira:1">Önce her pikseli tek başına çözdük.</h2>
@@ -98,10 +102,10 @@ Koşul: bileşen miktarları ≥ 0</pre>
           </div>
         </details>
       </div>
-      <div class="adim-gorsel" data-belir style="--sira:2"><sahne-cizim proje="ais-001" tur="piksel"></sahne-cizim></div>
+      <div class="adim-gorsel" data-belir style="--sira:2"><sahne-cizim proje="ais-001-a" tur="piksel"></sahne-cizim></div>
     </section>
 
-    <section class="ekran adim" id="sentetik" data-no="02.3">
+    <section class="ekran adim" id="sentetik" data-no="02.3" data-ais-hedef=".adim-gorsel" data-ais-konum="0.94 0.08" data-ais-sozler='["Cevabı baştan bilmek güzel. Gerçek gökyüzü kopya vermiyor."]'>
       <div class="adim-metin">
         <p class="adim-etiket veri" data-belir><b>03</b> 15–16 Eylül · sentetik başlangıç</p>
         <h2 data-belir style="--sira:1">Doğru cevabı bilince hata görünür oldu.</h2>
@@ -114,10 +118,10 @@ Koşul: bileşen miktarları ≥ 0</pre>
           </div>
         </details>
       </div>
-      <div class="adim-gorsel" data-belir style="--sira:2"><sahne-cizim proje="ais-001" tur="sentetik" dur="9"></sahne-cizim></div>
+      <div class="adim-gorsel" data-belir style="--sira:2"><sahne-cizim proje="ais-001-a" tur="sentetik" dur="9"></sahne-cizim></div>
     </section>
 
-    <section class="ekran adim" id="komsuluk" data-no="02.4">
+    <section class="ekran adim" id="komsuluk" data-no="02.4" data-ais-hedef=".adim-gorsel" data-ais-konum="0.94 0.08" data-ais-sozler='["İpliği fazla düzleştirme; beni de yumuşatırsın, pikselim kalmaz."]'>
       <div class="adim-metin">
         <p class="adim-etiket veri" data-belir><b>04</b> 16 Eylül · komşuluk deneyi</p>
         <h2 data-belir style="--sira:1">Gürültüye karşı komşuluk bilgisini ekledik.</h2>
@@ -130,10 +134,10 @@ Koşul: bileşen miktarları ≥ 0</pre>
           </div>
         </details>
       </div>
-      <div class="adim-gorsel" data-belir style="--sira:2"><sahne-cizim proje="ais-001" tur="komsuluk" dur="5.7"></sahne-cizim></div>
+      <div class="adim-gorsel" data-belir style="--sira:2"><sahne-cizim proje="ais-001-a" tur="komsuluk" dur="5.7"></sahne-cizim></div>
     </section>
 
-    <section class="ekran adim" id="ngc" data-no="02.5">
+    <section class="ekran adim" id="ngc" data-no="02.5" data-ais-hedef=".adim-gorsel" data-ais-konum="0.94 0.08" data-ais-sozler='["Ortak taban her yere sızmış. Davetsiz misafir gibi."]'>
       <div class="adim-metin">
         <p class="adim-etiket veri" data-belir><b>05</b> 16 Eylül · ilk gerçek görüntü</p>
         <h2 data-belir style="--sira:1">NGC 7000, modelin görmediği tabanı gösterdi.</h2>
@@ -146,10 +150,10 @@ Koşul: bileşen miktarları ≥ 0</pre>
           </div>
         </details>
       </div>
-      <div class="adim-gorsel" data-belir style="--sira:2"><sahne-cizim proje="ais-001" tur="taban" dur="5"></sahne-cizim></div>
+      <div class="adim-gorsel" data-belir style="--sira:2"><sahne-cizim proje="ais-001-b" tur="taban" dur="5"></sahne-cizim></div>
     </section>
 
-    <section class="ekran adim" id="sinirlar" data-no="02.6">
+    <section class="ekran adim" id="sinirlar" data-no="02.6" data-ais-hedef=".adim-gorsel" data-ais-konum="0.94 0.08" data-ais-sozler='["[N II] ile Hα aynı kanala düşüyor. Ben bile ayıramıyorum, ki ben çok netim.","Bilmediği yerde susuyor. Keşke herkes öyle yapsa."]'>
       <div class="adim-metin">
         <p class="adim-etiket veri" data-belir><b>06</b> 19–23 Eylül · modelin sınırları</p>
         <h2 data-belir style="--sira:1">Temizlemek ile fiziksel olarak ayırmak aynı şey değil.</h2>
@@ -165,13 +169,11 @@ prior yoksa → ABSTAIN</pre>
         </details>
       </div>
       <div class="adim-gorsel" data-belir style="--sira:2">
-        <sahne-cizim proje="ais-001" tur="kirmizi" dur="2"></sahne-cizim>
-        <ais-maskot class="adim-maskot" faz="aisen" boyut="72" konus
-          data-sozler='["[N II] ile Hα aynı kanala düşüyor. Ben bile ayıramıyorum, ki ben çok netim."]'></ais-maskot>
+        <sahne-cizim proje="ais-001-b" tur="kirmizi" dur="2"></sahne-cizim>
       </div>
     </section>
 
-    <section class="ekran adim" id="deney" data-no="02.7">
+    <section class="ekran adim" id="deney" data-no="02.7" data-ais-hedef=".adim-gorsel" data-ais-konum="0.94 0.08" data-ais-sozler='["Kırk sekiz sahne. Ben üçüncüde uykuya dalardım."]'>
       <div class="adim-metin">
         <p class="adim-etiket veri" data-belir><b>07</b> 27–29 Eylül · GraXpert deneyleri</p>
         <h2 data-belir style="--sira:1">48 sahnede: gürültü azaldı, karışım hatası kaldı.</h2>
@@ -184,10 +186,10 @@ prior yoksa → ABSTAIN</pre>
           </div>
         </details>
       </div>
-      <div class="adim-gorsel" data-belir style="--sira:2"><sahne-cizim proje="ais-001" tur="kirk-sekiz" dur="6"></sahne-cizim></div>
+      <div class="adim-gorsel" data-belir style="--sira:2"><sahne-cizim proje="ais-001-b" tur="kirk-sekiz" dur="6"></sahne-cizim></div>
     </section>
 
-    <section class="ekran adim" id="gercek" data-no="02.8">
+    <section class="ekran adim" id="gercek" data-no="02.8" data-ais-hedef=".adim-gorsel" data-ais-konum="0.94 0.08" data-ais-sozler='["Gerçek harita yok, soru işareti var. Dürüst bir kare."]'>
       <div class="adim-metin">
         <p class="adim-etiket veri" data-belir><b>08</b> 4 Ekim · gerçek veriye dönüş</p>
         <h2 data-belir style="--sira:1">Kontrollü deneyden gerçek görüntüye döndük.</h2>
@@ -200,10 +202,10 @@ prior yoksa → ABSTAIN</pre>
           </div>
         </details>
       </div>
-      <div class="adim-gorsel" data-belir style="--sira:2"><sahne-cizim proje="ais-001" tur="gercek" dur="4"></sahne-cizim></div>
+      <div class="adim-gorsel" data-belir style="--sira:2"><sahne-cizim proje="ais-001-b" tur="gercek" dur="4"></sahne-cizim></div>
     </section>
 
-    <section class="ekran son" id="son">
+    <section class="ekran son" id="son" data-ais-hedef=".son" data-ais-konum="0.88 0.25" data-ais-sozler='["03&#39;e geçersen daha sakinim. Söz veremem ama denerim."]'>
       <p class="kunye veri"><b>AIS.001</b> · 02 → 03</p>
       <h2 data-belir>Hikâye burada bitiyor. Kayıt devam ediyor.</h2>
       <p data-belir style="--sira:1">03, aynı yolculuğun rapor hâli: yöntem çerçevesi, 48 sahnelik deneyin üç grafiği, gerçek veri tanısı ve açık kalan kapılar.</p>
@@ -223,7 +225,10 @@ prior yoksa → ABSTAIN</pre>
   <footer class="alt">
     <div class="alt-satir veri">
       <span>aisenit · AIS.001 · 02</span>
-      <span><a href="/">Ana sayfa</a> · <a href="/ais-001/03/">03 · Teknik kayıt</a> · <a href="/gozlem/">Gözlem</a></span>
+      <span class="alt-baglar">
+        <a href="/">Ana sayfa</a> · <a href="/ais-001/03/">03 · Teknik kayıt</a> · <a href="/gozlem/">Gözlem</a>
+        <button type="button" class="kk-tetik veri" data-kk-tetik title="Karanlık kare (3 kez dokun veya basılı tut)"><span class="kk-nokta" aria-hidden="true"></span>00-ALT</button>
+      </span>
     </div>
   </footer>
 <script data-goatcounter="https://wiseais.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>

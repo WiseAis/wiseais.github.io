@@ -647,26 +647,6 @@ krallik-sahne[data-mevsim="kis"] .ks-centik.etkin span {
   max-width: 38ch;
 }
 
-.toplam {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--a-4) var(--a-8);
-}
-
-.toplam dt {
-  color: var(--isik-3);
-}
-
-.toplam dd {
-  white-space: nowrap;
-  margin: var(--a-1) 0 0;
-  font-family: var(--font-baslik);
-  font-size: 1.6rem;
-  letter-spacing: -0.01em;
-  text-transform: none;
-  color: var(--isik);
-}
-
 .gozlem-araclar {
   display: grid;
   gap: var(--a-3);

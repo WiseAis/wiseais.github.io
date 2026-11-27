@@ -1,20 +1,22 @@
-import "./components/ais-maskot.js?v=20261126a";
-import { azHareket } from "./lib/rastgele.js?v=20261126a";
-import { oturum, oturumGuncelle, konsolSelami } from "./lib/oturum.js?v=20261126a";
-import { karanlikKareKur } from "./components/karanlik-kare.js?v=20261126a";
+import "./components/ais-maskot.js?v=20261127a";
+import { azHareket } from "./lib/rastgele.js?v=20261127a";
+import { oturum, oturumGuncelle, oturumYaz, pozlamaSayaciKur, konsolSelami } from "./lib/oturum.js?v=20261127a";
+import { karanlikKareKur } from "./components/karanlik-kare.js?v=20261127a";
 
 document.documentElement.classList.add("js");
 
 const TEMBEL = {
-  "gok-atmosfer": () => import("./components/gok-atmosfer.js?v=20261126a"),
-  "istif-tuvali": () => import("./components/istif-tuvali.js?v=20261126a"),
-  "germe-foto": () => import("./components/germe-foto.js?v=20261126a"),
-  "sahne-cizim": () => import("./components/sahne-cizim.js?v=20261126a"),
-  "kanit-grafik": () => import("./components/kanit-grafik.js?v=20261126a"),
-  "kanal-ayrimi": () => import("./components/kanal-ayrimi.js?v=20261126a"),
-  "krallik-sahne": () => import("./components/krallik-sahne.js?v=20261126a"),
-  "gozlem-masa": () => import("./components/gozlem-masa.js?v=20261126a"),
-  "maskot-evrim": () => import("./components/maskot-evrim.js?v=20261126a"),
+  "gok-atmosfer": () => import("./components/gok-atmosfer.js?v=20261127a"),
+  "istif-tuvali": () => import("./components/istif-tuvali.js?v=20261127a"),
+  "germe-foto": () => import("./components/germe-foto.js?v=20261127a"),
+  "sahne-cizim": () => import("./components/sahne-cizim.js?v=20261127a"),
+  "kanit-grafik": () => import("./components/kanit-grafik.js?v=20261127a"),
+  "kanal-ayrimi": () => import("./components/kanal-ayrimi.js?v=20261127a"),
+  "krallik-sahne": () => import("./components/krallik-sahne.js?v=20261127a"),
+  "gozlem-masa": () => import("./components/gozlem-masa.js?v=20261127a"),
+  "maskot-evrim": () => import("./components/maskot-evrim.js?v=20261127a"),
+
+  "[data-rapor-etkilesim]": () => import("./components/rapor-etkilesim.js?v=20261127a"),
 };
 for (const [etiket, yukle] of Object.entries(TEMBEL)) {
   if (document.querySelector(etiket)) yukle();
@@ -23,7 +25,7 @@ for (const [etiket, yukle] of Object.entries(TEMBEL)) {
 let aisApi = null;
 const yolcu = document.querySelector("[data-yol-arkadasi]");
 if (yolcu) {
-  import("./components/yol-arkadasi.js?v=20261126a").then((m) => {
+  import("./components/yol-arkadasi.js?v=20261127a").then((m) => {
     aisApi = m.yolArkadasi(yolcu);
   });
 }
@@ -79,11 +81,10 @@ addEventListener("hashchange", hashBelirle);
 if (document.querySelector("[data-sure]")) {
   const KARE_SN = 4;
   const KARE_MS = KARE_SN * 1000;
-  const basla = performance.now();
-  let gizliSure = 0;
-  let gizlendi = 0;
+
+  const sayac = pozlamaSayaciKur({ baslangicMs: oturum.birikmisMs, kareSn: KARE_SN });
   let sonSn = -1;
-  let sonKare = 0;
+  let sonKare = Math.floor(Math.floor(oturum.birikmisMs / 1000) / KARE_SN);
   let nabizZaman = 0;
 
   const entDugme = document.querySelector("[data-entegrasyon]");
@@ -138,29 +139,36 @@ if (document.querySelector("[data-sure]")) {
     });
   }
 
+  const sureKaydet = () => {
+    const d = sayac.durum();
+    oturum.birikmisMs = Math.round(d.ms);
+    oturum.sure = d.sure;
+    oturum.kare = d.kare;
+    oturumYaz(oturum);
+  };
+
+  if (document.hidden) sayac.gizle();
   document.addEventListener("visibilitychange", () => {
-    if (document.hidden) gizlendi = performance.now();
-    else if (gizlendi) {
-      gizliSure += performance.now() - gizlendi;
-      gizlendi = 0;
+    if (document.hidden) {
+      sayac.gizle();
+      sureKaydet();
+    } else {
+      sayac.goster();
     }
   });
+  addEventListener("pagehide", sureKaydet);
 
-  const iki = (n) => String(n).padStart(2, "0");
   const guncelle = () => {
     if (document.hidden) return;
-    const ms = Math.max(0, performance.now() - basla - gizliSure);
+    const { ms, sn, kare, sure } = sayac.durum();
     if (entSerit) {
-      const oran = azHareket() ? ((Math.floor(ms / 1000) % KARE_SN) + 1) / KARE_SN : (ms % KARE_MS) / KARE_MS;
+      const oran = azHareket() ? ((sn % KARE_SN) + 1) / KARE_SN : (ms % KARE_MS) / KARE_MS;
       entSerit.style.setProperty("--ent-dolum", oran.toFixed(3));
     }
 
-    const sn = Math.floor(ms / 1000);
     if (sn === sonSn) return;
     sonSn = sn;
 
-    const sure = `${iki(Math.floor(sn / 3600))}:${iki(Math.floor(sn / 60) % 60)}:${iki(sn % 60)}`;
-    const kare = Math.floor(sn / KARE_SN);
     for (const e of sureOgeleri) e.textContent = sure;
     for (const e of kareOgeleri) e.textContent = String(kare);
 
@@ -171,36 +179,65 @@ if (document.querySelector("[data-sure]")) {
     }
     sonKare = kare;
     fisiGuncelle(kare);
-    oturumGuncelle({ sure, kare });
+    oturumGuncelle({ birikmisMs: Math.round(ms), sure, kare });
   };
 
   guncelle();
   setInterval(guncelle, 100);
 }
 
-const ekranlar = [...document.querySelectorAll("main > .ekran")];
+const tamEkranlar = [...document.querySelectorAll("main > .ekran")];
+const raporBolumler = tamEkranlar.length ? [] : [...document.querySelectorAll("main > section[id]")];
+const ekranlar = tamEkranlar.length ? tamEkranlar : raporBolumler;
+const raporIzleme = !tamEkranlar.length && raporBolumler.length > 0;
 const raylar = document.querySelectorAll("[data-ray] a[href^='#']");
 const altBilgi = document.querySelector("footer.alt");
-let sonEkranId = ekranlar[0]?.id || "giris";
+let sonEkranId = ekranlar[0]?.id || document.body.dataset.ekran || "giris";
 let footerEtkin = false;
+
+const rayGuncelle = (id) => {
+
+  raylar.forEach((a) => {
+    if (a.getAttribute("href") === `#${id}`) a.setAttribute("aria-current", "true");
+    else a.removeAttribute("aria-current");
+  });
+};
 
 if (ekranlar.length) {
   document.body.dataset.ekran = sonEkranId;
+  rayGuncelle(sonEkranId);
+  const bolumEtkinlestir = (hedefEl) => {
+    if (!hedefEl?.id) return;
+    sonEkranId = hedefEl.id;
+    ekraniBelirle(hedefEl);
+    if (!footerEtkin) document.body.dataset.ekran = sonEkranId;
+    rayGuncelle(sonEkranId);
+    const no = document.querySelector("[data-bolum-no]");
+    if (no && hedefEl.dataset.no) no.textContent = hedefEl.dataset.no;
+  };
   const ekranGozcu = new IntersectionObserver(
     (girdiler) => {
       for (const g of girdiler) {
         if (!g.isIntersecting) continue;
-        sonEkranId = g.target.id;
-        ekraniBelirle(g.target);
-        if (!footerEtkin) document.body.dataset.ekran = sonEkranId;
-        raylar.forEach((a) => a.toggleAttribute("aria-current", a.getAttribute("href") === `#${g.target.id}`));
-        const no = document.querySelector("[data-bolum-no]");
-        if (no && g.target.dataset.no) no.textContent = g.target.dataset.no;
+        bolumEtkinlestir(g.target);
       }
     },
-    { rootMargin: "-45% 0px -50% 0px" },
+
+    { rootMargin: raporIzleme ? "-15% 0px -70% 0px" : "-45% 0px -50% 0px" },
   );
   ekranlar.forEach((h) => ekranGozcu.observe(h));
+
+  if (raporIzleme) {
+    const raporHashEslestir = () => {
+      const id = location.hash.slice(1);
+      if (!id) return;
+      const hedef = document.getElementById(id);
+      const bolum = hedef?.closest("main > section[id]");
+      if (bolum) bolumEtkinlestir(bolum);
+    };
+    raporHashEslestir();
+    addEventListener("hashchange", raporHashEslestir);
+  }
 }
 
 if (altBilgi) {
@@ -404,6 +441,35 @@ if (istif) {
       aisApi?.konus("Sabır bir optik malzeme değil ama yine de lazım.", 4500);
     }
   });
+
+  if (istif.hasAttribute("cozulmez")) {
+    const ekleDugme = document.querySelector("[data-istif-ekle]");
+    ekleDugme?.addEventListener("click", () => {
+      istif.kareEkle?.(Number(ekleDugme.dataset.istifEkle) || 40);
+    });
+
+    const kayipKap = istif.closest("main");
+    if (kayipKap) {
+      let tutZaman = null;
+      const tutBirak = () => {
+        clearInterval(tutZaman);
+        tutZaman = null;
+      };
+      kayipKap.addEventListener("pointerdown", (e) => {
+        if (e.button !== 0) return;
+        const hedef = e.target instanceof Element ? e.target : null;
+        if (hedef?.closest("a, button, ais-maskot")) return;
+        istif.kareEkle?.(40);
+        if (!azHareket()) {
+          tutBirak();
+          tutZaman = setInterval(() => istif.kareEkle?.(40), 480);
+        }
+      });
+      addEventListener("pointerup", tutBirak);
+      addEventListener("pointercancel", tutBirak);
+      addEventListener("blur", tutBirak);
+    }
+  }
 }
 
 if (document.documentElement.classList.contains("kilitli") && matchMedia("(hover: hover) and (pointer: fine)").matches) {

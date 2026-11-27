@@ -1,5 +1,5 @@
-import { azHareket } from "../lib/rastgele.js?v=20261126a";
-import { oturum, oturumGuncelle } from "../lib/oturum.js?v=20261126a";
+import { azHareket } from "../lib/rastgele.js?v=20261127a";
+import { oturum, oturumGuncelle } from "../lib/oturum.js?v=20261127a";
 
 const KATMANLAR = [
   { id: "hb", kanal: 2, renk: [138, 162, 255], ad: "Hβ", dalga: "486.1 nm", css: "#8aa2ff", soluk: "rgba(138, 162, 255, 0.18)", hale: "rgba(138, 162, 255, 0.24)" },

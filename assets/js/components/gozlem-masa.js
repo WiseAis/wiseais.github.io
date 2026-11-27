@@ -1,4 +1,4 @@
-import { azHareket } from "../lib/rastgele.js?v=20261126a";
+import { azHareket } from "../lib/rastgele.js?v=20261127a";
 
 const SVG_NS = "http://www.w3.org/2000/svg";
 const VARSAYILAN_PARCALAR = ["TOPLAM", "6\u00A0HEDEF", "SABİT\u00A0TRİPOD", "5.160\u00A0KARE"];

@@ -1,5 +1,5 @@
-import { azHareket } from "../lib/rastgele.js?v=20261126a";
-import { oturum, oturumGuncelle } from "../lib/oturum.js?v=20261126a";
+import { azHareket } from "../lib/rastgele.js?v=20261127a";
+import { oturum, oturumGuncelle } from "../lib/oturum.js?v=20261127a";
 
 const UYKU_MS = 28000;
 const UCUS_MS = 1250;
@@ -1148,13 +1148,16 @@ export function hizTahminEt(izler, birakT) {
 }
 
 export function yolArkadasi(ais) {
+
+  const okumaKipi = Boolean(ais?.hasAttribute("data-ais-okuma"));
   const ekranlar = [...document.querySelectorAll("main > .ekran[data-ais-hedef]")];
-  if (!ais || !ekranlar.length) return { evrimle: () => {}, konus: () => {} };
+  if (!ais || (!ekranlar.length && !okumaKipi)) return { evrimle: () => {}, konus: () => {} };
 
   const boyut = () => ais.offsetWidth || Number(ais.getAttribute("boyut")) || 84;
 
   let olculenBoyut = boyut();
   const dar = () => matchMedia("(max-width: 760px)").matches;
+  const okumaGizli = () => okumaKipi && matchMedia("(max-width: 960px)").matches;
   const soylendi = new Set();
   const gorunurEvler = new Set();
   const darbeZamanlayici = new WeakMap();
@@ -1165,6 +1168,8 @@ export function yolArkadasi(ais) {
   let ucus = null;
   let ucusEgimSayac = null;
   let bekleyenKonus = null;
+  let bekleyenVaris = false;
+  let okumaRaf = 0;
   let fizik = null;
   let aktifDurum = null;
   let aktifHedefler = null;
@@ -1256,7 +1261,8 @@ export function yolArkadasi(ais) {
   };
 
   const evrim40Kontrol = (kare) => {
-    if (oturum.evrildi40 || kare < 40 || evde) return;
+
+    if (oturum.evrildi40 || kare < 40 || evde || okumaKipi || (ais.getAttribute("faz") || "ais") !== "ais") return;
     oturumGuncelle({ evrildi40: true });
     evrimle("aisen", true);
     konus("40 kare birikti. Pikselim yarıya indi; fırlatırken biraz daha saygı bekliyorum.", 6800);
@@ -1276,12 +1282,33 @@ export function yolArkadasi(ais) {
   const tunek = (ekran) => {
     const b = boyut();
     olculenBoyut = b;
+
+    if (dar() && ekran.dataset.aisDar === "ust") return sinirla({ x: innerWidth - b - 12, y: UST_PAY + 12 }, b);
     if (dar()) return sinirla({ x: innerWidth - b - 16, y: innerHeight - b - 20 }, b);
     const hedef = ekran.matches(ekran.dataset.aisHedef) ? ekran : ekran.querySelector(ekran.dataset.aisHedef);
     const e = ekran.getBoundingClientRect();
     const h = (hedef || ekran).getBoundingClientRect();
     const [fx, fy, dx = 0, dy = 0] = (ekran.dataset.aisKonum || "1 1 -48 -48").split(" ").map(Number);
     return sinirla({ x: h.left + fx * h.width - b / 2 + dx, y: h.top - e.top + fy * h.height - b / 2 + dy }, b);
+  };
+
+  const okumaTunegi = () => {
+    const b = boyut();
+    olculenBoyut = b;
+    const ic = document.querySelector(".icindekiler");
+    if (!ic) return { ...sinirla({ x: 24, y: innerHeight - b - 24 }, b), gorunur: true };
+    const r = ic.getBoundingClientRect();
+    const sigar = r.width > 0 && r.bottom + 14 + b <= innerHeight - 8;
+    const x = Math.max(KENAR_PAY, r.left + 12);
+    const y = Math.max(UST_PAY + 16, Math.min(innerHeight - b - 16, r.bottom + 24));
+    return { ...sinirla({ x, y }, b), gorunur: sigar };
+  };
+
+  const okumaKonumGuncelle = () => {
+    if (!okumaKipi || evde || tutus || fizik || ais.classList.contains("tasindi")) return;
+    const p = okumaTunegi();
+    ais.classList.toggle("okuma-bekle", !p.gorunur);
+    yerlestir(p, 0);
   };
 
   const durdur = () => {
@@ -1361,11 +1388,12 @@ export function yolArkadasi(ais) {
     const yeniEvde =
       typeof zorlaGizle === "boolean"
         ? zorlaGizle
-        : gorunurEvler.size > 0 || Boolean(simdiki?.hasAttribute("data-ais-ev"));
+        : gorunurEvler.size > 0 || Boolean(simdiki?.hasAttribute("data-ais-ev")) || okumaGizli();
 
     if (yeniEvde) {
       evde = true;
       bekleyenKonus = null;
+      bekleyenVaris = false;
       tutusuKapat();
       durdur();
       clearTimeout(ucusEgimSayac);
@@ -1383,7 +1411,25 @@ export function yolArkadasi(ais) {
     if (evde) {
       evde = false;
       ais.classList.remove("evde");
-      yerlestir(sinirla(konum), 0);
+      if (okumaKipi) {
+        if (!ais.classList.contains("tasindi")) okumaKonumGuncelle();
+        else {
+          ais.classList.remove("okuma-bekle");
+          yerlestir(sinirla(konum), 0);
+        }
+      } else if (bekleyenVaris && simdiki && !simdiki.hasAttribute("data-ais-ev") && !tutus) {
+
+        bekleyenVaris = false;
+        const hedef = tunek(simdiki);
+        if (azHareket()) {
+          yerlestir(hedef, 0);
+          ilkSoz(simdiki);
+        } else {
+          ucur(hedef, () => simdiki && !evde && ilkSoz(simdiki));
+        }
+      } else {
+        yerlestir(sinirla(konum), 0);
+      }
       evrim40Kontrol(oturum.kare);
     }
   };
@@ -1499,9 +1545,11 @@ export function yolArkadasi(ais) {
   };
 
   const tac = (takili) => {
+
+    const olmali = takili || document.body.hasAttribute("data-ais-tac");
     const simdi = ais.getAttribute("aksesuar") === "tac";
-    if (simdi === takili) return;
-    if (takili) ais.setAttribute("aksesuar", "tac");
+    if (simdi === olmali) return;
+    if (olmali) ais.setAttribute("aksesuar", "tac");
     else ais.removeAttribute("aksesuar");
     ais._ciz?.();
   };
@@ -1522,6 +1570,8 @@ export function yolArkadasi(ais) {
 
   const ilkSoz = (ekran) => {
     if (soylendi.has(ekran.id)) return;
+
+    if (dar() && ekran.dataset.aisDar) return;
     const ilk = sozler(ekran)[0];
     if (!ilk) return;
     soylendi.add(ekran.id);
@@ -1545,7 +1595,10 @@ export function yolArkadasi(ais) {
     }
 
     evdeGuncelle();
-    if (evde) return;
+    if (evde) {
+      bekleyenVaris = true;
+      return;
+    }
 
     if (tutus) return;
     if (azHareket()) {
@@ -1557,9 +1610,30 @@ export function yolArkadasi(ais) {
   };
 
   ais.classList.add("yol-arkadasi");
-  simdiki = ekranlar[0];
-  sozleriKur(simdiki);
-  yerlestir(tunek(simdiki), 0);
+  if (document.body.hasAttribute("data-ais-tac")) tac(true);
+  if (okumaKipi) {
+
+    ais.classList.add("ais-okuma");
+    okumaKonumGuncelle();
+    evdeGuncelle();
+    addEventListener(
+      "scroll",
+      () => {
+        if (okumaRaf) return;
+        okumaRaf = requestAnimationFrame(() => {
+          okumaRaf = 0;
+          okumaKonumGuncelle();
+        });
+      },
+      { passive: true },
+    );
+  } else {
+    simdiki = ekranlar[0];
+    sozleriKur(simdiki);
+    yerlestir(tunek(simdiki), 0);
+
+    if (simdiki.hasAttribute("data-ais-ev")) evdeGuncelle(true);
+  }
 
   const evOgeleri = [...document.querySelectorAll("[data-ais-ev], footer.alt")];
   if (evOgeleri.length) {
@@ -1582,7 +1656,7 @@ export function yolArkadasi(ais) {
   });
 
   document.addEventListener("starlink-gecis", (e) => {
-    if (evde) return;
+    if (evde || okumaKipi) return;
     const d = e.detail;
     const atildi =
       d === "atildi" ||
@@ -1607,15 +1681,17 @@ export function yolArkadasi(ais) {
     }
   });
 
-  const gozcu = new IntersectionObserver(
-    (girdiler) => {
-      for (const g of girdiler) if (g.isIntersecting) vardi(g.target);
-    },
-    { rootMargin: "-45% 0px -50% 0px" },
-  );
-  ekranlar.forEach((e) => gozcu.observe(e));
+  if (!okumaKipi && ekranlar.length) {
+    const gozcu = new IntersectionObserver(
+      (girdiler) => {
+        for (const g of girdiler) if (g.isIntersecting) vardi(g.target);
+      },
+      { rootMargin: "-45% 0px -50% 0px" },
+    );
+    ekranlar.forEach((e) => gozcu.observe(e));
 
-  ilkSoz(simdiki);
+    if (!evde) ilkSoz(simdiki);
+  }
 
   const metinKabugu = (el) => {
     if (!el || typeof document === "undefined" || !document.createRange) return null;
@@ -1677,9 +1753,10 @@ export function yolArkadasi(ais) {
     const ent = document.querySelector(".ust .entegrasyon");
     if (ent) ekle(ent, "entegrasyon", null, true);
 
-    if (!simdiki) return liste;
+    const kapsam = simdiki || document.querySelector("main") || document.body;
+    if (!kapsam) return liste;
 
-    const kanal = simdiki.querySelector("kanal-ayrimi");
+    const kanal = kapsam.querySelector("kanal-ayrimi");
     if (kanal) {
 
       const zarf = kanal.carpismaKabugu?.();
@@ -1689,12 +1766,12 @@ export function yolArkadasi(ais) {
         const yigin = kanal.querySelector(".ka-yigin");
         ekle(kanal, "kanal", yigin ? yigin.getBoundingClientRect() : null);
       }
-    } else if (simdiki.classList.contains("proje-001")) {
-      const pg = simdiki.querySelector(".proje-gorsel");
+    } else if (simdiki?.classList.contains("proje-001")) {
+      const pg = kapsam.querySelector(".proje-gorsel");
       if (pg) ekle(pg, "kanal");
     }
 
-    const krallik = simdiki.querySelector("krallik-sahne, .krallik-kare");
+    const krallik = kapsam.querySelector("krallik-sahne, .krallik-kare");
     if (krallik) {
 
       const krallikGorsel = krallik.matches(".ks-cerceve, .krallik-kare")
@@ -1703,7 +1780,7 @@ export function yolArkadasi(ais) {
       ekle(krallikGorsel, "krallik");
     }
 
-    const istif = simdiki.querySelector("istif-tuvali");
+    const istif = kapsam.querySelector("istif-tuvali");
     if (istif) {
       const r = istif.getBoundingClientRect();
 
@@ -1718,7 +1795,11 @@ export function yolArkadasi(ais) {
       ekle(istif, "istif", band);
     }
 
-    simdiki.querySelectorAll("h2, .proje-gorsel, .mozaik .kare").forEach((el) => {
+    kapsam.querySelectorAll("[data-ais-kati], .adim-gorsel, .gf-kare, .kapak-galeri, .kanit").forEach((el) => {
+      ekle(el, "sahne");
+    });
+
+    kapsam.querySelectorAll("h2, .proje-gorsel, .mozaik .kare").forEach((el) => {
       if (el.classList.contains("proje-gorsel") && el.querySelector("kanal-ayrimi, krallik-sahne, .krallik-kare")) {
         return;
       }
@@ -1735,6 +1816,7 @@ export function yolArkadasi(ais) {
 
   addEventListener("resize", () => {
     olculenBoyut = boyut();
+    if (okumaKipi) evdeGuncelle();
     if (evde) return;
     if (fizik) {
       const yeniP = sinirla(aktifDurum || konum);
@@ -1762,6 +1844,11 @@ export function yolArkadasi(ais) {
       ais.balonuYerlestir?.();
       return;
     }
+    if (okumaKipi) {
+      okumaKonumGuncelle();
+      ais.balonuYerlestir?.();
+      return;
+    }
     if (simdiki) {
       yerlestir(tunek(simdiki), 0);
       ais.balonuYerlestir?.();
@@ -1769,7 +1856,7 @@ export function yolArkadasi(ais) {
   });
 
   const guvenlikKontrol = () => {
-    if (evde || document.hidden || tutus) return;
+    if (evde || document.hidden || tutus || (okumaKipi && ais.classList.contains("okuma-bekle"))) return;
     const b = olculenBoyut || 84;
     const gecersiz = !Number.isFinite(konum.x) || !Number.isFinite(konum.y);
     let disinda =
@@ -1788,7 +1875,7 @@ export function yolArkadasi(ais) {
     if (!disinda) return;
 
     durdur();
-    const hedef = tunek(simdiki || ekranlar[0]);
+    const hedef = okumaKipi ? okumaTunegi() : tunek(simdiki || ekranlar[0]);
     if (azHareket()) {
       yerlestir(hedef, 0);
       return;
@@ -1824,7 +1911,7 @@ export function yolArkadasi(ais) {
   const uyan = () => {
     if (ais.classList.contains("uyuyor")) {
       ais.classList.remove("uyuyor");
-      if (ilkUyanis && !evde && !uykudanEtkilesim) {
+      if (ilkUyanis && !evde && !okumaKipi && !uykudanEtkilesim) {
         ilkUyanis = false;
         konus("Uyumuyordum. Uzun pozlamadaydım.");
       }
@@ -2048,6 +2135,12 @@ export function yolArkadasi(ais) {
         kivilcimSac(temasX, temasY);
 
         if (h.tur !== "istif") hedefEsnet(h.el, nx, ny);
+
+        if (h.el) {
+          h.el.aisDarbe?.(temasX, temasY, nx, ny);
+          const icSahne = h.el.querySelector?.("sahne-cizim, germe-foto");
+          if (icSahne && icSahne !== h.el) icSahne.aisDarbe?.(temasX, temasY, nx, ny);
+        }
 
         if (h.tur === "entegrasyon") {
           if (!oncelikliKonustu && !ozelKonustu) {

@@ -1,5 +1,5 @@
-import { tohumlu, azHareket } from "../lib/rastgele.js?v=20261126a";
-import { el } from "../lib/svg.js?v=20261126a";
+import { tohumlu, azHareket } from "../lib/rastgele.js?v=20261127a";
+import { el } from "../lib/svg.js?v=20261127a";
 
 let sayac = 0;
 

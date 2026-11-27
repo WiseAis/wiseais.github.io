@@ -6,33 +6,113 @@ if (kok) {
   const kutu = document.querySelector(".galeri-buyuk");
   const azHareket = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  const adim = () => {
-    const ilk = kareler[0]?.closest(".galeri-oge");
-    return ilk ? ilk.offsetWidth + parseFloat(getComputedStyle(pencere.firstElementChild).columnGap || 0) : pencere.clientWidth * 0.8;
+  kareler.forEach((kare) => {
+    const img = kare.querySelector("img");
+    if (!img || kare.querySelector(".galeri-kare-kap")) return;
+    const kap = document.createElement("span");
+    kap.className = "galeri-kare-kap";
+    const fener = document.createElement("span");
+    fener.className = "galeri-fener";
+    fener.setAttribute("aria-hidden", "true");
+    img.replaceWith(kap);
+    kap.append(img, fener);
+  });
+
+  let etkinIndeks = 0;
+  let imlecAktif = -1;
+  const etkinAyarla = (indeks) => {
+    etkinIndeks = Math.max(0, Math.min(kareler.length - 1, indeks));
+    kareler.forEach((k, i) => k.classList.toggle("etkin", i === etkinIndeks));
   };
+
+  const kutuOnbellek = new WeakMap();
+  const onbellekTemizle = () => {
+    kareler.forEach((k) => kutuOnbellek.delete(k));
+  };
+
+  kareler.forEach((kare, i) => {
+    kare.addEventListener("pointerenter", (e) => {
+      if (e.pointerType === "touch") return;
+      imlecAktif = i;
+      etkinAyarla(i);
+      const kap = kare.querySelector(".galeri-kare-kap") || kare;
+      kutuOnbellek.set(kare, kap.getBoundingClientRect());
+    });
+    kare.addEventListener("pointermove", (e) => {
+      if (e.pointerType === "touch") return;
+      const kap = kare.querySelector(".galeri-kare-kap") || kare;
+      const r = kutuOnbellek.get(kare) || kap.getBoundingClientRect();
+      kutuOnbellek.set(kare, r);
+      if (!r.width || !r.height) return;
+      const gx = Math.max(0, Math.min(100, ((e.clientX - r.left) / r.width) * 100));
+      const gy = Math.max(0, Math.min(100, ((e.clientY - r.top) / r.height) * 100));
+      kare.style.setProperty("--gx", `${gx.toFixed(1)}%`);
+      kare.style.setProperty("--gy", `${gy.toFixed(1)}%`);
+    });
+    kare.addEventListener("pointerleave", () => {
+      if (imlecAktif === i) imlecAktif = -1;
+      kutuOnbellek.delete(kare);
+    });
+    kare.addEventListener("focus", () => etkinAyarla(i));
+  });
+
+  let adimOlcu = 0;
+  const adimHesapla = () => {
+    const ilk = kareler[0]?.closest(".galeri-oge");
+    adimOlcu = ilk ? ilk.offsetWidth + parseFloat(getComputedStyle(pencere.firstElementChild).columnGap || 0) : pencere.clientWidth * 0.8;
+    return adimOlcu;
+  };
+  const adim = () => adimOlcu || adimHesapla();
 
   const git = (yon) => pencere.scrollBy({ left: yon * adim() * (innerWidth < 760 ? 1 : 2), behavior: azHareket ? "auto" : "smooth" });
 
   const durum = () => {
+    onbellekTemizle();
     const son = pencere.scrollWidth - pencere.clientWidth - 2;
     kok.classList.toggle("basta", pencere.scrollLeft <= 2);
     kok.classList.toggle("sonda", pencere.scrollLeft >= son);
     oklar[0].disabled = pencere.scrollLeft <= 2;
     oklar[1].disabled = pencere.scrollLeft >= son;
     if (pencere.scrollLeft > 24) kok.classList.add("kaydirildi");
+    if (imlecAktif === -1) {
+      const a = Math.max(1, adim());
+      etkinAyarla(Math.round(pencere.scrollLeft / a));
+    }
   };
   pencere.addEventListener("scroll", durum, { passive: true });
-  addEventListener("resize", durum);
+  addEventListener("resize", () => {
+    adimHesapla();
+    durum();
+  });
+  adimHesapla();
   durum();
 
   oklar.forEach((o) => o.addEventListener("click", () => git(Number(o.dataset.yon))));
 
   pencere.addEventListener("keydown", (e) => {
-    if (e.target !== pencere) return;
-    if (e.key === "ArrowRight") git(0.5) || e.preventDefault();
-    else if (e.key === "ArrowLeft") git(-0.5) || e.preventDefault();
-    else if (e.key === "Home") pencere.scrollTo({ left: 0, behavior: "smooth" }) || e.preventDefault();
-    else if (e.key === "End") pencere.scrollTo({ left: pencere.scrollWidth, behavior: "smooth" }) || e.preventDefault();
+    if (e.key === "ArrowRight") {
+      e.preventDefault();
+      if (e.target === pencere) git(0.5);
+      else {
+        const i = kareler.indexOf(e.target);
+        if (i >= 0 && i < kareler.length - 1) kareler[i + 1].focus();
+      }
+    } else if (e.key === "ArrowLeft") {
+      e.preventDefault();
+      if (e.target === pencere) git(-0.5);
+      else {
+        const i = kareler.indexOf(e.target);
+        if (i > 0) kareler[i - 1].focus();
+      }
+    } else if (e.key === "Home") {
+      e.preventDefault();
+      pencere.scrollTo({ left: 0, behavior: azHareket ? "auto" : "smooth" });
+      if (e.target !== pencere) kareler[0]?.focus();
+    } else if (e.key === "End") {
+      e.preventDefault();
+      pencere.scrollTo({ left: pencere.scrollWidth, behavior: azHareket ? "auto" : "smooth" });
+      if (e.target !== pencere) kareler[kareler.length - 1]?.focus();
+    }
   });
 
   let tut = null;
@@ -110,6 +190,7 @@ if (kok) {
       sira = (i + kareler.length) % kareler.length;
       const k = kareler[sira];
       const bu = ++istek;
+      etkinAyarla(sira);
       yazi.textContent = `${k.dataset.ad} · ${sira + 1}/${kareler.length}`;
       resim.alt = k.querySelector("img").alt;
 

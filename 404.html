@@ -9,23 +9,91 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..700,0..100,0..1&family=Instrument+Sans:wght@400..600&family=JetBrains+Mono:wght@400;500&display=swap">
-  <link rel="stylesheet" href="/assets/css/site.css?v=20261126a">
-  <script type="module" src="/assets/js/main.js?v=20261126a"></script>
+  <link rel="stylesheet" href="/assets/css/site.css?v=20261127a">
   <style>
-    .kayip { min-height: 100svh; display: grid; place-content: center; justify-items: center; gap: var(--a-6); padding: var(--kenar); text-align: center; }
+    .kayip { position: relative; isolation: isolate; min-height: 100svh; display: grid; place-content: center; justify-items: center; gap: var(--a-6); padding: calc(var(--ust-bar) + var(--kenar)) var(--kenar) var(--kenar); text-align: center; }
+    .kayip istif-tuvali { position: absolute; inset: 0; z-index: -1; display: block; opacity: 0.72; }
+    .kayip istif-tuvali canvas { width: 100%; height: 100%; }
     .kayip h1 { font-size: var(--t-dev); line-height: 1; }
-    .kayip h1 em { color: var(--ha); }
     .kayip p { color: var(--isik-2); max-width: 36ch; }
+    .kayip-istif { display: inline-flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: var(--a-3); color: var(--isik-3); }
+    .kayip-ekle { padding: 0.2rem 0.55rem; border: 1px solid var(--cizgi-guclu); border-radius: var(--yaricap); color: var(--isik-2); }
+    .kayip-ekle:hover, .kayip-ekle:focus-visible { border-color: var(--ha); color: var(--isik); }
   </style>
+  <link rel="stylesheet" href="/assets/css/sayfalar/kayip.css?v=20261127a">
+  <script type="module" src="/assets/js/main.js?v=20261127a"></script>
 </head>
-<body>
-  <main class="kayip">
+<body data-sayfa="kayip" data-ekran="kayip">
+  <gok-atmosfer></gok-atmosfer>
+  <a class="atla" href="#icerik">İçeriğe geç</a>
+
+  <header class="ust">
+    <a class="marka" href="/" aria-label="Aisenit ana sayfa"><ais-maskot faz="ais" boyut="30"></ais-maskot><span>aisenit</span></a>
+    <button type="button" class="entegrasyon veri" data-entegrasyon aria-expanded="false" aria-controls="ent-fis" title="Bu oturumda geçirdiğin süre. Her 4 saniye bir kare sayılır.">
+      <span class="uzun">ENT</span> <b data-sure>00:00:00</b> <span class="uzun">· <span data-kare>0</span> kare</span>
+      <span class="ent-serit" aria-hidden="true"><i></i></span>
+    </button>
+  </header>
+
+  <aside class="ent-fis veri" id="ent-fis" data-ent-fis hidden aria-label="Oturum pozlama özeti">
+    <p class="ent-fis-bas" data-ent-fis-bas>OTURUM · 0 KARE · √N = 1.0</p>
+    <p class="ent-fis-durum" data-ent-fis-durum>Henüz tek kare sayılırsın. Gürültü yüksek.</p>
+  </aside>
+
+  <main class="kayip" id="icerik">
+    <istif-tuvali metin="404" kare="404" cozulmez data-istif></istif-tuvali>
     <ais-maskot faz="ais" boyut="140" konus kendiliginden
       data-sozler='["Bu sayfa gürültü çıktı. İstiflesek de bir şey çıkmaz.","Ben de kayboldum. Ama ben hep biraz kayboluyorum.","SNR: 0. Kendimi tanıyorum."]'></ais-maskot>
     <p class="veri">404 · SNR 0.0</p>
+    <div class="kayip-istif veri">
+      <span class="kayip-sayac"><b data-istif-kare>000</b> boş kare · temsilî gürültü istifi</span>
+      <button type="button" class="kayip-ekle veri" data-istif-ekle="40">+40 kare</button>
+    </div>
     <h1>Burada sinyal yok.</h1>
     <p>Aradığın sayfa ya hiç çekilmedi ya da kalibrasyon sırasında kayboldu.</p>
     <a class="kapi" href="/"><span class="kapi-no">00</span><span class="kapi-ad">Ana sayfaya dön</span><span class="kapi-not">Gürültüden ayıklanmış her şey orada</span><span class="kapi-ok" aria-hidden="true">→</span></a>
+
+    <script type="module">
+      import { azHareket } from "/assets/js/lib/rastgele.js?v=20261127a";
+      const main = document.querySelector("main.kayip");
+      const istif = main?.querySelector("istif-tuvali[cozulmez]");
+      if (main && istif) {
+        const katman = document.createElement("span");
+        katman.className = "kayip-halka-katman";
+        katman.setAttribute("aria-hidden", "true");
+        main.append(katman);
+
+        const ipucu = document.createElement("span");
+        ipucu.className = "kayip-ipucu veri";
+        ipucu.setAttribute("aria-hidden", "true");
+        ipucu.textContent = "Tuvale basılı tut · +40 boş kare";
+        main.append(ipucu);
+
+        let nabizZaman = 0;
+        const nabiz = (x, y) => {
+          main.classList.add("kayip-etkilesimli", "kayip-nabiz");
+          clearTimeout(nabizZaman);
+          nabizZaman = setTimeout(() => main.classList.remove("kayip-nabiz"), 260);
+          if (azHareket() || typeof x !== "number") return;
+          const r = main.getBoundingClientRect();
+          const h = document.createElement("span");
+          h.className = "kayip-halka";
+          h.style.left = `${(x - r.left).toFixed(1)}px`;
+          h.style.top = `${(y - r.top).toFixed(1)}px`;
+          katman.append(h);
+          const sil = () => h.remove();
+          h.addEventListener("animationend", sil, { once: true });
+          setTimeout(sil, 640);
+        };
+
+        main.querySelector("[data-istif-ekle]")?.addEventListener("click", () => nabiz());
+        main.addEventListener("pointerdown", (e) => {
+          if (e.button !== 0) return;
+          if (e.target instanceof Element && e.target.closest("a, button, ais-maskot")) return;
+          nabiz(e.clientX, e.clientY);
+        });
+      }
+    </script>
   </main>
 <script data-goatcounter="https://wiseais.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
